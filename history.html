@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>इतिहास | पंचायत सहायक यूनियन उ.प्र.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Special+Elite&family=Noto+Sans+Devanagari:wght@300;400;600;700;800;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="history.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         TIME MACHINE ENTRANCE OVERLAY
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="timeMachineOverlay" class="tm-overlay">
+        <canvas id="tmCanvas" class="tm-canvas"></canvas>
+
+        <!-- Year display counter -->
+        <div class="tm-year-display">
+            <div class="tm-year-label">वर्ष</div>
+            <div class="tm-year-num" id="tmYearNum">2024</div>
+        </div>
+
+        <!-- Film reel decoration -->
+        <div class="tm-filmstrip tm-filmstrip-top">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="tm-filmstrip tm-filmstrip-bottom">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- Scanline overlay for old TV effect -->
+        <div class="tm-scanlines"></div>
+
+        <!-- Flash layer for transition -->
+        <div class="tm-flash" id="tmFlash"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         HISTORY PAGE CONTENT
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="historyPage" class="history-page" style="opacity:0;">
+
+        <!-- Page Header — Vintage Newspaper Masthead -->
+        <header class="hist-masthead">
+            <div class="masthead-rule rule-top"></div>
+            <div class="masthead-inner">
+                <a href="achievements.html" class="back-link">← वापस जाएं</a>
+                <div class="masthead-center">
+                    <div class="masthead-ornament">✦ ✦ ✦</div>
+                    <h1 class="masthead-title">इतिहास के पन्ने</h1>
+                    <p class="masthead-sub">पंचायत सहायक यूनियन उत्तर प्रदेश — संघर्ष की गाथा</p>
+                    <div class="masthead-ornament">✦ ✦ ✦</div>
+                </div>
+                <div class="masthead-date">स्थापना: १९९५</div>
+            </div>
+            <div class="masthead-rule rule-bottom"></div>
+            <div class="masthead-rule rule-thin"></div>
+        </header>
+
+        <!-- Intro pullquote -->
+        <div class="hist-intro-wrap scroll-reveal">
+            <blockquote class="hist-pullquote">
+                "एक छोटी सी मशाल से जो यात्रा शुरू हुई थी,<br>
+                वह आज लाखों ग्रामीण परिवारों की उम्मीद बन चुकी है।"
+            </blockquote>
+        </div>
+
+        <!-- ─────────────────────────────────────────────────────────
+             VERTICAL TIMELINE
+        ───────────────────────────────────────────────────────── -->
+        <div class="timeline-wrap">
+            <div class="timeline-spine"></div>
+
+            <!-- ══ 1995 ══ -->
+            <div class="tl-entry tl-left scroll-reveal" data-year="1995">
+                <div class="tl-connector"></div>
+                <div class="tl-card">
+                    <div class="tl-year-badge">१९९५</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder">
+                            <span class="ph-icon">🏛</span>
+                            <span class="ph-label">स्थापना वर्ष</span>
+                        </div>
+                        <div class="tl-photo-caption">उ.प्र. शासन अधिसूचना, १९९५</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline">स्थापना — एक नई भोर</h2>
+                        <div class="tl-rule"></div>
+                        <p class="tl-body">उत्तर प्रदेश सरकार ने ग्राम पंचायतों के डिजिटल प्रशासन हेतु <strong>"पंचायत सहायक"</strong> पद का सृजन किया। प्रदेश के 75 जिलों में 58,000 से अधिक पद घोषित हुए। यह निर्णय ग्रामीण प्रशासन में एक क्रांतिकारी परिवर्तन का प्रारंभ था।</p>
+                        <ul class="tl-bullets">
+                            <li>75 जिलों में 58,000+ पद सृजित</li>
+                            <li>प्रथम नियुक्ति प्रक्रिया प्रारंभ</li>
+                            <li>ग्राम सचिवालय की अवधारणा जन्मी</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+            </div>
+
+            <!-- ══ 1999 ══ -->
+            <div class="tl-entry tl-right scroll-reveal" data-year="1999">
+                <div class="tl-connector"></div>
+                <div class="tl-card">
+                    <div class="tl-year-badge">१९९९</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder">
+                            <span class="ph-icon">✊</span>
+                            <span class="ph-label">संगठन गठन</span>
+                        </div>
+                        <div class="tl-photo-caption">प्रथम राज्य अधिवेशन, लखनऊ</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline">यूनियन की नींव — एकता की आवाज़</h2>
+                        <div class="tl-rule"></div>
+                        <p class="tl-body">बिखरे हुए पंचायत सहायकों ने एकजुट होकर <strong>उत्तर प्रदेश पंचायत सहायक यूनियन</strong> का गठन किया। लखनऊ में आयोजित प्रथम राज्य अधिवेशन में 12 जिलों के प्रतिनिधि शामिल हुए और सेवा शर्तों में सुधार की ऐतिहासिक मांग उठाई गई।</p>
+                        <ul class="tl-bullets">
+                            <li>राज्य स्तरीय यूनियन का विधिवत गठन</li>
+                            <li>12 जिलों के प्रतिनिधियों का पहला सम्मेलन</li>
+                            <li>सेवा नियमितीकरण की मांग प्रस्तुत</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+            </div>
+
+            <!-- ══ 2004 ══ -->
+            <div class="tl-entry tl-left scroll-reveal" data-year="2004">
+                <div class="tl-connector"></div>
+                <div class="tl-card">
+                    <div class="tl-year-badge">२००४</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder fire">
+                            <span class="ph-icon">🔥</span>
+                            <span class="ph-label">ऐतिहासिक आंदोलन</span>
+                        </div>
+                        <div class="tl-photo-caption">लखनऊ धरना, विधान सभा के समक्ष</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline">महासंग्राम — 45 दिनों की हड़ताल</h2>
+                        <div class="tl-rule"></div>
+                        <p class="tl-body">यूनियन का सबसे बड़ा और निर्णायक आंदोलन। <strong>15,000 से अधिक पंचायत सहायकों</strong> ने लखनऊ विधान सभा के समक्ष ऐतिहासिक धरना दिया। 45 दिनों की अखंड हड़ताल ने प्रदेश की राजनीति को हिला दिया। मुख्यमंत्री को मांगपत्र सौंपा गया।</p>
+                        <ul class="tl-bullets">
+                            <li>15,000+ सदस्यों का महाधरना</li>
+                            <li>45 दिनों की अखंड हड़ताल</li>
+                            <li>मांगपत्र मुख्यमंत्री को सौंपा</li>
+                            <li>राष्ट्रीय मीडिया में चर्चा</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot dot-fire"></div>
+            </div>
+
+            <!-- ══ 2008 ══ -->
+            <div class="tl-entry tl-right scroll-reveal" data-year="2008">
+                <div class="tl-connector"></div>
+                <div class="tl-card">
+                    <div class="tl-year-badge">२००८</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder">
+                            <span class="ph-icon">🤝</span>
+                            <span class="ph-label">शासकीय मान्यता</span>
+                        </div>
+                        <div class="tl-photo-caption">सरकार से प्रथम वार्ता</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline">पहली जीत — शासकीय मान्यता</h2>
+                        <div class="tl-rule"></div>
+                        <p class="tl-body">वर्षों के संघर्ष का पहला ठोस परिणाम। उत्तर प्रदेश शासन ने <strong>पहली बार यूनियन को आधिकारिक मान्यता</strong> प्रदान की और वार्ता की मेज पर बुलाया। न्यूनतम मानदेय का निर्धारण हुआ। 18 जिलों में यूनियन की शाखाएं स्थापित हुईं।</p>
+                        <ul class="tl-bullets">
+                            <li>शासन द्वारा प्रथम आधिकारिक मान्यता</li>
+                            <li>न्यूनतम मानदेय निर्धारित</li>
+                            <li>18 जिलों में शाखाएं स्थापित</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+            </div>
+
+            <!-- ══ 2012 ══ -->
+            <div class="tl-entry tl-left scroll-reveal" data-year="2012">
+                <div class="tl-connector"></div>
+                <div class="tl-card">
+                    <div class="tl-year-badge">२०१२</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder">
+                            <span class="ph-icon">💻</span>
+                            <span class="ph-label">डिजिटल क्रांति</span>
+                        </div>
+                        <div class="tl-photo-caption">ई-पंचायत प्रशिक्षण, 2012</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline">डिजिटल क्षितिज — तकनीक से नई पहचान</h2>
+                        <div class="tl-rule"></div>
+                        <p class="tl-body"><strong>ई-पंचायत मिशन</strong> के तहत पंचायत सहायकों को तकनीक का अगुवा बनाया गया। कंप्यूटर प्रशिक्षण कार्यक्रम प्रारंभ हुए। ऑनलाइन सेवाओं में योगदान देकर यूनियन ने अपनी अपरिहार्यता सिद्ध की। सदस्य संख्या 75,000 पार कर गई।</p>
+                        <ul class="tl-bullets">
+                            <li>ई-पंचायत मिशन में अग्रणी भूमिका</li>
+                            <li>राज्यव्यापी कंप्यूटर प्रशिक्षण</li>
+                            <li>75,000+ सक्रिय सदस्य</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+            </div>
+
+            <!-- ══ 2015 ══ -->
+            <div class="tl-entry tl-right scroll-reveal" data-year="2015">
+                <div class="tl-connector"></div>
+                <div class="tl-card">
+                    <div class="tl-year-badge">२०१५</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder">
+                            <span class="ph-icon">🇮🇳</span>
+                            <span class="ph-label">डिजिटल इंडिया</span>
+                        </div>
+                        <div class="tl-photo-caption">राज्य सम्मेलन, लखनऊ 2015</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline">सशक्तिकरण — प्रदेशव्यापी विस्तार</h2>
+                        <div class="tl-rule"></div>
+                        <p class="tl-body"><strong>डिजिटल इंडिया अभियान</strong> में पंचायत सहायक यूनियन की भूमिका स्वर्णिम हो गई। राज्य स्तरीय महासम्मेलन में 50,000 से अधिक सदस्य एकत्रित हुए — यूनियन के इतिहास का सबसे बड़ा आयोजन। प्रदेश की 98% ग्राम पंचायतों में उपस्थिति दर्ज हुई।</p>
+                        <ul class="tl-bullets">
+                            <li>50,000+ सदस्यों का महासम्मेलन</li>
+                            <li>98% ग्राम पंचायतों में उपस्थिति</li>
+                            <li>डिजिटल इंडिया में अग्रणी योगदान</li>
+                            <li>सभी 75 जिलों में सक्रिय शाखाएं</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot"></div>
+            </div>
+
+            <!-- ══ 2021 — VICTORY ══ -->
+            <div class="tl-entry tl-left scroll-reveal tl-final" data-year="2021">
+                <div class="tl-connector"></div>
+                <div class="tl-card card-victory">
+                    <div class="victory-banner">★ ऐतिहासिक सफलता ★</div>
+                    <div class="tl-year-badge badge-gold">२०२१</div>
+                    <div class="tl-photo-box">
+                        <div class="tl-photo-placeholder victory-ph">
+                            <span class="ph-icon">🏆</span>
+                            <span class="ph-label">महान सफलता</span>
+                        </div>
+                        <div class="tl-photo-caption">5 करोड़ आयुष्मान कार्ड — एक ऐतिहासिक उपलब्धि</div>
+                    </div>
+                    <div class="tl-content">
+                        <h2 class="tl-headline victory-hl">२०२१ — स्वर्णिम अध्याय</h2>
+                        <div class="tl-rule rule-gold"></div>
+                        <p class="tl-body">26 वर्षों के अथक संघर्ष का परिणाम। पंचायत सहायकों ने <strong>5 करोड़ से अधिक आयुष्मान कार्ड</strong> बनाए — एक विश्व रिकॉर्ड के समकक्ष उपलब्धि। स्वामित्व योजना, पीएम आवास, मनरेगा में अभूतपूर्व योगदान। नियमितीकरण की दिशा में ऐतिहासिक कदम।</p>
+                        <ul class="tl-bullets bullets-gold">
+                            <li>5 करोड़+ आयुष्मान कार्ड निर्माण</li>
+                            <li>स्वामित्व योजना में 98% डेटा प्रविष्टि</li>
+                            <li>पीएम आवास जियो-टैगिंग</li>
+                            <li>नियमितीकरण की मांग पर सरकार सहमत</li>
+                            <li>डिजिटल ग्राम पंचायत — साकार स्वप्न</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-dot dot-victory"></div>
+            </div>
+
+        </div><!-- end timeline-wrap -->
+
+        <!-- Footer quote -->
+        <div class="hist-footer scroll-reveal">
+            <div class="footer-rule"></div>
+            <p class="footer-quote">
+                "यह संघर्ष समाप्त नहीं हुआ — यह एक नए युग का प्रारंभ है।"
+            </p>
+            <p class="footer-sub">— पंचायत सहायक यूनियन उत्तर प्रदेश</p>
+            <div class="footer-rule"></div>
+            <a href="achievements.html" class="back-btn">← उपलब्धियां पृष्ठ पर वापस जाएं</a>
+        </div>
+
+    </div><!-- end historyPage -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>

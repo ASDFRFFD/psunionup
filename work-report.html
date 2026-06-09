@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कार्य विवरण प्रविष्टि | पंचायत सहायक यूनियन</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css?v=cjp_theme_6">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hind:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        .checklist-group {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Entry Animations */
+        @keyframes fadeUpPremium {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUpPremium 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.35s; }
+
+        .checklist-section-title {
+            font-family: 'Noto Sans Devanagari', 'Hind', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--saffron-deep);
+            border-bottom: 2px dashed rgba(26, 17, 8, 0.15);
+            padding-bottom: 4px;
+            margin-top: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 2px solid var(--ink);
+            background: #fff;
+            box-shadow: 2px 2px 0 var(--ink);
+            transition: all 0.15s ease;
+        }
+
+        .checklist-item:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--ink);
+            background: var(--paper);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--saffron-deep);
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            font-family: var(--sans);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .checklist-empty-state {
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed rgba(26, 17, 8, 0.3);
+            background: rgba(26, 17, 8, 0.02);
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .campaign-info-grid {
+                grid-template-columns: 1fr !important;
+                margin-bottom: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Premium Page Preloader -->
+    <style>
+        #page-preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--paper, #fdfbf7);
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .loader-brand-text {
+            font-family: var(--condensed, 'Hind', sans-serif);
+            font-size: 2rem;
+            color: var(--saffron-deep, #E0651E);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: pulseText 1.2s infinite alternate ease-in-out;
+            margin-bottom: 20px;
+        }
+        .loader-spinner-ring {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(224, 101, 30, 0.15);
+            border-top-color: var(--saffron-deep, #E0651E);
+            border-radius: 50%;
+            animation: spinRing 1s linear infinite;
+        }
+        @keyframes pulseText {
+            0% { opacity: 0.5; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes spinRing {
+            100% { transform: rotate(360deg); }
+        }
+        body.page-loaded #page-preloader {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+    </style>
+    <div id="page-preloader">
+        <div class="loader-brand-text">पंचायत सहायक यूनियन</div>
+        <div class="loader-spinner-ring"></div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 600); // 600ms delay to show the nice animation
+        });
+    </script>
+
+    <!-- Premium Floating Header -->
+    <header class="premium-header">
+        <div class="header-inner">
+            <div class="brand-cluster">
+                <img src="logo.webp" alt="Logo" class="nav-logo">
+                <div class="brand-text">
+                    <h1>पंचायत सहायक यूनियन उ.प्र.</h1>
+                    <span class="badge">उत्तर प्रदेश</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <a href="javascript:void(0)" onclick="showComingSoonModal(); return false;" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; opacity: 0.7;" title="जल्द आ रहा है (Coming Soon)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    उपलब्धियां (Soon)
+                </a>
+                <a href="index.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    मुख्य पृष्ठ (Home)
+                </a>
+                <a href="javascript:void(0)" onclick="showComingSoonModal(); return false;" class="nav-btn-outline" style="background: var(--paper-2); color: var(--ink); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; opacity: 0.7;" title="जल्द आ रहा है (Coming Soon)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    भविष्य का विज़न (Soon)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========= FULL WIDTH POSTER SLIDESHOW (Hero - First View) ========= -->
+    <div id="posterSliderSection" style="width: 100%; overflow: hidden; margin: 0;">
+            <style>
+
+
+
+                /* Outer container - Full width hero on mobile, max-width card on PC */
+                .poster-slider-box {
+                    position: relative;
+                    width: 100%;
+                    max-width: 1000px;
+                    margin: 1.5rem auto;
+                    border: none;
+                    box-shadow:
+                        0 2px 0 var(--saffron-deep, #E05A0A),
+                        0 4px 0 var(--ink, #1A1108),
+                        0 6px 30px rgba(0, 0, 0, 0.45),
+                        0 20px 60px rgba(0, 0, 0, 0.30),
+                        0 40px 80px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+                    background: #0a0a0a;
+                    border-radius: 12px;
+                    overflow: hidden;
+                }
+
+                @media (max-width: 768px) {
+                    .poster-slider-box {
+                        margin: 0 auto;
+                        border-radius: 0;
+                    }
+                }
+
+                /* Slide wrapper - Perfect 16:9 aspect ratio */
+                .poster-slides-wrap {
+                    position: relative;
+                    width: 100%;
+                    aspect-ratio: 16 / 9;
+                    overflow: hidden;
+                    background: #0a0a0a;
+                }
+
+                /* Individual slide */
+                .poster-slide {
+                    position: absolute;
+                    inset: 0;
+                    opacity: 0;
+                    transform: scale(1.04);
+                    transition: opacity 0.75s ease, transform 0.75s ease;
+                    pointer-events: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                    background: #000;
+                }
+                .poster-slide.active {
+                    opacity: 1;
+                    transform: scale(1);
+                    pointer-events: auto;
+                }
+                .poster-slide .bg-blur {
+                    position: absolute;
+                    inset: -20px;
+                    background-size: cover;
+                    background-position: center;
+                    filter: blur(25px) brightness(0.35);
+                    transform: scale(1.15);
+                    z-index: 1;
+                    opacity: 0.7;
+                    pointer-events: none;
+                }
+                .poster-slide img {
+                    position: relative;
+                    z-index: 2;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    display: block;
+                }
+                /* Placeholder */
+                .poster-slide .ps-placeholder {
+                    width: 100%; height: 100%;
+                    display: flex; align-items: center; justify-content: center;
+                    flex-direction: column; gap: 10px;
+                    background: linear-gradient(135deg, #f5ede0, #fef8f0);
+                    font-size: 3.5rem;
+                }
+                .poster-slide .ps-placeholder p {
+                    font-family: var(--mono, monospace);
+                    font-size: 0.8rem;
+                    color: #888;
+                    margin: 0;
+                    font-weight: 700;
+                }
+
+                /* Bottom overlay: counter + title */
+                .poster-info-bar {
+                    position: absolute;
+                    bottom: 0; left: 0; right: 0;
+                    padding: 28px 20px 14px;
+                    background: linear-gradient(to top, rgba(26,17,8,0.85) 0%, transparent 100%);
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: space-between;
+                    z-index: 3;
+                }
+                .poster-info-bar .ps-label {
+                    font-family: var(--sans, 'Hind', sans-serif);
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    color: #fff;
+                    letter-spacing: 0.04em;
+                    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+                }
+                .poster-info-bar .ps-counter {
+                    font-family: var(--mono, monospace);
+                    font-size: 0.75rem;
+                    color: rgba(255,255,255,0.75);
+                    font-weight: 700;
+                    background: rgba(0,0,0,0.35);
+                    padding: 3px 10px;
+                    border-radius: 20px;
+                }
+
+                /* Arrows */
+                .ps-arrow {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 10;
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.92);
+                    border: 2px solid var(--ink, #1A1108);
+                    box-shadow: 3px 3px 0 var(--ink, #1A1108);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    font-size: 1.1rem;
+                    color: var(--ink, #1A1108);
+                    user-select: none;
+                }
+                .ps-arrow:hover {
+                    background: var(--saffron-deep, #E05A0A);
+                    color: #fff;
+                    border-color: var(--saffron-deep, #E05A0A);
+                    transform: translateY(-50%) scale(1.1);
+                }
+                .ps-arrow.left { left: 12px; }
+                .ps-arrow.right { right: 12px; }
+
+                /* Dots */
+                .ps-dots {
+                    display: flex;
+                    justify-content: center;
+                    gap: 8px;
+                    padding: 12px 0 4px;
+                    background: var(--ink, #1A1108);
+                }
+                .ps-dot {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    border: none;
+                    padding: 0;
+                }
+                .ps-dot.active {
+                    background: var(--saffron, #E8832A);
+                    width: 24px;
+                    border-radius: 4px;
+                    box-shadow: 0 0 6px rgba(232,131,42,0.6);
+                }
+
+                /* Progress bar */
+                .ps-progress {
+                    height: 3px;
+                    background: rgba(255,255,255,0.15);
+                    position: relative;
+                    overflow: hidden;
+                }
+                .ps-progress-fill {
+                    height: 100%;
+                    background: linear-gradient(to right, #FF9933, #138808);
+                    width: 0%;
+                    transition: width 0.1s linear;
+                }
+            </style>
+
+
+
+            <div class="poster-slider-box" id="posterSliderBox">
+                <!-- Slides -->
+                <div class="poster-slides-wrap" id="posterSlidesWrap">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- CTA Text Overlay - Bottom Center (no bg, shadow only) -->
+                <div style="
+                    position: absolute;
+                    bottom: 18px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 8;
+                    text-align: center;
+                    pointer-events: none;
+                    white-space: nowrap;
+                ">
+                    <span style="
+                        background: none;
+                        color: #fff;
+                        font-family: var(--condensed, 'Poppins', sans-serif);
+                        font-size: clamp(0.9rem, 1.8vw, 1.35rem);
+                        font-weight: 900;
+                        letter-spacing: 0.1em;
+                        text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(224,101,10,0.8);
+                        display: inline-block;
+                        animation: ctaSlideUp 0.8s cubic-bezier(0.22,1,0.36,1) forwards, ctaFloat 3s ease-in-out 0.8s infinite;
+                        opacity: 0;
+                    ">
+                        📋 कार्यों की रिपोर्ट बनाने में योगदान दें
+                    </span>
+                    <style>
+                        @keyframes ctaSlideUp {
+                            0%   { opacity: 0; transform: translateY(30px); }
+                            100% { opacity: 1; transform: translateY(0); }
+                        }
+                        @keyframes ctaFloat {
+                            0%,100% { transform: translateY(0);    text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(224,101,10,0.8); }
+                            50%     { transform: translateY(-6px);  text-shadow: 0 2px 16px rgba(0,0,0,1),   0 0 40px rgba(232,131,42,1), 0 0 60px rgba(224,101,10,0.4); }
+                        }
+                    </style>
+                </div>
+
+                <!-- Info bar -->
+                <div class="poster-info-bar" style="justify-content: flex-end;">
+                    <span class="ps-counter" id="psCounter">1 / 20</span>
+                </div>
+
+                <!-- Arrows -->
+                <button class="ps-arrow left" id="psArrowLeft" onclick="posterPrev()">&#8592;</button>
+                <button class="ps-arrow right" id="psArrowRight" onclick="posterNext()">&#8594;</button>
+            </div>
+
+            <!-- Progress + Dots -->
+            <div class="ps-progress"><div class="ps-progress-fill" id="psProgressFill"></div></div>
+            <div class="ps-dots" id="psDots"></div>
+        </div>
+
+        <script>
+        (function() {
+            // ✅ अपने posters का नाम और label यहाँ लिखें
+            const posters = [
+                { src: 'photos/1.webp',  label: 'कार्य पोस्टर - 1' },
+                { src: 'photos/2.webp',  label: 'कार्य पोस्टर - 2' },
+                { src: 'photos/3.webp',  label: 'कार्य पोस्टर - 3' },
+                { src: 'photos/4.webp',  label: 'कार्य पोस्टर - 4' },
+                { src: 'photos/5.webp',  label: 'कार्य पोस्टर - 5' },
+                { src: 'photos/6.webp',  label: 'कार्य पोस्टर - 6' },
+                { src: 'photos/7.webp',  label: 'कार्य पोस्टर - 7' },
+                { src: 'photos/8.webp',  label: 'कार्य पोस्टर - 8' },
+                { src: 'photos/9.webp',  label: 'कार्य पोस्टर - 9' },
+            ];
+
+            const wrap = document.getElementById('posterSlidesWrap');
+            const dotsEl = document.getElementById('psDots');
+            const counterEl = document.getElementById('psCounter');
+            const progressEl = document.getElementById('psProgressFill');
+            let current = 0;
+            let timer, progressTimer;
+            const INTERVAL = 4000; // 4 seconds per slide
+
+            // Build slides with lazy loading attributes
+            posters.forEach((p, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'poster-slide' + (i === 0 ? ' active' : '');
+                slide.dataset.index = i;
+
+                // Blurred Background Reflection (Only load first slide background initially)
+                const bgBlur = document.createElement('div');
+                bgBlur.className = 'bg-blur';
+                if (i === 0) {
+                    bgBlur.style.backgroundImage = `url('${p.src}')`;
+                } else {
+                    bgBlur.dataset.src = p.src;
+                }
+                slide.appendChild(bgBlur);
+
+                const img = document.createElement('img');
+                img.alt = p.label;
+                
+                // Only load first two slide images immediately, defer the rest
+                if (i < 2) {
+                    img.src = p.src;
+                } else {
+                    img.dataset.src = p.src;
+                }
+                
+                img.onerror = function() {
+                    slide.innerHTML = `<div class="ps-placeholder"><span>📄</span><p>${p.label}</p></div>`;
+                };
+                slide.appendChild(img);
+                wrap.appendChild(slide);
+
+                // Dot
+                const dot = document.createElement('button');
+                dot.className = 'ps-dot' + (i === 0 ? ' active' : '');
+                dot.title = p.label;
+                dot.onclick = () => goTo(i);
+                dotsEl.appendChild(dot);
+            });
+
+            // Preloads image and blurred backdrop background for a specific slide index
+            function loadSlideMedia(index) {
+                const slide = document.querySelectorAll('.poster-slide')[index];
+                if (!slide) return;
+                
+                const img = slide.querySelector('img');
+                if (img && img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                
+                const bgBlur = slide.querySelector('.bg-blur');
+                if (bgBlur && bgBlur.dataset.src) {
+                    bgBlur.style.backgroundImage = `url('${bgBlur.dataset.src}')`;
+                    bgBlur.removeAttribute('data-src');
+                }
+            }
+
+            function updateUI() {
+                document.querySelectorAll('.poster-slide').forEach((s, i) => {
+                    s.classList.toggle('active', i === current);
+                });
+                document.querySelectorAll('.ps-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === current);
+                });
+                counterEl.textContent = (current + 1) + ' / ' + posters.length;
+            }
+
+            function goTo(n) {
+                current = (n + posters.length) % posters.length;
+                
+                // Preload current, next, and previous slide media
+                loadSlideMedia(current);
+                loadSlideMedia((current + 1) % posters.length);
+                loadSlideMedia((current - 1 + posters.length) % posters.length);
+                
+                updateUI();
+                resetProgress();
+                clearInterval(timer);
+                timer = setInterval(() => { goTo(current + 1); }, INTERVAL);
+            }
+
+            function resetProgress() {
+                progressEl.style.transition = 'none';
+                progressEl.style.width = '0%';
+                setTimeout(() => {
+                    progressEl.style.transition = `width ${INTERVAL}ms linear`;
+                    progressEl.style.width = '100%';
+                }, 50);
+            }
+
+            window.posterNext = () => goTo(current + 1);
+            window.posterPrev = () => goTo(current - 1);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight') posterNext();
+                if (e.key === 'ArrowLeft') posterPrev();
+            });
+
+            // Pause on hover
+            const box = document.getElementById('posterSliderBox');
+            box.addEventListener('mouseenter', () => { clearInterval(timer); progressEl.style.animationPlayState = 'paused'; });
+            box.addEventListener('mouseleave', () => {
+                timer = setInterval(() => { goTo(current + 1); }, INTERVAL);
+                resetProgress();
+            });
+
+            // Touch swipe
+            let touchStartX = 0;
+            box.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+            box.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(dx) > 40) dx < 0 ? posterNext() : posterPrev();
+            });
+
+            // Start
+            updateUI();
+            resetProgress();
+            timer = setInterval(() => { goTo(current + 1); }, INTERVAL);
+        })();
+        </script>
+
+    </div><!-- /#posterSliderSection end -->
+
+    <!-- ===== CLEAN SECTION HEADER (No BG) ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <div style="padding: 1.2rem 2rem 0.8rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.08);">
+
+        <!-- Main title -->
+        <h2 style="
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+            font-weight: 700;
+            font-style: normal;
+            color: var(--ink, #1A1108);
+            margin: 0 0 5px;
+            letter-spacing: 0.01em;
+            line-height: 1.3;
+        ">📊 कार्य विवरण एवं <em style="font-style:italic; color: var(--saffron-deep,#E05A0A);">शासकीय आदेश</em> प्रविष्टि</h2>
+
+        <!-- Subtitle italic -->
+        <p style="
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.78rem, 1.3vw, 0.92rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--ink-2, #555);
+            margin: 0 0 10px;
+            letter-spacing: 0.02em;
+        ">&#8220;हमारा दायित्व और हमारी सीमाएं &mdash; सरकार के समक्ष सशक्त प्रमाण!&#8221;</p>
+
+        <!-- Tricolor divider -->
+        <div style="display:inline-flex; gap:0; height:3px; width:180px; border-radius:4px; overflow:hidden; margin: 0 auto;">
+            <div style="flex:1; background:#FF9933;"></div>
+            <div style="flex:1; background:#fff; border-top:1px solid #ddd; border-bottom:1px solid #ddd;"></div>
+            <div style="flex:1; background:#138808;"></div>
+        </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <main class="page-container stacked-layout" style="padding-top: 0.5rem;">
+
+        <!-- Animated Flag (Full Screen Background) -->
+        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -100; pointer-events: none; opacity: 0.25; display: flex; align-items: center; justify-content: center; overflow: hidden; transform: translateZ(0);">
+            <lottie-player src="flag.json" background="transparent" speed="1" style="width: 100%; min-width: 100vw; min-height: 100vh; object-fit: cover; transform: translateZ(0); will-change: transform;" loop autoplay></lottie-player>
+        </div>
+
+        <!-- Initiative Purpose Card -->
+        <style>
+            @keyframes targetPulse {
+                0%, 100% { transform: scale(1) translateY(0); }
+                50% { transform: scale(1.1) translateY(-3px); }
+            }
+            .target-icon-animated {
+                display: inline-block;
+                animation: targetPulse 3s infinite ease-in-out;
+            }
+            .purpose-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
+            }
+            @media (max-width: 768px) {
+                .purpose-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .purpose-item-animated {
+                position: relative;
+                z-index: 1;
+                background: transparent;
+                border-radius: 8px;
+                border: 1px dashed rgba(224, 101, 30, 0.3);
+                padding: 8px 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                align-items: center;
+                text-align: center;
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background 0.4s ease;
+            }
+            .purpose-item-animated:hover {
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 0 4px 12px rgba(224,101,30,0.1);
+                background: rgba(224, 101, 30, 0.05);
+                border-color: rgba(224,101,30,0.4);
+            }
+            .purpose-item-animated .num-badge {
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+                margin-bottom: 5px;
+            }
+            .purpose-item-animated:hover .num-badge {
+                transform: scale(1.1) rotate(-6deg);
+                box-shadow: 0 6px 16px rgba(224, 101, 30, 0.4) !important;
+            }
+            .bg-shimmer-subtle {
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+                background-size: 200% 100%;
+                animation: shimmerSweep 4s infinite linear;
+            }
+            @keyframes shimmerSweep {
+                0% { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+        </style>
+        <div class="campaign-purpose-card animate-fade-up delay-1" style="background: transparent; border: none; border-left: 3px solid var(--saffron-deep); padding: 0.5rem 1rem; box-shadow: none; position: relative; overflow: hidden; margin: 0.5rem auto 1rem; max-width: 1200px; transform: translateZ(0);">
+            <div class="bg-shimmer-subtle" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></div>
+            
+            <div style="position: absolute; top: -20px; right: -10px; font-size: 10rem; opacity: 0.03; pointer-events: none;">📖</div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; border-bottom: 2px dashed rgba(224, 101, 30, 0.15); padding-bottom: 12px; position: relative; z-index: 1;">
+                <div style="background: rgba(224, 101, 30, 0.1); padding: 8px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="url(#goldGradientBook)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="target-icon-animated">
+                      <defs>
+                        <linearGradient id="goldGradientBook" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#E0651E" />
+                          <stop offset="100%" stop-color="#FF9933" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <div style="flex: 1; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; font-weight: 800; color: var(--ink); margin: 0; letter-spacing: 0.01em; line-height: 1.2;">इस मुहिम का <span style="color: var(--saffron-deep);">मुख्य उद्देश्य</span></h3>
+                            <div style="font-family: var(--mono); font-size: 0.7rem; font-weight: 700; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px;">Initiative's Core Purpose</div>
+                        </div>
+                        <div style="font-size: clamp(1.3rem, 5vw, 1.8rem); font-weight: 900; font-style: italic; font-family: 'Playfair Display', Georgia, serif; background: linear-gradient(135deg, #16a34a, #ea580c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.02em; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); white-space: normal; line-height: 1.2; text-align: right;">"स्थायीकरण और वेतनमान"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="purpose-grid">
+                <!-- Item 1 -->
+                <div class="purpose-item-animated">
+                    <div class="num-badge" style="background: linear-gradient(135deg, var(--saffron), var(--saffron-deep)); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; flex-shrink: 0; font-family: var(--condensed); box-shadow: 0 4px 8px rgba(224, 101, 30, 0.3); border: 2px solid #fff;">1</div>
+                    <div>
+                        <strong style="font-size: 0.95rem; color: var(--ink); display: block; margin-bottom: 2px; font-family: var(--sans); font-weight: 800; letter-spacing: 0.01em;">लिखित आदेशों का संकलन</strong>
+                        <span style="font-size: 0.8rem; color: #444; line-height: 1.4; display: block; font-family: var(--sans); font-weight: 500;">पंचायत सहायकों से कराए जा रहे विभिन्न विभागों के गैर-संबंधित कार्यों के लिखित व आधिकारिक <strong style="color: var(--saffron-deep); font-weight: 700;">शासकीय आदेशों</strong> को संकलित कर एक अकाट्य डिजिटल दस्तावेज़ व ऐतिहासिक डेटाबेस तैयार करना।</span>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="purpose-item-animated">
+                    <div class="num-badge" style="background: linear-gradient(135deg, var(--saffron), var(--saffron-deep)); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; flex-shrink: 0; font-family: var(--condensed); box-shadow: 0 4px 8px rgba(224, 101, 30, 0.3); border: 2px solid #fff;">2</div>
+                    <div>
+                        <strong style="font-size: 0.95rem; color: var(--ink); display: block; margin-bottom: 2px; font-family: var(--sans); font-weight: 800; letter-spacing: 0.01em;">कार्यभार का अकाट्य प्रमाण</strong>
+                        <span style="font-size: 0.8rem; color: #444; line-height: 1.4; display: block; font-family: var(--sans); font-weight: 500;">शासन व उच्चाधिकारियों के समक्ष यह पुख्ता तथ्य प्रमाणित करना कि पंचायत सहायक केवल अपने मूल विभाग का ही कार्य नहीं कर रहे हैं, बल्कि <strong style="color: var(--ink); font-weight: 700; background: rgba(0,0,0,0.05); padding: 0 4px; border-radius: 4px;">लगभग हर विभाग</strong> का अतिरिक्त कार्यभार भी संभाल रहे हैं।</span>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="purpose-item-animated">
+                    <div class="num-badge" style="background: linear-gradient(135deg, var(--saffron), var(--saffron-deep)); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; flex-shrink: 0; font-family: var(--condensed); box-shadow: 0 4px 8px rgba(224, 101, 30, 0.3); border: 2px solid #fff;">3</div>
+                    <div>
+                        <strong style="font-size: 0.95rem; color: var(--ink); display: block; margin-bottom: 2px; font-family: var(--sans); font-weight: 800; letter-spacing: 0.01em;">अधिकारों की पैरवी</strong>
+                        <span style="font-size: 0.8rem; color: #444; line-height: 1.4; display: block; font-family: var(--sans); font-weight: 500;">इस संकलित डेटा का उपयोग पंचायत सहायक यूनियन द्वारा सरकार से सीधे <strong style="color: var(--green); font-weight: 700; border-bottom: 2px solid var(--green);">वेतनमान लागू करने और स्थायीकरण</strong> और एक स्पष्ट गरिमापूर्ण कार्य नियमावली के निर्धारण हेतु सशक्त वार्ता और कानूनी पैरवी करने के लिए किया जाएगा।</span>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="purpose-item-animated">
+                    <div class="num-badge" style="background: linear-gradient(135deg, var(--saffron), var(--saffron-deep)); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; flex-shrink: 0; font-family: var(--condensed); box-shadow: 0 4px 8px rgba(224, 101, 30, 0.3); border: 2px solid #fff;">4</div>
+                    <div>
+                        <strong style="font-size: 0.95rem; color: var(--ink); display: block; margin-bottom: 2px; font-family: var(--sans); font-weight: 800; letter-spacing: 0.01em;">हस्ताक्षर अभियान में सक्रिय भागीदारी</strong>
+                        <span style="font-size: 0.8rem; color: #444; line-height: 1.4; display: block; font-family: var(--sans); font-weight: 500;">इसके साथ ही <strong style="color: #ea580c; font-weight: 700;">डिजिटल हस्ताक्षर अभियान</strong> में भी अपनी सक्रिय भागीदारी दर्ज करें। आपका एक-एक हस्ताक्षर और शासनादेश का संकलन पंचायत सहायक यूनियन उ.प्र. की एकता को मजबूत बनाएगा।</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WhatsApp Share Button for this page -->
+            <div style="display: flex; justify-content: center; margin-top: 1.5rem; position: relative; z-index: 2; width: 100%;">
+                <a href="https://api.whatsapp.com/send?text=%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%AA%E0%A4%82%E0%A4%9A%E0%A4%BE%E0%A4%AF%E0%A4%A4%20%E0%A4%B8%E0%A4%B9%E0%A4%BE%E0%A4%AF%E0%A4%95%20%E0%A4%AD%E0%A4%BE%E0%A4%87%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%94%E0%A4%B0%20%E0%A4%AC%E0%A4%B9%E0%A4%A8%E0%A5%8B%E0%A4%82%2C%20%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%95%E0%A5%87%20%E0%A4%87%E0%A4%B8%20%E0%A4%90%E0%A4%A4%E0%A4%BF%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BF%E0%A4%95%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A5%87%20%E0%A4%9C%E0%A5%81%E0%A5%9C%E0%A5%87%E0%A4%82%21%20%E0%A4%AF%E0%A4%B9%E0%A4%BE%E0%A4%81%20%E0%A4%85%E0%A4%AA%E0%A4%A8%E0%A5%87%20%E0%A4%B6%E0%A4%BE%E0%A4%B8%E0%A4%95%E0%A5%80%E0%A4%AF%20%E0%A4%86%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%94%E0%A4%B0%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AF%20%E0%A4%B0%E0%A4%BF%E0%A4%AA%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%9F%20%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%9C%20%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%3A%20https%3A//psunionup.netlify.app/work-report.html" target="_blank" class="whatsapp-share-btn-dashboard" id="workReportWhatsappShare" style="box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); border-radius: 30px; font-weight: bold; letter-spacing: 0.5px; padding: 12px 24px; transition: transform 0.3s ease, box-shadow 0.3s ease; max-width: 100%; white-space: normal; text-align: center; display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; box-sizing: border-box;">
+                    <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="vertical-align: middle; margin-right: 8px; flex-shrink: 0;">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.739-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.023-5.115-2.883-6.978C16.59 1.902 14.116.88 11.48.88c-5.441 0-9.865 4.42-9.869 9.866-.001 1.77.476 3.497 1.383 5.02L1.93 20.353l4.717-1.199zm12.355-6.696c-.302-.15-1.786-.882-2.07-.985-.285-.104-.491-.156-.698.15-.207.307-.803.985-.984 1.19-.18.207-.36.233-.663.082-.303-.15-1.278-.47-2.434-1.502-.899-.802-1.505-1.793-1.682-2.098-.176-.307-.019-.473.133-.623.137-.135.303-.353.454-.53.15-.176.201-.3.303-.5.102-.202.051-.38-.026-.53-.077-.15-.698-1.682-.956-2.304-.252-.607-.51-.524-.698-.534-.18-.008-.386-.01-.593-.01-.207 0-.543.078-.827.38-.285.307-1.085 1.062-1.085 2.59 0 1.528 1.112 3.003 1.267 3.208.155.207 2.19 3.34 5.302 4.68.74.318 1.317.509 1.767.652.743.237 1.419.203 1.954.123.596-.089 1.786-.73 2.039-1.433.252-.703.252-1.306.176-1.433-.076-.127-.285-.202-.587-.352z" />
+                    </svg>
+                    <span>WhatsApp पर शेयर करें</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Center Form Content Area -->
+        <div class="form-content-area animate-fade-up delay-2" style="margin-top: 1rem;">
+
+            <form id="workReportForm" autocomplete="off" class="premium-form">
+
+                <!-- Section 1: Personal & Deployment Info -->
+                <div class="form-section-split">
+                    <div class="section-info">
+                        <h3>कार्य आदेश विवरण</h3>
+                        <p>आवेदक पंचायत सहायक का नाम और जनपद/विकास खण्ड का विवरण।</p>
+                    </div>
+
+                    <div class="section-content card">
+                        <div class="grid-2">
+                            <div class="input-group span-2">
+                                <label>पंचायत सहायक का पूरा नाम <span class="req">*</span></label>
+                                <input type="text" id="name" name="name" class="form-control"
+                                    placeholder="उदा. राहुल कुमार" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label>जनपद (District) <span class="req">*</span></label>
+                                <select id="district" name="district" class="form-control" required>
+                                    <option value="" disabled selected>-- अपना जनपद चुनें --</option>
+                                    <option value="Agra">Agra (आगरा)</option>
+                                    <option value="Aligarh">Aligarh (अलीगढ़)</option>
+                                    <option value="Ambedkar Nagar">Ambedkar Nagar (अंबेडकर नगर)</option>
+                                    <option value="Amethi">Amethi (अमेठी)</option>
+                                    <option value="Amroha">Amroha (अमरोहा)</option>
+                                    <option value="Auraiya">Auraiya (औरैया)</option>
+                                    <option value="Ayodhya">Ayodhya (अयोध्या)</option>
+                                    <option value="Azamgarh">Azamgarh (आजमगढ़)</option>
+                                    <option value="Baghpat">Baghpat (बागपत)</option>
+                                    <option value="Bahraich">Bahraich (बहराइच)</option>
+                                    <option value="Ballia">Ballia (बलिया)</option>
+                                    <option value="Balrampur">Balrampur (बलरामपुर)</option>
+                                    <option value="Banda">Banda (बांदा)</option>
+                                    <option value="Barabanki">Barabanki (बाराबंकी)</option>
+                                    <option value="Bareilly">Bareilly (बरेली)</option>
+                                    <option value="Basti">Basti (बस्ती)</option>
+                                    <option value="Bhadohi">Bhadohi (भदोही)</option>
+                                    <option value="Bijnor">Bijnor (बिजनौर)</option>
+                                    <option value="Budaun">Budaun (बदायूं)</option>
+                                    <option value="Bulandshahr">Bulandshahr (बुलंदशहर)</option>
+                                    <option value="Chandauli">Chandauli (चंदौली)</option>
+                                    <option value="Chitrakoot">Chitrakoot (चित्रकूट)</option>
+                                    <option value="Deoria">Deoria (देवरिया)</option>
+                                    <option value="Etah">Etah (एटा)</option>
+                                    <option value="Etawah">Etawah (इटावा)</option>
+                                    <option value="Farrukhabad">Farrukhabad (फर्रुखाबाद)</option>
+                                    <option value="Fatehpur">Fatehpur (फतेहपुर)</option>
+                                    <option value="Firozabad">Firozabad (फिरोजाबाद)</option>
+                                    <option value="Gautam Buddha Nagar">Gautam Buddha Nagar (गौतम बुद्ध नगर)</option>
+                                    <option value="Ghaziabad">Ghaziabad (गाजियाबाद)</option>
+                                    <option value="Ghazipur">Ghazipur (गाजीपुर)</option>
+                                    <option value="Gonda">Gonda (गोंडा)</option>
+                                    <option value="Gorakhpur">Gorakhpur (गोरखपुर)</option>
+                                    <option value="Hamirpur">Hamirpur (हमीरपुर)</option>
+                                    <option value="Hapur">Hapur (हापुड़)</option>
+                                    <option value="Hardoi">Hardoi (हरदोई)</option>
+                                    <option value="Hathras">Hathras (हाथरस)</option>
+                                    <option value="Jalaun">Jalaun (जालौन)</option>
+                                    <option value="Jaunpur">Jaunpur (जौनपुर)</option>
+                                    <option value="Jhansi">Jhansi (झांसी)</option>
+                                    <option value="Kannauj">Kannauj (कन्नौज)</option>
+                                    <option value="Kanpur Dehat">Kanpur Dehat (कानपुर देहात)</option>
+                                    <option value="Kanpur Nagar">Kanpur Nagar (कानपुर नगर)</option>
+                                    <option value="Kasganj">Kasganj (कासगंज)</option>
+                                    <option value="Kaushambi">Kaushambi (कौशांबी)</option>
+                                    <option value="Kheri">Kheri (लखीमपुर खीरी)</option>
+                                    <option value="Kushinagar">Kushinagar (कुशीनगर)</option>
+                                    <option value="Lalitpur">Lalitpur (ललितपुर)</option>
+                                    <option value="Lucknow">Lucknow (लखनऊ)</option>
+                                    <option value="Maharajganj">Maharajganj (महाराजगंज)</option>
+                                    <option value="Mahoba">Mahoba (महोबा)</option>
+                                    <option value="Mainpuri">Mainpuri (मैनपुरी)</option>
+                                    <option value="Mathura">Mathura (मथुरा)</option>
+                                    <option value="Mau">Mau (मऊ)</option>
+                                    <option value="Meerut">Meerut (मेरठ)</option>
+                                    <option value="Mirzapur">Mirzapur (मिर्जापुर)</option>
+                                    <option value="Moradabad">Moradabad (मुरादाबाद)</option>
+                                    <option value="Muzaffarnagar">Muzaffarnagar (मुजफ्फरनगर)</option>
+                                    <option value="Pilibhit">Pilibhit (पीलीभीत)</option>
+                                    <option value="Pratapgarh">Pratapgarh (प्रतापगढ़)</option>
+                                    <option value="Prayagraj">Prayagraj (प्रयागराज)</option>
+                                    <option value="Rae Bareli">Rae Bareli (रायबरेली)</option>
+                                    <option value="Rampur">Rampur (रामपुर)</option>
+                                    <option value="Saharanpur">Saharanpur (सहारनपुर)</option>
+                                    <option value="Sambhal">Sambhal (सम्भल)</option>
+                                    <option value="Sant Kabir Nagar">Sant Kabir Nagar (संत कबीर नगर)</option>
+                                    <option value="Shahjahanpur">Shahjahanpur (शाहजहांपुर)</option>
+                                    <option value="Shamli">Shamli (शामली)</option>
+                                    <option value="Shravasti">Shravasti (श्रावस्ती)</option>
+                                    <option value="Siddharthnagar">Siddharthnagar (सिद्धार्थनगर)</option>
+                                    <option value="Sitapur">Sitapur (सीतापुर)</option>
+                                    <option value="Sonbhadra">Sonbhadra (सोनभद्र)</option>
+                                    <option value="Sultanpur">Sultanpur (सुल्तानपुर)</option>
+                                    <option value="Unnao">Unnao (उन्नाव)</option>
+                                    <option value="Varanasi">Varanasi (वाराणसी)</option>
+                                    <option value="Other">अन्य (Other)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>विकास खण्ड (Block) <span class="req">*</span></label>
+                                <input type="text" id="block" name="block" class="form-control"
+                                    placeholder="विकास खण्ड का नाम" required>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <hr class="section-divider">
+
+                <!-- Section 3: Shasanadesh & Custom Work Info -->
+                <div class="form-section-split">
+                    <div class="section-info">
+                        <h3>शासनादेश एवं अतिरिक्त विवरण</h3>
+                        <p>कार्य से संबंधित शासकीय आदेश (Shasanadesh) की प्रति अपलोड करें और विवरण भरें ताकि इसे आसानी से फ़िल्टर किया जा सके।</p>
+                    </div>
+
+                    <div class="section-content card">
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label>आदेश का स्तर (Order Level) <span class="req">*</span></label>
+                                <select id="orderLevel" name="orderLevel" class="form-control" required>
+                                    <option value="" disabled selected>-- आदेश का स्तर चुनें --</option>
+                                    <option value="state">राज्य स्तर (State Level)</option>
+                                    <option value="district">जनपद स्तर (District Level)</option>
+                                    <option value="block">विकास खण्ड स्तर (Block Level)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>आदेश का विभाग (Department) <span class="req">*</span></label>
+                                <select id="orderDepartment" name="orderDepartment" class="form-control" required>
+                                    <option value="" disabled selected>-- विभाग चुनें --</option>
+                                    <option value="panchayati_raj">पंचायती राज विभाग (Panchayati Raj)</option>
+                                    <option value="rural_dev">ग्राम्य विकास विभाग (Rural Dev)</option>
+                                    <option value="revenue">राजस्व विभाग (Revenue)</option>
+                                    <option value="social_welfare">समाज कल्याण विभाग (Social Welfare)</option>
+                                    <option value="food_civil_supplies">खाद्य एवं रसद विभाग (Food & Civil Supplies)</option>
+                                    <option value="health">चिकित्सा, स्वास्थ्य एवं कल्याण (Health & Welfare)</option>
+                                    <option value="education">बेसिक शिक्षा विभाग (Basic Education)</option>
+                                    <option value="other">अन्य विभाग (Other Departments)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group span-2">
+                                <label>आदेश का विषय / कार्य (Work Type) <span class="req">*</span></label>
+                                <select id="orderWorkType" name="orderWorkType" class="form-control" required>
+                                    <option value="" disabled selected>-- कार्य का विषय चुनें --</option>
+                                    <option value="Feeding">डेटा फीडिंग (Data Feeding)</option>
+                                    <option value="Survey">सर्वेक्षण (Survey)</option>
+                                    <option value="Office Work">कार्यालय कार्य (Office Work)</option>
+                                    <option value="Nirikshan">निरीक्षण (Inspection / Nirikshan)</option>
+                                    <option value="Satyapan">भौतिक सत्यापन (Verification / Satyapan)</option>
+                                    <option value="Geo Tag">जियो-टैगिंग (Geo Tagging)</option>
+                                    <option value="Awareness">जागरूकता अभियान (Awareness Campaign)</option>
+                                    <option value="other">अन्य (Other) - नीचे विवरण लिखें</option>
+                                </select>
+                            </div>
+
+                            <div id="otherWorkInputGroup" class="input-group span-2" style="display: none;">
+                                <label>अन्य कार्य का विषय (Specify Work Subject) <span class="req">*</span></label>
+                                <input type="text" id="otherWorkName" name="otherWorkName" class="form-control" placeholder="उदा. विशेष पशुगणना सर्वे आदेश">
+                            </div>
+
+
+                            <div class="input-group span-2">
+                                <label>शासकीय आदेश / ग्रुप ऑर्डर स्क्रीनशॉट/इमेजेस अपलोड (PDF / इमेज) <span class="req">*</span></label>
+                                <div class="upload-widget" style="border: 2px solid var(--ink); background-color: #ffffff; box-shadow: 4px 4px 0 var(--ink);">
+                                    <div class="upload-header" style="padding: 0.8rem 1.2rem; background-color: var(--paper-2); border-bottom: 2px solid var(--ink);">
+                                        <h4 style="font-family: var(--condensed); font-size: 1.1rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">शासकीय आदेश / ग्रुप ऑर्डर स्क्रीनशॉट/इमेजेस (PDF या इमेज)</h4>
+                                    </div>
+                                    <div class="upload-body" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: stretch;">
+                                        <input type="file" id="orderFile" name="orderFile" accept=".pdf,image/*" class="file-modern" required>
+                                        <small style="color: #666; font-family: var(--sans); font-weight: 600;">
+                                            * स्वीकृत फ़ाइल प्रारूप: PDF, JPEG, PNG, JPG (अधिकतम आकार: 5MB)
+                                        </small>
+                                        <div id="uploadProgressContainer" style="display: none; width: 100%; margin-top: 5px;">
+                                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-family: var(--mono); font-size: 0.85rem; font-weight: 700;">
+                                                <span id="uploadStatus" style="color: var(--ink);">फ़ाइल अपलोड हो रही है...</span>
+                                                <span id="uploadPercentage" style="color: var(--saffron-deep);">0%</span>
+                                            </div>
+                                            <div style="width: 100%; height: 12px; background: var(--paper-2); border: 2px solid var(--ink); position: relative; overflow: hidden;">
+                                                <div id="uploadProgressBar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.1s;"></div>
+                                            </div>
+                                        </div>
+                                        <div id="uploadSuccessMessage" style="display: none; color: var(--green); font-family: var(--mono); font-weight: 700; font-size: 0.95rem; text-align: center; margin-top: 5px;">
+                                            ✓ फ़ाइल सफलतापूर्वक अपलोड हो गई है!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group span-2">
+                                <label>अन्य / अतिरिक्त कार्य का विवरण (टिप्पणी) <span class="opt" style="font-size:0.75rem; color:#777; font-weight:normal;">(वैकल्पिक)</span></label>
+                                <textarea id="customWorkDesc" name="customWorkDesc" class="form-control" rows="3"
+                                    placeholder="यदि इस आदेश के संबंध में कोई अन्य बात या विशेष टिप्पणी लिखना चाहते हैं, तो यहाँ लिखें..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Submit Section -->
+                <div class="form-section-split">
+                    <div class="section-info">
+                        <h3>विवरण जमा करें</h3>
+                        <p>सभी आवश्यक जानकारी भरने के पश्चात नीचे दिए गए बटन पर क्लिक करके अपना शासकीय आदेश दर्ज करें।</p>
+                    </div>
+
+                    <div class="section-content">
+                        <div class="submit-action-row" style="margin-top: 0;">
+                            <button type="submit" class="premium-submit-btn" id="submitBtn" style="background: var(--green); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink);">
+                                <span class="btn-text" style="color: var(--paper);">कार्य रिपोर्ट दर्ज करें</span>
+                                <div class="loader" id="btnLoader"></div>
+                                <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" style="color: var(--paper);">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Data Collector Profile Card (At the bottom of the page) -->
+        <div class="collector-profile-card" style="background: #ffffff; border: 2px solid var(--ink); border-left: 6px solid var(--green); padding: 1.5rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between; position: relative; margin: 2.5rem auto 0; max-width: 1000px; border-radius: 12px; overflow: hidden;">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <img src="vaibhav_profile.webp" alt="Vaibhav Yadav" style="width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--ink); object-fit: cover; flex-shrink: 0; box-shadow: 3px 3px 0 rgba(26,17,8,0.15);">
+                <div>
+                    <h4 style="font-family: var(--sans); font-size: 1.15rem; font-weight: 700; color: var(--ink); margin: 0;">Vaibhav Yadav</h4>
+                    <span style="font-family: var(--mono); font-size: 0.72rem; background: var(--saffron-deep); color: var(--paper); padding: 2px 8px; border: 1px solid var(--ink); text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-top: 4px; font-weight: 700;">Panchayat Sahayak &amp; Creator</span>
+                    <div style="font-size: 0.82rem; color: #555; font-weight: 600; margin-top: 4px; font-family: var(--sans);">📍 Lucknow, Uttar Pradesh</div>
+                </div>
+            </div>
+            <div style="margin-top: 1rem; border-top: 2px dashed rgba(26, 17, 8, 0.15); padding-top: 10px;">
+                <p style="font-family: var(--sans); font-size: 0.88rem; color: var(--ink-2); line-height: 1.5; margin: 0 0 10px; font-style: italic; font-weight: 500;">
+                    "Dear Panchayat Sahayak colleagues, I am Vaibhav Yadav, a Panchayat Sahayak just like you. Due to some misconceptions and propaganda last time, I am making my identity public so that all colleagues can participate with full confidence and without hesitation. I assure you that this platform is a completely secure and official effort created to protect the rights of our union. Our only goal is to compile written official orders (Shasanadesh) so that we can present our case to the government with solid evidence. The data and files you share will help us build a comprehensive report, allowing us to silence those who claim that Panchayat Sahayaks do no work."
+                </p>
+                <p style="font-family: var(--sans); font-size: 0.88rem; color: var(--ink); line-height: 1.6; margin: 0; font-weight: 700; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <span>📢 Additionally, the <strong>Signature Campaign</strong> is active to gather the support of 57,000 Panchayat Sahayaks. If you haven't given your support yet, please register it immediately:</span>
+                    <a href="index.html" class="blink-highlight" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; padding: 10px 22px; background-color: var(--green); color: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); font-weight: 700; font-size: 0.95rem; font-family: var(--sans); transition: all 0.15s ease; cursor: pointer; border-radius: 6px; margin-top: 4px;"
+                       onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='6px 6px 0 var(--ink)';"
+                       onmouseout="this.style.transform='none'; this.style.boxShadow='4px 4px 0 var(--ink)';">
+                        ✍️ Register Your Support in the Signature Campaign (Home)
+                    </a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer" style="position: relative; margin-top: 4rem;">
+        <div style="margin: 0; font-family: var(--mono); font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase;">
+            &copy; 2026 Panchayat Sahayak Union UP. All Rights Reserved.
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: rgba(244, 235, 215, 0.75); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            Site by Vaibhav Yadav 📍 Lucknow
+        </p>
+    </footer>
+
+    <!-- Premium Success Modal -->
+    <div id="successModal" class="premium-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeSuccessModal()"></div>
+        <div class="modal-card" style="border-top: 6px solid var(--green);">
+            <div class="success-icon-wrapper" style="background-color: var(--green);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h2 class="modal-title" style="color: var(--green);">कार्य विवरण सफलतापूर्वक दर्ज हुआ!</h2>
+            <p class="modal-message">पंचायत सहायक यूनियन उत्तर प्रदेश के कार्यभार एवं शासकीय आदेश सर्वेक्षण में अपना अमूल्य डेटा साझा करने के लिए आपका हृदय से धन्यवाद।</p>
+
+            <div class="modal-token-box" style="border-color: var(--green); background-color: rgba(31,90,46,0.06);">
+                <span class="token-label" style="color: var(--green);">दर्ज रिपोर्ट आईडी</span>
+                <strong class="token-value" id="successReportId" style="color: var(--green); font-size: 1.4rem;">WORK-0000</strong>
+            </div>
+
+            <div class="modal-actions" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                <a id="downloadCertBtn" href="#" target="_blank" class="modal-btn-primary" style="background-color: var(--saffron-deep); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); justify-content: center; width: 100%; display: inline-flex; gap: 8px;">
+                    📜 प्रशस्ति पत्र प्राप्त करें (Get Certificate)
+                </a>
+                <div style="display: flex; gap: 10px; width: 100%;">
+                    <a href="index.html" class="modal-btn-primary" style="background-color: var(--green); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); flex: 1; justify-content: center; display: inline-flex;">
+                        🏠 मुख्य पृष्ठ (Home)
+                    </a>
+                    <button onclick="closeSuccessModal()" class="modal-btn-secondary" style="flex: 1;">ठीक है (Close)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="work-report.js"></script>
+
+
+
+
+    <!-- Professional Coming Soon Modal -->
+    <style>
+        @keyframes modalBounceIn {
+            0% { transform: scale(0.5) translateY(50px); opacity: 0; }
+            60% { transform: scale(1.05) translateY(-10px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes iconPulse {
+            0% { box-shadow: 0 0 0 0 rgba(232, 131, 42, 0.4); transform: scale(1); }
+            70% { box-shadow: 0 0 0 20px rgba(232, 131, 42, 0); transform: scale(1.05); }
+            100% { box-shadow: 0 0 0 0 rgba(232, 131, 42, 0); transform: scale(1); }
+        }
+        @keyframes wrenchSpin {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(15deg); }
+            40% { transform: rotate(-10deg); }
+            60% { transform: rotate(5deg); }
+            80% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .modal-active-anim {
+            animation: modalBounceIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+        }
+    </style>
+    <div id="comingSoonModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease;">
+        <div style="background: linear-gradient(145deg, #ffffff, #f9f4ef); width: 90%; max-width: 380px; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 0 4px var(--saffron, #E8832A); transform: scale(0.8) translateY(20px); opacity: 0;" id="comingSoonModalContent">
+            
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, rgba(232, 131, 42, 0.15), rgba(224, 90, 10, 0.1)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; animation: iconPulse 2s infinite; border: 2px dashed rgba(232, 131, 42, 0.4);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--saffron-deep, #E05A0A)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: wrenchSpin 2.5s infinite ease-in-out; transform-origin: center;">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+            </div>
+
+            <h3 style="font-family: var(--sans, 'Hind', sans-serif); font-size: 1.6rem; font-weight: 800; color: var(--ink, #1A1108); margin: 0 0 0.8rem; letter-spacing: -0.02em;">कार्य प्रगति पर है <span style="display:inline-block; animation: wrenchSpin 2s infinite">⚙️</span></h3>
+            
+            <div style="height: 3px; width: 50px; background: var(--saffron-deep, #E05A0A); margin: 0 auto 1.2rem; border-radius: 3px;"></div>
+
+            <p style="font-family: var(--sans, 'Hind', sans-serif); font-size: 1.05rem; color: var(--ink-2, #555); margin: 0 0 2rem; line-height: 1.6;">
+                यह अनुभाग अभी निर्माण के चरण में है। हम इसे जल्द ही आप तक पहुँचाने के लिए मेहनत कर रहे हैं!
+            </p>
+            
+            <button onclick="hideComingSoonModal()" style="background: linear-gradient(135deg, var(--saffron, #E8832A), var(--saffron-deep, #E05A0A)); color: #fff; border: none; padding: 0.9rem 2.8rem; font-size: 1.1rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 15px rgba(224, 90, 10, 0.3); transition: all 0.3s ease; font-family: var(--sans, 'Hind', sans-serif);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 20px rgba(224, 90, 10, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 15px rgba(224, 90, 10, 0.3)';">
+                ठीक है (OK)
+            </button>
+            
+            <div style="margin-top: 1.5rem; font-family: var(--sans, 'Hind', sans-serif); font-size: 0.8rem; color: #aaa; opacity: 0.8; letter-spacing: 0.05em; font-weight: 500;">
+                — Vaibhav
+            </div>
+        </div>
+    </div>
+    <script>
+        function showComingSoonModal() {
+            const modal = document.getElementById('comingSoonModal');
+            const content = document.getElementById('comingSoonModalContent');
+            modal.style.display = 'flex';
+            // Trigger reflow
+            void modal.offsetWidth;
+            modal.style.opacity = '1';
+            
+            content.classList.remove('modal-active-anim');
+            void content.offsetWidth; // trigger reflow
+            content.classList.add('modal-active-anim');
+        }
+        function hideComingSoonModal() {
+            const modal = document.getElementById('comingSoonModal');
+            const content = document.getElementById('comingSoonModalContent');
+            modal.style.opacity = '0';
+            content.style.transform = 'scale(0.8) translateY(20px)';
+            content.style.opacity = '0';
+            content.classList.remove('modal-active-anim');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
+        }
+    </script>
+
+    <!-- Hidden Background Audio -->
+    <audio id="bgMusic" loop preload="none">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        (function() {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.25;
+            let played = false;
+            
+            const startAutoplay = () => {
+                if (!played) {
+                    audio.play().then(() => {
+                        played = true;
+                        ['click', 'touchstart', 'scroll', 'keydown', 'mousemove'].forEach(ev => {
+                            document.removeEventListener(ev, startAutoplay);
+                        });
+                    }).catch(e => {
+                        // Ignore autoplay block errors until user interacts
+                    });
+                }
+            };
+
+            // Try immediately
+            startAutoplay();
+            
+            // Fallback to interaction
+            ['click', 'touchstart', 'scroll', 'keydown', 'mousemove'].forEach(ev => {
+                document.addEventListener(ev, startAutoplay);
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

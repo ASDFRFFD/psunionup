@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Appreciation | Panchayat Sahayak Union</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0e0c00;
+            background-image:
+                radial-gradient(ellipse at 15% 50%, rgba(180,130,10,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 50%, rgba(180,130,10,0.14) 0%, transparent 55%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 20px;
+            font-family: 'EB Garamond', 'Georgia', serif;
+        }
+
+        .cert-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        /* ============================================================
+           CERTIFICATE SHELL — A4 landscape 1123 × 794
+        ============================================================ */
+        .certificate {
+            width: 1123px;
+            height: 794px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px #7A5900,
+                0 0 0 5px #C9A227,
+                0 0 0 6px #7A5900,
+                0 30px 90px rgba(0,0,0,0.95),
+                0 8px 24px rgba(201,162,39,0.3);
+        }
+
+        /* Layer 1 — Deep Navy outer shell */
+        .frame-navy {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #080f1f 0%, #0d1e3d 50%, #080f1f 100%);
+            padding: 11px;
+        }
+
+        /* Layer 2 — Gold stripe */
+        .frame-gold {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg,
+                #7A5900 0%, #C9A227 18%, #FFD700 36%,
+                #FFF5A0 52%, #FFD700 68%, #C9A227 84%, #7A5900 100%);
+            padding: 4px;
+        }
+
+        /* Layer 3 — Thin navy line */
+        .frame-navy2 {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #080f1f 0%, #0d1e3d 100%);
+            padding: 9px;
+        }
+
+        /* Layer 4 — Ivory paper */
+        .frame-paper {
+            width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(255,248,210,0.95) 0%, transparent 65%),
+                linear-gradient(180deg, #FFFEF5 0%, #FDF8E4 40%, #FBF5DC 70%, #FDF8E4 100%);
+            border: 1.5px solid rgba(201,162,39,0.5);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Top / Sides / Bottom padding — tightly controlled */
+            padding: 14px 45px 10px;
+            gap: 0;
+            overflow: hidden;
+        }
+
+        /* ===== WATERMARK ===== */
+        .cert-watermark {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 440px;
+            opacity: 0.028;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== CORNER ORNAMENTS ===== */
+        .corner {
+            position: absolute;
+            width: 88px; height: 88px;
+            z-index: 6;
+            pointer-events: none;
+        }
+        .c-tl { top: 6px; left: 6px; }
+        .c-tr { top: 6px; right: 6px; transform: scaleX(-1); }
+        .c-bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+        .c-br { bottom: 6px; right: 6px; transform: scale(-1,-1); }
+
+        /* ===== TOKEN BOX (top-left absolute) ===== */
+        .token-box {
+            position: absolute;
+            top: 12px; left: 12px;
+            z-index: 10;
+            background: rgba(255,252,228,0.95);
+            border: 1px solid rgba(201,162,39,0.4);
+            border-left: 4px solid #C9A227;
+            padding: 5px 13px;
+            font-family: 'Cinzel', serif;
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #4A3200;
+            line-height: 1.75;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        /* ============================================================
+           SECTION 1 — HEADER
+        ============================================================ */
+        .cert-header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            width: 60px; height: 60px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.18));
+        }
+
+        .header-center { text-align: center; }
+
+        .org-name {
+            font-family: 'Cinzel', serif;
+            font-size: 16pt;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(180deg, #8B6000 0%, #C9A227 35%, #FFD700 55%, #C9A227 75%, #8B6000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12));
+            line-height: 1.2;
+        }
+
+        .org-sub {
+            font-family: 'EB Garamond', serif;
+            font-size: 10pt;
+            font-weight: 400;
+            color: #6B4E04;
+            letter-spacing: 3px;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* ===== GOLD RULE ===== */
+        .gold-rule {
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 0;
+            position: relative;
+            z-index: 2;
+        }
+        .gold-rule-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8B6000 15%, #C9A227 40%, #FFD700 50%, #C9A227 60%, #8B6000 85%, transparent);
+        }
+        .gold-rule-diamond {
+            width: 10px; height: 10px;
+            background: #C9A227;
+            transform: rotate(45deg);
+            flex-shrink: 0;
+            box-shadow: 0 0 6px rgba(201,162,39,0.6);
+        }
+
+        /* ============================================================
+           SECTION 2 — TITLE
+        ============================================================ */
+        .cert-title-section {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+            margin-bottom: 4px;
+        }
+
+        .cert-title-main {
+            font-family: 'Cinzel Decorative', 'Cinzel', serif;
+            font-size: 28pt;
+            font-weight: 900;
+            letter-spacing: 9px;
+            background: linear-gradient(135deg,
+                #4A2F00 0%, #B8860B 15%, #FFD700 30%,
+                #FFFACD 48%, #FFD700 63%, #C9A227 78%, #4A2F00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.18));
+            line-height: 1.05;
+        }
+
+        .cert-title-sub {
+            font-family: 'EB Garamond', serif;
+            font-size: 11pt;
+            font-weight: 400;
+            color: #7B5400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            margin-top: 5px;
+            background: linear-gradient(135deg, #060e1e 0%, #0f2040 50%, #060e1e 100%);
+            border: 1.5px solid #C9A227;
+            color: #FFE580;
+            font-family: 'Cinzel', serif;
+            font-size: 9.5pt;
+            font-weight: 700;
+            padding: 4px 28px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        /* ============================================================
+           SECTION 3 — BODY
+        ============================================================ */
+        .cert-body {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+        .body-line {
+            font-family: 'EB Garamond', serif;
+            font-size: 14pt;
+            font-weight: 400;
+            color: #1C1208;
+            line-height: 1.55;
+            letter-spacing: 0.3px;
+        }
+
+        .presented-to {
+            font-family: 'Cinzel', serif;
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 5px;
+            color: #8B6000;
+            text-transform: uppercase;
+        }
+
+        .recipient-name {
+            font-family: 'Cinzel', serif;
+            font-size: 23pt;
+            font-weight: 700;
+            background: linear-gradient(135deg, #060e1e 0%, #1a3460 50%, #060e1e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+            display: inline-block;
+            padding: 2px 24px;
+            border-bottom: 2.5px solid;
+            border-image: linear-gradient(90deg, transparent 0%, #C9A227 25%, #FFD700 50%, #C9A227 75%, transparent 100%) 1;
+            line-height: 1.35;
+        }
+
+        .highlight {
+            font-family: 'Cinzel', serif;
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #060e1e;
+            background: rgba(201,162,39,0.13);
+            border: 1px solid rgba(201,162,39,0.45);
+            padding: 1px 10px;
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        .union-msg {
+            font-family: 'EB Garamond', serif;
+            font-size: 12.5pt;
+            font-style: italic;
+            font-weight: 600;
+            background: linear-gradient(90deg, #7B2D00, #B8860B, #C9A227, #B8860B, #7B2D00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.06));
+            padding: 2px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .closing-line {
+            font-family: 'EB Garamond', serif;
+            font-size: 11pt;
+            font-style: italic;
+            color: #7B5400;
+            letter-spacing: 1.5px;
+        }
+
+        /* ============================================================
+           SECTION 4 — FOOTER SEAL
+        ============================================================ */
+        .cert-footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .seal-assembly {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* tricolor-bar removed */
+
+        /* Main medallion */
+        .seal-circle {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 33% 30%, rgba(255,255,255,0.38) 0%, transparent 48%),
+                radial-gradient(circle, #FFFBE8 0%, #F0C840 18%, #DAA520 38%, #C9A227 55%, #9A7010 73%, #6B4E04 88%, #3D2B00 100%);
+            border: 3px solid #FFF5CC;
+            box-shadow:
+                0 0 0 4px #C9A227,
+                0 0 0 7px #8B6000,
+                0 10px 30px rgba(0,0,0,0.45),
+                inset 0 3px 8px rgba(255,255,255,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .seal-circle::before {
+            content: '';
+            position: absolute;
+            width: 84px; height: 84px;
+            border: 1px dashed rgba(255,240,140,0.65);
+            border-radius: 50%;
+        }
+        .seal-inner {
+            font-family: 'Cinzel', serif;
+            font-size: 8pt;
+            font-weight: 900;
+            color: #FFF8CC;
+            text-align: center;
+            line-height: 1.4;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.65);
+            letter-spacing: 1px;
+            z-index: 1;
+        }
+
+        /* Bottom tag */
+        .seal-tag {
+            width: 134px;
+            height: 24px;
+            background: linear-gradient(135deg, #060e1e 0%, #102040 50%, #060e1e 100%);
+            border: 1px solid #C9A227;
+            border-top: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+        }
+        .seal-tag span {
+            font-family: 'Cinzel', serif;
+            font-size: 7pt;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 3px;
+        }
+
+        /* ============================================================
+           PRINT BUTTON
+        ============================================================ */
+        .print-btn {
+            position: fixed;
+            bottom: 25px; right: 25px;
+            padding: 12px 26px;
+            background: linear-gradient(135deg, #8B6000 0%, #C9A227 45%, #FFD700 55%, #C9A227 65%, #8B6000 100%);
+            color: #060e1e;
+            font-family: 'Cinzel', serif;
+            font-size: 10pt;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(201,162,39,0.55);
+            z-index: 1000;
+            transition: all 0.22s ease;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(201,162,39,0.75);
+        }
+
+        /* ============================================================
+           PRINT MEDIA
+        ============================================================ */
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body {
+                width: 297mm !important; height: 210mm !important;
+                min-width: 297mm !important; min-height: 210mm !important;
+                background: white; padding: 0; margin: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .certificate {
+                width: 297mm !important; height: 210mm !important;
+                box-shadow: none !important;
+                transform: none !important;
+            }
+            .cert-wrapper {
+                height: auto !important;
+                transform: none !important;
+            }
+            .print-btn { display: none !important; }
+        }
+
+        /* ============================================================
+           RESPONSIVE SCALING
+        ============================================================ */
+        @media screen and (max-width: 1160px) {
+            body { padding: 10px; justify-content: flex-start; align-items: center; }
+            .certificate { transform-origin: top center; }
+            .print-btn {
+                position: static;
+                margin: 14px auto 0;
+                display: block;
+                width: 260px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Print Certificate</button>
+
+    <div class="cert-wrapper">
+      <div class="certificate">
+
+        <!-- Layer 1: Navy -->
+        <div class="frame-navy">
+        <!-- Layer 2: Gold stripe -->
+        <div class="frame-gold">
+        <!-- Layer 3: Navy ring -->
+        <div class="frame-navy2">
+        <!-- Layer 4: Ivory paper -->
+        <div class="frame-paper">
+
+          <!-- Watermark -->
+          <img src="logo_gold_premium.webp"
+               class="cert-watermark" alt="">
+
+          <!-- Corner Ornaments -->
+          <svg class="corner c-tl" viewBox="0 0 88 88" fill="none">
+            <path d="M4 84 L4 4 L84 4" stroke="#C9A227" stroke-width="2.5"/>
+            <path d="M11 77 L11 11 L77 11" stroke="#8B6000" stroke-width="1"/>
+            <path d="M4 4 Q4 22 22 22" stroke="#FFD700" stroke-width="1.2" fill="none"/>
+            <path d="M11 11 Q11 26 26 26" stroke="#C9A227" stroke-width="0.7" fill="none"/>
+            <circle cx="4" cy="4" r="3.5" fill="#C9A227"/>
+            <circle cx="11" cy="11" r="2" fill="#8B6000"/>
+            <circle cx="4" cy="24" r="1.5" fill="#C9A227" opacity="0.6"/>
+            <circle cx="24" cy="4" r="1.5" fill="#C9A227" opacity="0.6"/>
+          </svg>
+          <svg class="corner c-tr" viewBox="0 0 88 88" fill="none">
+            <path d="M4 84 L4 4 L84 4" stroke="#C9A227" stroke-width="2.5"/>
+            <path d="M11 77 L11 11 L77 11" stroke="#8B6000" stroke-width="1"/>
+            <path d="M4 4 Q4 22 22 22" stroke="#FFD700" stroke-width="1.2" fill="none"/>
+            <path d="M11 11 Q11 26 26 26" stroke="#C9A227" stroke-width="0.7" fill="none"/>
+            <circle cx="4" cy="4" r="3.5" fill="#C9A227"/>
+            <circle cx="11" cy="11" r="2" fill="#8B6000"/>
+          </svg>
+          <svg class="corner c-bl" viewBox="0 0 88 88" fill="none">
+            <path d="M4 84 L4 4 L84 4" stroke="#C9A227" stroke-width="2.5"/>
+            <path d="M11 77 L11 11 L77 11" stroke="#8B6000" stroke-width="1"/>
+            <path d="M4 4 Q4 22 22 22" stroke="#FFD700" stroke-width="1.2" fill="none"/>
+            <path d="M11 11 Q11 26 26 26" stroke="#C9A227" stroke-width="0.7" fill="none"/>
+            <circle cx="4" cy="4" r="3.5" fill="#C9A227"/>
+            <circle cx="11" cy="11" r="2" fill="#8B6000"/>
+          </svg>
+          <svg class="corner c-br" viewBox="0 0 88 88" fill="none">
+            <path d="M4 84 L4 4 L84 4" stroke="#C9A227" stroke-width="2.5"/>
+            <path d="M11 77 L11 11 L77 11" stroke="#8B6000" stroke-width="1"/>
+            <path d="M4 4 Q4 22 22 22" stroke="#FFD700" stroke-width="1.2" fill="none"/>
+            <path d="M11 11 Q11 26 26 26" stroke="#C9A227" stroke-width="0.7" fill="none"/>
+            <circle cx="4" cy="4" r="3.5" fill="#C9A227"/>
+            <circle cx="11" cy="11" r="2" fill="#8B6000"/>
+          </svg>
+
+          <!-- Token Box -->
+          <div class="token-box">
+            <div>TOKEN &nbsp;: <span id="certReportId">Loading…</span></div>
+            <div>DATE &nbsp;&nbsp;: <span id="certDate">Loading…</span></div>
+          </div>
+
+          <!-- ══════ SECTION 1 · HEADER ══════ -->
+          <div class="cert-header">
+            <img src="logo_gold_premium.webp"
+                 class="logo" alt="Union Logo">
+            <div class="header-center">
+              <div class="org-name">PANCHAYAT SAHAYAK UNION</div>
+              <div class="org-sub">Uttar Pradesh &nbsp;·&nbsp; Gram Panchayat Empowerment</div>
+            </div>
+          </div>
+
+          <!-- Gold Rule -->
+          <div class="gold-rule">
+            <div class="gold-rule-line"></div>
+            <div class="gold-rule-diamond"></div>
+            <div class="gold-rule-line"></div>
+          </div>
+
+          <!-- ══════ SECTION 2 · TITLE ══════ -->
+          <div class="cert-title-section">
+            <div class="cert-title-main">CERTIFICATE</div>
+            <div class="cert-title-sub">of &nbsp; Appreciation</div>
+            <div class="cert-badge">✦ &nbsp; Digital Gram Swarajya Sarthi Samman &nbsp; ✦</div>
+          </div>
+
+          <!-- Gold Rule -->
+          <div class="gold-rule">
+            <div class="gold-rule-line"></div>
+            <div class="gold-rule-diamond"></div>
+            <div class="gold-rule-line"></div>
+          </div>
+
+          <!-- ══════ SECTION 3 · BODY ══════ -->
+          <div class="cert-body">
+
+            <div class="body-line">This Certificate of Appreciation is proudly presented to</div>
+
+            <div class="presented-to">Panchayat Sahayak</div>
+
+            <div>
+              <span class="recipient-name" id="certName">____________________</span>
+            </div>
+
+            <div class="body-line">
+              Development Block &nbsp;<span class="highlight" id="certBlock">______</span>&nbsp;,&nbsp;
+              District &nbsp;<span class="highlight" id="certDistrict">______</span>
+            </div>
+
+            <div class="body-line">
+              in recognition of their invaluable contribution towards strengthening the unity of<br>
+              <strong style="color: #8B6000;">57,000 Panchayat Sahayaks</strong> and supporting our core demands.
+            </div>
+
+            <div class="union-msg">
+              ❝ &nbsp;Your contribution will strengthen the work and support the demands of 57,000 Panchayat Sahayaks. It shall always remain an inspiration.&nbsp; ❞
+            </div>
+
+            <div class="closing-line">— The Union deeply honours your dedication and commitment —</div>
+
+          </div>
+
+          <!-- ══════ SECTION 4 · FOOTER SEAL ══════ -->
+          <div class="cert-footer">
+            <div class="seal-assembly">
+
+              <div class="seal-circle">
+                <div class="seal-inner">PS<br>UNION<br>UP</div>
+              </div>
+              <div class="seal-tag"><span>VERIFIED</span></div>
+            </div>
+          </div>
+
+        </div><!-- frame-paper -->
+        </div><!-- frame-navy2 -->
+        </div><!-- frame-gold -->
+        </div><!-- frame-navy -->
+
+      </div><!-- .certificate -->
+    </div><!-- .cert-wrapper -->
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="order-certificate.js"></script>
+    <script>
+        function resizeCertificate() {
+            const cert = document.querySelector('.certificate');
+            const wrapper = document.querySelector('.cert-wrapper');
+            if (!cert || !wrapper) return;
+            const W = window.innerWidth - 40;
+            const certW = 1123, certH = 794;
+            if (W < certW) {
+                const scale = W / certW;
+                cert.style.transform = `scale(${scale})`;
+                cert.style.transformOrigin = 'top center';
+                wrapper.style.height = `${certH * scale}px`;
+            } else {
+                cert.style.transform = 'none';
+                wrapper.style.height = 'auto';
+            }
+        }
+        window.addEventListener('resize', resizeCertificate);
+        window.addEventListener('DOMContentLoaded', resizeCertificate);
+    </script>
+</body>
+</html>

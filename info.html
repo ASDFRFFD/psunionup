@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सूचना एवं सहायता केंद्र | पंचायत सहायक यूनियन उ.प्र.</title>
+    <meta name="description" content="पंचायत सहायक यूनियन उत्तर प्रदेश — गोपनीयता नीति (Privacy Policy), डेटा उपयोग (Data Usage), संपर्क सूत्र और अक्सर पूछे जाने वाले प्रश्न (FAQ)। हम आपकी जानकारी को पूरी तरह सुरक्षित रखते हैं।">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css?v=cjp_theme_6">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hind:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== INFO PAGE SPECIFIC STYLES ===== */
+
+        .info-hero {
+            background: var(--ink);
+            border-bottom: 4px solid var(--saffron-deep);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image: radial-gradient(circle, var(--paper) 10%, transparent 11%);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+
+        .info-hero-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            background-color: var(--saffron-deep);
+            color: var(--paper);
+            padding: 5px 14px;
+            border: 2px solid var(--paper);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .info-hero h1 {
+            font-family: 'Noto Sans Devanagari', var(--display);
+            font-size: 2.8rem;
+            color: var(--paper);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-hero p {
+            font-family: var(--sans);
+            font-size: 1.1rem;
+            color: rgba(244, 235, 215, 0.75);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Tab Navigation */
+        .info-tabs-bar {
+            background: var(--paper-2);
+            border-bottom: 3px solid var(--ink);
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .info-tabs-bar::-webkit-scrollbar { display: none; }
+
+        .info-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 1rem 1.6rem;
+            font-family: var(--condensed);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-2);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            border-bottom: 4px solid transparent;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .info-tab:hover {
+            color: var(--ink);
+            background: rgba(26, 17, 8, 0.05);
+        }
+
+        .info-tab.active {
+            color: var(--saffron-deep);
+            border-bottom-color: var(--saffron-deep);
+            background: var(--paper);
+        }
+
+        .info-tab .tab-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Main Content Area */
+        .info-body {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 4rem 2.5rem 6rem;
+        }
+
+        /* Section Panels */
+        .info-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Heading Style */
+        .section-title-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--saffron-deep);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-block h2 {
+            font-family: 'Noto Sans Devanagari', var(--sans);
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: var(--ink);
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .section-title-block .title-underline {
+            width: 60px;
+            height: 5px;
+            background: var(--saffron-deep);
+            margin-top: 14px;
+            border: 1.5px solid var(--ink);
+        }
+
+        /* Info Card */
+        .info-card {
+            border: 3px solid var(--ink);
+            background: var(--paper);
+            box-shadow: 6px 6px 0 var(--ink);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card-title {
+            font-family: 'Noto Sans Devanagari', var(--sans);
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--paper);
+            background: var(--ink);
+            padding: 8px 16px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.2rem;
+            box-shadow: 4px 4px 0 var(--saffron-deep);
+        }
+
+        .info-card-title.green {
+            box-shadow: 4px 4px 0 var(--green);
+        }
+
+        .info-card-title.blood {
+            box-shadow: 4px 4px 0 var(--blood);
+        }
+
+        .info-card p {
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .info-card ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .info-card ul li::before {
+            content: '▶';
+            color: var(--saffron-deep);
+            font-size: 0.7rem;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .info-card ul li strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(184, 73, 21, 0.07);
+            border: 2px solid var(--saffron-deep);
+            padding: 1.2rem 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .highlight-box .hb-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+        .highlight-box p {
+            font-family: var(--sans);
+            font-size: 1rem;
+            color: var(--ink);
+            font-weight: 600;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .safe-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: var(--paper);
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border: 2px solid var(--ink);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 3px solid var(--ink);
+            margin-top: 1.5rem;
+        }
+
+        .data-table th {
+            background: var(--ink);
+            color: var(--paper);
+            font-family: 'Noto Sans Devanagari', var(--sans);
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.9rem 1.2rem;
+            text-align: left;
+            border: 2px solid var(--ink);
+        }
+
+        .data-table td {
+            padding: 0.85rem 1.2rem;
+            font-family: var(--sans);
+            font-size: 0.98rem;
+            color: var(--ink-2);
+            font-weight: 500;
+            border: 2px solid rgba(26,17,8,0.15);
+            line-height: 1.5;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: rgba(26,17,8,0.04);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(184, 73, 21, 0.06);
+        }
+
+        .td-tag {
+            display: inline-block;
+            background: var(--green);
+            color: var(--paper);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border: 1.5px solid var(--ink);
+            text-transform: uppercase;
+        }
+
+        .td-tag.red { background: var(--blood); }
+        .td-tag.orange { background: var(--saffron-deep); }
+
+        /* Contact Cards Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            border: 3px solid var(--ink);
+            background: var(--paper);
+            box-shadow: 6px 6px 0 var(--ink);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.15s ease;
+        }
+
+        .contact-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 var(--ink);
+        }
+
+        .contact-card-icon {
+            width: 56px;
+            height: 56px;
+            border: 3px solid var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .contact-card-icon.email-icon { background: var(--blood); }
+        .contact-card-icon.wa-icon { background: #25D366; }
+        .contact-card-icon.tg-icon { background: #0088CC; }
+
+        .contact-card-label {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--ink-2);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .contact-card-value {
+            font-family: var(--condensed);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .contact-card-value:hover {
+            color: var(--saffron-deep);
+        }
+
+        .contact-card-desc {
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            color: var(--ink-2);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .contact-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.4rem;
+            font-family: 'Noto Sans Devanagari', var(--condensed);
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--ink);
+            transition: all 0.15s ease;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        .contact-action-btn.email-btn {
+            background: var(--blood);
+            color: var(--paper);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .contact-action-btn.wa-btn {
+            background: #25D366;
+            color: #fff;
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .contact-action-btn.tg-btn {
+            background: #0088CC;
+            color: #fff;
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .contact-action-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            border: 3px solid var(--ink);
+            background: var(--paper);
+            box-shadow: 4px 4px 0 var(--ink);
+            overflow: hidden;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .faq-item.open {
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.3rem 1.6rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: 'Noto Sans Devanagari', var(--sans);
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background 0.15s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--paper-2);
+        }
+
+        .faq-item.open .faq-question {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .faq-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.25s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+        }
+
+        .faq-answer-inner {
+            padding: 1.5rem 1.6rem;
+            border-top: 2px solid var(--ink);
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        .faq-answer-inner a {
+            color: var(--saffron-deep);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .faq-answer-inner strong {
+            color: var(--ink);
+        }
+
+        /* Notice box */
+        .notice-banner {
+            background: var(--ink);
+            color: var(--paper);
+            border: 3px solid var(--ink);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 2.5rem;
+        }
+
+        .notice-banner .nb-icon { font-size: 2rem; flex-shrink: 0; }
+
+        .notice-banner p {
+            font-family: var(--sans);
+            font-size: 1rem;
+            color: rgba(244, 235, 215, 0.9);
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .notice-banner strong {
+            color: var(--saffron-deep);
+            font-weight: 700;
+        }
+
+        /* Breadcrumb */
+        .info-breadcrumb {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--ink-2);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-breadcrumb a {
+            color: var(--saffron-deep);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .info-breadcrumb a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-hero h1 { font-size: 1.8rem; }
+            .info-body { padding: 2rem 1rem 4rem; }
+            .info-tab { padding: 0.85rem 1rem; font-size: 0.95rem; }
+            .info-tabs-bar { top: 0; }
+            .section-title-block h2 { font-size: 1.8rem; }
+            .info-card { padding: 1.5rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .data-table { font-size: 0.88rem; }
+            .data-table th, .data-table td { padding: 0.7rem 0.85rem; }
+        }
+
+        @media (max-width: 480px) {
+            .info-hero h1 { font-size: 1.5rem; }
+            .info-hero { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (same as index.html) -->
+    <header class="premium-header">
+        <div class="header-inner">
+            <div class="brand-cluster">
+                <img src="logo.webp" alt="Logo" class="nav-logo">
+                <div class="brand-text">
+                    <h1>पंचायत सहायक यूनियन उ.प्र.</h1>
+                    <span class="badge">उत्तर प्रदेश</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <a href="achievements.html" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    उपलब्धियां
+                </a>
+                <a href="work-report.html" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    कार्य रिपोर्ट
+                </a>
+                <a href="future.html" class="nav-btn-outline" style="background: var(--paper-2); color: var(--ink); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    भविष्य का विज़न
+                </a>
+                <a href="index.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    मुख्य पृष्ठ (Home)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <div class="info-hero">
+        <div class="info-hero-badge">आधिकारिक सूचना केंद्र</div>
+        <h1>सूचना एवं सहायता केंद्र</h1>
+        <p>गोपनीयता नीति · डेटा का उपयोग · संपर्क सूत्र · अक्सर पूछे जाने वाले प्रश्न (FAQ) — सब एक जगह</p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav class="info-tabs-bar" role="tablist">
+        <button class="info-tab active" onclick="showTab('privacy', this)" role="tab">
+            <span class="tab-icon">🔒</span> गोपनीयता नीति (Privacy Policy)
+        </button>
+        <button class="info-tab" onclick="showTab('data', this)" role="tab">
+            <span class="tab-icon">📊</span> डेटा का उपयोग (Data Usage)
+        </button>
+        <button class="info-tab" onclick="showTab('contact', this)" role="tab">
+            <span class="tab-icon">📞</span> संपर्क सूत्र (Contact Us)
+        </button>
+        <button class="info-tab" onclick="showTab('faq', this)" role="tab">
+            <span class="tab-icon">❓</span> FAQ (सवालों के जवाब)
+        </button>
+    </nav>
+
+    <!-- Main Body -->
+    <main class="info-body">
+
+        <!-- Breadcrumb -->
+        <div class="info-breadcrumb">
+            <a href="index.html">🏠 मुख्य पृष्ठ</a>
+            <span>›</span>
+            <span id="breadcrumbCurrent">गोपनीयता नीति</span>
+        </div>
+
+        <!-- ========== PANEL 1: PRIVACY POLICY ========== -->
+        <section class="info-panel active" id="panel-privacy" role="tabpanel">
+
+            <div class="section-title-block">
+                <div class="section-eyebrow">🔒 सुरक्षा एवं पारदर्शिता</div>
+                <h2>गोपनीयता नीति (Privacy Policy)</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="notice-banner">
+                <div class="nb-icon">🛡️</div>
+                <p>यह गोपनीयता नीति पंचायत सहायक यूनियन, उत्तर प्रदेश के डिजिटल हस्ताक्षर अभियान वेबसाइट पर लागू होती है। <strong>आपकी जानकारी हमारे लिए पूरी तरह सुरक्षित और आदरणीय है।</strong></p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">📋 कौन सी जानकारी एकत्र की जाती है?</div>
+                <div class="safe-badge">✅ केवल आवश्यक डेटा</div>
+                <ul>
+                    <li><strong>पूरा नाम</strong> — प्रतिभागी की पहचान और प्रमाणपत्र के लिए</li>
+                    <li><strong>पिता / पति का नाम</strong> — आधिकारिक रिकॉर्ड और सत्यापन के लिए</li>
+                    <li><strong>उम्र और लिंग</strong> — सांख्यिकीय विश्लेषण (Stats) के लिए</li>
+                    <li><strong>मोबाइल नंबर</strong> — दोहरे हस्ताक्षर (Duplicate Entry) को रोकने और संपर्क के लिए</li>
+                    <li><strong>ग्राम पंचायत, विकास खण्ड, जनपद</strong> — क्षेत्रीय भागीदारी सुनिश्चित करने के लिए</li>
+                    <li><strong>स्थायी पता</strong> — प्रमाणपत्र और यूनियन रिकॉर्ड के लिए</li>
+                    <li><strong>पद (ऑक्यूपेशन)</strong> — संविदा नियोजन के सत्यापन के लिए</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title green">🎯 एकत्रित डेटा का उद्देश्य</div>
+                <ul>
+                    <li>प्रदेश के पंचायत सहायकों की जायज मांगों (मानदेय वृद्धि व नियमितीकरण) को <strong>सरकार और प्रशासन के समक्ष</strong> मजबूती से प्रस्तुत करना।</li>
+                    <li>प्रत्येक हस्ताक्षरकर्ता के लिए आधिकारिक <strong>डिजिटल सहभागिता प्रमाणपत्र (Participation Certificate)</strong> तैयार करना।</li>
+                    <li>जनपद-वार और ब्लॉक-वार <strong>लाइव प्रगति (Live Stats)</strong> प्रदर्शित करना।</li>
+                    <li>यूनियन द्वारा प्रशासनिक और कानूनी पैरवी में **समर्थन के प्रमाण** के रूप में प्रस्तुत करना।</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title blood">🚫 क्या हम आपका डेटा साझा करते हैं?</div>
+                <p style="font-size:1.15rem; font-weight:700; color:var(--blood); margin-bottom:1rem;">बिल्कुल नहीं। कभी नहीं।</p>
+                <ul>
+                    <li>आपका व्यक्तिगत विवरण किसी भी <strong>तृतीय पक्ष (Third Party)</strong> को नहीं दिया जाता।</li>
+                    <li>हम व्यावसायिक विज्ञापनों या प्रचार के लिए डेटा कभी नहीं बेचते या किराए पर देते।</li>
+                    <li>डेटा तक पहुँच केवल <strong>यूनियन के अधिकृत पदाधिकारियों (Admins)</strong> तक ही सीमित है।</li>
+                </ul>
+                <div class="highlight-box">
+                    <div class="hb-icon">⚠️</div>
+                    <p>यदि कोई व्यक्ति या अनधिकृत वेबसाइट यह दावा करती है कि वे इस डेटा का उपयोग किसी अन्य कार्य के लिए कर रहे हैं, तो वह पूरी तरह से <strong>झूठ और गैर-कानूनी</strong> है।</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">🔐 आपके अधिकार</div>
+                <ul>
+                    <li>आप किसी भी समय अपने सबमिट किए गए विवरण में <strong>संशोधन करने या उसे हटाने</strong> का अनुरोध कर सकते हैं।</li>
+                    <li>इसके लिए आप हमें <a href="mailto:psunion5@gmail.com" style="color:var(--saffron-deep); font-weight:700;">psunion5@gmail.com</a> पर ईमेल भेजें।</li>
+                    <li>आपका डेटा अनुरोध प्राप्त होने के <strong>72 घंटों के भीतर</strong> डेटाबेस से स्थायी रूप से हटा दिया जाएगा।</li>
+                    <li>इस अभियान में सहभागिता <strong>पूर्णतः स्वैच्छिक</strong> है, किसी भी प्रकार की कोई बाध्यता नहीं है।</li>
+                </ul>
+            </div>
+
+            <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); margin-top: 1rem; letter-spacing: 0.05em;">
+                📅 नीति प्रभावी दिनांक: 28 मई 2026 &nbsp;|&nbsp; अंतिम अपडेट: 2 अक्टूबर 2026
+            </div>
+
+        </section>
+
+        <!-- ========== PANEL 2: DATA USAGE ========== -->
+        <section class="info-panel" id="panel-data" role="tabpanel">
+
+            <div class="section-title-block">
+                <div class="section-eyebrow">📊 पारदर्शिता रिपोर्ट</div>
+                <h2>डेटा का उपयोग (Data Usage)</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="notice-banner">
+                <div class="nb-icon">📢</div>
+                <p>यह अनुभाग स्पष्ट करता है कि आपकी जानकारी का उपयोग वेबसाइट पर <strong>कहाँ, कैसे और किस रूप में</strong> किया जाता है। हम पूर्ण पारदर्शिता में विश्वास रखते हैं।</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">📋 डेटा उपयोग विवरण तालिका</div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>डेटा फील्ड (Field)</th>
+                            <th>उपयोग का उद्देश्य (Purpose)</th>
+                            <th>गोपनीयता स्थिति (Status)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>आवेदक का नाम</strong></td>
+                            <td>सहभागिता प्रमाणपत्र पर मुद्रित करने, और लाइव गतिविधि टिकर में (Masked रूप में)</td>
+                            <td><span class="td-tag orange">सार्वजनिक (सीमित)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>मोबाइल नंबर</strong></td>
+                            <td>दोहरे हस्ताक्षर (Duplicate Signature) को रोकने के लिए। एडमिन पैनल में केवल Masked रूप में दिखता है।</td>
+                            <td><span class="td-tag">पूर्णतः गुप्त (Private)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>पिता/पति का नाम</strong></td>
+                            <td>प्रमाणपत्र पर मुद्रित करने और रिकॉर्ड सत्यापन के लिए।</td>
+                            <td><span class="td-tag orange">केवल सत्यापन रिकॉर्ड</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>उम्र / लिंग</strong></td>
+                            <td>केवल संचयी आँकड़ों (Aggregate Stats) के सांख्यिकीय विश्लेषण के लिए।</td>
+                            <td><span class="td-tag">गुप्त (केवल संख्या)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>जनपद / ब्लॉक / ग्राम</strong></td>
+                            <td>लाइव प्रगति, शीर्ष जनपद (Top Districts) चार्ट, और लाइव टिकर में प्रदर्शित करने के लिए।</td>
+                            <td><span class="td-tag orange">सार्वजनिक (बिना फोन नंबर के)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>स्थायी पता</strong></td>
+                            <td>यूनियन के आंतरिक रिकॉर्ड और प्रमाणपत्र में मुद्रित करने के लिए।</td>
+                            <td><span class="td-tag">पूर्णतः गुप्त (Private)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>आवेदन की तिथि / स्थान</strong></td>
+                            <td>प्रमाणपत्र पर तिथि और स्थान मुद्रित करने के लिए।</td>
+                            <td><span class="td-tag orange">केवल प्रमाणपत्र रिकॉर्ड</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title green">🏗️ तकनीकी ढाँचा (Technical Infrastructure)</div>
+                <ul>
+                    <li><strong>पहुँच नियंत्रण:</strong> एडमिन-ओनली ऑथेंटिकेशन (Admin-Only Authentication) — आम जनता या किसी बाहरी व्यक्ति के लिए डेटाबेस तक कोई पहुँच नहीं है।</li>
+                    <li><strong>सुरक्षित डेटाबेस:</strong> सभी रिकॉर्ड अत्यधिक सुरक्षित और एन्क्रिप्टेड क्लाउड डेटाबेस में संग्रहित हैं।</li>
+                    <li><strong>कोई कुकीज़ / ट्रैकिंग नहीं:</strong> हमारी वेबसाइट पर किसी भी प्रकार की थर्ड-पार्टी एनालिटिक्स, ट्रैकिंग पिक्सेल या विज्ञापन कुकीज़ का उपयोग नहीं किया जाता।</li>
+                    <li><strong>HTTPS सुरक्षा:</strong> सभी डेटा ट्रांसफर एसएसएल (SSL/HTTPS) द्वारा सुरक्षित और एन्क्रिप्टेड हैं।</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title blood">⏳ डेटा प्रतिधारण अवधि (Retention Period)</div>
+                <ul>
+                    <li>आपका विवरण केवल <strong>अभियान की सक्रिय अवधि</strong> (अधिकतम 3 वर्ष) तक ही सुरक्षित रखा जाएगा।</li>
+                    <li>मांगों के पूर्ण होने और अभियान समाप्त होने पर, **सभी व्यक्तिगत विवरण स्थायी रूप से हटा दिए जाएंगे**।</li>
+                    <li>ऐतिहासिक अभिलेखों के लिए केवल जनपद-वार समर्थकों की कुल संख्या (Aggregate Stats) ही रखी जाएगी।</li>
+                    <li>आप किसी भी समय अपना रिकॉर्ड <strong>स्थायी रूप से हटाने</strong> का अनुरोध कर सकते हैं।</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- ========== PANEL 3: CONTACT ========== -->
+        <section class="info-panel" id="panel-contact" role="tabpanel">
+
+            <div class="section-title-block">
+                <div class="section-eyebrow">📞 संपर्क सूत्र</div>
+                <h2>हमसे संपर्क करें (Contact Us)</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="notice-banner">
+                <div class="nb-icon">💬</div>
+                <p>किसी भी प्रश्न, डेटा संशोधन, या शिकायत के लिए आप हमसे नीचे दिए गए माध्यमों से संपर्क कर सकते हैं। <strong>हम 24 से 48 घंटों के भीतर उत्तर देते हैं।</strong></p>
+            </div>
+
+            <div class="contact-grid">
+
+                <!-- Email -->
+                <div class="contact-card">
+                    <div class="contact-card-icon email-icon">✉️</div>
+                    <div>
+                        <div class="contact-card-label">आधिकारिक ईमेल</div>
+                        <a href="mailto:psunion5@gmail.com" class="contact-card-value">psunion5@gmail.com</a>
+                    </div>
+                    <p class="contact-card-desc">डेटा हटाने, शिकायत दर्ज करने या किसी भी आधिकारिक यूनियन पूछताछ के लिए हमें ईमेल करें। प्रतिक्रिया समय: 24-48 घंटे।</p>
+                    <a href="mailto:psunion5@gmail.com" class="contact-action-btn email-btn">
+                        ✉️ ईमेल भेजें
+                    </a>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="contact-card">
+                    <div class="contact-card-icon wa-icon">💬</div>
+                    <div>
+                        <div class="contact-card-label">व्हाट्सएप (WhatsApp)</div>
+                        <a href="https://wa.me/917521847131" class="contact-card-value" id="waNumber">+91-7521847131</a>
+                    </div>
+                    <p class="contact-card-desc">त्वरित सहायता और संदेश भेजने के लिए व्हाट्सएप का उपयोग करें। समय: सुबह 10:00 बजे से सायं 6:00 बजे तक (रविवार अवकाश)।</p>
+                    <a href="https://wa.me/917521847131" target="_blank" class="contact-action-btn wa-btn">
+                        💬 व्हाट्सएप करें
+                    </a>
+                </div>
+
+                <!-- Telegram -->
+                <div class="contact-card">
+                    <div class="contact-card-icon tg-icon">📨</div>
+                    <div>
+                        <div class="contact-card-label">टेलीग्राम चैनल</div>
+                        <a href="https://telegram.me/ps_unionup" class="contact-card-value" id="tgLink">@ps_unionup</a>
+                    </div>
+                    <p class="contact-card-desc">यूनियन के आधिकारिक टेलीग्राम चैनल से जुड़ें। सभी ताज़ा खबरें, सरकारी आदेश (GO) और अभियान के अपडेट सबसे पहले यहाँ साझा किए जाते हैं।</p>
+                    <a href="https://telegram.me/ps_unionup" target="_blank" class="contact-action-btn tg-btn">
+                        📨 टेलीग्राम जॉइन करें
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Social Media Section -->
+            <div style="margin-top: 2rem;">
+                <div class="section-eyebrow" style="margin-bottom: 1rem;">📲 आधिकारिक सोशल मीडिया हैंडल्स (Social Handles)</div>
+                <div class="contact-grid">
+
+                    <!-- WhatsApp Group -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon wa-icon">👥</div>
+                        <div>
+                            <div class="contact-card-label">व्हाट्सएप ग्रुप</div>
+                            <a href="https://chat.whatsapp.com/HrNpjvKoSXiL3G0hP0Fr9y" class="contact-card-value" style="font-size:1.1rem;">PSU WhatsApp Group</a>
+                        </div>
+                        <p class="contact-card-desc">यूनियन के आधिकारिक व्हाट्सएप ग्रुप से जुड़ें। प्रदेश भर के साथियों से संवाद करें और सीधे अपडेट प्राप्त करें।</p>
+                        <a href="https://chat.whatsapp.com/HrNpjvKoSXiL3G0hP0Fr9y" target="_blank" class="contact-action-btn wa-btn">
+                            👥 ग्रुप जॉइन करें
+                        </a>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon" style="background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">📸</div>
+                        <div>
+                            <div class="contact-card-label">इंस्टाग्राम (Instagram)</div>
+                            <a href="https://www.instagram.com/psunionuttarpradesh" target="_blank" class="contact-card-value" style="font-size:1.1rem;">@psunionuttarpradesh</a>
+                        </div>
+                        <p class="contact-card-desc">इंस्टाग्राम पर हमें फॉलो करें। अभियान की तस्वीरें, रील्स और महत्वपूर्ण कार्यक्रम यहाँ देखें।</p>
+                        <a href="https://www.instagram.com/psunionuttarpradesh?igsh=NXdmdjk3NG52bGx1" target="_blank" class="contact-action-btn" style="background:linear-gradient(135deg,#e6683c,#cc2366); color:#fff; box-shadow:4px 4px 0 var(--ink);">
+                            📸 फॉलो करें
+                        </a>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon" style="background: #1877F2;">📘</div>
+                        <div>
+                            <div class="contact-card-label">फेसबुक पेज</div>
+                            <a href="https://www.facebook.com/psunionup/" target="_blank" class="contact-card-value" style="font-size:1.1rem;">psunionup</a>
+                        </div>
+                        <p class="contact-card-desc">हमारे फेसबुक पेज को लाइक और फॉलो करें। समाचार पत्रों की कटिंग, यूनियन की बैठकें और सरकारी आदेश यहाँ साझा किए जाते हैं।</p>
+                        <a href="https://www.facebook.com/psunionup/" target="_blank" class="contact-action-btn" style="background:#1877F2; color:#fff; box-shadow:4px 4px 0 var(--ink);">
+                            📘 फेसबुक लाइक करें
+                        </a>
+                    </div>
+
+                    <!-- Twitter / X -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon" style="background: #000;">✖️</div>
+                        <div>
+                            <div class="contact-card-label">ट्विटर (Twitter / X)</div>
+                            <a href="https://x.com/PSU_LKO" target="_blank" class="contact-card-value" style="font-size:1.1rem;">@PSU_LKO</a>
+                        </div>
+                        <p class="contact-card-desc">ट्विटर/X पर हमें फॉलो करें। सरकार तक अपनी बात पहुँचाने के लिए ट्वीट अभियान और घोषणाएं यहाँ समन्वित होती हैं।</p>
+                        <a href="https://x.com/PSU_LKO" target="_blank" class="contact-action-btn" style="background:#000; color:#fff; box-shadow:4px 4px 0 var(--ink);">
+                            ✖️ फॉलो करें
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Extra note -->
+            <div class="info-card" style="margin-top:2rem;">
+                <div class="info-card-title">📍 यूनियन विवरण</div>
+                <ul>
+                    <li><strong>संगठन:</strong> पंचायत सहायक यूनियन, उत्तर प्रदेश</li>
+                    <li><strong>मुख्य उद्देश्य:</strong> उत्तर प्रदेश के समस्त पंचायत सहायकों के मानदेय वृद्धि, नियमितीकरण और अधिकारों के लिए शासन स्तर पर पैरवी करना।</li>
+                    <li><strong>आधिकारिक ईमेल:</strong> <a href="mailto:psunion5@gmail.com" style="color:var(--saffron-deep); font-weight:700;">psunion5@gmail.com</a></li>
+                </ul>
+                <div class="highlight-box">
+                    <div class="hb-icon">⚠️</div>
+                    <p>कृपया केवल ऊपर दिए गए आधिकारिक संपर्क सूत्रों पर ही भरोसा करें। यूनियन किसी भी अन्य व्यक्तिगत खाते या नंबर के माध्यम से कोई गोपनीय जानकारी नहीं मांगती है।</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ========== PANEL 4: FAQ ========== -->
+        <section class="info-panel" id="panel-faq" role="tabpanel">
+
+            <div class="section-title-block">
+                <div class="section-eyebrow">❓ अक्सर पूछे जाने वाले प्रश्न</div>
+                <h2>सवालों के जवाब (FAQ)</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="notice-banner">
+                <div class="nb-icon">💡</div>
+                <p>वेबसाइट और अभियान से जुड़े सबसे आम सवालों के जवाब नीचे दिए गए हैं। यदि आपका कोई अन्य प्रश्न है, तो कृपया <strong>संपर्क सूत्र</strong> टैब पर जाएं।</p>
+            </div>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ क्या यह वेबसाइट असली है या फर्जी?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            यह वेबसाइट <strong>100% असली और आधिकारिक</strong> है। इसे <strong>पंचायत सहायक यूनियन, उत्तर प्रदेश</strong> द्वारा संचालित किया जा रहा है। इस अभियान का उद्देश्य प्रदेश के समस्त पंचायत सहायकों के हस्ताक्षरित समर्थन को डिजिटल रूप से एकत्रित करना है, ताकि हमारी जायज मांगों (न्यूनतम वेतनमान ₹18,000-₹25,000, नियमितीकरण व आरक्षण) को शासन और न्यायालय के समक्ष प्रामाणिक सबूत के रूप में रखा जा सके। किसी भी संदेह की स्थिति में आप हमें <a href="mailto:psunion5@gmail.com">psunion5@gmail.com</a> पर ईमेल कर सकते हैं।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ फॉर्म सबमिट करने के बाद मेरी जानकारी कहाँ जाती है?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            आपका विवरण पूरी तरह से <strong>सुरक्षित और एन्क्रिप्टेड डेटाबेस</strong> में संग्रहित होता है। इस डेटाबेस तक पहुँच केवल यूनियन के अधिकृत पदाधिकारियों (Admins) तक ही सीमित है। आपका डेटा किसी भी बाहरी व्यक्ति या तीसरे पक्ष के साथ साझा नहीं किया जाता।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ क्या मेरा मोबाइल नंबर सार्वजनिक (Public) किया जाएगा?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <strong>बिल्कुल नहीं।</strong> आपका मोबाइल नंबर पूरी तरह से <strong>गुप्त और गोपनीय (Private)</strong> रखा जाता है। वेबसाइट के लाइव टिकर में केवल समर्थकों का नाम और जनपद का नाम ही प्रदर्शित होता है, कभी भी कोई मोबाइल नंबर या पता सार्वजनिक नहीं किया जाता।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ मैं एक ही मोबाइल नंबर से दो बार हस्ताक्षर क्यों नहीं कर सकता?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            अभियान की <strong>विश्वसनीयता और सत्यता</strong> को बनाए रखने के लिए, एक मोबाइल नंबर से केवल एक ही समर्थन दर्ज करने की अनुमति है। इससे कोई भी फर्जी या दोहरा समर्थन दर्ज नहीं कर सकता, जिससे सरकार और न्यायालय के समक्ष हमारी याचिका मजबूत और प्रामाणिक बनी रहे।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ हस्ताक्षर करने के बाद मुझे प्रमाण पत्र/रसीद कैसे मिलेगी?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            फॉर्म सबमिट करने के बाद आपको स्क्रीन पर एक <strong>टोकन क्रमांक (Token Number)</strong> मिलेगा। उस टोकन क्रमांक को डालकर आप वेबसाइट के <a href="receipt.html">रसीद / समर्थन पत्र पेज</a> से अपना आधिकारिक <strong>सहभागिता प्रमाणपत्र (Participation Certificate)</strong> डाउनलोड या प्रिंट कर सकते हैं।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ क्या केवल पंचायत सहायक ही हस्ताक्षर कर सकते हैं?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            यह अभियान मुख्य रूप से <strong>उत्तर प्रदेश के पंचायत सहायकों</strong> के लिए है। लेकिन यदि परिवार के सदस्य या अन्य शुभचिंतक भी पंचायत सहायकों की जायज मांगों का समर्थन करना चाहते हैं, तो वे भी फॉर्म भर सकते हैं। प्रदर्शित आँकड़ों और सरकार को भेजी जाने वाली सूची में <strong>सत्यापित पंचायत सहायकों</strong> को प्राथमिकता दी जाएगी।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ मैं अपनी जानकारी हटाने का अनुरोध कैसे कर सकता हूँ?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            यदि आप किसी कारणवश अपना विवरण हटाना चाहते हैं, तो आप अपने पंजीकृत मोबाइल नंबर, नाम और टोकन क्रमांक के साथ हमें <a href="mailto:psunion5@gmail.com">psunion5@gmail.com</a> पर ईमेल भेजें। हम <strong>72 घंटे के भीतर</strong> आपका सारा डेटा स्थायी रूप से हटा देंगे। यह सेवा पूर्णतः नि:शुल्क है।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ इस वेबसाइट का मुख्य उद्देश्य क्या है?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            इस वेबसाइट का एकमात्र उद्देश्य है — <strong>पंचायत सहायक यूनियन, उत्तर प्रदेश के हस्ताक्षर अभियान को डिजिटल माध्यम से सुचारू रूप से संचालित करना।</strong> इसमें किसी भी प्रकार का कोई शुल्क नहीं लिया जाता, कोई सदस्यता बेची नहीं जाती, और न ही कोई व्यावसायिक उद्देश्य है। यह पूरी तरह से पंचायत सहायकों के अधिकारों के लिए एक <strong>लोकतांत्रिक और निःशुल्क अभियान</strong> है।
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ क्या यह कोई सरकारी (Government) वेबसाइट है?</span>
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <strong>नहीं।</strong> यह उत्तर प्रदेश सरकार की आधिकारिक वेबसाइट नहीं है। हम सरकार के समक्ष अपनी <em>मांगें प्रस्तुत करने के लिए</em> हस्ताक्षर अभियान चला रहे हैं।
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- .faq-list -->
+
+        </section><!-- panel-faq -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer" style="position: relative;">
+        <div style="margin: 0; font-family: var(--mono); font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase;">&copy; 2026 Panchayat Sahayak Union UP. All Rights Reserved.</div>
+        <p style="margin-top: 8px; font-size: 0.85rem; color: rgba(244, 235, 215, 0.75); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">Site by Vaibhav Yadav 📍 Lucknow</p>
+    </footer>
+
+    <script>
+        // ===== TAB SWITCHING =====
+        const tabNames = {
+            'privacy': 'गोपनीयता नीति (Privacy Policy)',
+            'data': 'डेटा का उपयोग (Data Usage)',
+            'contact': 'हमसे संपर्क करें (Contact Us)',
+            'faq': 'FAQ (अक्सर पूछे जाने वाले प्रश्न)'
+        };
+
+        function showTab(name, btn) {
+            // Hide all panels
+            document.querySelectorAll('.info-panel').forEach(p => p.classList.remove('active'));
+            // Deactivate all tabs
+            document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+            // Show selected panel
+            document.getElementById('panel-' + name).classList.add('active');
+            // Activate clicked tab
+            btn.classList.add('active');
+            // Update breadcrumb
+            document.getElementById('breadcrumbCurrent').textContent = tabNames[name];
+            // Smooth scroll to top of content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== FAQ ACCORDION =====
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+
+            // Open clicked (if it wasn't already open)
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // ===== HASH-BASED TAB ROUTING =====
+        (function() {
+            const hash = window.location.hash.replace('#', '');
+            const validTabs = ['privacy', 'data', 'contact', 'faq'];
+            if (validTabs.includes(hash)) {
+                const btn = document.querySelector(`.info-tab[onclick*="'${hash}'"]`);
+                if (btn) showTab(hash, btn);
+            }
+        })();
+    </script>
+
+</body>
+</html>

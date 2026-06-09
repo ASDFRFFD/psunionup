@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>उपलब्धियां | पंचायत सहायक यूनियन उ.प्र.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Same Google Fonts as existing site -->
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@500;700&family=Khand:wght@700&family=Hind:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Consistent CSS variables stylesheet link -->
+    <link rel="stylesheet" href="styles.css?v=cjp_theme_7">
+    <!-- Cinematic Documentary upgraded stylesheet -->
+    <link rel="stylesheet" href="achievements.css">
+</head>
+
+<body class="cinematic-theme">
+
+    <!-- Option 2: Saffron Ink-Bleed Ripple Gateway — Ultra Detail -->
+    <div id="portalGateway" class="portal-gateway ink-gateway">
+        <!-- Canvas: organic ink blob + tendrils + particles -->
+        <canvas id="inkCanvas" class="ink-canvas"></canvas>
+
+        <!-- Corner ornaments -->
+        <div class="gw-corner gw-corner-tl"></div>
+        <div class="gw-corner gw-corner-tr"></div>
+        <div class="gw-corner gw-corner-bl"></div>
+        <div class="gw-corner gw-corner-br"></div>
+
+        <!-- Center emblem -->
+        <div class="ink-center-content">
+            <!-- Animated SVG ring drawing itself around the logo -->
+            <div class="gw-ring-wrap">
+                <svg class="gateway-ring" viewBox="0 0 140 140">
+                    <defs>
+                        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"   stop-color="#D4AF37"/>
+                            <stop offset="50%"  stop-color="#E0651E"/>
+                            <stop offset="100%" stop-color="#D4AF37"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="70" cy="70" r="62" class="ring-track"/>
+                    <circle cx="70" cy="70" r="62" class="ring-progress" id="ringProgress"/>
+                    <!-- 4 tick marks on ring -->
+                    <line x1="70" y1="4"   x2="70" y2="14"  class="ring-tick"/>
+                    <line x1="136" y1="70" x2="126" y2="70" class="ring-tick"/>
+                    <line x1="70" y1="136" x2="70" y2="126" class="ring-tick"/>
+                    <line x1="4"   y1="70" x2="14"  y2="70" class="ring-tick"/>
+                </svg>
+                <img src="logo.webp" alt="Emblem" class="gateway-logo">
+            </div>
+
+            <!-- Top ornament line -->
+            <div class="gw-ornament gw-ornament-top">
+                <span class="orn-line orn-line-l"></span>
+                <span class="orn-diamond">◆</span>
+                <span class="orn-line orn-line-r"></span>
+            </div>
+
+            <h2 class="gateway-title" id="gwTitle">
+                <span>डि</span><span>जि</span><span>ट</span><span>ल</span>
+                <span> </span>
+                <span>ग्</span><span>रा</span><span>म</span>
+                <span> </span>
+                <span>स</span><span>चि</span><span>वा</span><span>ल</span><span>य</span>
+            </h2>
+
+            <!-- Bottom ornament line -->
+            <div class="gw-ornament gw-ornament-bottom">
+                <span class="orn-line orn-line-l"></span>
+                <span class="orn-dot">●</span>
+                <span class="orn-dot">●</span>
+                <span class="orn-dot">●</span>
+                <span class="orn-line orn-line-r"></span>
+            </div>
+
+            <p class="gateway-subtitle" id="gwSubtitle">उत्तर प्रदेश पंचायत सहायक यूनियन</p>
+
+            <!-- Floating micro sparks -->
+            <div class="gw-sparks">
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i>
+            </div>
+
+            <!-- Shimmer sweep overlay on logo -->
+            <div class="gw-shimmer"></div>
+        </div>
+    </div>
+
+    <!-- Premium Floating Header (Branding Aligned) -->
+    <header class="premium-header">
+        <div class="header-inner">
+            <div class="brand-cluster">
+                <img src="logo.webp" alt="Logo" class="nav-logo">
+                <div class="brand-text">
+                    <h1>पंचायत सहायक यूनियन उ.प्र.</h1>
+                    <span class="badge">उत्तर प्रदेश</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    मुख्य पृष्ठ (Home)
+                </a>
+                <a href="work-report.html" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    कार्य रिपोर्ट
+                </a>
+                <a href="future.html" class="nav-btn-outline" style="background: var(--paper-2); color: var(--ink); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    भविष्य का विज़न
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1 — HERO OPENING (Futuristic Canvas + Parallax Overview) -->
+    <section class="hero-canvas-wrap">
+        <canvas id="particleCanvas"></canvas>
+        <!-- Slowly zooming warm village overview photo backdrop -->
+        <div style="position: absolute; inset: 0; z-index: 0; opacity: 0.12;">
+            <img src="gandhi_3d.webp" alt="Backdrop" class="ken-burns-img">
+        </div>
+        <div class="hero-content-inner">
+            <span class="hero-badge">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--saffron); animation: pulse 1.5s infinite;"></span>
+                ग्रामीण डिजिटल क्रांति (Digital India)
+            </span>
+            <h2 class="hero-title-glowing">
+                <span>25 वर्षों का सपना…</span><br>
+                <span>अब <em>गांव-गांव</em> में जीवित है।</span>
+            </h2>
+            <p class="hero-subtitle-cinematic">
+                उत्तर प्रदेश में ग्राम सचिवालयों के सक्रिय संचालन, त्वरित डिजिटल नागरिक सेवाओं और ग्रामीण आत्मनिर्भरता (Gram Swaraj) के धरातलीय परिवर्तन की एक ऐतिहासिक गाथा।
+            </p>
+            <div class="scroll-indicator-wrap">
+                <span>नीचे स्क्रॉल करें</span>
+                <div class="mouse-scroll"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-divider"></div>
+
+    <!-- SPECIAL SECTION — LEADERSHIP TRIBUTE (Above Chapter 1) -->
+    <section class="section-padding" style="background-color: var(--bg-dark-2); border-bottom: 2px dashed rgba(26, 17, 8, 0.12); position: relative; overflow: visible; padding-top: 2rem; padding-bottom: 2rem;">
+        <div class="cinematic-container" style="overflow: visible; padding-top: 0; padding-bottom: 0;">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 1.2rem;">
+                <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 0.8rem;">ऐतिहासिक डिजिटल संकल्प</span>
+                <h3 style="font-family: var(--display); font-size: 2.3rem; color: var(--text-light); margin-bottom: 0.8rem; text-transform: uppercase;">
+                    विज़न को सफल बनाने में मुख्य भूमिका
+                </h3>
+                <p style="font-family: var(--sans); font-size: 1.18rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                    २५ वर्षों के ऐतिहासिक सपने को साकार कर ग्राम सचिवालयों को धरातल पर जीवित करने वाले मुख्य रणनीतिकार और हमारे डिजिटल सैनिक:
+                </p>
+            </div>
+
+            <div class="tribute-cards-grid" style="display: grid; grid-template-columns: 1.15fr 0.92fr 0.92fr; gap: 3.5rem; margin-top: 0.5rem; overflow: visible; align-items: flex-end;">
+                <!-- 1. Honorable Chief Minister (Highlighted Primary Visual) -->
+                <div class="tribute-card animate-tribute" style="background: transparent; border: none; box-shadow: none; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; overflow: visible;">
+                    <div class="tribute-photo-frame" style="width: 290px; height: 320px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; position: relative;">
+                        <img src="cm_yogi.webp" class="tribute-3d-img cm-3d" alt="Shri Yogi Adityanath" style="width: auto; height: 100%; max-height: 320px; object-fit: contain; filter: drop-shadow(0 15px 18px rgba(26,17,8,0.2)); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);" onerror="this.src='logo.webp'; this.style.opacity='0.25'; this.style.height='160px'; this.style.objectFit='contain'; this.parentNode.style.height='160px';">
+                    </div>
+                    <h4 style="font-family: var(--display); font-size: 1.45rem; color: var(--text-light); margin: 10px 0 0 0;">श्री योगी आदित्यनाथ जी</h4>
+                    <span class="tribute-tag" style="font-family: var(--sans); font-size: 0.95rem; font-weight: 700; color: var(--saffron-deep); background: rgba(224, 101, 30, 0.08); padding: 5px 14px; border: 1.5px solid var(--saffron-deep); box-shadow: 2px 2px 0 var(--ink);">माननीय मुख्यमंत्री, उत्तर प्रदेश</span>
+                    <p style="font-family: var(--sans); font-size: 0.98rem; color: var(--text-muted); line-height: 1.5; margin: 0; padding: 0 10px; font-weight: 600;">
+                        अदम्य इच्छाशक्ति और प्रशासनिक विज़न से ग्राम सचिवालयों को मिनी-सचिवालय बनाने का ऐतिहासिक संकल्प।
+                    </p>
+                </div>
+
+                <!-- 2. Honorable ACS / Secretary -->
+                <div class="tribute-card animate-tribute" style="background: transparent; border: none; box-shadow: none; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; overflow: visible;">
+                    <div class="tribute-photo-frame" style="width: 210px; height: 230px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; position: relative;">
+                        <img src="secretary_sachiv.webp" class="tribute-3d-img secretary-3d" alt="Panchayati Raj Secretary" style="width: auto; height: 100%; max-height: 230px; object-fit: contain; filter: drop-shadow(0 8px 10px rgba(26,17,8,0.15)); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);" onerror="this.src='logo.webp'; this.style.opacity='0.25'; this.style.height='120px'; this.style.objectFit='contain'; this.parentNode.style.height='120px';">
+                    </div>
+                    <h4 style="font-family: var(--display); font-size: 1.18rem; color: var(--text-light); margin: 10px 0 0 0;">परम विज़नरी सचिव महोदय</h4>
+                    <span class="tribute-tag" style="font-family: var(--sans); font-size: 0.82rem; font-weight: 700; color: var(--green); background: rgba(31, 90, 46, 0.08); padding: 4px 8px; border: 1.5px solid var(--green); box-shadow: 2px 2px 0 var(--ink);">अपर मुख्य सचिव / सचिव, पंचायती राज</span>
+                    <p style="font-family: var(--sans); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; padding: 0 5px;">
+                        कुशल प्रशासनिक समन्वय, शासनादेशों का समयबद्ध निर्गमन और ग्रामीण बुनियादी ढांचे का अभूतपूर्व आधुनिकीकरण।
+                    </p>
+                </div>
+
+                <!-- 3. Panchayat Sahayak Representative -->
+                <div class="tribute-card animate-tribute" style="background: transparent; border: none; box-shadow: none; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; overflow: visible;">
+                    <div class="tribute-photo-frame" style="width: 210px; height: 230px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; position: relative;">
+                        <img src="panchayat_sahayak.webp" class="tribute-3d-img sahayak-3d" alt="Panchayat Sahayak" style="width: auto; height: 100%; max-height: 230px; object-fit: contain; filter: drop-shadow(0 8px 10px rgba(26,17,8,0.15)); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);" onerror="this.src='logo.webp'; this.style.opacity='0.25'; this.style.height='120px'; this.style.objectFit='contain'; this.parentNode.style.height='120px';">
+                    </div>
+                    <h4 style="font-family: var(--display); font-size: 1.18rem; color: var(--text-light); margin: 10px 0 0 0;">समर्पित पंचायत सहायक</h4>
+                    <span class="tribute-tag" style="font-family: var(--sans); font-size: 0.82rem; font-weight: 700; color: var(--ink); background: rgba(26, 17, 8, 0.08); padding: 4px 8px; border: 1.5px solid var(--ink); box-shadow: 2px 2px 0 var(--ink);">५८,०००+ डिजिटल ग्राम सैनिक</span>
+                    <p style="font-family: var(--sans); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; padding: 0 5px;">
+                        अल्प मानदेय और कठिन परिस्थितियों में भी ग्राम स्तर पर शासकीय नीतियों का शत-प्रतिशत जमीनी क्रियान्वयन।
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         HISTORY BANNER — Mukhyamantri section ke turant baad
+    ══════════════════════════════════════════════════════════ -->
+    <div class="hist-banner-section scroll-reveal">
+        <div class="hbs-film hbs-film-t"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="hbs-film hbs-film-b"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="hbs-inner">
+            <div class="hbs-years">
+                <span class="hbs-yr hbs-yr-1">१९९५</span>
+                <span class="hbs-yr hbs-yr-2">२००४</span>
+                <span class="hbs-yr hbs-yr-3">२०२१</span>
+            </div>
+            <div class="hbs-center">
+                <div class="hbs-badge">📜 26 वर्षों का अनकहा इतिहास</div>
+                <h2 class="hbs-title">संघर्ष से<br><em>सफलता</em> तक</h2>
+                <p class="hbs-desc">1995 में एक छोटी सी मशाल जली थी —<br>जानिए कैसे वह आज लाखों का उजाला बनी।</p>
+                <a href="history.html" class="hbs-btn">
+                    <span class="hbs-btn-clock">🕰️</span>
+                    <span>इतिहास की यात्रा करें</span>
+                    <span class="hbs-btn-arr">→</span>
+                </a>
+            </div>
+            <div class="hbs-clock-wrap">
+                <div class="hbs-clock">
+                    <div class="hbs-hand hbs-hour"></div>
+                    <div class="hbs-hand hbs-minute"></div>
+                    <div class="hbs-center-dot"></div>
+                    <span class="hbs-clock-num n12">XII</span>
+                    <span class="hbs-clock-num n3">III</span>
+                    <span class="hbs-clock-num n6">VI</span>
+                    <span class="hbs-clock-num n9">IX</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2 — 25 YEARS DREAM OF GRAM SACHIVALAYA (Documentary Split Parallax) -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div class="story-split-container">
+                <div>
+                    <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय ०१</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        व्यवस्था का ऐतिहासिक परिवर्तन
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        दशकों से हमारे गांव प्रशासनिक उदासीनता, बंद पड़े पंचायत भवनों और धूल फांकती फाइलों के बीच उलझे हुए थे। ग्रामीणों को एक छोटे से प्रमाण पत्र के लिए भी मीलों दूर तहसील या ब्लॉक के चक्कर काटने पड़ते थे।
+                    </p>
+                    <div style="border-left: 4px solid var(--saffron); padding-left: 1.5rem; margin-top: 2rem; margin-bottom: 2rem;">
+                        <blockquote style="font-family: var(--sans); font-size: 1.25rem; font-weight: 700; color: var(--saffron); font-style: italic; line-height: 1.5;">
+                            "जिस लक्ष्य को वर्षों तक व्यवस्था पूरी तरह स्थापित नहीं कर सकी, उसे ग्राम स्तर के डिजिटल योद्धाओं ने नई गति दी।"
+                        </blockquote>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=sachivalaya" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Auto-Fading Slideshow inside a Brutalist Frame -->
+                <div class="photo-frame-container glow-saffron-border">
+                    <div class="visual-slide" style="background-image: linear-gradient(to top, rgba(9,13,10,0.96), transparent), url('exact_gandhi.webp'); opacity: 1; z-index: 2;">
+                        <img src="exact_gandhi.webp" alt="Old Panchayat" class="ken-burns-img" style="display:none;">
+                        <div class="slide-caption-box">
+                            <h4>पुराना पंचायत तंत्र</h4>
+                            <p>ताले लटके पंचायत भवन, धूल खाती सरकारी फाइलें, और लंबी प्रतीक्षा की बेड़ियां।</p>
+                        </div>
+                    </div>
+                    <div class="visual-slide" style="background-image: linear-gradient(to top, rgba(9,13,10,0.96), transparent), url('gandhi_sahayak.webp'); opacity: 0; z-index: 1;">
+                        <img src="gandhi_sahayak.webp" alt="Digital Sachivalaya" class="ken-burns-img" style="display:none;">
+                        <div class="slide-caption-box" style="border-color: var(--green);">
+                            <h4>डिजिटल ग्राम सचिवालय</h4>
+                            <p>हाई-स्पीड इंटरनेट, चालू कंप्यूटर, त्वरित जन सेवाएं और सशक्त पंचायत सहायक।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- SECTION 4 — DAILY OPENING OF GRAM SACHIVALAYA -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; margin-bottom: 4rem;">
+                <div>
+                    <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय ०३</span>
+                    <h3 style="font-family: var(--display); font-size: 2.5rem; color: var(--text-light); margin-bottom: 1.2rem;">
+                        एक ही छत के नीचे संपूर्ण समाधान
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+                        "सुबह सूरज की पहली किरण के साथ ग्राम सचिवालय के पट खुलते हैं, कंप्यूटर ऑन होते हैं और ग्रामीणों की चिंताओं का डिजिटल समाधान होना शुरू हो जाता है।"
+                    </p>
+                    <blockquote style="border-left:4px solid var(--saffron); padding-left:1.5rem; font-family:var(--sans); font-size:1.15rem; font-weight:700; color:var(--saffron); margin-bottom: 2rem;">
+                        "अब गांव का नागरिक सेवाओं के लिए शहर पर निर्भर नहीं है।"
+                    </blockquote>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=services" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Floating picture frame showing villagers receiving help -->
+                <div class="photo-frame-container glow-green-border floating-photo-card">
+                    <img src="gandhi_sahayak.webp" alt="Villagers Receiving Services" class="ken-burns-img dir-right">
+                    <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(9,13,10,0.9); padding: 8px 12px; font-family: var(--mono); font-size: 0.75rem; border-left: 3px solid var(--green);">
+                        📍 ग्राम सचिवालय में सेवाएं
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compact Line-by-Line Service List -->
+            <div class="compact-services-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 3rem; margin-top: 3.5rem;">
+                
+                <!-- Service 1 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">💳</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">आयुष्मान कार्ड</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">मुफ्त इलाज हेतु स्वास्थ्य सुरक्षा कार्ड निर्माण प्रविष्टि।</p>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">👴</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">वृद्धा/विधवा पेंशन</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">बुजुर्गों एवं माताओं के लिए सामाजिक सुरक्षा सहायता आवेदन।</p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">📄</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">प्रमाण पत्र</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">आय, जाति, निवास प्रमाण पत्रों की त्वरित ऑनलाइन फीडिंग।</p>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">🏠</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">प्रधानमंत्री आवास</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">आवास लाभार्थियों की ऑनलाइन प्रविष्टि एवं जियो-टैगिंग।</p>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">🌾</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">किसान सम्मान निधि</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">ई-केवाईसी और लैंड-सीडिंग डेटा का जमीनी सत्यापन कार्य।</p>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">💻</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">ऑनलाइन योजनाएं</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">राज्य व केंद्र सरकार की समस्त लोक कल्याणकारी योजनाएं।</p>
+                    </div>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">📖</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">परिवार रजिस्टर</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">डिजिटल फैमिली डेटा प्रविष्टि और ऑनलाइन नकल निर्गमन।</p>
+                    </div>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="service-list-item" style="display: flex; align-items: center; gap: 1.2rem; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 1rem;">
+                    <div style="font-size: 1.8rem; background: var(--bg-dark-2); border: 2px solid var(--ink); padding: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;">💾</div>
+                    <div>
+                        <h4 style="font-family: var(--sans); font-weight: 700; font-size: 1.25rem; color: var(--text-light); margin: 0 0 4px 0;">डिजिटल रिकॉर्ड्स</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.4;">पंचायत संपत्तियों और बुनियादी ढांचे का डिजिटल लेखा-जोखा।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5 — AYUSHMAN BHARAT ACHIEVEMENT -->
+    <section class="section-padding scroll-reveal" style="background-color: var(--bg-dark-2);">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 5rem; align-items: center;">
+                <div>
+                    <span class="badge" style="background-color: var(--green); margin-bottom: 1rem; display: inline-block;">अध्याय ०४</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--ink); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        आयुष्मान भारत: ऐतिहासिक स्वास्थ्य सुरक्षा योगदान
+                    </h3>
+                    
+                    <!-- Compact premium brutalist counter card -->
+                    <div class="ayushman-counter-box" style="margin-bottom: 2rem; padding: 2rem; display: flex; align-items: center; gap: 2rem; text-align: left; background: #ffffff;">
+                        <div class="huge-counter-text" id="ayushmanCounterNum" style="font-family: var(--mono); font-weight: 700; font-size: 3.5rem; line-height: 1; margin: 0; color: var(--green); min-width: 360px; display: inline-block; flex-shrink: 0;">50,00,00,000+</div>
+                        <div style="font-family: var(--sans); font-size: 1.1rem; font-weight: 700; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3;">
+                            स्वास्थ्य सुरक्षा कार्ड निर्माण का ऐतिहासिक कीर्तिमान
+                        </div>
+                    </div>
+                    
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        उत्तर प्रदेश में <b>५ करोड़ से अधिक आयुष्मान कार्डों</b> के विशाल लक्ष्य को प्राप्त करने में प्रत्येक पंचायत सहायक ने रात-दिन एक कर हर पात्र ग्रामीण तक मुफ्त इलाज की गारंटी पहुंचाई।
+                    </p>
+                    <strong style="font-family: var(--sans); font-size: 1.15rem; color: var(--green); display: block; margin-bottom: 2rem; border-left: 4px solid var(--green); padding-left: 1.2rem;">
+                        स्वास्थ्य सुरक्षा की यह क्रांति अब सीधे उत्तर प्रदेश के हर पिछड़े गांव तक पहुंच चुकी है।
+                    </strong>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=ayushman" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Dynamic healthcare visual with pan effect -->
+                <div class="photo-frame-container glow-green-border">
+                    <img src="gandhi_sahayak.webp" alt="Ayushman Card Camp" class="ken-burns-img">
+                    <div style="position: absolute; bottom: 20px; right: 20px; background: rgba(9,13,10,0.9); padding: 10px; border-top: 3px solid var(--green); font-family: var(--mono); font-size: 0.8rem;">
+                        ❇️ ५ करोड़ आयुष्मान कार्डों का कीर्तिमान
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6 — COVID PERIOD CONTRIBUTION -->
+    <section class="section-padding scroll-reveal" style="border-top: 3px solid var(--saffron-deep);">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center;">
+                <div>
+                    <span class="badge" style="background-color: var(--blood); margin-bottom: 1rem;">अध्याय ०५ — इतिहास के पन्नों से</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        संकट काल में अग्रिम पंक्ति के योद्धा
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        जब वैश्विक महामारी कोरोना (Covid-19) के दौरान पूरी दुनिया घरों में कैद थी, तब पंचायत सहायक गांवों में आशा बहुओं, निगरानी समितियों और स्वास्थ्य कर्मियों के साथ अग्रिम मोर्चे पर डटे हुए थे।
+                    </p>
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; font-family: var(--sans); font-size: 1rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                        <li style="display:flex; align-items:center; gap:8px;">🔴 टीकाकरण शिविरों (Vaccine Camps) का सफल तकनीकी प्रबंधन।</li>
+                        <li style="display:flex; align-items:center; gap:8px;">🔴 प्रवासी श्रमिकों का डेटा संकलन व क्वारंटाइन सेंटर की मैपिंग।</li>
+                        <li style="display:flex; align-items:center; gap:8px;">🔴 ग्राम स्तर पर राहत सामग्री का डिजिटल वितरण और नियंत्रण।</li>
+                    </ul>
+                    <blockquote style="font-family: var(--sans); font-size: 1.3rem; font-weight: 800; color: var(--saffron); line-height: 1.6; font-style: italic; margin-bottom: 2rem;">
+                        "जब सारी दुनिया रुकी हुई थी… तब उत्तर प्रदेश के गांवों में सेवा और समर्पण निरंतर जारी था।"
+                    </blockquote>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=covid" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Sepia-dark Ken Burns photo showing covid work relief -->
+                <div class="photo-frame-container glow-blood-border">
+                    <img src="exact_gandhi.webp" alt="Covid Vaccine Support" class="ken-burns-img dir-right" style="filter: sepia(0.3) contrast(1.1);">
+                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(139,26,26,0.9); padding: 10px 15px; border-left: 4px solid var(--blood); font-family: var(--mono); font-size: 0.8rem;">
+                        🛡️ सेवा परमो धर्मः — महामारी सहायता
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7 — PANCHAYAT DEVELOPMENT INDEX -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center;">
+                <!-- PDI Interactive Dashboard -->
+                <div class="bg-blur-card" style="padding: 2.5rem;" id="pdiMetricCard">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 12px; margin-bottom: 20px;">
+                        <span style="font-family:var(--mono); font-size:0.85rem; color:var(--saffron-deep); font-weight:700;">📊 SANKALP DASHBOARD</span>
+                        <select id="pdiDistrictSelect" style="background:#ffffff; color:var(--ink); border:2px solid var(--ink); padding:6px 12px; font-family:var(--sans); font-size:0.9rem; font-weight:700; cursor:pointer;">
+                            <option value="sitapur">Sitapur (सीतापुर)</option>
+                            <option value="gorakhpur">Gorakhpur (गोरखपुर)</option>
+                            <option value="varanasi">Varanasi (वाराणसी)</option>
+                            <option value="lucknow">Lucknow (लखनऊ)</option>
+                            <option value="basti">Basti (बस्ती)</option>
+                        </select>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:2rem;">
+                        <div style="background:var(--paper-2); border:2px solid var(--ink); padding:2rem; text-align:center;">
+                            <span style="font-family:var(--sans); font-size:0.9rem; color:var(--text-muted); display:block; margin-bottom:8px;">PDI समग्र विकास सूचकांक</span>
+                            <strong style="font-family:var(--display); font-size:3.8rem; color:var(--green);" id="pdiScoreVal">94.6%</strong>
+                        </div>
+                        <div style="display:flex; flex-direction:column; justify-content:center; gap:12px;">
+                            <div style="display:flex; justify-content:space-between; font-size:1rem; font-family:var(--sans);">
+                                <span style="color:var(--text-muted);">राज्य रैंकिंग:</span>
+                                <strong id="pdiRankVal" style="color:#4ade80;">1st Rank</strong>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:1rem; font-family:var(--sans);">
+                                <span style="color:var(--text-muted);">कार्यरत सहायक:</span>
+                                <strong id="pdiActiveAssistants" style="color:var(--text-light);">1,524</strong>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:1rem; font-family:var(--sans);">
+                                <span style="color:var(--text-muted);">डिजिटल अभिलेख:</span>
+                                <strong id="pdiDigitalRecords" style="color:var(--text-light);">86,210</strong>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:1rem; font-family:var(--sans);">
+                                <span style="color:var(--text-muted);">कवरेज दर:</span>
+                                <strong id="pdiCoveragePercent" style="color:var(--text-light);">98.2%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="badge" style="background-color: var(--green); margin-bottom: 1rem;">अध्याय ०६</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        पंचायत विकास सूचकांक (PDI)
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        ग्राम पंचायतों को डिजिटल विकास सूचकांक (PDI) मानकों पर उत्कृष्ट बनाने में पंचायत सहायकों का महत्वपूर्ण योगदान है। जल, स्वच्छता, स्वास्थ्य, और शिक्षा जैसे प्रमुख संकेतकों का रीयल-टाइम डेटा संकलन अब डिजिटली किया जा रहा है।
+                    </p>
+                    <strong style="font-family: var(--sans); font-size: 1.25rem; color: var(--saffron); display: block; margin-bottom: 2rem;">
+                        🔥 ग्राम पंचायतें अब डिजिटल विकास केंद्र बन रही हैं।
+                    </strong>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=pdi" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8 — SWACHH BHARAT MISSION (Interactive Comparison Slider) -->
+    <section class="section-padding scroll-reveal" style="background-color: var(--bg-dark-2);">
+        <div class="cinematic-container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem;">
+                <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय ०७</span>
+                <h3 style="font-family: var(--display); font-size: 2.5rem; color: var(--text-light); margin-bottom: 1.2rem;">
+                    स्वच्छ भारत मिशन: धरातलीय बदलाव
+                </h3>
+                <p style="font-family: var(--sans); font-size: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+                    खुले में शौच मुक्त (ODF) सर्वेक्षण, शौचालय निर्माण की ऑनलाइन जियो-टैगिंग, और गांवों में नियमित स्वच्छता अभियान की मॉनिटरिंग में पंचायत सहायकों ने क्रांतिकारी भूमिका निभाई है।
+                </p>
+            </div>
+
+            <!-- High Fidelity Interactive Comparison Slider -->
+            <div class="slider-wrapper">
+                <!-- Under Image (Clean Panchayat Environment - Today) -->
+                <div class="slider-img before-img" style="background-image: linear-gradient(to top, rgba(9,13,10,0.7), transparent), url('exact_gandhi_white.webp');"></div>
+                <!-- Over Image (Old Panchayat Environment - Yesterday) -->
+                <div class="slider-img after-img" style="background-image: linear-gradient(to top, rgba(9,13,10,0.9), transparent), url('exact_gandhi.webp');"></div>
+                
+                <div class="slider-drag-handle">
+                    <div class="slider-button">↔</div>
+                </div>
+
+                <div class="slider-badge before-badge">स्वच्छ गांव (आज)</div>
+                <div class="slider-badge after-badge">पुराना गांव (कल)</div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-family: var(--sans); font-size: 1.25rem; font-weight: 700; color: #4ade80; margin-bottom: 2rem;">
+                    🌱 "स्वच्छता गांव की गरिमा का नया अध्याय बनी।"
+                </p>
+                <div>
+                    <a href="chapter-detail.html?id=swachh" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                        📋 विस्तृत विवरण और शासनादेश देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9 — JAN SUVIDHA KENDRA -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+                <div>
+                    <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय ०८</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        जन सुविधा केंद्र (CSC) एकीकरण
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        प्रत्येक ग्राम सचिवालय में स्थापित जन सुविधा केंद्रों के माध्यम से अब ग्रामीणों को १०० से अधिक सरकारी सेवाएं सीधे पंचायत कार्यालय से मिल रही हैं। इससे डिजिटल समावेशन (Digital Inclusion) को नई उड़ान मिली है।
+                    </p>
+                    <blockquote style="border-left:4px solid var(--saffron); padding-left:1.5rem; font-family:var(--sans); font-size:1.15rem; font-weight:700; color:var(--saffron); margin-bottom: 2rem;">
+                        "अब सुविधा के लिए शहर नहीं… गांव ही पर्याप्त है।"
+                    </blockquote>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=csc" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gliding rural network visual card -->
+                <div class="photo-frame-container glow-saffron-border">
+                    <img src="gandhi_sahayak.webp" alt="Jan Suvidha Kendra" class="ken-burns-img dir-zoom">
+                    <div style="position: absolute; inset: 0; background: radial-gradient(circle, transparent 40%, rgba(9,13,10,0.85) 90%); pointer-events: none; z-index: 1;"></div>
+                    <div style="position: absolute; top: 20px; right: 20px; background: var(--saffron-deep); color: var(--paper); border: 2px solid var(--ink); padding: 5px 12px; font-family: var(--mono); font-size: 0.8rem; z-index: 3;">
+                        📶 100% ONLINE SERVICES
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 10 — CROP SURVEY & FARMER REGISTRY -->
+    <section class="section-padding scroll-reveal" style="background-color: var(--bg-dark-2);">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center;">
+                <!-- E-Khasra agricultural crop survey visual with green glow -->
+                <div class="photo-frame-container glow-green-border">
+                    <img src="exact_gandhi_white.webp" alt="Crop Survey Fields" class="ken-burns-img dir-right" style="filter: hue-rotate(45deg) saturate(1.1);">
+                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(9,13,10,0.92); border-left: 4px solid var(--green); padding: 10px 15px; font-family: var(--mono); font-size: 0.8rem;">
+                        🌾 खेती भी अब डिजिटल व्यवस्था से जुड़ रही है।
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="badge" style="background-color: var(--green); margin-bottom: 1rem;">अध्याय ०९</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        स्मार्ट खेती और किसान रजिस्ट्री
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        तकनीक का हाथ, किसानों के साथ! पंचायत सहायकों ने कृषि विभाग के डिजिटल विज़न को अमलीजामा पहनाते हुए खेतों का स्थलीय डिजिटल सर्वेक्षण किया है।
+                    </p>
+                    <strong style="font-family: var(--sans); font-size: 1.25rem; color: #4ade80; display: block; margin-bottom: 2rem;">
+                        🟢 खेती बाड़ी और कृषि रिकॉर्ड्स भी अब पूरी तरह पारदर्शी डिजिटल व्यवस्था से जुड़ चुके हैं।
+                    </strong>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=agri" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 11 — PENSION SERVICES -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+                <div>
+                    <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय १०</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        सामाजिक सुरक्षा एवं वृद्धावस्था पेंशन
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        गांव के निसहाय और वृद्ध नागरिकों को समाज कल्याण विभाग की योजनाओं से जोड़कर उन्हें सम्मानजनक जीवन प्रदान करने में पंचायत सहायकों ने सक्रिय भूमिका निभाई है।
+                    </p>
+                    <blockquote style="border-left:4px solid var(--saffron); padding-left:1.5rem; font-family:var(--sans); font-size:1.15rem; font-weight:700; color:var(--saffron); margin-bottom: 2rem;">
+                        "सम्मान के साथ सामाजिक सुरक्षा तक पहुंच।"
+                    </blockquote>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=pension" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Elderly assistance moving visual panel -->
+                <div class="photo-frame-container glow-saffron-border floating-photo-card">
+                    <img src="gandhi_sahayak.webp" alt="Elderly Pension Help" class="ken-burns-img">
+                    <div style="position: absolute; bottom: 20px; right: 20px; background: rgba(9,13,10,0.9); padding: 8px 15px; border-top: 3px solid var(--saffron); font-family: var(--mono); font-size: 0.8rem;">
+                        🤝 समाज कल्याण और पेंशन सेवाएं
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 12 — KANYA SUMANGALA & RTE SUPPORT -->
+    <section class="section-padding scroll-reveal" style="background-color: var(--bg-dark-2);">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center;">
+                <!-- Moving student visual card representing girls education support -->
+                <div class="photo-frame-container glow-saffron-border">
+                    <img src="exact_gandhi_white.webp" alt="School Girls Support" class="ken-burns-img dir-zoom">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(9,13,10,0.85) 90%); pointer-events: none; z-index: 1;"></div>
+                    <div style="position: absolute; bottom: 20px; left: 20px; z-index: 2; background: var(--saffron-deep); color: var(--paper); border: 2px solid var(--ink); padding: 5px 12px; font-family: var(--mono); font-size: 0.8rem;">
+                        👧 मुख्यमंत्री कन्या सुमंगला योजना
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय ११</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        बेटियों की शिक्षा एवं भविष्य सुरक्षा
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        जब शिक्षा और प्रोत्साहन की नीतियां सीधे हमारी बेटियों तक पहुंचीं, तब समाज का भविष्य भी मजबूत हुआ। पंचायत सहायकों ने समाज के अंतिम पायदान पर खड़ी बेटियों को शिक्षा योजनाओं से जोड़ा है।
+                    </p>
+                    <strong style="font-family: var(--sans); font-size: 1.25rem; color: var(--saffron); display: block; margin-bottom: 2rem;">
+                        🔥 जब योजनाएं बेटियों तक पहुंचीं… तब भविष्य मजबूत हुआ।
+                    </strong>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=kanya" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 13 — ELECTION DUTY -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center;">
+                <div>
+                    <span class="badge" style="background-color: var(--green); margin-bottom: 1rem;">अध्याय १२</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        लोकतंत्र की प्रक्रिया में सक्रिय भागीदारी
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        पंचायत चुनाव हों, लोकसभा या विधानसभा चुनाव, मतदाता सूची का पुनरीक्षण (Voter List), बीएलओ टेक्निकल असिस्टेंस, और मतदान केंद्रों (Booths) के डिजिटल मैपिंग में पंचायत सहायकों ने रातों-रात जागकर लोकतंत्र को मजबूत बनाया है।
+                    </p>
+                    <blockquote style="border-left:4px solid var(--green); padding-left:1.5rem; font-family:var(--sans); font-size:1.15rem; font-weight:700; color:var(--green); margin-bottom: 2rem;">
+                        "लोकतंत्र की प्रक्रिया में भी ग्राम स्तर की व्यवस्थाएं सक्रिय रहीं।"
+                    </blockquote>
+                    <div style="margin-top: 2rem;">
+                        <a href="chapter-detail.html?id=elections" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            📋 विस्तृत विवरण और शासनादेश देखें
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Night-duty booth mapping moving picture pane -->
+                <div class="photo-frame-container glow-green-border">
+                    <img src="exact_gandhi.webp" alt="Election Booth night duty" class="ken-burns-img dir-right" style="filter: brightness(0.7) contrast(1.15);">
+                    <div style="position: absolute; bottom: 20px; right: 20px; background: rgba(9,13,10,0.92); border-left: 4px solid var(--green); padding: 8px 15px; font-family: var(--mono); font-size: 0.8rem;">
+                        🗳️ लोकतंत्र की रीढ़ — चुनावी कर्तव्य
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 14 — TECHNICAL SUPPORT FOR ALL DEPARTMENTS -->
+    <section class="section-padding scroll-reveal" style="background-color: var(--bg-dark-2);">
+        <div class="cinematic-container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem;">
+                <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अध्याय १३</span>
+                <h3 style="font-family: var(--display); font-size: 2.5rem; color: var(--text-light); margin-bottom: 1.2rem;">
+                    विभागीय तकनीकी महा-नेटवर्क
+                </h3>
+                <p style="font-family: var(--sans); font-size: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+                    पंचायत सहायक केवल एक विभाग के नहीं, बल्कि शासन के समस्त महत्वपूर्ण विभागों के तकनीकी कार्यों के कुशल संपादन की रीढ़ बन चुके हैं।
+                </p>
+            </div>
+
+            <!-- Custom 2D Interactive SVG Network Visualizer -->
+            <div class="network-container-grid">
+                <div class="network-svg-box">
+                    <svg width="100%" height="100%" viewBox="0 0 500 450" style="background: transparent;">
+                        <!-- Connection Lines to Central Node -->
+                        <line id="ray-panchayati_raj" x1="250" y1="225" x2="100" y2="100" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-health" x1="250" y1="225" x2="400" y2="100" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-agri" x1="250" y1="225" x2="100" y2="350" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-education" x1="250" y1="225" x2="400" y2="350" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-revenue" x1="250" y1="225" x2="250" y2="70" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-welfare" x1="250" y1="225" x2="250" y2="380" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-elections" x1="250" y1="225" x2="60" y2="225" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+                        <line id="ray-rural_dev" x1="250" y1="225" x2="440" y2="225" stroke="rgba(26, 17, 8, 0.15)" stroke-width="1.5" class="pulsing-ray" />
+
+                        <!-- Central Node (Panchayat Assistant) -->
+                        <circle cx="250" cy="225" r="32" fill="var(--saffron)" stroke="var(--ink)" stroke-width="3" style="filter: drop-shadow(0 0 12px var(--saffron));" />
+                        <text x="250" y="228" font-family="var(--mono)" font-size="9.5" fill="var(--paper)" text-anchor="middle" font-weight="bold">सहायक</text>
+
+                        <!-- Surrounding Nodes representing departments -->
+                        <g class="network-node" id="node-panchayati_raj" data-dep="पंचायती राज">
+                            <circle cx="100" cy="100" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="100" y="103" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">राज</text>
+                        </g>
+                        <g class="network-node" id="node-health" data-dep="स्वास्थ्य विभाग">
+                            <circle cx="400" cy="100" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="400" y="103" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">स्वास्थ्य</text>
+                        </g>
+                        <g class="network-node" id="node-agri" data-dep="कृषि विभाग">
+                            <circle cx="100" cy="350" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="100" y="353" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">कृषि</text>
+                        </g>
+                        <g class="network-node" id="node-education" data-dep="शिक्षा विभाग">
+                            <circle cx="400" cy="350" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="400" y="353" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">शिक्षा</text>
+                        </g>
+                        <g class="network-node" id="node-revenue" data-dep="राजस्व विभाग">
+                            <circle cx="250" cy="70" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="250" y="73" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">राजस्व</text>
+                        </g>
+                        <g class="network-node" id="node-welfare" data-dep="समाज कल्याण">
+                            <circle cx="250" cy="380" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="250" y="383" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">कल्याण</text>
+                        </g>
+                        <g class="network-node" id="node-elections" data-dep="चुनाव कार्य">
+                            <circle cx="60" cy="225" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="60" y="228" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">चुनाव</text>
+                        </g>
+                        <g class="network-node" id="node-rural_dev" data-dep="ग्राम्य विकास">
+                            <circle cx="440" cy="225" r="22" fill="#1F5A2E" stroke="var(--ink)" stroke-width="2" />
+                            <text x="440" y="228" font-family="var(--mono)" font-size="8.5" fill="#fff" text-anchor="middle">विकास</text>
+                        </g>
+                    </svg>
+                </div>
+                <!-- Interactive Hover Info Panel -->
+                <div class="bg-blur-card" id="networkInfoPanel" style="min-height: 220px; display: flex; flex-direction: column; justify-content: center; border-color: var(--saffron);">
+                    <h4 style="font-family: var(--condensed); font-size: 1.4rem; color: var(--saffron); margin-bottom: 0.6rem; text-transform: uppercase;">
+                        💡 विभागों का एकीकरण
+                    </h4>
+                    <p style="font-family: var(--sans); font-size: 1.05rem; color: var(--text-light); line-height: 1.6; margin: 0;">
+                        बाएं बने नेटवर्क आरेख में किसी भी सरकारी विभाग पर **माउस ले जाएँ (Hover)** और देखें कि पंचायत सहायक किस प्रकार उनके जटिल तकनीकी कार्यों को गांव स्तर पर निष्पादित कर रहे हैं।
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <p style="font-family: var(--sans); font-size: 1.35rem; font-weight: 700; color: var(--saffron); margin-bottom: 2rem;">
+                    🌾 "सीमित संसाधनों में अनेक विभागों के तकनीकी कार्य।"
+                </p>
+                <div>
+                    <a href="chapter-detail.html?id=network" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); padding: 0.6rem 1.2rem; font-size: 0.95rem; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                        📋 विस्तृत विवरण और शासनादेश देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 15 — REALITY OF PANCHAYAT ASSISTANTS (Stark Emotional Shift to Dark Theater) -->
+    <section class="section-padding scroll-reveal emotional-dark-section">
+        <div class="cinematic-container">
+            <div class="struggle-visual-grid">
+                <div>
+                    <span class="badge" style="background-color: var(--blood); margin-bottom: 1rem;">धरातलीय सच्चाई</span>
+                    <h3 style="font-family: var(--display); font-size: 2.2rem; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase;">
+                        शानदार उपलब्धियों के पीछे का मूक संघर्ष
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                        इतने बड़े प्रशासनिक और डिजिटल बदलावों को धरातल पर उतारने के बावजूद, इन कार्यों के पीछे रात-दिन मेहनत करने वाले पंचायत सहायक आज भी भारी उपेक्षा और मूक संघर्ष के शिकार हैं।
+                    </p>
+                    <blockquote style="border-left: 4px solid var(--blood); padding-left: 1.5rem; margin-top: 2rem; margin-bottom: 2rem;">
+                        <span style="font-family: var(--sans); font-size: 1.3rem; font-weight: 800; color: var(--blood); font-style: italic; line-height: 1.5;">
+                            "इतने परिवर्तन के बावजूद… संघर्ष अब भी जारी है।"
+                        </span>
+                    </blockquote>
+                </div>
+                
+                <!-- Struggle Highlights -->
+                <div>
+                    <div class="struggle-stat-row">
+                        <div class="struggle-stat-number">₹ 6,000/-</div>
+                        <div class="struggle-stat-desc">
+                            <h4>अति-न्यूनतम मानदेय</h4>
+                            <p>इतने महत्वपूर्ण तकनीकी कार्यों और महंगाई के दौर में मात्र ₹६,००० प्रतिमाह मानदेय, जिससे एक परिवार का गुजारा करना भी असंभव है।</p>
+                        </div>
+                    </div>
+                    <div class="struggle-stat-row">
+                        <div class="struggle-stat-number">24 / 7</div>
+                        <div class="struggle-stat-desc">
+                            <h4>अत्यधिक कार्यभार एवं दबाव</h4>
+                            <p>विभिन्न सरकारी विभागों के दैनिक सर्वे, तकनीकी डेटा प्रविष्टि, और समय सीमा के चलते निरंतर मानसिक दबाव और अतिरिक्त काम के घंटे।</p>
+                        </div>
+                    </div>
+                    <div class="struggle-stat-row">
+                        <div class="struggle-stat-number">सीमित</div>
+                        <div class="struggle-stat-desc">
+                            <h4>संसाधनों का भीषण अभाव</h4>
+                            <p>धीमा इंटरनेट, पुराने पड़े तकनीकी उपकरण, और ग्राम स्तर पर कार्य निष्पादन के दौरान आने वाले तकनीकी अवरोधों का कोई उचित समाधान न होना।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Real photo frame showing reality / struggles with slow Ken Burns pan -->
+            <div class="photo-frame-container glow-blood-border" style="margin-top: 4rem; height: 350px;">
+                <img src="exact_gandhi.webp" alt="Struggling Panchayat Assistant" class="ken-burns-img" style="filter: grayscale(0.8) contrast(1.2);">
+                <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(9,13,10,0.92); border-left: 4px solid var(--blood); padding: 8px 15px; font-family: var(--mono); font-size: 0.8rem;">
+                    ⚠️ अल्प मानदेय और विपरीत परिस्थितियों में तकनीकी कार्यभार
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 16 — DEMANDS & HOPE (Glassmorphism Demand Cards) -->
+    <section class="section-padding scroll-reveal">
+        <div class="cinematic-container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">हमारी न्यायपूर्ण मांगें</span>
+                <h3 style="font-family: var(--display); font-size: 2.5rem; color: var(--text-light); margin-bottom: 1.2rem;">
+                    अधिकार, सम्मान और सामाजिक सुरक्षा
+                </h3>
+                <p style="font-family: var(--sans); font-size: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+                    हम उत्तर प्रदेश शासन से अत्यधिक विनम्रता किंतु पूर्ण संकल्प के साथ अपनी इन न्यायोचित मांगों को पूरा करने की अपील करते हैं।
+                </p>
+            </div>
+
+            <!-- Glassmorphic Brutalist Demand Cards (Synced with Form Page) -->
+            <div class="demands-row-grid">
+                <!-- Demand 1 -->
+                <div class="demand-cinematic-card">
+                    <span class="card-status-dot"></span>
+                    <span class="demand-card-number">०१</span>
+                    <h4>सम्मानजनक वेतनमान</h4>
+                    <p>वेतनमान ₹18,000–₹25,000 प्रतिमाह कर राज्य कोषागार से भुगतान सुनिश्चित हो।</p>
+                </div>
+                <!-- Demand 2 -->
+                <div class="demand-cinematic-card">
+                    <span class="card-status-dot"></span>
+                    <span class="demand-card-number">०२</span>
+                    <h4>नियमितीकरण एवं नियमावली</h4>
+                    <p>कार्य की प्रकृति के आधार पर नियमित कर स्थायी कर्मचारी का दर्जा प्रदान किया जाए।</p>
+                </div>
+                <!-- Demand 3 -->
+                <div class="demand-cinematic-card">
+                    <span class="card-status-dot"></span>
+                    <span class="demand-card-number">०३</span>
+                    <h4>स्थानांतरण व समायोजन</h4>
+                    <p>महिला पंचायत सहायको हेतु स्थान्तरण प्रणाली एवं नगर पंचायत प्रभावित पंचायत सहायको का समायोजन हो।</p>
+                </div>
+                <!-- Demand 4 -->
+                <div class="demand-cinematic-card">
+                    <span class="card-status-dot"></span>
+                    <span class="demand-card-number">०४</span>
+                    <h4>भर्ती में विशेष आरक्षण</h4>
+                    <p>VDO एवं VPO के भर्ती में आरक्षण/वरीयता प्रदान की जाए।</p>
+                </div>
+            </div>
+
+            <!-- Final Grand Hopeful Banner Statement -->
+            <div class="final-statement-box">
+                <h3 style="text-shadow: var(--glow-saffron); font-family: var(--display);">
+                    सशक्त पंचायत सहायक — सशक्त ग्राम पंचायत — सशक्त उत्तर प्रदेश
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH & DEVELOPMENT SECTION -->
+    <section class="section-padding research-profile-section scroll-reveal">
+        <!-- Centered decorative section badge overlapping the top border line -->
+        <div class="section-border-badge">
+            <span class="badge-accent">✦</span> Inspiration & Profile <span class="badge-accent">✦</span>
+        </div>
+
+        <!-- Outer two-column: Left=Profile, Right=Gandhi Quote -->
+        <div class="profile-outer-grid">
+
+            <!-- LEFT: Photo + Details (compact) -->
+            <div class="profile-left-panel">
+                <div class="profile-compact-grid">
+                    <!-- Photo -->
+                    <div class="profile-visual">
+                        <div class="profile-img-wrapper">
+                            <div class="profile-img-frame">
+                                <img src="vaibhav_profile.webp" alt="Vaibhav Yadav" class="profile-img">
+                            </div>
+                            <!-- Straight geometric pedestal base -->
+                            <div class="profile-pedestal">
+                                <div class="pedestal-straight"></div>
+                            </div>
+                            <!-- Contact button aligned parallel to photo stack -->
+                            <div class="profile-actions" style="margin-top: 0.5rem; width: 100%;">
+                                <a href="mailto:psunion5@gmail.com" class="profile-contact-btn" style="width: 100%; justify-content: center; box-sizing: border-box; text-align: center;">
+                                    ✉️ Contact
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="profile-details-content">
+                        <span class="badge profile-role-badge">Researcher & Creator</span>
+                        <h2 class="profile-name">Vaibhav Yadav</h2>
+                        <h3 class="profile-subtitle">Panchayat Sahayak, Uttar Pradesh</h3>
+
+                        <div class="profile-meta-chips">
+                            <span class="meta-chip">🎓 MA</span>
+                            <span class="meta-chip">📍 Lucknow</span>
+                            <span class="meta-chip">💼 DCA, CCC</span>
+                            <span class="meta-chip">🖥️ Web Design</span>
+                        </div>
+
+                        <p class="profile-bio">
+                            I am dedicated to the digital empowerment of rural India and advocating for the rights of Panchayat Sahayaks. I conducted the complete research and development of this comprehensive report and simulator.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Gandhi Quote Card -->
+            <div class="gandhi-quote-panel">
+                <div class="gandhi-quote-card">
+                    <div class="gandhi-quote-icon">❝</div>
+                    <blockquote class="gandhi-quote-text">
+                        The soul of India<br>
+                        lives in its villages.<br>
+                        Until the villages prosper,<br>
+                        the salvation of India<br>
+                        remains impossible.
+                    </blockquote>
+                    <div class="gandhi-divider"></div>
+                    <cite class="gandhi-cite">— Mahatma Gandhi</cite>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div style="margin: 0; font-family: var(--mono); font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase;">
+            &copy; 2026 Panchayat Sahayak Union UP. All Rights Reserved.
+        </div>
+        <!-- Footer Nav Links -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem; margin-top: 1rem; font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;">
+            <a href="info.html#privacy" style="color: var(--saffron-deep); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron-deep); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron-deep)'; this.style.borderColor='var(--saffron-deep)';">
+                🔒 गोपनीयता नीति (Privacy Policy)
+            </a>
+            <span style="color: rgba(244,235,215,0.2);">|</span>
+            <a href="info.html#data" style="color: var(--saffron-deep); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron-deep); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron-deep)'; this.style.borderColor='var(--saffron-deep)';">
+                📊 डेटा उपयोग (Data Usage)
+            </a>
+            <span style="color: rgba(244,235,215,0.2);">|</span>
+            <a href="info.html#contact" style="color: var(--saffron-deep); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron-deep); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron-deep)'; this.style.borderColor='var(--saffron-deep)';">
+                📞 संपर्क सूत्र (Contact Us)
+            </a>
+            <span style="color: rgba(244,235,215,0.2);">|</span>
+            <a href="info.html#faq" style="color: var(--saffron-deep); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron-deep); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron-deep)'; this.style.borderColor='var(--saffron-deep)';">
+                ❓ सवाल-जवाब (FAQ)
+            </a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: rgba(244, 235, 215, 0.5); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            यह पेज उत्तर प्रदेश के ग्रामीण डिजिटल परिवर्तन और उसमें कार्यरत पंचायत सहायकों के योगदान को समर्पित है।
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: rgba(244, 235, 215, 0.4); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            Site by Vaibhav Yadav 📍 Lucknow
+        </p>
+    </footer>
+
+    <!-- GSAP Core & ScrollTrigger CDN Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Achievements specific interactive code -->
+    <script src="achievements.js"></script>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         HISTORY POPUP MODAL — Gateway ke baad auto-show
+    ══════════════════════════════════════════════════════ -->
+    <div id="histPopupOverlay" class="hpop-overlay" style="display:none;">
+        <div class="hpop-box" id="histPopupBox">
+
+            <!-- Film grain -->
+            <div class="hpop-grain"></div>
+
+            <!-- Top film strip -->
+            <div class="hpop-strip">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+
+            <!-- Close X -->
+            <button class="hpop-close" id="histPopClose" aria-label="बंद करें">✕</button>
+
+            <!-- Spinning clock -->
+            <div class="hpop-clock-wrap">
+                <div class="hpop-clock">
+                    <div class="hpop-hand hpop-hr"></div>
+                    <div class="hpop-hand hpop-mn"></div>
+                    <div class="hpop-cdot"></div>
+                </div>
+                <div class="hpop-year-badge">१९९५</div>
+            </div>
+
+            <!-- Content -->
+            <div class="hpop-content">
+                <div class="hpop-tag">📜 अनकहा इतिहास</div>
+                <h2 class="hpop-title">26 वर्षों की<br><em>संघर्ष गाथा</em></h2>
+                <p class="hpop-text">
+                    1995 से 2021 तक — एक आंदोलन, कई बलिदान, एक ऐतिहासिक जीत।<br>
+                    क्या आप इस यात्रा को जानना चाहते हैं?
+                </p>
+
+                <!-- Timeline dots teaser -->
+                <div class="hpop-timeline">
+                    <span class="hpt-dot active">1995</span>
+                    <span class="hpt-line"></span>
+                    <span class="hpt-dot">1999</span>
+                    <span class="hpt-line"></span>
+                    <span class="hpt-dot">2004</span>
+                    <span class="hpt-line"></span>
+                    <span class="hpt-dot gold">2021</span>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="hpop-actions">
+                    <a href="history.html" class="hpop-btn-yes">
+                        <span class="hpb-icon">🕰️</span>
+                        हाँ, इतिहास देखें
+                        <span class="hpb-arr">→</span>
+                    </a>
+                    <button class="hpop-btn-no" id="histPopSkip">
+                        बाद में देखूँगा
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom film strip -->
+            <div class="hpop-strip hpop-strip-b">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

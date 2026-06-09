@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>विस्तृत विवरण | पंचायत सहायक यूनियन उ.प्र.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Same Google Fonts as main project -->
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@500;700&family=Khand:wght@700&family=Hind:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Consistent CSS variables stylesheet link -->
+    <link rel="stylesheet" href="styles.css?v=cjp_theme_6">
+    <!-- Cinematic styles -->
+    <link rel="stylesheet" href="achievements.css">
+    
+    <style>
+        /* Unique Styling for Chapter Detail Subpages */
+        .detail-hero {
+            background: radial-gradient(circle at center, #FFF9EB 0%, var(--paper) 100%);
+            border-bottom: 4px solid var(--saffron);
+            padding: 5rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-hero-backdrop {
+            position: absolute;
+            inset: 0;
+            opacity: 0.08;
+            z-index: 0;
+        }
+
+        .detail-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+            align-items: flex-start;
+        }
+
+        /* Brutalist Shasanadesh (G.O.) Document Container */
+        .document-card {
+            background: #ffffff;
+            border: 3px solid var(--ink);
+            box-shadow: 10px 10px 0 var(--ink);
+            color: var(--ink);
+            padding: 3rem 2.5rem;
+            position: relative;
+            font-family: var(--sans);
+        }
+
+        .document-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+        }
+
+        .doc-header {
+            text-align: center;
+            border-bottom: 2px dashed rgba(26, 17, 8, 0.2);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-title {
+            font-family: 'Noto Sans Devanagari', var(--sans);
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: var(--blood);
+            text-transform: uppercase;
+        }
+
+        .doc-meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--ink-2);
+            margin-top: 10px;
+        }
+
+        .doc-body {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--ink-2);
+            font-weight: 500;
+        }
+
+        .doc-seal {
+            float: right;
+            width: 90px;
+            height: 90px;
+            border: 3px double var(--blood);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blood);
+            font-family: var(--mono);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-align: center;
+            transform: rotate(-15deg);
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* SVG Graph / Metrics Panel */
+        .analytics-card {
+            background: var(--paper-2);
+            border: 2px solid var(--ink);
+            box-shadow: var(--shadow-sm);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-bar-group {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-bar-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .stat-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .stat-bar-track {
+            height: 12px;
+            background: rgba(26, 17, 8, 0.06);
+            border: 1.5px solid var(--ink);
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--saffron), #ff8c00);
+            width: 0%; /* Animated via JS */
+            transition: width 1.5s cubic-bezier(0.1, 0.8, 0.3, 1);
+        }
+
+        .back-btn-cinematic {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.8rem;
+            background: var(--ink);
+            color: var(--paper);
+            border: 2px solid var(--ink);
+            font-family: var(--condensed);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 4px 4px 0 var(--saffron-deep);
+            transition: all 0.15s ease;
+            margin-bottom: 2.5rem;
+        }
+
+        .back-btn-cinematic:hover {
+            background: var(--saffron-deep);
+            color: var(--paper);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        @media (max-width: 1024px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="cinematic-theme">
+
+    <!-- Premium Floating Header -->
+    <header class="premium-header">
+        <div class="header-inner">
+            <div class="brand-cluster">
+                <img src="logo.webp" alt="Logo" class="nav-logo">
+                <div class="brand-text">
+                    <h1>पंचायत सहायक यूनियन उ.प्र.</h1>
+                    <span class="badge">उत्तर प्रदेश</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <a href="achievements.html" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    उपलब्धियां
+                </a>
+                <a href="work-report.html" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    कार्य रिपोर्ट
+                </a>
+                <a href="future.html" class="nav-btn-outline" style="background: var(--paper-2); color: var(--ink); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    भविष्य का विज़न
+                </a>
+                <a href="index.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- DYNAMIC DETAIL HERO -->
+    <section class="detail-hero">
+        <div class="detail-hero-backdrop">
+            <img id="detailHeroBg" src="gandhi_3d.webp" alt="Backdrop" class="ken-burns-img">
+        </div>
+        <div class="detail-hero-content">
+            <a href="achievements.html" class="back-btn-cinematic">
+                ← मुख्य उपलब्धियां
+            </a>
+            <span class="hero-badge" id="chapterBadge" style="border-color: var(--saffron); color: var(--saffron);">
+                अध्याय विवरण प्रविष्टि
+            </span>
+            <h2 class="hero-title-glowing" style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 1.5rem;" id="chapterTitle">
+                अध्याय का शीर्षक
+            </h2>
+            <p class="hero-subtitle-cinematic" style="font-size: 1.3rem; margin-bottom: 0;" id="chapterSubtitle">
+                अध्याय की संक्षिप्त व्याख्या और प्रशासनिक प्रमाण...
+            </p>
+        </div>
+    </section>
+
+    <!-- DYNAMIC MAIN CONTENT GRID -->
+    <main class="cinematic-container" style="padding-bottom: 6rem;">
+        <div class="detail-grid">
+            
+            <!-- Left Side: In-depth details, Graphs, and Gallery -->
+            <div>
+                <!-- Detailed explanation -->
+                <div class="bg-blur-card" style="margin-bottom: 2.5rem;">
+                    <h3 style="font-family: var(--condensed); font-size: 1.6rem; color: var(--saffron); margin-bottom: 1.5rem; text-transform: uppercase; border-bottom: 2px dashed rgba(26, 17, 8, 0.12); padding-bottom: 8px;">
+                        📝 विस्तृत दायित्व एवं कार्यभार विवरण
+                    </h3>
+                    <div style="font-family: var(--sans); font-size: 1.12rem; color: var(--text-light); line-height: 1.8;" id="detailedExplanation">
+                        दायित्वों का विस्तृत लेखा-जोखा...
+                    </div>
+                </div>
+
+                <!-- Graphs & Analytics Panel -->
+                <div class="analytics-card">
+                    <h3 style="font-family: var(--condensed); font-size: 1.5rem; color: var(--green); margin-bottom: 1rem; text-transform: uppercase;">
+                        📊 सांख्यिकीय डेटा एवं धरातलीय सूचकांक
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1rem; color: var(--text-muted); line-height: 1.5;">
+                        इस विभाग के अंतर्गत पंचायत सहायकों द्वारा पूरा किए गए कुल कार्य का वास्तविक रिकॉर्ड सूचकांक:
+                    </p>
+                    <div class="stat-bar-group" id="metricsContainer">
+                        <!-- Stat bars will be injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Proof Box (Newspaper clippings / letters) -->
+                <div class="bg-blur-card" style="border-color: var(--green); background: rgba(31,90,46,0.03);">
+                    <h3 style="font-family: var(--condensed); font-size: 1.5rem; color: var(--green); margin-bottom: 1rem; text-transform: uppercase;">
+                        📰 मीडिया कवरेज एवं धरातलीय साक्ष्य
+                    </h3>
+                    <p style="font-family: var(--sans); font-size: 1.05rem; color: var(--text-light); line-height: 1.6;" id="proofDescription">
+                        इस कार्य की सफलता को समाचार पत्रों और अधिकारियों द्वारा सराहा गया है...
+                    </p>
+                    <div style="margin-top: 1.5rem;" id="proofMediaContainer">
+                        <!-- Mock newspaper clip / image will go here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Shasanadesh (G.O.) Document Rest Area -->
+            <div>
+                <div class="document-card" id="shasanadeshCard">
+                    <div class="doc-header">
+                        <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--blood); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;">GOVERNMENT OF UTTAR PRADESH</span>
+                        <h4 class="doc-title" style="margin-top: 8px;">शासकीय आदेश (Shasanadesh)</h4>
+                        <div class="doc-meta-row">
+                            <span id="docDept">विभाग: पंचायती राज</span>
+                            <span id="docDate">दिनांक: 12/04/2022</span>
+                        </div>
+                    </div>
+                    
+                    <div class="doc-body">
+                        <p style="font-family: var(--mono); font-size: 0.9rem; font-weight: 700; margin-bottom: 1.5rem;" id="docNumber">
+                            शासनादेश संख्या: 124/33-3-2022
+                        </p>
+                        <div id="docBodyText" style="text-align: justify; font-size: 1rem; line-height: 1.6;">
+                            उत्तर प्रदेश शासन द्वारा जारी निर्देशानुसार, समस्त ग्राम पंचायतों में ग्राम सचिवालयों को सुचारू रूप से संचालित करते हुए पंचायत सहायकों को निम्नलिखित कार्यों को ऑनलाइन पोर्टल पर फीड करने हेतु अधिकृत किया जाता है...
+                        </div>
+                    </div>
+
+                    <div class="doc-seal">
+                        OFFICIAL<br>APPROVED<br>UP GOVT
+                    </div>
+                    
+                    <div style="clear: both; margin-top: 3rem; text-align: center;">
+                        <a href="#" id="docDownloadBtn" class="nav-btn-outline" style="background: var(--blood); color: var(--paper); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); width: 100%; justify-content: center; font-size: 1rem; padding: 0.8rem;" target="_blank">
+                            📥 शासनादेश डाउनलोड करें (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer" style="margin-top: 6rem;">
+        <div style="margin: 0; font-family: var(--mono); font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase;">
+            &copy; 2026 Panchayat Sahayak Union UP. All Rights Reserved.
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: rgba(244, 235, 215, 0.5); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            यह पेज उत्तर प्रदेश के ग्रामीण डिजिटल परिवर्तन और उसमें कार्यरत पंचायत सहायकों के अमूल्य योगदान को समर्पित है।
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: rgba(244, 235, 215, 0.4); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            Site by Vaibhav Yadav 📍 Lucknow
+        </p>
+    </footer>
+
+    <!-- GSAP CDN Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Dynamic detail catalog script -->
+    <script src="chapter-detail.js"></script>
+
+</body>
+
+</html>

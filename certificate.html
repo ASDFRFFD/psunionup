@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सहभागिता प्रमाण पत्र | पंचायत सहायक यूनियन</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #2D3748;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Mukta', sans-serif;
+            padding: 2rem;
+        }
+
+        .certificate-container {
+            width: 1123px; /* A4 Landscape at 96 DPI */
+            height: 794px;
+            background-color: #FCFAF2; /* Parchment/Ivory */
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .certificate-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .border-outer {
+            border: 15px solid #0A192F; /* Deep Navy */
+            width: 100%;
+            height: 100%;
+            padding: 4px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .border-inner {
+            border: 4px solid #D4AF37; /* Premium Gold */
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: rgba(252, 250, 242, 0.9);
+            position: relative;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #D4AF37;
+        }
+        .corner-tl { top: -4px; left: -4px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -4px; right: -4px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -4px; left: -4px; border-right: none; border-top: none; }
+        .corner-br { bottom: -4px; right: -4px; border-left: none; border-top: none; }
+
+        .header {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .org-logo {
+            width: 80px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .title {
+            color: #0A192F;
+            font-size: 38pt;
+            font-weight: 700;
+            margin-top: 75px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 14pt;
+            color: #4A5568;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .cert-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28pt;
+            font-weight: 700;
+            color: #D4AF37;
+            margin: 10px 0;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .validity {
+            background: #0A192F;
+            color: #D4AF37;
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14pt;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            font-size: 18pt;
+            line-height: 1.6;
+            text-align: justify;
+            text-align-last: center;
+            margin: 0 50px;
+            color: #1A202C;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #0A192F;
+            border-bottom: 2px solid #D4AF37;
+            padding: 0 10px;
+            display: inline-block;
+            line-height: 1.2;
+        }
+
+        .photo-box {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 120px;
+            height: 150px;
+            border: 3px solid #D4AF37;
+            padding: 4px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin: 0 40px;
+            margin-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .signature-block {
+            text-align: center;
+            width: 250px;
+        }
+
+        .signature-img.real-sign {
+            height: 45px;
+            object-fit: contain;
+            margin-bottom: -5px;
+            display: inline-block;
+        }
+
+        .signature-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24pt;
+            color: #2B6CB0;
+            margin-bottom: -5px;
+        }
+
+        .signature-line {
+            border-top: 2px solid #0A192F;
+            width: 100%;
+            margin: 0 auto 5px auto;
+        }
+
+        .signature-title {
+            font-size: 15pt;
+            font-weight: 700;
+            color: #0A192F;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cert-details {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            text-align: left;
+            font-size: 13pt;
+            font-weight: 600;
+            color: #4A5568;
+            background: rgba(255,255,255,0.7);
+            padding: 10px 15px;
+            border-radius: 4px;
+            border-left: 4px solid #D4AF37;
+        }
+
+
+
+        /* Print Settings */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0mm;
+            }
+            html, body {
+                width: 297mm !important;
+                height: 209mm !important;
+                min-width: 297mm !important;
+                min-height: 209mm !important;
+                background: white;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .certificate-container {
+                width: 297mm !important;
+                height: 209mm !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 10mm !important;
+                transform: none !important;
+            }
+            .cert-wrapper {
+                height: auto !important;
+                transform: none !important;
+            }
+            .border-outer { border: 10px solid #0A192F !important; }
+            .no-print { display: none !important; }
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background: #D4AF37;
+            color: #0A192F;
+            font-size: 14pt;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        .print-btn:hover { background: #C5B358; transform: translateY(-2px); }
+
+        /* Responsive scaling container for screen view */
+        .cert-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+        }
+        @media screen and (max-width: 1160px) {
+            body {
+                padding: 1rem 0.5rem;
+                overflow-x: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .cert-wrapper {
+                align-items: flex-start;
+                height: auto;
+            }
+            .certificate-container {
+                transform-origin: top center;
+                margin: 0 auto;
+            }
+            .print-btn {
+                position: static;
+                margin-bottom: 20px;
+                right: auto;
+                bottom: auto;
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Print Certificate</button>
+
+    <div class="cert-wrapper">
+        <div class="certificate-container">
+            <!-- Watermark -->
+            <img src="logo_gold_premium.webp" class="certificate-watermark" alt="">
+        
+        <div class="border-outer">
+            <div class="border-inner">
+                <div class="corner-ornament corner-tl"></div>
+                <div class="corner-ornament corner-tr"></div>
+                <div class="corner-ornament corner-bl"></div>
+                <div class="corner-ornament corner-br"></div>
+                
+                <div class="cert-details">
+                    <p style="margin-bottom: 5px;">टोकन क्रमांक: <span id="certMemNo" style="color:#0A192F; font-size: 14pt;">Loading...</span></p>
+                    <p>दिनांक: <span id="certDate" style="color:#0A192F;">Loading...</span></p>
+                </div>
+
+                <div class="photo-box">
+                    <img id="certPhoto" src="" alt="Member Photo">
+                </div>
+
+                <div class="header">
+                    <img src="logo_gold_premium.webp" class="org-logo" alt="">
+                    <div class="title">पंचायत सहायक यूनियन उत्तर प्रदेश</div>
+                    <div class="cert-title">सहभागिता प्रमाण पत्र</div>
+                    <div class="validity">सत्र / वित्तीय वर्ष: 2026-27 के लिए वैध</div>
+                </div>
+
+                <div class="content">
+                    प्रमाणित किया जाता है कि श्री/सुश्री <span class="highlight" id="certName">________________</span> 
+                    पुत्र/पत्नी श्री <span class="highlight" id="certGuardian">________________</span> 
+                    निवासी <span class="highlight" id="certAddress">________________</span> 
+                    ने पंचायत सहायक यूनियन उत्तर प्रदेश द्वारा चलाए जा रहे हस्ताक्षर अभियान में 
+                    सक्रिय <span class="highlight" id="certType">________</span> के रूप में अपनी सहभागिता दर्ज की है। 
+                    इनका नियोजन स्थान <span class="highlight" id="certPosting">________________</span> है।
+                    <br><br>
+                    यूनियन आपके उज्जवल भविष्य की कामना करता है।
+                </div>
+
+                <div class="footer">
+                    <div class="signature-block">
+                        <img src="upadhyaksh-sign.webp" class="signature-img real-sign" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="">
+                        <div class="signature-text" style="display:none;">Vaibhav</div>
+                        <div class="signature-line" style="margin-top: 5px;"></div>
+                        <div class="signature-title">उपाध्यक्ष</div>
+                        <div style="font-size: 10pt; color: #555; margin-top: 2px;">वैभव</div>
+                    </div>
+                    
+
+
+                    <div class="signature-block">
+                        <img src="mahamantri-sign.webp" class="signature-img real-sign" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="">
+                        <div class="signature-text" id="mahamantriSign" style="display:none;">Vimal</div>
+                        <div class="signature-line" style="margin-top: 5px;"></div>
+                        <div class="signature-title">महामंत्री</div>
+                        <div style="font-size: 10pt; color: #555; margin-top: 2px;">विमल</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div> <!-- Closing cert-wrapper -->
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="certificate.js"></script>
+    <script>
+        function resizeCertificate() {
+            const container = document.querySelector('.certificate-container');
+            const wrapper = document.querySelector('.cert-wrapper');
+            if (!container || !wrapper) return;
+            
+            const windowWidth = window.innerWidth;
+            const certWidth = 1123;
+            const certHeight = 794;
+            
+            if (windowWidth < certWidth + 40) { // including some padding
+                const scale = (windowWidth - 20) / certWidth;
+                container.style.transform = `scale(${scale})`;
+                container.style.transformOrigin = 'top center';
+                wrapper.style.height = `${certHeight * scale}px`;
+            } else {
+                container.style.transform = 'none';
+                wrapper.style.height = 'auto';
+            }
+        }
+        window.addEventListener('resize', resizeCertificate);
+        window.addEventListener('DOMContentLoaded', resizeCertificate);
+    </script>
+</body>
+</html>

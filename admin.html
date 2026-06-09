@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CJP Dashboard | Panchayat Sahayak Union</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@500;700&family=Khand:wght@700&family=Hind:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --saffron: #E0651E;
+            --saffron-deep: #B84915;
+            --green: #1F5A2E;
+            --ink: #1A1108;
+            --ink-2: #3A2A1C;
+            --paper: #F4EBD7;
+            --paper-2: #EADFC4;
+            --blood: #8B1A1A;
+            
+            --display: 'Bowlby One', 'Khand', 'Impact', sans-serif;
+            --condensed: 'Oswald', 'Khand', 'Arial Narrow', sans-serif;
+            --sans: 'Inter', 'Hind', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            
+            --border-ink: 3px solid var(--ink);
+            --shadow-hard: 6px 6px 0 var(--ink);
+            --shadow-sm: 4px 4px 0 var(--ink);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.25;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08, 0 0 0 0 0.06, 0 0 0 0 0.04, 0 0 0 0.32 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--ink);
+            padding-bottom: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        h1 { 
+            color: var(--ink); 
+            font-family: var(--display);
+            text-transform: uppercase;
+            font-size: 2.5rem;
+            line-height: 1;
+            letter-spacing: 0.02em;
+        }
+        
+        .header p {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--ink-2);
+            margin-top: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            background: var(--paper-2);
+            color: var(--ink);
+            border: 2px solid var(--ink);
+            padding: 0.6rem 1.8rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--condensed);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--saffron-deep);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--paper);
+            border: var(--border-ink);
+            box-shadow: var(--shadow-hard);
+        }
+
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 2px solid var(--ink);
+            border-right: 2px solid var(--ink);
+        }
+        
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+
+        th {
+            background: var(--ink);
+            color: var(--paper);
+            font-family: var(--condensed);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        td {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .photo-thumb {
+            width: 60px;
+            height: 70px;
+            object-fit: cover;
+            object-position: top center;
+            border: 2px solid var(--ink);
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--ink);
+            cursor: pointer;
+            font-family: var(--condensed);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 0.5rem;
+            transition: all 0.1s;
+            box-shadow: 2px 2px 0 var(--ink);
+        }
+        
+        .action-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        .approve-btn { background: var(--green); color: var(--paper); }
+        .reject-btn { background: var(--blood); color: var(--paper); }
+        .cert-btn { background: var(--saffron-deep); color: var(--paper); text-decoration: none; display: inline-block; padding: 0.5rem 1rem; border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); font-family: var(--condensed); font-weight: 700; text-transform: uppercase;}
+        .cert-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 17, 8, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--paper);
+            padding: 3rem;
+            border: var(--border-ink);
+            box-shadow: 12px 12px 0 var(--saffron-deep);
+            width: 450px;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-family: var(--display);
+            color: var(--ink);
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal p {
+            font-family: var(--sans);
+            font-weight: 500;
+            color: var(--ink-2);
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            background: #FFF;
+            border: 2px solid var(--ink);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.05);
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+        .modal-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--ink);
+            cursor: pointer;
+            font-family: var(--condensed);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 var(--ink);
+            transition: all 0.1s;
+        }
+        .modal-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        /* Login Screen */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background: var(--paper);
+            padding: 4rem 3rem;
+            border: 4px solid var(--ink);
+            text-align: center;
+            box-shadow: 12px 12px 0 var(--ink);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-box h2 {
+            font-family: var(--display);
+            color: var(--ink);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            background: #FFF;
+            border: 2px solid var(--ink);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.15s;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.05);
+        }
+
+        .login-input:focus {
+            border-color: var(--saffron-deep);
+            box-shadow: 4px 4px 0 var(--ink);
+            transform: translate(-2px, -2px);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--blood);
+            color: var(--paper);
+            border: 3px solid var(--ink);
+            font-family: var(--condensed);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        .login-btn:hover {
+            background: var(--saffron-deep);
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        #dashboardContainer {
+            display: none;
+        }
+
+        /* Stat Cards Brutalist */
+        .stat-card {
+            background: var(--paper-2); 
+            border: 3px solid var(--ink); 
+            padding: 1.5rem; 
+            box-shadow: 6px 6px 0 var(--ink);
+            transition: all 0.15s;
+        }
+        .stat-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+        .stat-title {
+            color: var(--ink); 
+            font-family: var(--mono);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+        .stat-value {
+            font-family: var(--display);
+            font-size: 3rem; 
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Table wrapper for horizontal scroll on mobile */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: var(--border-ink);
+            box-shadow: var(--shadow-hard);
+            margin-bottom: 2rem;
+            background: var(--paper);
+        }
+        .table-wrapper table {
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Responsive styling for admin dashboard on mobile */
+        @media screen and (max-width: 1024px) {
+            body {
+                padding: 1.25rem 1rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                margin-bottom: 2rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Stats grid layout */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+                margin-bottom: 2rem !important;
+            }
+            
+            /* Tabs bar layout */
+            .tabs {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 1rem !important;
+            }
+            .tabs > div {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+            }
+            .tabs .tab-btn {
+                width: 100%;
+                text-align: center;
+            }
+            .tabs input[type="text"] {
+                width: 100% !important;
+            }
+            
+            /* Modals responsive sizes */
+            .modal-content {
+                width: 95% !important;
+                max-width: 95% !important;
+                padding: 1.5rem !important;
+            }
+            #detailsContent {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+                font-size: 1rem !important;
+            }
+        }
+
+        /* Upgraded Pagination & Filter Styles */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .page-indicator {
+            font-family: var(--mono);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--ink);
+            background: var(--paper-2);
+            padding: 0.5rem 1.2rem;
+            border: 2px solid var(--ink);
+            box-shadow: 2px 2px 0 var(--ink);
+        }
+        .filter-select {
+            padding: 0.6rem 1rem;
+            border: 2px solid var(--ink);
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: var(--paper-2);
+            color: var(--ink);
+            box-shadow: 2px 2px 0 var(--ink);
+            outline: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .filter-select:hover, .filter-select:focus {
+            background: var(--paper);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h2>Admin Login</h2>
+            <p style="color: var(--ink-2); margin-bottom: 2rem; font-family: var(--mono); font-weight: 600;">ENTER CREDENTIALS</p>
+            <input type="email" id="adminEmail" class="login-input" placeholder="Admin Email" required>
+            <input type="password" id="adminPassword" class="login-input" placeholder="Password" required>
+            <button class="login-btn" id="loginBtn" onclick="checkLogin()">Login</button>
+            <div id="loginError" style="color: var(--blood); font-weight: 700; margin-top: 1.5rem; display: none; font-family: var(--sans);">INCORRECT PASSWORD!</div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardContainer">
+
+    <div class="header" style="margin-bottom: 2rem;">
+        <div>
+            <h1>Admin Dashboard</h1>
+            <p id="dashboardSubTitle">Manage Signature Campaign (हस्ताक्षर अभियान)</p>
+        </div>
+        <button class="tab-btn" onclick="logout()" style="background: var(--blood); color: var(--paper); margin: 0;">Logout</button>
+    </div>
+
+    <!-- View Switcher -->
+    <div style="display: flex; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 4px solid var(--ink); padding-bottom: 1.5rem; flex-wrap: wrap;">
+        <button id="viewCampaignBtn" class="tab-btn active" onclick="switchDashboardView('campaign')" style="margin: 0;">✍️ हस्ताक्षर अभियान (Signature Campaign)</button>
+        <button id="viewOrdersBtn" class="tab-btn" onclick="switchDashboardView('orders')" style="margin: 0;">📁 शासकीय आदेश संकलन (Government Orders)</button>
+    </div>
+
+    <!-- 1. Signature Campaign Dashboard Section -->
+    <div id="campaignDashboardSection">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card" style="border-top: 8px solid var(--saffron-deep);">
+                <div class="stat-title">कुल आवेदन (Total)</div>
+                <div id="statTotal" class="stat-value">-</div>
+            </div>
+            <div class="stat-card" style="border-top: 8px solid var(--green);">
+                <div class="stat-title">स्वीकृत (Approved)</div>
+                <div id="statApproved" class="stat-value">-</div>
+            </div>
+            <div class="stat-card" style="border-top: 8px solid var(--blood);">
+                <div class="stat-title">लंबित (Pending)</div>
+                <div id="statPending" class="stat-value">-</div>
+            </div>
+        </div>
+
+        <!-- Campaign Progress Bar -->
+        <div style="background: var(--paper-2); border: 3px solid var(--ink); padding: 1.5rem; margin-bottom: 2rem; box-shadow: 6px 6px 0 var(--ink);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 10px;">
+                <strong style="font-family: var(--condensed); font-size: 1.2rem; text-transform: uppercase;">हस्ताक्षर अभियान लक्ष्य (Target: 57,000)</strong>
+                <strong id="progressText" style="font-family: var(--mono); font-size: 1.2rem; color: var(--saffron-deep);">Loading...</strong>
+            </div>
+            <div style="width: 100%; height: 24px; background: #fff; border: 2px solid var(--ink); position: relative; overflow: hidden; margin-top: 5px;">
+                <div id="progressBarFill" style="width: 0%; height: 100%; background: repeating-linear-gradient(45deg, var(--green), var(--green) 10px, #1a4a25 10px, #1a4a25 20px); transition: width 1s ease;"></div>
+            </div>
+        </div>
+
+        <!-- Sync Campaign Stats Section -->
+        <div style="display: flex; justify-content: center; margin-bottom: 2.5rem; margin-top: -0.5rem; width: 100%;">
+            <button id="syncStatsBtn" class="tab-btn" style="background: var(--saffron-deep); color: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0px var(--ink); font-weight: 800; font-size: 1.05rem; padding: 12px 24px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.15s ease; border-radius: 4px;" onclick="syncCampaignStats()" onmousedown="this.style.transform='translate(2px, 2px)'; this.style.boxShadow='2px 2px 0px var(--ink)';" onmouseup="this.style.transform='translate(0px, 0px)'; this.style.boxShadow='4px 4px 0px var(--ink)';" onmouseleave="this.style.transform='translate(0px, 0px)'; this.style.boxShadow='4px 4px 0px var(--ink)';">
+                🔄 लाइव डैशबोर्ड सिंक्रोनाइज़ करें (Sync Live Stats)
+            </button>
+        </div>
+
+        <div class="tabs" style="margin-bottom: 2rem; flex-wrap: wrap; height: auto;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="tab-btn active" id="tabPending" onclick="setTabAndReload('pending')">⏳ Pending</button>
+                <button class="tab-btn" id="tabApproved" onclick="setTabAndReload('approved')">✅ Approved</button>
+                <button class="tab-btn" id="tabRejected" onclick="setTabAndReload('rejected')">❌ Rejected</button>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <select id="districtFilter" class="filter-select" onchange="applyFilters()">
+                    <option value="">🔍 सभी जनपद (All Districts)</option>
+                    <option value="Agra">Agra (आगरा)</option>
+                    <option value="Aligarh">Aligarh (अलीगढ़)</option>
+                    <option value="Ambedkar Nagar">Ambedkar Nagar (अंबेडकर नगर)</option>
+                    <option value="Amethi">Amethi (अमेठी)</option>
+                    <option value="Amroha">Amroha (अमरोहा)</option>
+                    <option value="Auraiya">Auraiya (औरैया)</option>
+                    <option value="Ayodhya">Ayodhya (अयोध्या)</option>
+                    <option value="Azamgarh">Azamgarh (आजमगढ़)</option>
+                    <option value="Baghpat">Baghpat (बागपत)</option>
+                    <option value="Bahraich">Bahraich (बहराइच)</option>
+                    <option value="Ballia">Ballia (बलिया)</option>
+                    <option value="Balrampur">Balrampur (बलरामपुर)</option>
+                    <option value="Banda">Banda (बांदा)</option>
+                    <option value="Barabanki">Barabanki (बाराबंकी)</option>
+                    <option value="Bareilly">Bareilly (बरेली)</option>
+                    <option value="Basti">Basti (बस्ती)</option>
+                    <option value="Bhadohi">Bhadohi (भदोही)</option>
+                    <option value="Bijnor">Bijnor (बिजनौर)</option>
+                    <option value="Budaun">Budaun (बदायूं)</option>
+                    <option value="Bulandshahr">Bulandshahr (बुलंदशहर)</option>
+                    <option value="Chandauli">Chandauli (चंदौली)</option>
+                    <option value="Chitrakoot">Chitrakoot (चित्रकूट)</option>
+                    <option value="Deoria">Deoria (देवरिया)</option>
+                    <option value="Etah">Etah (एटा)</option>
+                    <option value="Etawah">Etawah (इटावा)</option>
+                    <option value="Farrukhabad">Farrukhabad (फर्रुखाबाद)</option>
+                    <option value="Fatehpur">Fatehpur (फतेहपुर)</option>
+                    <option value="Firozabad">Firozabad (फिरोजाबाद)</option>
+                    <option value="Gautam Buddha Nagar">Gautam Buddha Nagar (गौतम बुद्ध नगर)</option>
+                    <option value="Ghaziabad">Ghaziabad (गाजियाबाद)</option>
+                    <option value="Ghazipur">Ghazipur (गाजीपुर)</option>
+                    <option value="Gonda">Gonda (गोंडा)</option>
+                    <option value="Gorakhpur">Gorakhpur (गोरखपुर)</option>
+                    <option value="Hamirpur">Hamirpur (हमीरपुर)</option>
+                    <option value="Hapur">Hapur (हापुड़)</option>
+                    <option value="Hardoi">Hardoi (हरदोई)</option>
+                    <option value="Hathras">Hathras (हाथरस)</option>
+                    <option value="Jalaun">Jalaun (जालौन)</option>
+                    <option value="Jaunpur">Jaunpur (जौनपुर)</option>
+                    <option value="Jhansi">Jhansi (झांसी)</option>
+                    <option value="Kannauj">Kannauj (कन्नौज)</option>
+                    <option value="Kanpur Dehat">Kanpur Dehat (कानपुर देहात)</option>
+                    <option value="Kanpur Nagar">Kanpur Nagar (कानपुर नगर)</option>
+                    <option value="Kasganj">Kasganj (कासगंज)</option>
+                    <option value="Kaushambi">Kaushambi (कौशांबी)</option>
+                    <option value="Kheri">Kheri (लखीमपुर खीरी)</option>
+                    <option value="Kushinagar">Kushinagar (कुशीनगर)</option>
+                    <option value="Lalitpur">Lalitpur (ललितपुर)</option>
+                    <option value="Lucknow">Lucknow (लखनऊ)</option>
+                    <option value="Maharajganj">Maharajganj (महाराजगंज)</option>
+                    <option value="Mahoba">Mahoba (महोबा)</option>
+                    <option value="Mainpuri">Mainpuri (मैनपुरी)</option>
+                    <option value="Mathura">Mathura (मथुरा)</option>
+                    <option value="Mau">Mau (मऊ)</option>
+                    <option value="Meerut">Meerut (मेरठ)</option>
+                    <option value="Mirzapur">Mirzapur (मिर्जापुर)</option>
+                    <option value="Moradabad">Moradabad (मुरादाबाद)</option>
+                    <option value="Muzaffarnagar">Muzaffarnagar (मुजफ्फरनगर)</option>
+                    <option value="Pilibhit">Pilibhit (पीलीभीत)</option>
+                    <option value="Pratapgarh">Pratapgarh (प्रतापगढ़)</option>
+                    <option value="Prayagraj">Prayagraj (प्रयागराज)</option>
+                    <option value="Rae Bareli">Rae Bareli (रायबरेली)</option>
+                    <option value="Rampur">Rampur (रामपुर)</option>
+                    <option value="Saharanpur">Saharanpur (सहारनपुर)</option>
+                    <option value="Sambhal">Sambhal (सम्भल)</option>
+                    <option value="Sant Kabir Nagar">Sant Kabir Nagar (संत कबीर नगर)</option>
+                    <option value="Shahjahanpur">Shahjahanpur (शाहजहांपुर)</option>
+                    <option value="Shamli">Shamli (शामली)</option>
+                    <option value="Shravasti">Shravasti (श्रावस्ती)</option>
+                    <option value="Siddharthnagar">Siddharthnagar (सिद्धार्थनगर)</option>
+                    <option value="Sitapur">Sitapur (सीतापुर)</option>
+                    <option value="Sonbhadra">Sonbhadra (सोनभद्र)</option>
+                    <option value="Sultanpur">Sultanpur (सुल्तानपुर)</option>
+                    <option value="Unnao">Unnao (उन्नाव)</option>
+                    <option value="Varanasi">Varanasi (वाराणसी)</option>
+                    <option value="Other">अन्य (Other)</option>
+                </select>
+                
+                <input type="text" id="searchInput" placeholder="Search Mobile / Token (Exact)..." style="padding: 0.6rem 1rem; border: 2px solid var(--ink); font-family: var(--sans); font-weight: 600; width: 280px; font-size: 1.1rem; box-shadow: 2px 2px 0 var(--ink);" onkeyup="handleSearchKey(event)">
+                <button class="tab-btn" onclick="triggerExactSearch()" style="background: var(--green); color: var(--paper);">🔍 Search</button>
+                <button class="tab-btn" onclick="clearSearchAndReload()" style="background: var(--blood); color: var(--paper);">❌ Clear</button>
+                <button class="tab-btn" style="background: var(--ink); color: var(--paper);" onclick="handleCSVExport()">📥 Export CSV</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>क्र.सं. (S.No.)</th>
+                        <th>Photo</th>
+                        <th>Token No.</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>District (Jila) / Block</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be populated here -->
+                    <tr><td colspan="8" style="text-align: center; font-family: var(--mono); font-weight: 700;">LOADING...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-container" id="paginationControls">
+            <button id="btnFirstPage" class="tab-btn" onclick="changePage('first')">⏮️ First</button>
+            <button id="btnPrevPage" class="tab-btn" onclick="changePage(-1)">⬅️ Previous</button>
+            <span id="pageIndicator" class="page-indicator">Page 1</span>
+            <button id="btnNextPage" class="tab-btn" onclick="changePage(1)">Next ➡️</button>
+        </div>
+    </div>
+
+    <!-- 2. Government Orders Dashboard Section -->
+    <div id="ordersDashboardSection" style="display: none;">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card" style="border-top: 8px solid var(--saffron-deep);">
+                <div class="stat-title">कुल अपलोड आदेश (Total Orders)</div>
+                <div id="statOrdersTotal" class="stat-value">-</div>
+            </div>
+            <div class="stat-card" style="border-top: 8px solid var(--green);">
+                <div class="stat-title">राज्य स्तर आदेश (State Level)</div>
+                <div id="statOrdersState" class="stat-value">-</div>
+            </div>
+            <div class="stat-card" style="border-top: 8px solid var(--saffron);">
+                <div class="stat-title">जनपद व ब्लॉक स्तर (Local Levels)</div>
+                <div id="statOrdersLocal" class="stat-value">-</div>
+            </div>
+        </div>
+
+        <!-- Refresh Orders Stats -->
+        <div style="display: flex; justify-content: center; margin-bottom: 2.5rem; margin-top: -0.5rem; width: 100%;">
+            <button id="syncOrdersStatsBtn" class="tab-btn" style="background: var(--saffron-deep); color: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0px var(--ink); font-weight: 800; font-size: 1.05rem; padding: 12px 24px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.15s ease; border-radius: 4px;" onclick="loadOrdersStats()" onmousedown="this.style.transform='translate(2px, 2px)'; this.style.boxShadow='2px 2px 0px var(--ink)';" onmouseup="this.style.transform='translate(0px, 0px)'; this.style.boxShadow='4px 4px 0px var(--ink)';" onmouseleave="this.style.transform='translate(0px, 0px)'; this.style.boxShadow='4px 4px 0px var(--ink)';">
+                🔄 आंकड़े अपडेट करें (Refresh Stats)
+            </button>
+        </div>
+
+        <!-- Filters Row -->
+        <div class="tabs" style="margin-bottom: 2rem; flex-wrap: wrap; height: auto;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; width: 100%;">
+                <!-- District filter -->
+                <select id="orderDistrictFilter" class="filter-select" onchange="applyOrdersFilters()" style="flex: 1; min-width: 170px;">
+                    <option value="">🔍 सभी जनपद (All Districts)</option>
+                    <option value="Agra">Agra (आगरा)</option>
+                    <option value="Aligarh">Aligarh (अलीगढ़)</option>
+                    <option value="Ambedkar Nagar">Ambedkar Nagar (अंबेडकर नगर)</option>
+                    <option value="Amethi">Amethi (अमेठी)</option>
+                    <option value="Amroha">Amroha (अमरोहा)</option>
+                    <option value="Auraiya">Auraiya (औरैया)</option>
+                    <option value="Ayodhya">Ayodhya (अयोध्या)</option>
+                    <option value="Azamgarh">Azamgarh (आजमगढ़)</option>
+                    <option value="Baghpat">Baghpat (बागपत)</option>
+                    <option value="Bahraich">Bahraich (बहराइच)</option>
+                    <option value="Ballia">Ballia (बलिया)</option>
+                    <option value="Balrampur">Balrampur (बलरामपुर)</option>
+                    <option value="Banda">Banda (बांदा)</option>
+                    <option value="Barabanki">Barabanki (बाराबंकी)</option>
+                    <option value="Bareilly">Bareilly (बरेली)</option>
+                    <option value="Basti">Basti (बस्ती)</option>
+                    <option value="Bhadohi">Bhadohi (भदोही)</option>
+                    <option value="Bijnor">Bijnor (बिजनौर)</option>
+                    <option value="Budaun">Budaun (बदायूं)</option>
+                    <option value="Bulandshahr">Bulandshahr (बुलंदशहर)</option>
+                    <option value="Chandauli">Chandauli (चंदौली)</option>
+                    <option value="Chitrakoot">Chitrakoot (चित्रकूट)</option>
+                    <option value="Deoria">Deoria (देवरिया)</option>
+                    <option value="Etah">Etah (एटा)</option>
+                    <option value="Etawah">Etawah (इटावा)</option>
+                    <option value="Farrukhabad">Farrukhabad (फर्रुखाबाद)</option>
+                    <option value="Fatehpur">Fatehpur (फतेहपुर)</option>
+                    <option value="Firozabad">Firozabad (फिरोजाबाद)</option>
+                    <option value="Gautam Buddha Nagar">Gautam Buddha Nagar (गौतम बुद्ध नगर)</option>
+                    <option value="Ghaziabad">Ghaziabad (गाजियाबाद)</option>
+                    <option value="Ghazipur">Ghazipur (गाजीपुर)</option>
+                    <option value="Gonda">Gonda (गोंडा)</option>
+                    <option value="Gorakhpur">Gorakhpur (गोरखपुर)</option>
+                    <option value="Hamirpur">Hamirpur (हमीरपुर)</option>
+                    <option value="Hapur">Hapur (हापुड़)</option>
+                    <option value="Hardoi">Hardoi (हरदोई)</option>
+                    <option value="Hathras">Hathras (हाथरस)</option>
+                    <option value="Jalaun">Jalaun (जालौन)</option>
+                    <option value="Jaunpur">Jaunpur (जौनपुर)</option>
+                    <option value="Jhansi">Jhansi (झांसी)</option>
+                    <option value="Kannauj">Kannauj (कन्नौज)</option>
+                    <option value="Kanpur Dehat">Kanpur Dehat (कानपुर देहात)</option>
+                    <option value="Kanpur Nagar">Kanpur Nagar (कानपुर नगर)</option>
+                    <option value="Kasganj">Kasganj (कासगंज)</option>
+                    <option value="Kaushambi">Kaushambi (कौशांबी)</option>
+                    <option value="Kheri">Kheri (लखीमपुर खीरी)</option>
+                    <option value="Kushinagar">Kushinagar (कुशीनगर)</option>
+                    <option value="Lalitpur">Lalitpur (ललितपुर)</option>
+                    <option value="Lucknow">Lucknow (लखनऊ)</option>
+                    <option value="Maharajganj">Maharajganj (महाराजगंज)</option>
+                    <option value="Mahoba">Mahoba (महोबा)</option>
+                    <option value="Mainpuri">Mainpuri (मैनपुरी)</option>
+                    <option value="Mathura">Mathura (मथुरा)</option>
+                    <option value="Mau">Mau (मऊ)</option>
+                    <option value="Meerut">Meerut (मेरठ)</option>
+                    <option value="Mirzapur">Mirzapur (मिर्जापुर)</option>
+                    <option value="Moradabad">Moradabad (मुरादाबाद)</option>
+                    <option value="Muzaffarnagar">Muzaffarnagar (मुजफ्फरनगर)</option>
+                    <option value="Pilibhit">Pilibhit (पीलीभीत)</option>
+                    <option value="Pratapgarh">Pratapgarh (प्रतापगढ़)</option>
+                    <option value="Prayagraj">Prayagraj (प्रयागराज)</option>
+                    <option value="Rae Bareli">Rae Bareli (रायबरेली)</option>
+                    <option value="Rampur">Rampur (रामपुर)</option>
+                    <option value="Saharanpur">Saharanpur (सहारनपुर)</option>
+                    <option value="Sambhal">Sambhal (सम्भल)</option>
+                    <option value="Sant Kabir Nagar">Sant Kabir Nagar (संत कबीर नगर)</option>
+                    <option value="Shahjahanpur">Shahjahanpur (शाहजहांपुर)</option>
+                    <option value="Shamli">Shamli (शामली)</option>
+                    <option value="Shravasti">Shravasti (श्रावस्ती)</option>
+                    <option value="Siddharthnagar">Siddharthnagar (सिद्धार्थनगर)</option>
+                    <option value="Sitapur">Sitapur (सीतापुर)</option>
+                    <option value="Sonbhadra">Sonbhadra (सोनभद्र)</option>
+                    <option value="Sultanpur">Sultanpur (सुल्तानपुर)</option>
+                    <option value="Unnao">Unnao (उन्नाव)</option>
+                    <option value="Varanasi">Varanasi (वाराणसी)</option>
+                    <option value="Other">अन्य (Other)</option>
+                </select>
+
+                <!-- Level filter -->
+                <select id="orderLevelFilter" class="filter-select" onchange="applyOrdersFilters()" style="flex: 1; min-width: 140px;">
+                    <option value="">🔍 सभी स्तर (All Levels)</option>
+                    <option value="state">राज्य स्तर (State)</option>
+                    <option value="district">जनपद स्तर (District)</option>
+                    <option value="block">विकास खण्ड स्तर (Block)</option>
+                </select>
+
+                <!-- Department filter -->
+                <select id="orderDeptFilter" class="filter-select" onchange="applyOrdersFilters()" style="flex: 1; min-width: 170px;">
+                    <option value="">🔍 सभी विभाग (All Depts)</option>
+                    <option value="panchayati_raj">पंचायती राज विभाग</option>
+                    <option value="rural_dev">ग्राम्य विकास विभाग</option>
+                    <option value="revenue">राजस्व विभाग</option>
+                    <option value="social_welfare">समाज कल्याण विभाग</option>
+                    <option value="food_civil_supplies">खाद्य एवं रसद विभाग</option>
+                    <option value="health">चिकित्सा एवं स्वास्थ्य</option>
+                    <option value="education">बेसिक शिक्षा विभाग</option>
+                    <option value="other">अन्य विभाग</option>
+                </select>
+
+                <!-- Block search input -->
+                <input type="text" id="orderBlockInput" placeholder="सर्च ब्लॉक..." style="padding: 0.6rem 1rem; border: 2px solid var(--ink); font-family: var(--sans); font-weight: 600; flex: 1; min-width: 140px; font-size: 1.1rem; box-shadow: 2px 2px 0 var(--ink);" onkeyup="handleOrderBlockKey(event)">
+
+                <button class="tab-btn" onclick="applyOrdersFilters()" style="background: var(--green); color: var(--paper); margin: 0;">🔍 Apply</button>
+                <button class="tab-btn" onclick="clearOrdersSearchAndReload()" style="background: var(--blood); color: var(--paper); margin: 0;">❌ Clear</button>
+                <button class="tab-btn" style="background: var(--ink); color: var(--paper); margin: 0;" onclick="handleOrdersCSVExport()">📥 Export CSV</button>
+            </div>
+        </div>
+
+        <!-- Table Grid for Orders -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>क्र.सं. (S.No.)</th>
+                        <th>पंचायत सहायक विवरण (Panchayat Sahayak)</th>
+                        <th>जनपद / विकास खण्ड (District / Block)</th>
+                        <th>आदेश स्तर (Level)</th>
+                        <th>विभाग / विषय (Dept / Topic)</th>
+                        <th>आदेश कॉपी (File)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                    <tr><td colspan="7" style="text-align: center; font-family: var(--mono); font-weight: 700;">LOADING...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Orders Pagination Controls -->
+        <div class="pagination-container" id="ordersPaginationControls">
+            <button id="btnOrdersFirstPage" class="tab-btn" onclick="changeOrdersPage('first')">⏮️ First</button>
+            <button id="btnOrdersPrevPage" class="tab-btn" onclick="changeOrdersPage(-1)">⬅️ Previous</button>
+            <span id="ordersPageIndicator" class="page-indicator">Page 1</span>
+            <button id="btnOrdersNextPage" class="tab-btn" onclick="changeOrdersPage(1)">Next ➡️</button>
+        </div>
+    </div>
+
+    <!-- Approval Modal -->
+    <div class="modal" id="approvalModal">
+        <div class="modal-content">
+            <h2>Approve Participant</h2>
+            <p style="margin-top: 10px;">Please enter the official Token Number (टोकन क्रमांक) for this user.</p>
+            <input type="text" id="membershipNumberInput" placeholder="e.g. HAST/2026/001" required>
+            <div class="modal-buttons">
+                <button class="modal-btn" style="background: var(--blood); color: var(--paper);" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn" style="background: var(--green); color: var(--paper);" id="confirmApproveBtn">Confirm & Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content" style="width: 700px; max-height: 90vh; overflow-y: auto; text-align: left; box-shadow: 12px 12px 0 var(--ink);">
+            <h2 style="border-bottom: 4px solid var(--ink); padding-bottom: 15px; margin-bottom: 25px;">आवेदन का पूरा विवरण</h2>
+            <div id="detailsContent" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.6; color: var(--ink);">
+                <!-- Content will be injected here -->
+            </div>
+            <div class="modal-buttons" style="margin-top: 30px; display: flex; justify-content: space-between; gap: 10px; width: 100%; flex-wrap: wrap;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="modal-btn" id="detailsEditBtn" style="background: var(--saffron-deep); color: var(--paper);" onclick="enableDetailsEdit()">✏️ विवरण सुधारें (Edit)</button>
+                    <button class="modal-btn" id="detailsDeleteBtn" style="background: var(--blood); color: var(--paper);" onclick="deleteDetailsApplication()">🗑️ स्थायी रूप से हटाएं (Delete)</button>
+                </div>
+                <button class="modal-btn" style="background: var(--ink); color: var(--paper);" onclick="closeDetailsModal()">बंद करें (Close)</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

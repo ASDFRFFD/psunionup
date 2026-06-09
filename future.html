@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भविष्य का विज़न | पंचायत सहायक यूनियन उ.प्र.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Standard fonts used in achievements page -->
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@500;700&family=Khand:wght@700&family=Hind:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="styles.css?v=cjp_theme_7">
+    <link rel="stylesheet" href="future.css">
+</head>
+
+<body class="cinematic-theme future-theme">
+
+    <!-- Futuristic Holographic Cyber Portal -->
+    <div id="cyberPortal" class="cyber-portal">
+        <canvas id="cyberCanvas" class="cyber-canvas"></canvas>
+        
+        <!-- Laser scanner line -->
+        <div class="cyber-scanner" id="cyberScanner"></div>
+
+        <div class="portal-interface">
+            <!-- Glowing target sight icon -->
+            <div class="cyber-target-wrap">
+                <div class="target-ring target-ring-1"></div>
+                <div class="target-ring target-ring-2"></div>
+                <div class="target-crosshair"></div>
+                <img src="logo.webp" alt="Emblem" class="cyber-logo">
+            </div>
+
+            <!-- Terminal Typewriter output -->
+            <div class="terminal-panel">
+                <div class="terminal-header">
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                    <span class="term-title">VISION_2030_INIT.SYS</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="term-line" id="termLine1">&gt; INITIATING VISION 2030 SYSTEM REVEAL...</p>
+                    <p class="term-line" id="termLine2" style="opacity: 0;">&gt; CONNECTING 58,000+ DIGITAL GRIDS...</p>
+                    <p class="term-line" id="termLine3" style="opacity: 0;">&gt; ALIGNING EMPOWERMENT METRICS...</p>
+                </div>
+            </div>
+
+            <!-- Cybernetic Progress Bar -->
+            <div class="cyber-progress-wrap">
+                <div class="cyber-progress-bar" id="cyberProgressBar"></div>
+                <div class="cyber-progress-text" id="cyberProgressText">0%</div>
+            </div>
+        </div>
+        
+        <!-- Cyber flash overlay -->
+        <div class="cyber-flash" id="cyberFlash"></div>
+    </div>
+
+    <div id="futurePage" class="future-page" style="opacity: 0;">
+
+    <!-- Premium Floating Header -->
+    <header class="premium-header">
+        <div class="header-inner">
+            <div class="brand-cluster">
+                <img src="logo.webp" alt="Logo" class="nav-logo">
+                <div class="brand-text">
+                    <h1>पंचायत सहायक यूनियन उ.प्र.</h1>
+                    <span class="badge">उत्तर प्रदेश</span>
+                </div>
+            </div>
+            <div class="nav-links-wrap" style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    मुख्य पृष्ठ (Home)
+                </a>
+                <a href="achievements.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
+                    📊 उपलब्धियां
+                </a>
+                <a href="work-report.html" class="nav-btn-outline" style="background: var(--green); color: var(--paper); border-color: var(--green); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    कार्य रिपोर्ट
+                </a>
+                <a href="future.html" class="nav-btn-outline active-nav-btn" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px;">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    ✨ भविष्य का विज़न
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="future-hero">
+        <div class="hero-noise-overlay"></div>
+        <div class="cinematic-container" style="position: relative; z-index: 2; text-align: center; padding: 4rem 1.5rem 3rem;">
+            <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1.5rem; font-size: 1rem; padding: 6px 16px;">ग्रामीण सुशासन २०३० (Vision 2030)</span>
+            <h1 class="future-main-title">
+                सशक्त पंचायत सहायक<br>
+                <span>समृद्ध और आत्मनिर्भर गांव का आधार</span>
+            </h1>
+            <p class="future-hero-desc">
+                यदि उत्तर प्रदेश के ५८,००० से अधिक डिजिटल पंचायत सैनिकों को प्रशासनिक अधिकार, उचित आर्थिक प्रोत्साहन और आधुनिक संसाधन दिए जाएं, तो गांव का स्वरूप कैसे पूरी तरह बदल जाएगा? नीचे दिए गए सिम्युलेटर में स्वयं देखें।
+            </p>
+            <div class="hero-scroll-badge">
+                <span>सिम्युलेटर का परीक्षण करें</span>
+                <div class="pulse-indicator">↓</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: INTERACTIVE SIMULATOR -->
+    <section class="section-padding simulator-section" style="background-color: var(--paper-2); border-bottom: 3px solid var(--ink);">
+        <div class="cinematic-container">
+            <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                <span class="badge" style="background-color: var(--green); margin-bottom: 1rem;">लाइव प्रयोग</span>
+                <h2 class="brutalist-title-h2">गाँव का कायाकल्प सिम्युलेटर</h2>
+                <p style="color: var(--ink-2); font-size: 1.15rem; font-weight: 500;">
+                    नीचे दिए गए सशक्तिकरण के स्तंभों (Toggles) को ऑन/ऑफ़ करके देखें कि गाँव के डिजिटल विकास और सेवाओं पर इसका क्या प्रभाव पड़ता है:
+                </p>
+            </div>
+
+            <div class="simulator-grid">
+                <!-- Left: Controls -->
+                <div class="simulator-panel brutalist-card panel-controls">
+                    <div class="panel-header">
+                        <h3>सशक्तिकरण के मुख्य स्तम्भ</h3>
+                        <span class="led-indicator" id="masterLed"></span>
+                    </div>
+                    <div class="control-options">
+                        
+                        <!-- Toggle 1 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="toggleWage" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>न्यूनतम वेतन (Pay Level 1)</strong>
+                                <span class="toggle-desc">₹६,००० के मानदेय के स्थान पर सीधे राज्य कोष से न्यूनतम ₹१८,०००/- वेतन।</span>
+                            </span>
+                        </label>
+
+                        <!-- Toggle 2 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="togglePermanency" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>नौकरी का स्थायीकरण (Permanency)</strong>
+                                <span class="toggle-desc">१ वर्ष की अनुबंध प्रणाली की समाप्ति और स्थायी सेवा सुरक्षा। (इससे नौकरी छोड़ने की दर कम होगी और ट्रेनिंग का खर्च बचेगा!)</span>
+                            </span>
+                        </label>
+
+                        <!-- Toggle 3 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="toggleAuthority" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>सत्यापन हेतु प्रशासकीय दर्जा</strong>
+                                <span class="toggle-desc">ग्राम स्तर पर जनसेवा योजनाओं और प्रमाणपत्र आवेदनों को स्वयं डिजिटल वेरीफाई करने का अधिकार।</span>
+                            </span>
+                        </label>
+
+                        <!-- Toggle 4 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="toggleHardware" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>उच्च गुणवत्ता कंप्यूटर व सोलर बैकअप</strong>
+                                <span class="toggle-desc">तीव्र प्रोसेसर वाले उच्च गुणवत्ता कंप्यूटर सिस्टम (High-End PCs), स्कैनर और हाइब्रिड सोलर।</span>
+                            </span>
+                        </label>
+
+                        <!-- Toggle 5 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="toggleTraining" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>उन्नत तकनीकी प्रशिक्षण व सीमित कार्यक्षेत्र</strong>
+                                <span class="toggle-desc">आईटी टूल्स व साइबर सुरक्षा का विशेष प्रशिक्षण और फालतू बाहरी कार्यों से मुक्ति।</span>
+                            </span>
+                        </label>
+
+                        <!-- Toggle 6 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="toggleTreasury" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>राज्य कोष से सीधा भुगतान (Direct Treasury)</strong>
+                                <span class="toggle-desc">ग्राम निधि के स्थान पर सीधे राज्य कोष से मासिक भुगतान, जिससे सैलरी में देरी और अनियमितता खत्म होगी।</span>
+                            </span>
+                        </label>
+
+                        <!-- Toggle 7 -->
+                        <label class="brutalist-toggle">
+                            <input type="checkbox" id="togglePromotion" class="sim-toggle-checkbox">
+                            <span class="toggle-box"></span>
+                            <span class="toggle-label">
+                                <strong>पदोन्नति व अनुकंपा नियुक्ति (Career & Security)</strong>
+                                <span class="toggle-desc">५ वर्ष की सेवा के बाद पदोन्नति (जैसे VDO/VPO) व सेवाकाल में दुर्घटना पर परिवार को अनुकंपा नौकरी की गारंटी।</span>
+                            </span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- Right: Metrics / Gauges -->
+                <div class="simulator-panel brutalist-card panel-metrics">
+                    <div class="panel-header">
+                        <h3>गाँव विकास के डिजिटल संकेतक (Live Stats)</h3>
+                        <div class="panel-status-tag" id="villageStatus">कमज़ोर सचिवालय</div>
+                    </div>
+                    <div class="metrics-container">
+                        
+                        <!-- Metric 1 -->
+                        <div class="metric-block" data-metric="delivery">
+                            <div class="metric-info">
+                                <span class="metric-title">डिजिटल सेवा वितरण दर (Service Delivery)</span>
+                                <span class="metric-value" id="valDelivery">45%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-fill" id="fillDelivery" style="width: 45%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 2 -->
+                        <div class="metric-block" data-metric="literacy">
+                            <div class="metric-info">
+                                <span class="metric-title">ग्रामीण डिजिटल साक्षरता (Digital Literacy)</span>
+                                <span class="metric-value" id="valLiteracy">30%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-fill" id="fillLiteracy" style="width: 30%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 3 -->
+                        <div class="metric-block" data-metric="redressal">
+                            <div class="metric-info">
+                                <span class="metric-title">औसत समस्या निवारण समय (Redressal Time)</span>
+                                <span class="metric-value" id="valRedressal">7 दिन</span>
+                            </div>
+                            <div class="progress-bar-wrap warning-mode">
+                                <div class="progress-fill fill-reverse" id="fillRedressal" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 4 -->
+                        <div class="metric-block" data-metric="transparency">
+                            <div class="metric-info">
+                                <span class="metric-title">पारदर्शिता एवं भ्रष्टाचार में कमी (Transparency)</span>
+                                <span class="metric-value" id="valTransparency">40%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-fill" id="fillTransparency" style="width: 40%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 5 -->
+                        <div class="metric-block" data-metric="attrition">
+                            <div class="metric-info">
+                                <span class="metric-title">नौकरी छोड़ने की दर (Attrition Rate)</span>
+                                <span class="metric-value" id="valAttrition">75%</span>
+                            </div>
+                            <div class="progress-bar-wrap warning-mode">
+                                <div class="progress-fill fill-reverse" id="fillAttrition" style="width: 75%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 6 -->
+                        <div class="metric-block" data-metric="trainingCost">
+                            <div class="metric-info">
+                                <span class="metric-title">नए कार्मिकों की ट्रेनिंग का खर्च (Re-training Cost)</span>
+                                <span class="metric-value" id="valTrainingCost">₹85,000</span>
+                            </div>
+                            <div class="progress-bar-wrap warning-mode">
+                                <div class="progress-fill fill-reverse" id="fillTrainingCost" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 7 -->
+                        <div class="metric-block" data-metric="punctuality">
+                            <div class="metric-info">
+                                <span class="metric-title">वेतन की नियमितता व समयबद्धता (Salary Punctuality)</span>
+                                <span class="metric-value" id="valPunctuality">25%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-fill" id="fillPunctuality" style="width: 25%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 8 -->
+                        <div class="metric-block" data-metric="footfall">
+                            <div class="metric-info">
+                                <span class="metric-title">सचिवालय की दैनिक उपयोगिता व फुटफॉल (Daily Footfall)</span>
+                                <span class="metric-value" id="valFootfall">30%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-fill" id="fillFootfall" style="width: 30%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 9 -->
+                        <div class="metric-block" data-metric="morale">
+                            <div class="metric-info">
+                                <span class="metric-title">पंचायत सहायकों का मनोबल व कार्य संतुष्टि (Morale & Satisfaction)</span>
+                                <span class="metric-value" id="valMorale">20%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-fill" id="fillMorale" style="width: 20%;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: 6 REVOLUTIONS -->
+    <section class="section-padding revolutions-section" style="background-color: var(--ink); border-bottom: 3px solid var(--ink); color: var(--paper);">
+        <div class="cinematic-container">
+            <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
+                <span class="badge" style="background-color: var(--saffron); color: var(--paper); margin-bottom: 1rem;">दूरगामी परिणाम</span>
+                <h2 class="brutalist-title-h2" style="color: var(--paper);">६ संभावित ग्रामीण डिजिटल क्रांतियां</h2>
+                <p style="color: var(--paper-2); font-size: 1.1rem; opacity: 0.85;">
+                    यदि हमारे ५८,०००+ पंचायत सहायकों को मजबूत किया गया, तो वे उत्तर प्रदेश के गाँवों को इन ६ क्षेत्रों में बदल देंगे:
+                </p>
+            </div>
+
+            <div class="revolutions-grid">
+                
+                <!-- Revolution Card 1 -->
+                <div class="revolution-card brutalist-dark-card">
+                    <div class="rev-icon">🏢</div>
+                    <h3>सच्चा मिनी-सचिवालय</h3>
+                    <p>तहसील, ब्लॉक और जनसेवा केंद्रों के चक्करों से ग्रामीणों को हमेशा के लिए मुक्ति मिलेगी। प्रमाण पत्र, पेंशन योजनाएं, राशन कार्ड और banking संबंधी समस्त कार्य पंचायत भवन से सीधे निष्पादित होंगे।</p>
+                </div>
+
+                <!-- Revolution Card 2 -->
+                <div class="revolution-card brutalist-dark-card">
+                    <div class="rev-icon">🌾</div>
+                    <h3>डिजिटल एग्री-सहायता</h3>
+                    <p>मिट्टी परीक्षण रिपोर्ट (Soil Health Cards), सरकारी सब्सिडी वाले खाद/बीज आवेदन, और फसल नुकसान का ऑनलाइन सत्यापन सीधे पंचायत भवन के पोर्टल से त्वरित रूप से संभव होगा।</p>
+                </div>
+
+                <!-- Revolution Card 3 -->
+                <div class="revolution-card brutalist-dark-card">
+                    <div class="rev-icon">🩺</div>
+                    <h3>टेली-मेडिसिन सेंटर</h3>
+                    <p>गाँव के पंचायत भवन में उच्च गुणवत्ता वाले वेब-कैमरे और स्पीकर से सीधे जिला अस्पताल या बड़े शहरों के विशेषज्ञ डॉक्टरों से वीडियो कंसल्टेशन। ग्रामीण मरीजों का पैसा और समय दोनों बचेगा।</p>
+                </div>
+
+                <!-- Revolution Card 4 -->
+                <div class="revolution-card brutalist-dark-card">
+                    <div class="rev-icon">🎓</div>
+                    <h3>शाम की डिजिटल पाठशाला</h3>
+                    <p>पंचायत सहायक गाँव के बुजुर्गों, महिलाओं और युवाओं को हर शाम साइबर सुरक्षा, ऑनलाइन फ्रॉड से बचाव, डिजिटल banking और स्मार्टफोन के सही इस्तेमाल की कक्षाएं लेकर डिजिटल साक्षर बनाएंगे।</p>
+                </div>
+
+                <!-- Revolution Card 5 -->
+                <div class="revolution-card brutalist-dark-card">
+                    <div class="rev-icon">🛍️</div>
+                    <h3>ग्रामीण ई-कॉमर्स व हाट</h3>
+                    <p>गाँव के बुनकरों, किसानों, और महिला स्वयं सहायता समूहों के घरेलू हस्तशिल्प और जैविक खेती के उत्पादों को सरकार के ONDC और डिजिटल मार्केटप्लेस पर लिस्ट करवाकर वैश्विक बाजार प्रदान करना।</p>
+                </div>
+
+                <!-- Revolution Card 6 -->
+                <div class="revolution-card brutalist-dark-card">
+                    <div class="rev-icon">⛈️</div>
+                    <h3>सटीक आपदा और राहत रिपोर्ट</h3>
+                    <p>बाढ़, ओलावृष्टि या सूखा पड़ने पर, गाँव स्तर पर पंचायत सहायक सीधे मोबाइल ऐप से नुकसान की जियो-टैग्ड तस्वीरें लेकर रिपोर्ट करेंगे, जिससे त्वरित राहत राशि सीधे लाभार्थी के खाते में आएगी।</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: BEFORE VS AFTER COMPARISON -->
+    <section class="section-padding comparison-section" style="background-color: var(--paper); border-bottom: 3px solid var(--ink);">
+        <div class="cinematic-container">
+            <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                <span class="badge" style="background-color: var(--saffron-deep); margin-bottom: 1rem;">अंतर स्पष्ट है</span>
+                <h2 class="brutalist-title-h2">आज की विवशता बनाम उज्जवल कल</h2>
+                <p style="color: var(--ink-2); font-size: 1.1rem; font-weight: 500;">
+                    अधिकार विहीन सचिवालय और सशक्त सचिवालय में क्या अंतर है? स्वयं तुलना करें:
+                </p>
+            </div>
+
+            <div class="comparison-grid">
+                
+                <!-- Today / Left (Red border brutalist) -->
+                <div class="comparison-col brutalist-card col-today scroll-reveal">
+                    <div class="col-indicator warning-indicator">🛑 सशक्तिकरण के बिना (वर्तमान स्थिति)</div>
+                    <ul class="comp-list">
+                        <li>
+                            <h4>अल्प मानदेय से पलायन व हताशा</h4>
+                            <p>मात्र ₹६,००० मानदेय होने के कारण पंचायत सहायकों का कोई सुरक्षित भविष्य नहीं है। कम वेतन और असुरक्षा से हताश होकर योग्य कम्प्यूटर-प्रशिक्षित युवा लगातार नौकरी छोड़ रहे हैं, और कोई उन्हें गंभीरता से नहीं लेता।</p>
+                        </li>
+                        <li>
+                            <h4>सचिवालय की बंदी व मनमाना फील्ड वर्क</h4>
+                            <p>भवनों में पानी, शौचालय व सुरक्षा जैसी मूलभूत व्यवस्थाओं की कमी है। पंचायत सहायकों को अन्य विभागों के कामों (जैसे- सर्वे, बीएलओ ड्यूटी) के लिए बाहर भेज दिया जाता है, जिससे पंचायत भवन बंद रहता है और ग्रामीण भटकते रहते हैं।</p>
+                        </li>
+                        <li>
+                            <h4>प्रशासकीय दर्जे का अभाव व फाइलों में देरी</h4>
+                            <p>सत्यापन या संस्तुति का कोई अधिकार न होने के कारण जनसेवा का कोई भी कार्य (पेंशन, राशन कार्ड, प्रमाण पत्र) समय पर नहीं हो पाता। पंचायत सहायक केवल "डाटा एंट्री ऑपरेटर" बनकर रह गए हैं, जबकि फाइलें हफ़्तों ब्लॉक स्तर पर लटकी रहती हैं।</p>
+                        </li>
+                        <li>
+                            <h4>अनुबंध की तलवार और प्रधानों की मनमानी</h4>
+                            <p>केवल १ वर्ष का अनुबंध होने के कारण पंचायत सहायकों को हमेशा ग्राम प्रधानों द्वारा मनमाने ढंग से नौकरी से निकाल देने की धमकी और असहयोग का सामना करना पड़ता है।</p>
+                        </li>
+                        <li>
+                            <h4>संसाधनों की अनुपलब्धता व आउटडेटेड सिस्टम</h4>
+                            <p>निम्न गुणवत्ता (Low-end) के कंप्यूटर, धीमी गति के प्रिंटर और अक्सर ख़राब रहने वाली बायोमेट्रिक मशीनों के कारण ऑनलाइन डेटा फीडिंग और डिजिटल सेवाएं ठप हो जाती हैं।</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Future / Right (Green border brutalist) -->
+                <div class="comparison-col brutalist-card col-future scroll-reveal">
+                    <div class="col-indicator success-indicator">✅ सशक्तिकरण के बाद (संभावित भविष्य)</div>
+                    <ul class="comp-list">
+                        <li>
+                            <h4>स्थायी एवं पूर्ण समर्पित श्रमबल</h4>
+                            <p>सम्मानजनक वेतनमान व नौकरी के स्थायित्व से पंचायत सहायक पूरी निष्ठा और ऊंचे मनोबल के साथ काम करेंगे। समाज व शासन में उन्हें एक गरिमापूर्ण पहचान मिलेगी।</p>
+                        </li>
+                        <li>
+                            <h4>नियमित खुला सचिवालय व बेहतर सुविधाएं</h4>
+                            <p>पंचायत भवनों में सोलर पावर व बुनियादी व्यवस्थाएं होंगी। पंचायत सहायक केवल पंचायत सचिवालय के संचालन हेतु समर्पित होंगे, जिससे ग्रामीणों को रोज़ाना पंचायत भवन सुचारू रूप से खुला मिलेगा।</p>
+                        </li>
+                        <li>
+                            <h4>प्रशासकीय सत्यापन से सुपरफास्ट सेवाएं</h4>
+                            <p>पंचायत सहायक को प्रशासकीय दर्जा दिया जाएगा। वे सीधे स्थानीय स्तर पर पात्रता की जांच कर रिपोर्ट प्रमाणित (verify) कर सकेंगे, जिससे ब्लॉक और तहसीलों के चक्कर काटे बिना पात्र लोगों को कुछ ही घंटों में सेवाएं मिलेंगी।</p>
+                        </li>
+                        <li>
+                            <h4>भयमुक्त वातावरण व सेवा का स्थायित्व</h4>
+                            <p>नौकरी का स्थायीकरण होगा और वेतन का भुगतान सीधे राज्य कोष (State Treasury) से होगा। इससे प्रधानी गुटबाजी या मनमाने निष्कासन का डर खत्म होगा और वे निष्पक्ष रहकर कार्य कर सकेंगे।</p>
+                        </li>
+                        <li>
+                            <h4>उच्च गुणवत्ता के आधुनिक कम्प्यूटर उपकरण</h4>
+                            <p>प्रत्येक सचिवालय में तीव्र प्रोसेसर वाले हाई-एंड कंप्यूटर सिस्टम, ऑटो-फीड हाई-स्पीड स्कैनर और निरंतर इंटरनेट कनेक्टिविटी होगी, जिससे डेटा फीडिंग बिना किसी तकनीकी रुकावट के सेकंडों में पूरी होगी।</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: THE BLUEPRINT FOR EMPOWERMENT -->
+    <section class="section-padding blueprint-section" style="background-color: var(--paper-2); border-bottom: 3px solid var(--ink);">
+        <div class="cinematic-container">
+            <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
+                <span class="badge" style="background-color: var(--ink); color: var(--paper); margin-bottom: 1rem;">रोडमैप</span>
+                <h2 class="brutalist-title-h2">सशक्तिकरण का ब्लूप्रिंट (हमारी मांगें)</h2>
+                <p style="color: var(--ink-2); font-size: 1.1rem; font-weight: 500;">
+                    इस सुंदर भविष्य को यथार्थ बनाने के लिए नीतिगत स्तर पर निम्नलिखित ४ बुनियादी सुधारों की आवश्यकता है:
+                </p>
+            </div>
+
+            <div class="blueprint-timeline">
+                
+                <!-- Blueprint Step 1 -->
+                <div class="blueprint-step scroll-reveal">
+                    <div class="step-num">01</div>
+                    <div class="step-content brutalist-card">
+                        <h3>स्थायीकरण, राज्य कोष से वेतन और सम्मानजनक न्यूनतम वेतन</h3>
+                        <p>₹६,००० के मानदेय और अनुबंध प्रणाली को समाप्त कर पंचायत सहायकों की सेवा को स्थायी किया जाए। उनका वेतन सीधे **राज्य कोष (State Treasury)** से **पे-लेवल १ (न्यूनतम ₹१८,०००/-)** के आधार पर निर्गत किया जाए, ताकि आर्थिक सुरक्षा से उनका मनोबल ऊंचा हो।</p>
+                    </div>
+                </div>
+
+                <!-- Blueprint Step 2 -->
+                <div class="blueprint-step scroll-reveal">
+                    <div class="step-num">02</div>
+                    <div class="step-content brutalist-card">
+                        <h3>प्रशासकीय दर्जा और सत्यापन का सीधा अधिकार</h3>
+                        <p>ग्राम स्तर पर सुशासन हेतु पंचायत सहायकों को प्रशासकीय सत्यापन कर्ता का दर्जा प्रदान किया जाए, ताकि वे स्थानीय दस्तावेजों और सरकारी योजनाओं के आवेदन को आरंभिक तौर पर खुद डिजिटल वेरीफाई कर सकें, जिससे ग्रामीणों को ब्लॉक के चक्कर न लगाने पड़े।</p>
+                    </div>
+                </div>
+
+                <!-- Blueprint Step 3 -->
+                <div class="blueprint-step scroll-reveal">
+                    <div class="step-num">03</div>
+                    <div class="step-content brutalist-card">
+                        <h3>उच्च गुणवत्ता वाले कंप्यूटर व सौर ऊर्जा स्वावलंबन</h3>
+                        <p>सभी ग्राम सचिवालयों को उत्तम प्रोसेसर वाले **उच्च गुणवत्ता के कंप्यूटर सिस्टम (High-End PCs)**, प्रिंटर और हाई-स्पीड डबल-साइड स्कैनर से सुसज्जित किया जाए। बिजली कटौती से बचने के लिए हाइब्रिड सोलर सिस्टम अनिवार्य किया जाए।</p>
+                    </div>
+                </div>
+
+                <!-- Blueprint Step 4 -->
+                <div class="blueprint-step scroll-reveal">
+                    <div class="step-num">04</div>
+                    <div class="step-content brutalist-card">
+                        <h3>सीमित कार्यक्षेत्र व निरंतर प्रशिक्षण</h3>
+                        <p>पंचायत सहायकों को केवल ग्राम सचिवालय के कार्यों के लिए ही अधिकृत किया जाए तथा अन्य बाहरी विभागों के अनौपचारिक कामों से मुक्त रखा जाए। साथ ही विभाग द्वारा एडवांस टेक्नोलॉजी व एकाउंटिंग टूल्स का हर ६ महीने में प्रशिक्षण मिले।</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION SECTION -->
+    <section class="section-padding cta-section" style="background-color: var(--saffron); color: var(--paper); text-align: center; border-bottom: 3px solid var(--ink);">
+        <div class="cinematic-container" style="max-width: 800px; margin: 0 auto;">
+            <span class="badge" style="background-color: var(--ink); color: var(--paper); margin-bottom: 1.5rem; font-size: 1.05rem;">सहभागिता आवश्यक</span>
+            <h2 class="brutalist-title-h2" style="color: var(--ink); text-shadow: none; font-size: 3rem; margin-bottom: 1.5rem; text-transform: uppercase;">चलो बनाएं आत्मनिर्भर डिजिटल गांव!</h2>
+            <p style="font-size: 1.25rem; line-height: 1.6; margin-bottom: 2.5rem; font-weight: 500; color: var(--ink);">
+                ग्राम स्वराज और पंचायत सहायकों के अधिकारों के लिए चल रहे इस महा-हस्ताक्षर अभियान से जुड़ें। आपकी एक डिजिटल सहमति उत्तर प्रदेश के ग्रामीण विकास की दिशा तय करेगी।
+            </p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="brutalist-btn-yellow" style="padding: 1rem 2rem; font-size: 1.15rem; font-weight: bold; background: var(--paper); color: var(--ink); border: 3px solid var(--ink); text-decoration: none; box-shadow: 6px 6px 0 var(--ink); transition: all 0.2s ease;">
+                    ✍️ अभियान में हस्ताक्षर करें
+                </a>
+                <a href="work-report.html" class="brutalist-btn-yellow" style="padding: 1rem 2rem; font-size: 1.15rem; font-weight: bold; background: var(--green); color: var(--paper); border: 3px solid var(--ink); text-decoration: none; box-shadow: 6px 6px 0 var(--ink); transition: all 0.2s ease;">
+                    📊 हमारी कार्य रिपोर्ट देखें
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background-color: var(--ink); color: var(--paper); padding: 3rem 1.5rem; text-align: center;">
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 1.5rem;">
+            <a href="index.html" style="color: var(--saffron); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron)'; this.style.borderColor='var(--saffron)';">
+                🏠 मुख्य पृष्ठ
+            </a>
+            <span style="color: rgba(244,235,215,0.2);">|</span>
+            <a href="achievements.html" style="color: var(--saffron); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron)'; this.style.borderColor='var(--saffron)';">
+                📊 उपलब्धियां
+            </a>
+            <span style="color: rgba(244,235,215,0.2);">|</span>
+            <a href="work-report.html" style="color: var(--saffron); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron)'; this.style.borderColor='var(--saffron)';">
+                📂 कार्य रिपोर्ट
+            </a>
+            <span style="color: rgba(244,235,215,0.2);">|</span>
+            <a href="info.html#contact" style="color: var(--saffron); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--saffron); padding-bottom: 2px; transition: all 0.15s ease;" onmouseover="this.style.color='#4ade80'; this.style.borderColor='#4ade80';" onmouseout="this.style.color='var(--saffron)'; this.style.borderColor='var(--saffron)';">
+                📞 संपर्क सूत्र
+            </a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: rgba(244, 235, 215, 0.5); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            यह पोर्टल उत्तर प्रदेश के ग्रामीण डिजिटल सशक्तिकरण और पंचायत सहायकों के उज्जवल भविष्य के विज़न को समर्पित है।
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: rgba(244, 235, 215, 0.4); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase;">
+            Site by Vaibhav Yadav 📍 Lucknow
+        </p>
+    </footer>
+
+    </div>
+
+    <!-- GSAP Core & ScrollTrigger CDN Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Future page dynamic javascript -->
+    <script src="future.js"></script>
+
+</body>
+
+</html>

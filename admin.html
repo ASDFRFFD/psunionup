@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="पंचायत सहायक यूनियन उ.प्र. - उत्तर प्रदेश के पंचायत सहायकों का डिजिटल हस्ताक्षर और कार्य रिपोर्ट अभियान। अधिकारों की पैरवी और एकता के लिए जुड़ें।">
+    <meta name="keywords" content="Panchayat Sahayak, UP Panchayat Sahayak, Panchayat Sahayak Union, Panchayat Sahayak Sangh, Panchayat Sahayak Sangthan, Panchayat Sahayak Karmchari Union, UP Panchayat Sahayak Portal, Panchayat Sahayak Latest News, UP PRD, Gram Sachivalaya UP, Panchayat Assistant, पंचायत सहायक, यूपी पंचायत सहायक, पंचायत सहायक यूनियन, पंचायत सहायक संघ, पंचायत सहायक संगठन, पंचायत सहायक नवीनतम समाचार, पंचायत सहायक मानदेय, ग्राम सचिवालय उ.प्र., पंचायत सहायक कार्य रिपोर्ट, डिजिटल पंचायत, Hastakshar Abhiyan">
+    <meta name="author" content="Panchayat Sahayak Union U.P.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="पंचायत सहायक यूनियन उ.प्र. | हस्ताक्षर अभियान">
+    <meta property="og:description" content="उत्तर प्रदेश के पंचायत सहायकों का डिजिटल हस्ताक्षर और कार्य रिपोर्ट अभियान। अपने अधिकारों के लिए अभी जुड़ें!">
+    <meta property="og:image" content="https://psunionup.site/logo_gold_premium.webp">
+    <meta property="og:url" content="https://psunionup.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="पंचायत सहायक यूनियन उ.प्र.">
+    <meta name="twitter:description" content="उत्तर प्रदेश के पंचायत सहायकों का डिजिटल हस्ताक्षर और कार्य रिपोर्ट अभियान।">
+    <meta name="twitter:image" content="https://psunionup.site/logo_gold_premium.webp">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CJP Dashboard | Panchayat Sahayak Union</title>
@@ -495,7 +514,7 @@
     <!-- 1. Signature Campaign Dashboard Section -->
     <div id="campaignDashboardSection">
         <!-- Stats Cards -->
-        <div class="stats-grid">
+        <div class="stats-grid" style="grid-template-columns: repeat(4,1fr);">
             <div class="stat-card" style="border-top: 8px solid var(--saffron-deep);">
                 <div class="stat-title">कुल आवेदन (Total)</div>
                 <div id="statTotal" class="stat-value">-</div>
@@ -507,6 +526,11 @@
             <div class="stat-card" style="border-top: 8px solid var(--blood);">
                 <div class="stat-title">लंबित (Pending)</div>
                 <div id="statPending" class="stat-value">-</div>
+            </div>
+            <div class="stat-card" style="border-top: 8px solid #d97706; cursor:pointer;" onclick="togglePhotoFilter()" title="Click to filter photo records">
+                <div class="stat-title">📸 Photo वाले</div>
+                <div id="statWithPhoto" class="stat-value" style="color:#d97706;">-</div>
+                <div id="photoFilterBadge" style="display:none; margin-top:6px; background:#d97706; color:#fff; font-family:var(--mono); font-size:0.75rem; font-weight:700; padding:2px 8px; letter-spacing:0.05em;">FILTER ON</div>
             </div>
         </div>
 
@@ -529,10 +553,11 @@
         </div>
 
         <div class="tabs" style="margin-bottom: 2rem; flex-wrap: wrap; height: auto;">
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
                 <button class="tab-btn active" id="tabPending" onclick="setTabAndReload('pending')">⏳ Pending</button>
                 <button class="tab-btn" id="tabApproved" onclick="setTabAndReload('approved')">✅ Approved</button>
                 <button class="tab-btn" id="tabRejected" onclick="setTabAndReload('rejected')">❌ Rejected</button>
+                <button class="tab-btn" id="tabPhotoOnly" onclick="togglePhotoFilter()" style="background: #fff7ed; color: #d97706; border-color: #d97706; box-shadow: 3px 3px 0 #d97706;">📸 Photo वाले देखें</button>
             </div>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
                 <select id="districtFilter" class="filter-select" onchange="applyFilters()">

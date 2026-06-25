@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="पहुँच और प्रभाव | पंचायत सहायक यूनियन उ.प्र. - उत्तर प्रदेश के 57,000+ पंचायत सहायकों का ग्रामीण डिजिटल ढांचा और जन-जन तक सरकारी योजनाओं की पहुँच का विश्लेषण।">
+    <meta name="keywords" content="Panchayat Sahayak, Panchayat Sahayak Union, UP Panchayat, Gram Sachivalaya, Digital India, UP Government Reach, Rural UP, Panchayat Assistant Impact">
+    <meta name="author" content="Panchayat Sahayak Union U.P.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="पहुँच और प्रभाव | पंचायत सहायक यूनियन उ.प्र.">
+    <meta property="og:description" content="उत्तर प्रदेश के 57,000+ पंचायत सहायकों का ग्रामीण डिजिटल ढांचा और जन-जन तक सरकारी योजनाओं की पहुँच का विश्लेषण।">
+    <meta property="og:image" content="https://psunionup.site/logo_gold_premium.webp">
+    <meta property="og:url" content="https://psunionup.site/impact.html">
+    <meta property="og:type" content="website">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पहुँच और प्रभाव | पंचायत सहायक यूनियन उ.प्र.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@500;700&family=Khand:wght@700&family=Hind:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Core layout stylesheet -->
+    <link rel="stylesheet" href="styles.css?v=cjp_theme_7">
+    
+    <style>
+        /* Premium Modern Corporate Theme for UP Panchayat Sahayak Union */
+        body {
+            background-color: #fbfbfc;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(245, 158, 11, 0.04) 0px, transparent 40%),
+                radial-gradient(at 90% 10%, rgba(34, 197, 94, 0.04) 0px, transparent 40%),
+                radial-gradient(at 50% 80%, rgba(59, 130, 246, 0.03) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--ink);
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Premium Page Preloader Styling */
+        #page-preloader {
+            position: fixed;
+            inset: 0;
+            background: #fbfbfc;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .loader-brand-text {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+        .loader-spinner-ring {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0,0,0,0.05);
+            border-top: 3px solid var(--saffron);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        body.page-loaded #page-preloader {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+
+        /* Clean Section Info Headers (No brutalist black boxes!) */
+        .section-info h3 {
+            font-family: 'Noto Sans Devanagari', var(--sans), sans-serif !important;
+            color: var(--ink) !important;
+            background: none !important;
+            padding: 0 !important;
+            margin: 0 0 0.5rem 0 !important;
+            font-size: 1.7rem !important;
+            font-weight: 900 !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            display: block !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        .section-info p {
+            font-family: 'Noto Sans Devanagari', var(--sans), sans-serif !important;
+            font-size: 1rem !important;
+            color: var(--ink-2) !important;
+            line-height: 1.5 !important;
+            font-weight: 500 !important;
+            margin: 0 !important;
+        }
+
+        /* Stats Dashboard styling */
+        .stats-grid-container {
+            margin-bottom: 3.5rem;
+        }
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.07);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(26, 17, 8, 0.03);
+            padding: 1.75rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 17, 8, 0.07);
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+        
+        /* Interactive Hierarchy diagram styles */
+        .hierarchy-outer {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+        }
+        @media (max-width: 1024px) {
+            .hierarchy-outer {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .diagram-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.06);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(26, 17, 8, 0.02);
+        }
+        
+        .diagram-node {
+            width: 90%;
+            max-width: 380px;
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.08);
+            border-radius: 12px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(26, 17, 8, 0.02);
+            transition: all 0.2s ease;
+        }
+        
+        .diagram-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 17, 8, 0.06);
+            border-color: var(--saffron);
+        }
+        
+        .diagram-node.active-node {
+            border-color: var(--saffron-deep);
+            background: linear-gradient(135deg, #ffffff, #fff9f2);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.1);
+        }
+        
+        .node-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #fff9f2, #fff0df);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--saffron-deep);
+            flex-shrink: 0;
+        }
+        
+        .diagram-node.active-node .node-icon {
+            background: var(--saffron-deep);
+            color: #ffffff;
+            border-color: var(--saffron-deep);
+        }
+        
+        .node-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        
+        .node-title-hi {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+        
+        .node-title-en {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--ink-2);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+        
+        .diagram-arrow {
+            font-size: 1.25rem;
+            color: rgba(26, 17, 8, 0.25);
+            margin: 6px 0;
+            font-weight: 800;
+        }
+        
+        /* Panchayat Sahayak Highlight Node */
+        .diagram-hub-node {
+            width: 95%;
+            max-width: 410px;
+            background: linear-gradient(135deg, #ffffff, #f0fdf4);
+            border: 2px solid var(--green);
+            border-radius: 14px;
+            padding: 12px 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.08);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .diagram-hub-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(34, 197, 94, 0.15);
+        }
+        .diagram-hub-node.active-node {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            box-shadow: 0 12px 32px rgba(34, 197, 94, 0.2);
+        }
+        .hub-badge {
+            position: absolute;
+            top: -10px;
+            right: 14px;
+            background: var(--green);
+            color: #ffffff;
+            font-family: var(--sans);
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+            text-transform: uppercase;
+        }
+        
+        .branching-connector-lines {
+            width: 100%;
+            max-width: 450px;
+            margin: 8px 0;
+        }
+        
+        .citizen-branches-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            width: 100%;
+            max-width: 520px;
+        }
+        @media (max-width: 600px) {
+            .citizen-branches-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+        .citizen-branch-node {
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.08);
+            border-radius: 10px;
+            padding: 10px 6px;
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--ink);
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(26, 17, 8, 0.02);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .citizen-branch-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 17, 8, 0.05);
+            border-color: var(--saffron);
+        }
+        .citizen-branch-node.active-node {
+            border-color: var(--saffron);
+            background: linear-gradient(135deg, #ffffff, #fff9f2);
+            box-shadow: 0 6px 18px rgba(245, 158, 11, 0.1);
+        }
+        .citizen-branch-icon {
+            font-size: 1.2rem;
+        }
+        
+        /* Detail display panel card */
+        .node-details-card {
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.08);
+            border-radius: 20px;
+            padding: 2.2rem;
+            box-shadow: 0 15px 40px rgba(26, 17, 8, 0.04);
+            position: sticky;
+            top: 100px;
+        }
+        .details-badge {
+            display: inline-block;
+            background: #fff9f2;
+            color: var(--saffron-deep);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .details-title-hi {
+            font-family: var(--sans);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin: 0 0 4px 0;
+        }
+        .details-title-en {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--ink-2);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 0 0 1.5rem 0;
+        }
+        .details-body {
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--ink-2);
+        }
+        .details-highlight-box {
+            background: #fbfbfc;
+            border-left: 4px solid var(--saffron);
+            padding: 12px 16px;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ink);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Presence Comparison Battled Cards */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        .comp-card {
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(26, 17, 8, 0.03);
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .comp-card-highlight {
+            border: 2px solid var(--green);
+            background: linear-gradient(135deg, #ffffff, #f7fdf9);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.05);
+        }
+        .comp-role {
+            font-family: var(--sans);
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: var(--ink);
+        }
+        .comp-status-badge {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-top: 6px;
+        }
+        
+        /* Schemes Grid cards style */
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 900px) {
+            .schemes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .schemes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .scheme-card {
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.07);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(26, 17, 8, 0.02);
+            padding: 1.5rem;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .scheme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(26, 17, 8, 0.06);
+            border-color: var(--saffron);
+        }
+        .scheme-icon {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+        .scheme-title-hi {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--ink);
+            margin: 0 0 2px 0;
+        }
+        .scheme-title-en {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--ink-2);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .scheme-action-text {
+            margin-top: 0.75rem;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--saffron-deep);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Modern Flow Infographic Style */
+        .flow-animation-section {
+            margin-bottom: 4rem;
+        }
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .flow-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        .flow-box {
+            background: #ffffff;
+            border: 1px solid rgba(26, 17, 8, 0.07);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(26, 17, 8, 0.03);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .flow-box-old {
+            border-top: 5px solid var(--blood);
+        }
+        .flow-box-new {
+            border-top: 5px solid var(--green);
+        }
+        .flow-title {
+            font-family: var(--sans);
+            font-weight: 900;
+            font-size: 1.25rem;
+            text-align: center;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(26, 17, 8, 0.08);
+        }
+        .flow-box-old .flow-title {
+            color: var(--blood);
+        }
+        .flow-box-new .flow-title {
+            color: var(--green);
+        }
+        .flow-desc {
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--ink-2);
+            text-align: center;
+            margin: 0;
+        }
+        .flow-highlight-bar {
+            padding: 10px;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: auto;
+        }
+        .flow-box-old .flow-highlight-bar {
+            background: #fee2e2;
+            color: var(--blood);
+        }
+        .flow-box-new .flow-highlight-bar {
+            background: #dcfce7;
+            color: var(--green);
+        }
+        
+        /* Appeal & President card styling */
+        .appeal-card {
+            background: linear-gradient(135deg, #ffffff, #fffcf8);
+            border: 1px solid rgba(245, 158, 11, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 15px 45px rgba(245, 158, 11, 0.03);
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        .appeal-title {
+            font-family: var(--sans);
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--ink);
+            text-align: center;
+            margin: 0 0 1.5rem 0;
+        }
+        .appeal-quote {
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--saffron-deep);
+            text-align: center;
+            position: relative;
+            padding: 0 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .appeal-quote::before {
+            content: "“";
+            font-size: 4rem;
+            position: absolute;
+            left: -10px;
+            top: -25px;
+            color: rgba(245, 158, 11, 0.15);
+            font-family: serif;
+        }
+        .appeal-quote::after {
+            content: "”";
+            font-size: 4rem;
+            position: absolute;
+            right: -10px;
+            bottom: -55px;
+            color: rgba(245, 158, 11, 0.15);
+            font-family: serif;
+        }
+        .appeal-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .appeal-points {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        .appeal-point h5 {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--ink);
+            margin: 0 0 8px 0;
+        }
+        .appeal-point p {
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--ink-2);
+            margin: 0;
+        }
+        
+        /* Premium Floating Header & Footer */
+        .premium-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(26, 17, 8, 0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .scheme-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 17, 8, 0.4);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .scheme-modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scheme-modal {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            width: 90%;
+            max-width: 500px;
+            padding: 2.2rem;
+            position: relative;
+            transform: scale(0.9);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .scheme-modal-overlay.show .scheme-modal {
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Premium Page Preloader -->
+    <div id="page-preloader">
+        <div class="loader-brand-text">पंचायत सहायक यूनियन</div>
+        <div class="loader-spinner-ring"></div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+                startCounters();
+            }, 600);
+        });
+    </script>
+
+    <!-- Premium Floating Header -->
+    <header class="premium-header">
+        <div class="header-inner">
+            <div class="brand-cluster">
+                <img src="logo.webp" alt="Logo" class="nav-logo">
+                <div class="brand-text">
+                    <h1>पंचायत सहायक यूनियन उ.प्र.</h1>
+                    <span class="badge">पहुँच और प्रभाव</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    मुख्य पृष्ठ
+                </a>
+                <a href="work-report.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    कार्य रिपोर्ट
+                </a>
+                <a href="javascript:void(0)" onclick="showComingSoonModal(); return false;" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;" title="जल्द आ रहा है (Coming Soon)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    उपलब्धियां (Soon)
+                </a>
+                <a href="impact.html" class="nav-btn-outline" style="background: var(--saffron); color: #ffffff; border-color: var(--saffron); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    पहुँच व प्रभाव
+                </a>
+                <a href="javascript:void(0)" onclick="showComingSoonModal(); return false;" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;" title="जल्द आ रहा है (Coming Soon)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    योजना व भविष्य (Soon)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Live Updates News Marquee Ticker -->
+    <div class="marquee-ticker" style="background: linear-gradient(90deg, #fffcf2, #fffef9); border-bottom: 1px solid rgba(245, 158, 11, 0.15); padding: 8px 0; overflow: hidden; display: flex; align-items: center;">
+        <div style="background: var(--saffron-deep); color: #ffffff; font-family: var(--sans); font-size: 0.8rem; font-weight: 800; padding: 4px 10px; border-radius: 4px; margin-left: 1.5rem; z-index: 10; white-space: nowrap; box-shadow: 0 2px 6px rgba(220, 101, 30, 0.15); text-transform: uppercase;">ताज़ा अपडेट</div>
+        <marquee behavior="scroll" direction="left" scrollamount="4" style="font-family: var(--sans); font-size: 0.9rem; font-weight: 700; color: var(--ink); margin: 0; padding-left: 1rem;">
+            📢 मानदेय वृद्धि और नियमसंगत अधिकारों हेतु पंचायत सहायक यूनियन उत्तर प्रदेश का हस्ताक्षर अभियान निरंतर जारी... 🤝 अब तक राज्य के 5,000+ पंचायत सहायक सीधे अपना समर्थन दर्ज कर चुके हैं... ⚖️ सम्मानजनक मानदेय (₹18,000 - ₹25,000) ग्रामीण डिलीवरी को नए स्तर पर ले जाएगा...
+        </marquee>
+    </div>
+
+    <!-- Main Container -->
+    <main class="page-container" style="max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; box-sizing: border-box;">
+
+        <!-- Hero Intro Section -->
+        <div class="hero-container" style="display: flex; gap: 3rem; align-items: center; justify-content: space-between; margin-bottom: 4rem; flex-wrap: wrap;">
+            <div class="hero-text" style="flex: 1.2; min-width: 320px;">
+                <span class="badge" style="background: var(--saffron-deep); color: #ffffff; padding: 4px 10px; font-weight: 800; border-radius: 6px; font-size: 0.85rem; text-transform: uppercase;">धरातलीय समीक्षा 2026</span>
+                <h1 class="page-title" style="font-size: clamp(2rem, 3.5vw, 3rem); font-family: var(--sans); font-weight: 900; line-height: 1.2; color: var(--ink); margin-top: 1rem; margin-bottom: 1.5rem;">
+                    जन-जन की सेवा और <span style="background: linear-gradient(135deg, var(--saffron), var(--saffron-deep)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">प्रशासनिक सशक्तिकरण</span> की धरातलीय भूमिका
+                </h1>
+                <p class="page-subtitle" style="font-size: 1.15rem; font-family: var(--sans); line-height: 1.6; color: var(--ink-2); margin-bottom: 0;">
+                    उत्तर प्रदेश की 70% ग्रामीण आबादी (16.8 करोड़ नागरिकों) को सरकारी डिजिटल सेवाओं से जोड़ने वाली एकमात्र प्रशासनिक रीढ़ — <strong>पंचायत सहायक</strong>। यह धरातलीय रिपोर्ट शासन-प्रशासन में उनकी बेजोड़ उपयोगिता और जनता के विश्वास को दर्शाती है।
+                </p>
+            </div>
+            <div class="hero-image-wrapper" style="flex: 0.8; min-width: 280px; display: flex; flex-direction: column; align-items: center;">
+                <div style="background: #ffffff; border: 1px solid rgba(26,17,8,0.08); border-radius: 24px; padding: 10px; box-shadow: 0 20px 45px rgba(26,17,8,0.06); transform: rotate(1.5deg);">
+                    <img src="panchayat_sahayak.webp" alt="Panchayat Sahayak in Office" style="width: 100%; max-width: 360px; height: auto; border-radius: 16px; object-fit: cover; display: block;">
+                    <div style="font-family: var(--sans); font-size: 0.85rem; font-weight: 700; color: var(--ink-2); text-align: center; margin-top: 8px;">
+                        💻 ग्राम सचिवालय में कार्यरत Panchayat Sahayak
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Stats Counters -->
+        <div class="stats-grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+            <div class="stat-card" style="border-left: 5px solid var(--saffron); text-align: left; padding: 1.5rem;">
+                <div class="stat-num" data-target="57000" style="font-family: var(--display); font-size: 3rem; color: var(--saffron-deep); font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; text-shadow: none;">0</div>
+                <div style="font-family: var(--sans); font-weight: 800; font-size: 1.1rem; color: var(--ink);">सक्रिय पंचायत सहायक</div>
+                <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); text-transform: uppercase; font-weight: 600;">UP's Largest Grassroots Network</div>
+            </div>
+            
+            <div class="stat-card" style="border-left: 5px solid var(--saffron); text-align: left; padding: 1.5rem;">
+                <div class="stat-num" data-target="70" data-suffix="%" style="font-family: var(--display); font-size: 3rem; color: var(--saffron-deep); font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; text-shadow: none;">0</div>
+                <div style="font-family: var(--sans); font-weight: 800; font-size: 1.1rem; color: var(--ink);">ग्रामीण आबादी तक पहुँच</div>
+                <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); text-transform: uppercase; font-weight: 600;">70% Electorate Reach</div>
+            </div>
+            
+            <div class="stat-card" style="border-left: 5px solid var(--saffron); text-align: left; padding: 1.5rem;">
+                <div class="stat-num" data-target="16.8" data-decimal="true" data-suffix=" Cr" style="font-family: var(--display); font-size: 3rem; color: var(--saffron-deep); font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; text-shadow: none;">0</div>
+                <div style="font-family: var(--sans); font-weight: 800; font-size: 1.1rem; color: var(--ink);">सीधा जन संपर्क</div>
+                <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); text-transform: uppercase; font-weight: 600;">Direct Citizen Touchpoints</div>
+            </div>
+            
+            <div class="stat-card" style="border-left: 5px solid var(--saffron); text-align: left; padding: 1.5rem;">
+                <div class="stat-num" data-target="100" data-suffix="+" style="font-family: var(--display); font-size: 3rem; color: var(--saffron-deep); font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; text-shadow: none;">0</div>
+                <div style="font-family: var(--sans); font-weight: 800; font-size: 1.1rem; color: var(--ink);">कल्याणकारी योजनाएं</div>
+                <div style="font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); text-transform: uppercase; font-weight: 600;">Welfare Schemes Delivered</div>
+            </div>
+        </div>
+
+        <!-- Section 1.5: Strategic Political & Social Impact Dashboard -->
+        <div class="political-section" style="margin-bottom: 4rem;">
+            <div style="background: linear-gradient(135deg, #fffcf9, #fff9f2); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 20px; padding: 2rem; box-shadow: 0 15px 45px rgba(245, 158, 11, 0.03);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
+                    <span style="background: var(--saffron); color: #ffffff; padding: 6px 12px; font-weight: 800; border-radius: 8px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);">धरातलीय रिपोर्ट</span>
+                    <h3 style="font-family: var(--sans); font-weight: 900; font-size: 1.6rem; color: var(--ink); margin: 0;">प्रशासनिक उपयोगिता: धरातल पर सेवाओं का सबसे सुदृढ़ माध्यम</h3>
+                </div>
+                <p style="font-family: var(--sans); font-size: 1.1rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 2rem;">
+                    उत्तर प्रदेश के 57,000+ पंचायत सहायक राज्य के <strong>70% ग्रामीण क्षेत्र (16.8 करोड़ नागरिकों)</strong> तक सीधे सुशासन और योजनाओं को पहुँचाने का सबसे भरोसेमंद और सशक्त माध्यम हैं।
+                </p>
+                <div class="political-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="political-card" style="border-top: 4px solid var(--saffron); padding: 1.5rem;">
+                        <h4 style="font-family: var(--sans); font-weight: 800; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">👥 धरातलीय जन-संपर्क और सेवा</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; margin: 0;">
+                            प्रत्येक ग्राम पंचायत में औसतन 3,000 से 5,000 ग्रामीण नागरिक रहते हैं जो अपनी दैनिक प्रशासनिक आवश्यकताओं के लिए पंचायत सहायक से संपर्क करते हैं। गाँव में उनकी निरंतर उपस्थिति से सरकारी कार्य अत्यंत सरल होते हैं।
+                        </p>
+                    </div>
+                    <div class="political-card" style="border-top: 4px solid var(--green); padding: 1.5rem;">
+                        <h4 style="font-family: var(--sans); font-weight: 800; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">⚙️ नीति निर्धारण एवं योजना क्रियान्वयन</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; margin: 0;">
+                            57,000+ पंचायत सहायकों को सुदृढ़ करके और उनके अधिकारों व हितों को सुरक्षित रखकर, शासन राज्य के अंतिम पायदान पर खड़े प्रत्येक नागरिक तक लोक-कल्याणकारी नीतियों का लाभ बिना किसी बाधा के पहुंचा सकता है।
+                        </p>
+                    </div>
+                    <div class="political-card" style="border-top: 4px solid #3b82f6; padding: 1.5rem;">
+                        <h4 style="font-family: var(--sans); font-weight: 800; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">🌟 कल्याणकारी योजनाओं का सफल संचालन</h4>
+                        <p style="font-family: var(--sans); font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; margin: 0;">
+                            आयुष्मान भारत, पीएम किसान सम्मान निधि, पेंशन और पीएम आवास जैसी प्रमुख जन-कल्याणकारी नीतियों की 100% धरातलीय सफलता पंचायत सहायकों के दैनिक सत्यापन और कुशल डिजिटल प्रविष्टि पर सीधे निर्भर है।
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider" style="border: none; border-top: 1px solid rgba(26,17,8,0.08); margin: 3.5rem 0;">
+
+        <!-- Section 2: Interactive Hierarchy Diagram -->
+        <div class="section-info" style="margin-bottom: 2.5rem; text-align: left;">
+            <h3 style="font-family: var(--sans); font-weight: 900; font-size: 1.6rem; color: var(--ink); margin-bottom: 0.8rem;">शासन-प्रशासन से जनता का जुड़ाव (Flowchart Diagram)</h3>
+            <p style="font-family: var(--sans); font-size: 1.05rem; color: var(--ink-2); line-height: 1.5; margin: 0;">नीचे दिए गए विज़ुअल फ़्लोचार्ट आरेख (Hierarchy Diagram) पर क्लिक करके देखें कि कैसे नीतियां ऊपर से नीचे बहती हैं और पंचायत सहायक अंतिम छोर (Last Mile Convergence Hub) पर गाँव के प्रत्येक नागरिक से जुड़ा है।</p>
+        </div>
+
+        <div class="hierarchy-outer">
+            <!-- Left: Interactive Visual Flowchart Diagram -->
+            <div class="diagram-container">
+                <!-- Tier 1 -->
+                <div class="diagram-node active-node" onclick="showNodeDetails('central', this)">
+                    <div class="node-icon">के</div>
+                    <div class="node-text">
+                        <div class="node-title-hi">केन्द्रीय सरकार (भारत सरकार)</div>
+                        <div class="node-title-en">Central Government of India</div>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">↓</div>
+
+                <!-- Tier 2 -->
+                <div class="diagram-node" onclick="showNodeDetails('state', this)">
+                    <div class="node-icon">रा</div>
+                    <div class="node-text">
+                        <div class="node-title-hi">राज्य सरकार (उत्तर प्रदेश शासन)</div>
+                        <div class="node-title-en">State Government of Uttar Pradesh</div>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">↓</div>
+
+                <!-- Tier 3 -->
+                <div class="diagram-node" onclick="showNodeDetails('district', this)">
+                    <div class="node-icon">जि</div>
+                    <div class="node-text">
+                        <div class="node-title-hi">जिला प्रशासन (DM / DPRO)</div>
+                        <div class="node-title-en">District Administration</div>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">↓</div>
+
+                <!-- Tier 4 -->
+                <div class="diagram-node" onclick="showNodeDetails('block', this)">
+                    <div class="node-icon">ब्</div>
+                    <div class="node-text">
+                        <div class="node-title-hi">विकास खण्ड (BDO / ADO P.)</div>
+                        <div class="node-title-en">Block Administration</div>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">↓</div>
+
+                <!-- Tier 5 -->
+                <div class="diagram-node" onclick="showNodeDetails('gp', this)">
+                    <div class="node-icon">ग्</div>
+                    <div class="node-text">
+                        <div class="node-title-hi">ग्राम पंचायत (सचिव / प्रधान)</div>
+                        <div class="node-title-en">Gram Panchayat Officers</div>
+                    </div>
+                </div>
+
+                <div class="diagram-arrow">↓</div>
+
+                <!-- Tier 6: Panchayat Sahayak (HIGHLIGHTED AS CORE CONVERGENCE HUB) -->
+                <div class="diagram-hub-node" onclick="showNodeDetails('sahayak', this)">
+                    <span class="hub-badge">मुख्य कड़ी (Core Link)</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1.25rem;">
+                        <div class="node-icon" style="background-color: var(--saffron); color: #ffffff; width: 42px; height: 42px; font-size: 1.35rem; border-color: var(--saffron);">पं</div>
+                        <div class="node-text" style="text-align: left;">
+                            <div class="node-title-hi" style="color: var(--saffron-deep); font-weight: 900; font-size: 1.25rem;">पंचायत सहायक (ग्राम सचिवालय)</div>
+                            <div class="node-title-en" style="color: var(--ink); font-weight: 700;">Grassroots Convergence Hub</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branching Lines for Desktop Flow -->
+                <div class="branching-connector-lines">
+                    <svg viewBox="0 0 100 30" style="width: 100%; height: 35px; stroke: rgba(26,17,8,0.2); stroke-width: 2; stroke-linecap: round; fill: none;">
+                        <path d="M 50 0 L 50 15"></path>
+                        <path d="M 10 15 L 90 15"></path>
+                        <path d="M 10 15 L 10 30"></path>
+                        <path d="M 30 15 L 30 30"></path>
+                        <path d="M 50 15 L 50 30"></path>
+                        <path d="M 70 15 L 70 30"></path>
+                        <path d="M 90 15 L 90 30"></path>
+                    </svg>
+                </div>
+
+                <!-- Tier 7: Citizens (Collapses on mobile to vertical layout grid) -->
+                <div class="citizen-branches-grid">
+                    <div class="citizen-branch-node" onclick="showNodeDetails('citizen_farmers', this)">
+                        <span class="citizen-branch-icon">🌾</span>
+                        <span>किसान भाई</span>
+                    </div>
+                    <div class="citizen-branch-node" onclick="showNodeDetails('citizen_elderly', this)">
+                        <span class="citizen-branch-icon">👵</span>
+                        <span>बुजुर्ग</span>
+                    </div>
+                    <div class="citizen-branch-node" onclick="showNodeDetails('citizen_women', this)">
+                        <span class="citizen-branch-icon">👩‍🍼</span>
+                        <span>मातृशक्ति</span>
+                    </div>
+                    <div class="citizen-branch-node" onclick="showNodeDetails('citizen_laborers', this)">
+                        <span class="citizen-branch-icon">🔨</span>
+                        <span>श्रमिक</span>
+                    </div>
+                    <div class="citizen-branch-node" onclick="showNodeDetails('citizen_youth', this)">
+                        <span class="citizen-branch-icon">🎓</span>
+                        <span>युवा वर्ग</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Details Display Panel -->
+            <div class="node-details-card" id="detailsCard">
+                <div class="details-badge" id="detailsBadge">Tier 1: Central Government</div>
+                <h3 class="details-title-hi" id="detailsTitleHi">केन्द्र सरकार (भारत सरकार)</h3>
+                <h4 class="details-title-en" id="detailsTitleEn">Central Government of India</h4>
+                <div class="details-body" id="detailsBody">
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📌 <strong>दायित्व:</strong> ग्रामीण विकास योजनाओं का निर्माण व बजट आवंटन।</li>
+                           <li>⚠️ <strong>चुनौती:</strong> सीधे धरातल पर उपस्थिति न होने से सत्यापन में कठिनाई।</li>
+                           <li>🟢 <strong>नया बदलाव:</strong> पंचायत सहायक के माध्यम से सीधा लाभार्थियों तक पहुँच।</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider" style="border: none; border-top: 1px solid rgba(26,17,8,0.08); margin: 3.5rem 0;">
+
+        <!-- Section 3: Presence Comparison (Ekal Sanchalak) -->
+        <div class="comparison-section" style="margin-bottom: 4rem;">
+            <div class="section-info" style="margin-bottom: 2.5rem; text-align: left;">
+                <h3 style="font-family: var(--sans); font-weight: 900; font-size: 1.6rem; color: var(--ink); margin-bottom: 0.8rem;">शासन-प्रशासन का धरातल: 'एकल संचालक'</h3>
+                <p style="font-family: var(--sans); font-size: 1.05rem; color: var(--ink-2); line-height: 1.5; margin: 0;">गाँव में दैनिक प्रशासनिक उपस्थिति और समस्या निवारण की तुलनात्मक स्थिति:</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <!-- Panchayat Sahayak -->
+                <div class="comp-card comp-card-highlight">
+                    <div style="text-align: center; border-bottom: 1px solid rgba(34, 197, 94, 0.15); padding-bottom: 1rem;">
+                        <span class="comp-role" style="font-size: 1.4rem; color: var(--green);">पंचायत सहायक</span>
+                        <br>
+                        <div class="comp-status-badge" style="background-color: #dcfce7; color: var(--green); border: 1.5px solid var(--green); font-weight: 800; display: inline-block;">🟢 दैनिक उपस्थिति</div>
+                    </div>
+                    <div class="comp-details">
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-family: var(--sans); font-size: 0.95rem; color: var(--ink-2); line-height: 1.5;">
+                            <li>🗓️ <strong>उपलब्धता:</strong> सप्ताह में 6 दिन (सोमवार से शनिवार)</li>
+                            <li>⏰ <strong>समय:</strong> सुबह 10:00 से शाम 05:00 बजे तक</li>
+                            <li>🏢 <strong>कार्यस्थल:</strong> ग्राम सचिवालय (गाँव के भीतर ही)</li>
+                            <li>✅ <strong>प्रभाव:</strong> ग्रामीण नागरिकों को किसी भी काम के लिए गाँव से बाहर नहीं जाना पड़ता।</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Gram Vikas Adhikari / Sachiv -->
+                <div class="comp-card" style="border: 1px solid rgba(220, 38, 38, 0.2); box-shadow: 0 10px 30px rgba(220, 38, 38, 0.02);">
+                    <div style="text-align: center; border-bottom: 1px solid rgba(220, 38, 38, 0.15); padding-bottom: 1rem;">
+                        <span class="comp-role" style="font-size: 1.4rem; color: var(--blood);">ग्राम विकास अधिकारी (VDO)</span>
+                        <br>
+                        <div class="comp-status-badge" style="background-color: #fee2e2; color: var(--blood); border: 1.5px solid var(--blood); font-weight: 800; display: inline-block;">🔴 सीमित उपस्थिति</div>
+                    </div>
+                    <div class="comp-details">
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-family: var(--sans); font-size: 0.95rem; color: var(--ink-2); line-height: 1.5;">
+                            <li>🗓️ <strong>उपलब्धता:</strong> सप्ताह में केवल 1 या 2 दिन (5-10 गांवों का प्रभार)</li>
+                            <li>⏰ <strong>समय:</strong> अनिश्चित और सीमित समय</li>
+                            <li>🏢 <strong>कार्यस्थल:</strong> ब्लॉक मुख्यालय या अन्य बड़े ग्राम</li>
+                            <li>⚠️ <strong>चुनौती:</strong> नागरिकों को काम कराने के लिए ब्लॉक के चक्कर लगाने पड़ते हैं।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider" style="border: none; border-top: 1px solid rgba(26,17,8,0.08); margin: 3.5rem 0;">
+
+        <!-- Section 4: Grassroots Scheme Facilitation -->
+        <div class="schemes-section" style="margin-bottom: 4rem;">
+            <div class="section-info" style="margin-bottom: 2.5rem; text-align: left;">
+                <h3 style="font-family: var(--sans); font-weight: 900; font-size: 1.6rem; color: var(--ink); margin-bottom: 0.8rem;">योजनाओं का सरल और सुलभ वितरण</h3>
+                <p style="font-family: var(--sans); font-size: 1.05rem; color: var(--ink-2); line-height: 1.5; margin: 0;">ग्राम स्तर पर पंचायत सहायक द्वारा संचालित मुख्य सरकारी योजनाएँ व सेवाएँ:</p>
+            </div>
+            
+            <div class="schemes-grid">
+                <!-- Scheme 1 -->
+                <div class="scheme-card" onclick="openSchemeModal('ayushman')">
+                    <div class="scheme-icon">🏥</div>
+                    <div>
+                        <h4 class="scheme-title-hi">आयुष्मान भारत योजना</h4>
+                        <span class="scheme-title-en">Ayushman Bharat Healthcare</span>
+                    </div>
+                </div>
+                
+                <!-- Scheme 2 -->
+                <div class="scheme-card" onclick="openSchemeModal('pension')">
+                    <div class="scheme-icon">👵</div>
+                    <div>
+                        <h4 class="scheme-title-hi">सामाजिक पेंशन योजनाएं</h4>
+                        <span class="scheme-title-en">Elderly, Widow & Disabled Pensions</span>
+                    </div>
+                </div>
+                
+                <!-- Scheme 3 -->
+                <div class="scheme-card" onclick="openSchemeModal('kisan')">
+                    <div class="scheme-icon">🌾</div>
+                    <div>
+                        <h4 class="scheme-title-hi">पीएम किसान सम्मान निधि</h4>
+                        <span class="scheme-title-en">PM Kisan Samman Nidhi</span>
+                    </div>
+                </div>
+                
+                <!-- Scheme 4 -->
+                <div class="scheme-card" onclick="openSchemeModal('awas')">
+                    <div class="scheme-icon">🏠</div>
+                    <div>
+                        <h4 class="scheme-title-hi">प्रधानमंत्री आवास योजना</h4>
+                        <span class="scheme-title-en">PM Awas Yojana (Rural)</span>
+                    </div>
+                </div>
+                
+                <!-- Scheme 5 -->
+                <div class="scheme-card" onclick="openSchemeModal('mnega')">
+                    <div class="scheme-icon">🔨</div>
+                    <div>
+                        <h4 class="scheme-title-hi">मनरेगा रोजगार प्रबंधन</h4>
+                        <span class="scheme-title-en">MNREGA Work Management</span>
+                    </div>
+                </div>
+                
+                <!-- Scheme 6 -->
+                <div class="scheme-card" onclick="openSchemeModal('family')">
+                    <div class="scheme-icon">📜</div>
+                    <div>
+                        <h4 class="scheme-title-hi">परिवार रजिस्टर व प्रमाण पत्र</h4>
+                        <span class="scheme-title-en">Family Register & Certificates</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider" style="border: none; border-top: 1px solid rgba(26,17,8,0.08); margin: 3.5rem 0;">
+
+        <!-- Section 5: Transparent Scheme Flow Diagram (Overhauled to light, clean inline SVGs) -->
+        <div class="flow-animation-section">
+            <div class="section-info" style="margin-bottom: 2.5rem; text-align: left;">
+                <h3 style="font-family: var(--sans); font-weight: 900; font-size: 1.6rem; color: var(--ink); margin-bottom: 0.8rem;">योजनाओं का पारदर्शी प्रवाह: बिचौलिया मुक्त गाँव</h3>
+                <p style="font-family: var(--sans); font-size: 1.05rem; color: var(--ink-2); line-height: 1.5; margin: 0;">यह तुलनात्मक आरेख दर्शाता है कि कैसे पंचायत सहायक बिचौलियों को हटाकर योजनाओं का सीधा लाभ नागरिकों तक पहुँचाता है।</p>
+            </div>
+            
+            <div class="flow-container">
+                <!-- Left Box: Old Corruption System -->
+                <div class="flow-box flow-box-old">
+                    <h4 class="flow-title">❌ पारंपरिक व्यवस्था (कठिन रास्ता - दफ्तरों के चक्कर)</h4>
+                    <svg viewBox="0 0 360 260" style="width: 100%; height: auto; font-family: var(--sans); display: block; margin: 0 auto;">
+                        <!-- Background grid pattern -->
+                        <defs>
+                            <pattern id="grid-red" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect width="20" height="20" fill="none" />
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(239, 68, 68, 0.05)" stroke-width="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid-red)" rx="12" />
+
+                        <!-- Connecting path (Leakage) -->
+                        <path d="M 180 60 L 180 130" stroke="var(--ink)" stroke-width="3" stroke-dasharray="6,4" fill="none" />
+                        <path d="M 180 150 L 180 205" stroke="var(--blood)" stroke-width="1.5" stroke-dasharray="3,6" fill="none" />
+                        
+                        <!-- Leakage arrows going off-track -->
+                        <path d="M 180 115 Q 240 100 270 120" fill="none" stroke="var(--blood)" stroke-width="2.5" stroke-dasharray="4,2" />
+                        <polygon points="270,120 260,115 264,124" fill="var(--blood)" />
+                        <text x="230" y="90" font-size="10" fill="var(--blood)" font-weight="bold">💸 भ्रष्टाचार / घूस</text>
+
+                        <!-- Top Node: Government -->
+                        <rect x="110" y="15" width="140" height="40" fill="#ffffff" stroke="var(--ink)" stroke-width="2" rx="6" />
+                        <text x="180" y="32" font-size="11" font-weight="900" text-anchor="middle" fill="var(--ink)">सरकार (Govt Fund)</text>
+                        <text x="180" y="46" font-size="8" text-anchor="middle" fill="var(--ink-2)">100% आवंटित</text>
+
+                        <!-- Middle Node: Middleman -->
+                        <circle cx="180" cy="130" r="24" fill="#ffe4e6" stroke="var(--blood)" stroke-width="2" />
+                        <text x="180" y="136" font-size="16" text-anchor="middle">🕴️</text>
+                        <text x="180" y="172" font-size="9" font-weight="bold" text-anchor="middle" fill="var(--blood)">❌ योजना में रुकावट (बिचौलिया)</text>
+
+                        <!-- Bottom Node: Sad Citizen -->
+                        <rect x="110" y="205" width="140" height="40" fill="#fee2e2" stroke="var(--blood)" stroke-width="2" rx="6" />
+                        <text x="180" y="222" font-size="11" font-weight="900" text-anchor="middle" fill="var(--blood)">नागरिक 😢 (Sad Citizen)</text>
+                        <text x="180" y="235" font-size="8" text-anchor="middle" fill="var(--blood)">सीमित या शून्य लाभ</text>
+                    </svg>
+                    <p class="flow-desc">
+                        पहले लाभार्थियों को दलालों के चक्कर काटने पड़ते थे, जिससे सरकारी बजट का बड़ा हिस्सा बीच में ही लीक हो जाता था।
+                    </p>
+                    <div class="flow-highlight-bar">
+                        नुकसान: धन का रिसाव व जनता की भारी परेशानी
+                    </div>
+                </div>
+                
+                <!-- Right Box: New Transparent System -->
+                <div class="flow-box flow-box-new">
+                    <h4 class="flow-title">🟢 नई पारदर्शी व्यवस्था (आसान रास्ता - ग्राम सचिवालय)</h4>
+                    <svg viewBox="0 0 360 260" style="width: 100%; height: auto; font-family: var(--sans); display: block; margin: 0 auto;">
+                        <!-- Background grid pattern -->
+                        <defs>
+                            <pattern id="grid-green" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect width="20" height="20" fill="none" />
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(34, 197, 94, 0.05)" stroke-width="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid-green)" rx="12" />
+
+                        <!-- Connecting path (Direct Flow) -->
+                        <path d="M 180 60 L 180 205" stroke="var(--green)" stroke-width="4" fill="none" />
+                        <path d="M 180 60 L 180 205" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="6,6" fill="none" />
+
+                        <!-- Top Node: Government -->
+                        <rect x="110" y="15" width="140" height="40" fill="#ffffff" stroke="var(--ink)" stroke-width="2" rx="6" />
+                        <text x="180" y="32" font-size="11" font-weight="900" text-anchor="middle" fill="var(--ink)">सरकार (Govt Fund)</text>
+                        <text x="180" y="46" font-size="8" text-anchor="middle" fill="var(--ink-2)">100% आवंटित</text>
+
+                        <!-- Middle Node: Panchayat Sahayak -->
+                        <circle cx="180" cy="130" r="24" fill="#dcfce7" stroke="var(--green)" stroke-width="2" />
+                        <text x="180" y="136" font-size="16" text-anchor="middle">💻</text>
+                        <text x="180" y="172" font-size="9" font-weight="bold" text-anchor="middle" fill="var(--green)">⚡ e-KYC और डिजिटल सत्यापन</text>
+
+                        <!-- Bottom Node: Happy Citizen -->
+                        <rect x="110" y="205" width="140" height="40" fill="#dcfce7" stroke="var(--green)" stroke-width="2" rx="6" />
+                        <text x="180" y="222" font-size="11" font-weight="900" text-anchor="middle" fill="var(--green)">नागरिक 😊 (Happy Citizen)</text>
+                        <text x="180" y="235" font-size="8" text-anchor="middle" fill="var(--green)">100% सीधा बैंक खाता (DBT)</text>
+                    </svg>
+                    <p class="flow-desc">
+                        पंचायत सहायक की मदद से गाँव में ही e-KYC और पारदर्शी डिजिटल फीडिंग द्वारा योजना का लाभ सीधे बैंक खाते में आता है।
+                    </p>
+                    <div class="flow-highlight-bar">
+                        फायदा: 100% पारदर्शिता, भ्रष्टाचार से मुक्ति
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider" style="border: none; border-top: 1px solid rgba(26,17,8,0.08); margin: 3.5rem 0;">
+
+        <!-- Section 6: Appeal Section -->
+        <div class="appeal-card" style="display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 class="appeal-title" style="text-align: left; font-size: 1.8rem; margin-bottom: 1.5rem;">शासन व जनप्रतिनिधियों से हमारी अपील</h2>
+                <div class="appeal-quote" style="text-align: left; padding: 0; font-size: 1.15rem; margin-bottom: 2rem;">
+                    "यदि उत्तर प्रदेश के 57,000+ पंचायत सहायकों को एक सम्मानजनक न्यूनतम वेतनमान (₹१८,००० - ₹२५,०००) और एक गरिमापूर्ण नियमावली दी जाए, तो वे बिना किसी मानसिक तनाव के ग्रामीण क्षेत्रों में कल्याणकारी डिलीवरी को अभूतपूर्व स्तर पर पहुंचा देंगे।"
+                </div>
+                <div class="appeal-points" style="grid-template-columns: 1fr; gap: 1.25rem;">
+                    <div class="appeal-point">
+                        <p style="font-size: 1rem; line-height: 1.6;">
+                            🤝 <strong>सुदृढ़ प्रशासनिक नींव:</strong> 57,000+ पंचायत सहायकों की सुरक्षा और गरिमा सुनिश्चित होने से राज्य के करोड़ों ग्रामीण नागरिकों तक डिजिटल गवर्नेंस और कल्याणकारी योजनाओं का लाभ 100% सुचारू रूप से पहुँचता रहेगा, जो एक सशक्त और जन-हितैषी लोकतंत्र का आधार है।
+                        </p>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; text-align: left;">
+                    <a href="index.html" class="premium-submit-btn" style="text-decoration: none; background: var(--saffron-deep); color: #ffffff; padding: 12px 24px; border-radius: 10px; font-weight: 800; font-size: 1rem; box-shadow: 0 4px 15px rgba(220,101,30,0.25); display: inline-flex; align-items: center; gap: 8px;">
+                        <span>हस्ताक्षर अभियान से जुड़ें</span>
+                        <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+            <div style="flex: 0.8; min-width: 280px; background: #ffffff; border: 1px solid rgba(26,17,8,0.08); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(26,17,8,0.03); text-align: center;">
+                <img src="vaibhav_profile.webp" alt="Vaibhav Yadav" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--saffron); object-fit: cover; margin-bottom: 1rem; box-shadow: 0 8px 20px rgba(245,158,11,0.25);">
+                <h4 style="font-family: var(--sans); font-weight: 900; font-size: 1.2rem; color: var(--ink); margin: 0;">वैभव यादव</h4>
+                <p style="font-family: var(--mono); font-size: 0.75rem; color: var(--saffron-deep); font-weight: 800; text-transform: uppercase; margin: 2px 0 10px 0;">पंचायत सहायक</p>
+
+                <!-- NITI Aayog Model Highlight -->
+                <div style="background: linear-gradient(135deg, #fff9f2, #fff3e0); border: 1px solid rgba(245,158,11,0.2); border-left: 4px solid var(--saffron); border-radius: 8px; padding: 10px 12px; margin: 10px 0; text-align: left;">
+                    <div style="font-family: var(--mono); font-size: 0.65rem; color: var(--saffron-deep); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">नीति आयोग मॉडल</div>
+                    <p style="font-family: var(--sans); font-size: 0.82rem; color: var(--ink); font-weight: 700; margin: 0; line-height: 1.5;">
+                        ग्राम सचिवालय नीति आयोग का मॉडल है — और पंचायत सहायक इस मॉडल का संचालक।
+                    </p>
+                </div>
+
+                <p style="font-family: var(--sans); font-size: 0.85rem; color: var(--ink-2); line-height: 1.55; margin: 0; font-style: italic;">
+                    "सुशासन की नींव गाँव से शुरू होती है। जब हमें सम्मानजनक मानदेय और सेवा सुरक्षा मिलेगी, तब हर ग्राम सचिवालय एक जीवंत डिजिटल केंद्र बनेगा और ग्रामीण विकास का यह संकल्प एक नया इतिहास लिखेगा।"
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer" style="background: #111111; color: #ffffff; text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); font-family: var(--sans);">
+        <p style="margin: 0; font-weight: 800; font-size: 1rem;">© 2026 पंचायत सहायक यूनियन उ.प्र. | सर्वाधिकार सुरक्षित।</p>
+        <p style="margin: 8px 0 0 0; font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: none;">
+            Developed for administrative efficiency and transparency in UP Panchayati Raj Department.
+        </p>
+    </footer>
+
+    <!-- Schemes Detail Modal (Dynamic Content Injection) -->
+    <div class="scheme-modal-overlay" id="schemeModalOverlay" onclick="closeSchemeModal()">
+        <div class="scheme-modal" onclick="event.stopPropagation()">
+            <button class="close-modal-btn" onclick="closeSchemeModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--ink-2); font-weight: 300;">×</button>
+            <div class="details-badge" id="modalBadge">SCHEME ROLE</div>
+            <h3 class="details-title-hi" id="modalTitleHi" style="font-family: var(--sans); font-weight: 900; font-size: 1.4rem; color: var(--ink); margin: 0 0 4px 0;">योजना का नाम</h3>
+            <h4 class="details-title-en" id="modalTitleEn" style="font-family: var(--mono); font-size: 0.78rem; color: var(--ink-2); text-transform: uppercase; font-weight: 600; margin: 0 0 1.25rem 0;">SCHEME NAME</h4>
+            <div class="details-body" id="modalBody">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript logic for interactive components -->
+    <script>
+        // Governance Hierarchy Data
+        const hierarchyData = {
+            central: {
+                badge: "Tier 1: Central Government",
+                titleHi: "केन्द्र सरकार (भारत सरकार)",
+                titleEn: "Central Government of India",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📌 <strong>दायित्व:</strong> ग्रामीण विकास योजनाओं का निर्माण व बजट आवंटन।</li>
+                           <li>⚠️ <strong>चुनौती:</strong> सीधे धरातल पर उपस्थिति न होने से सत्यापन में कठिनाई।</li>
+                           <li>🟢 <strong>नया बदलाव:</strong> पंचायत सहायक के माध्यम से सीधा लाभार्थियों तक पहुँच।</li>
+                       </ul>`
+            },
+            state: {
+                badge: "Tier 2: State Government",
+                titleHi: "राज्य सरकार (उत्तर प्रदेश शासन)",
+                titleEn: "State Government of Uttar Pradesh",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📌 <strong>दायित्व:</strong> केन्द्र की योजनाओं का राज्य स्तर पर क्रियान्वयन।</li>
+                           <li>⚠️ <strong>चुनौती:</strong> प्रशासनिक अमले की कमी से योजनाओं की धीमी गति।</li>
+                           <li>🟢 <strong>नया बदलाव:</strong> 57,000+ पंचायत सहायकों द्वारा त्वरित डेटा एंट्री।</li>
+                       </ul>`
+            },
+            district: {
+                badge: "Tier 3: District Administration",
+                titleHi: "जिला प्रशासन (DM / DPRO)",
+                titleEn: "District Administration",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📌 <strong>दायित्व:</strong> जिले में विकास कार्यों की प्रशासनिक निगरानी व वित्तीय नियंत्रण।</li>
+                           <li>⚠️ <strong>चुनौती:</strong> जिले के हजारों गांवों का एक साथ भौतिक सत्यापन संभव नहीं।</li>
+                           <li>🟢 <strong>नया बदलाव:</strong> पंचायत स्तर से सीधा रिपोर्टिंग और ई-सत्यापन।</li>
+                       </ul>`
+            },
+            block: {
+                badge: "Tier 4: Block Administration",
+                titleHi: "विकास खण्ड (BDO / ADO P.)",
+                titleEn: "Block Administration",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📌 <strong>दायित्व:</strong> ग्राम पंचायतों के कार्यों का तकनीकी व प्रशासनिक अनुमोदन।</li>
+                           <li>⚠️ <strong>चुनौती:</strong> पंचायत सचिवों की भारी कमी (एक सचिव पर कई गांवों का प्रभार)।</li>
+                           <li>🟢 <strong>नया बदलाव:</strong> पंचायत सहायक द्वारा ब्लॉक स्तर के कार्यों का ऑनलाइन निस्तारण।</li>
+                       </ul>`
+            },
+            gp: {
+                badge: "Tier 5: Local Government",
+                titleHi: "ग्राम पंचायत (सचिव / प्रधान)",
+                titleEn: "Gram Panchayat Officers",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📌 <strong>दायित्व:</strong> ग्राम स्तर पर योजनाओं की प्रशासनिक व वित्तीय स्वीकृति।</li>
+                           <li>⚠️ <strong>चुनौती:</strong> सचिवों की व्यस्तता के कारण सचिवालयों का बंद रहना।</li>
+                           <li>🟢 <strong>नया बदलाव:</strong> पंचायत सहायक की दैनिक उपस्थिति से सचिवालय 6 दिन खुला।</li>
+                       </ul>`
+            },
+            sahayak: {
+                badge: "Tier 6: Last-Mile Executer",
+                titleHi: "पंचायत सहायक (ग्राम सचिवालय)",
+                titleEn: "Panchayat Assistant & Operator",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🟢 <strong>कार्यभार:</strong> दैनिक ग्राम सचिवालय संचालन और डिजिटल सेवा केंद्र।</li>
+                           <li>⚡ <strong>डिजिटल सेवा:</strong> e-KYC, आयुष्मान कार्ड, पेंशन, आवास व जन्म-मृत्यु प्रमाण पत्र आवेदन।</li>
+                           <li>🏆 <strong>प्रभाव:</strong> ग्रामीण नागरिकों को किसी काम के लिए ब्लॉक या तहसील जाने की आवश्यकता नहीं।</li>
+                       </ul>`
+            },
+            citizens: {
+                badge: "Tier 7: End Beneficiary",
+                titleHi: "गाँव के नागरिक (ग्रामीण जनता)",
+                titleEn: "Rural Population of UP",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🎯 <strong>लक्ष्य:</strong> समाज के अंतिम पायदान पर खड़े व्यक्ति तक योजनाओं का लाभ।</li>
+                           <li>✅ <strong>लाभ:</strong> पंचायत सहायक द्वारा घर बैठे डिजिटल सेवाओं की आसान पहुँच।</li>
+                           <li>🌟 <strong>परिणाम:</strong> 100% भ्रष्टाचार-मुक्त एवं पारदर्शी योजना वितरण।</li>
+                       </ul>`
+            },
+            citizen_farmers: {
+                badge: "Tier 7: Village Citizens",
+                titleHi: "किसान भाई (Farmers)",
+                titleEn: "Rural Agricultural Reach",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🌾 <strong>योजना:</strong> पीएम किसान सम्मान निधि, ई-केवाईसी व लैंड सीटींग।</li>
+                           <li>🛠️ <strong>सहायता:</strong> पंचायत सहायक द्वारा खेत से ही डेटा एंट्री व खतौनी ऑनलाइन निकालना।</li>
+                           <li>🟢 <strong>फायदा:</strong> बिना किसी शुल्क के घर बैठे किसान सम्मान निधि का सुचारू ट्रांसफर।</li>
+                       </ul>`
+            },
+            citizen_elderly: {
+                badge: "Tier 7: Village Citizens",
+                titleHi: "बुजुर्ग व दिव्यांगजन (Elderly & Disabled)",
+                titleEn: "Social Pension Beneficiaries",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>👵 <strong>योजना:</strong> वृद्धावस्था, विधवा व दिव्यांग पेंशन योजनाएं।</li>
+                           <li>🛠️ <strong>सहायता:</strong> ऑनलाइन फॉर्म भरना, वार्षिक भौतिक सत्यापन (Physical Verification)।</li>
+                           <li>🟢 <strong>फायदा:</strong> चलने-फिरने में असमर्थ लाभार्थियों को घर पर ही प्रशासनिक सहायता।</li>
+                       </ul>`
+            },
+            citizen_women: {
+                badge: "Tier 7: Village Citizens",
+                titleHi: "महिलाएं एवं मातृशक्ति (Women & Children)",
+                titleEn: "Women Empowerment Schemes",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>👩‍🍼 <strong>योजना:</strong> पीएम मातृ वंदना योजना, कन्या सुमंगला व स्वयं सहायता समूह।</li>
+                           <li>🛠️ <strong>सहायता:</strong> आवेदन पत्र, स्वास्थ्य कार्ड व ब्लॉक स्तर की योजनाओं का ऑनलाइन निस्तारण।</li>
+                           <li>🟢 <strong>फायदा:</strong> महिलाओं को ब्लॉक की लंबी कतारों से मुक्ति और गाँव में ही सम्मानजनक सेवा।</li>
+                       </ul>`
+            },
+            citizen_laborers: {
+                badge: "Tier 7: Village Citizens",
+                titleHi: "श्रमिक व मजदूर वर्ग (Laborers)",
+                titleEn: "Grassroots Workforce Support",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🔨 <strong>योजना:</strong> मनरेगा (MGNREGA) रोजगार कार्ड व मस्टर रोल ट्रैकिंग।</li>
+                           <li>🛠️ <strong>सहायता:</strong> NMMS ऐप द्वारा दैनिक उपस्थिति दर्ज करना और भुगतान की ऑनलाइन जानकारी देना।</li>
+                           <li>🟢 <strong>फायदा:</strong> समय पर मस्टर रोल फीडिंग से मजदूरी का त्वरित भुगतान।</li>
+                       </ul>`
+            },
+            citizen_youth: {
+                badge: "Tier 7: Village Citizens",
+                titleHi: "युवा एवं छात्र वर्ग (Youth & Students)",
+                titleEn: "Next-Gen Village Education",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🎓 <strong>योजना:</strong> छात्रवृत्ति आवेदन, डिजिटल साक्षरता व युवा स्वरोजगार योजनाएं।</li>
+                           <li>🛠️ <strong>सहायता:</strong> ग्राम सचिवालय में इंटरनेट सुविधा और आवेदन फॉर्म भरने का मार्गदर्शन।</li>
+                           <li>🟢 <strong>फायदा:</strong> प्रतियोगी परीक्षाओं की जानकारी और कंप्यूटर आधारित कार्यों के लिए गाँव में सुविधा।</li>
+                       </ul>`
+            }
+        };
+
+        // Function to update details display panel on tree click
+        function showNodeDetails(nodeKey, element) {
+            const data = hierarchyData[nodeKey];
+            if (!data) return;
+
+            // Update UI elements
+            document.getElementById('detailsBadge').textContent = data.badge;
+            document.getElementById('detailsTitleHi').textContent = data.titleHi;
+            document.getElementById('detailsTitleEn').textContent = data.titleEn;
+            document.getElementById('detailsBody').innerHTML = data.body;
+
+            // Highlight selected node in tree list/diagram container
+            const nodes = document.querySelectorAll('.diagram-node, .diagram-hub-node, .citizen-branch-node');
+            nodes.forEach(node => {
+                node.classList.remove('active-node');
+            });
+
+            // Highlight clicked element
+            if (element) {
+                element.classList.add('active-node');
+            } else if (typeof event !== 'undefined' && event.currentTarget) {
+                event.currentTarget.classList.add('active-node');
+            }
+        }
+
+        // Stats Counters Animation logic
+        function startCounters() {
+            const counters = document.querySelectorAll('.stat-num');
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const isDecimal = counter.getAttribute('data-decimal') === 'true';
+                
+                let current = 0;
+                const duration = 1200; // Total animation time in ms
+                const stepTime = 20;
+                const totalSteps = duration / stepTime;
+                const increment = target / totalSteps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (isDecimal) {
+                        counter.textContent = current.toFixed(1) + suffix;
+                    } else {
+                        counter.textContent = Math.floor(current).toLocaleString('en-IN') + suffix;
+                    }
+                }, stepTime);
+            });
+        }
+
+        // Government Scheme Roles Data
+        const schemeRoles = {
+            ayushman: {
+                badge: "AYUSHMAN BHARAT",
+                titleHi: "आयुष्मान भारत योजना (Healthcare Card)",
+                titleEn: "Healthcare Card Creation",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🏥 <strong>उद्देश्य:</strong> प्रति परिवार 5 लाख रुपये तक का मुफ्त इलाज।</li>
+                           <li>💻 <strong>पंचायत सहायक की भूमिका:</strong> गाँव में ही e-KYC करना और कार्ड प्रिंट करना।</li>
+                           <li>📈 <strong>विज़ुअल प्रभाव:</strong> गाँव के पात्र परिवारों को महंगे अस्पतालों के खर्च से सुरक्षा।</li>
+                       </ul>`
+            },
+            pension: {
+                badge: "SOCIAL PENSIONS",
+                titleHi: "सामाजिक पेंशन योजनाएं (पेंशन आवेदन)",
+                titleEn: "Elderly, Widow & Disabled Support",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>👵 <strong>उद्देश्य:</strong> वृद्धों, विधवाओं व दिव्यांगजनों को मासिक वित्तीय सहायता।</li>
+                           <li>💻 <strong>पंचायत सहायक की भूमिका:</strong> फॉर्म आवेदन, पात्रता सत्यापन व आधार सीडिंग।</li>
+                           <li>📈 <strong>विज़ुअल प्रभाव:</strong> बुजुर्गों व असहायों को नियमित सरकारी पेंशन की प्राप्ति।</li>
+                       </ul>`
+            },
+            kisan: {
+                badge: "PM KISAN SAMMAN NIDHI",
+                titleHi: "पीएम किसान सम्मान निधि (कृषि सम्मान)",
+                titleEn: "Farmer Benefit Direct Transfers",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🌾 <strong>उद्देश्य:</strong> किसानों को 6,000 रुपये प्रति वर्ष की सीधी सहायता।</li>
+                           <li>💻 <strong>पंचायत सहायक की भूमिका:</strong> e-KYC, खतौनी अपलोड व बैंक खाता एनपीसीआई मैपिंग।</li>
+                           <li>📈 <strong>विज़ुअल प्रभाव:</strong> बिना बिचौलियों के पूरी राशि सीधे किसान के बैंक खाते में।</li>
+                       </ul>`
+            },
+            awas: {
+                badge: "PM AWAS GRAMIN",
+                titleHi: "प्रधानमंत्री आवास योजना (ग्रामीण)",
+                titleEn: "Rural Housing Scheme",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🏠 <strong>उद्देश्य:</strong> बेघर व कच्चे मकान वालों को पक्का मकान निर्माण हेतु राशि।</li>
+                           <li>💻 <strong>पंचायत सहायक की भूमिका:</strong> लाभार्थियों की जिओ-टैगिंग (Geo-tagging) व किस्त सत्यापन।</li>
+                           <li>📈 <strong>विज़ुअल प्रभाव:</strong> ग्रामीणों को पक्के मकान का निर्माण व पारदर्शी फंड ट्रांसफर।</li>
+                       </ul>`
+            },
+            mnega: {
+                badge: "MNREGA EMPLOYMENT",
+                titleHi: "मनरेगा रोजगार (जॉब कार्ड)",
+                titleEn: "Employment Card & Muster Roll Tracking",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>🔨 <strong>उद्देश्य:</strong> ग्रामीण परिवारों को 100 दिन का सुनिश्चित रोजगार।</li>
+                           <li>💻 <strong>पंचायत सहायक की भूमिका:</strong> NMMS ऐप पर हाजिरी भरना, जॉब कार्ड अपडेशन व मस्टर रोल।</li>
+                           <li>📈 <strong>विज़ुअल प्रभाव:</strong> गाँव में काम और समय पर सुरक्षित मजदूरी भुगतान।</li>
+                       </ul>`
+            },
+            family: {
+                badge: "FAMILY REGISTER",
+                titleHi: "परिवार रजिस्टर (कुटुंब रजिस्टर)",
+                titleEn: "Digital Demographics & Vital Records",
+                body: `<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                           <li>📜 <strong>उद्देश्य:</strong> गाँव के परिवारों का सरकारी जनसांख्यिकी डेटा बेस।</li>
+                           <li>💻 <strong>पंचायत सहायक की भूमिका:</strong> कुटुंब रजिस्टर की नकल जारी करना, नाम जोड़ना/हटाना।</li>
+                           <li>📈 <strong>विज़ुअल प्रभाव:</strong> किसी भी सरकारी काम के लिए आवश्यक कुटुंब रजिस्टर की नकल तुरंत मिलना।</li>
+                       </ul>`
+            }
+        };
+
+        // Open Scheme details modal function
+        function openSchemeModal(schemeKey) {
+            const data = schemeRoles[schemeKey];
+            if (!data) return;
+
+            document.getElementById('modalBadge').textContent = data.badge;
+            document.getElementById('modalTitleHi').textContent = data.titleHi;
+            document.getElementById('modalTitleEn').textContent = data.titleEn;
+            document.getElementById('modalBody').innerHTML = data.body;
+
+            const overlay = document.getElementById('schemeModalOverlay');
+            overlay.classList.add('show');
+        }
+
+        // Close Scheme details modal function
+        function closeSchemeModal() {
+            const overlay = document.getElementById('schemeModalOverlay');
+            overlay.classList.remove('show');
+        }
+
+        // Coming Soon Modal Functions
+        function showComingSoonModal() {
+            const modal = document.getElementById('comingSoonModal');
+            const content = document.getElementById('comingSoonModalContent');
+            if(modal && content) {
+                modal.style.display = 'flex';
+                // Trigger reflow
+                void modal.offsetWidth;
+                modal.style.opacity = '1';
+                
+                content.classList.remove('modal-active-anim');
+                void content.offsetWidth; // trigger reflow
+                content.classList.add('modal-active-anim');
+            }
+        }
+        function hideComingSoonModal() {
+            const modal = document.getElementById('comingSoonModal');
+            const content = document.getElementById('comingSoonModalContent');
+            if(modal && content) {
+                modal.style.opacity = '0';
+                content.style.transform = 'scale(0.8) translateY(20px)';
+                content.style.opacity = '0';
+                content.classList.remove('modal-active-anim');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 400);
+            }
+        }
+    </script>
+
+    <!-- Professional Coming Soon Modal -->
+    <style>
+        @keyframes modalBounceIn {
+            0% { transform: scale(0.5) translateY(50px); opacity: 0; }
+            60% { transform: scale(1.05) translateY(-10px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes iconPulse {
+            0% { box-shadow: 0 0 0 0 rgba(232, 131, 42, 0.4); transform: scale(1); }
+            70% { box-shadow: 0 0 0 20px rgba(232, 131, 42, 0); transform: scale(1.05); }
+            100% { box-shadow: 0 0 0 0 rgba(232, 131, 42, 0); transform: scale(1); }
+        }
+        @keyframes wrenchSpin {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(15deg); }
+            40% { transform: rotate(-10deg); }
+            60% { transform: rotate(5deg); }
+            80% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .modal-active-anim {
+            animation: modalBounceIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+        }
+    </style>
+    <div id="comingSoonModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease;">
+        <div style="background: linear-gradient(145deg, #ffffff, #f9f4ef); width: 90%; max-width: 380px; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 0 4px var(--saffron, #E8832A); transform: scale(0.8) translateY(20px); opacity: 0;" id="comingSoonModalContent">
+            
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, rgba(232, 131, 42, 0.15), rgba(224, 90, 10, 0.1)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; animation: iconPulse 2s infinite; border: 2px dashed rgba(232, 131, 42, 0.4);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--saffron-deep, #E05A0A)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: wrenchSpin 2.5s infinite ease-in-out; transform-origin: center;">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+            </div>
+
+            <h3 style="font-family: var(--sans, 'Hind', sans-serif); font-size: 1.6rem; font-weight: 800; color: var(--ink, #1A1108); margin: 0 0 0.8rem; letter-spacing: -0.02em;">कार्य प्रगति पर है <span style="display:inline-block; animation: wrenchSpin 2s infinite">⚙️</span></h3>
+            
+            <div style="height: 3px; width: 50px; background: var(--saffron-deep, #E05A0A); margin: 0 auto 1.2rem; border-radius: 3px;"></div>
+
+            <p style="font-family: var(--sans, 'Hind', sans-serif); font-size: 1.05rem; color: var(--ink-2, #555); margin: 0 0 2rem; line-height: 1.6;">
+                यह अनुभाग अभी निर्माण के चरण में है। हम इसे जल्द ही आप तक पहुँचाने के लिए मेहनत कर रहे हैं!
+            </p>
+            
+            <button onclick="hideComingSoonModal()" style="background: linear-gradient(135deg, var(--saffron, #E8832A), var(--saffron-deep, #E05A0A)); color: #fff; border: none; padding: 0.9rem 2.8rem; font-size: 1.1rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 15px rgba(224, 90, 10, 0.3); transition: all 0.3s ease; font-family: var(--sans, 'Hind', sans-serif);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 20px rgba(224, 90, 10, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 15px rgba(224, 90, 10, 0.3)';">
+                ठीक है (OK)
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

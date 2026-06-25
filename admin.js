@@ -7,6 +7,7 @@ let currentPage = 1;
 const pageSize = 25;
 let pageAnchors = { 1: null }; // pageNumber -> doc snapshot anchor
 let useLocalFallback = false; // Self-healing fallback if compound index is missing
+let photoFilterActive = false; // TRUE = only show records with photoData
 
 // Government Orders Dashboard state
 let currentView = 'campaign'; // 'campaign' or 'orders'
@@ -100,8 +101,8 @@ function loadApplications(status, page = 1) {
     // Check if pagination controls should be visible
     document.getElementById('paginationControls').style.display = 'flex';
 
-    if (useLocalFallback || districtFilter) {
-        // If index is missing or we are filtering by district,
+    if (useLocalFallback || districtFilter || photoFilterActive) {
+        // If index is missing or we are filtering by district/photo,
         // use local modes to bypass needing manual compound indexes in Firestore.
         loadApplicationsLocal(status, districtFilter, page);
     } else {
@@ -153,7 +154,7 @@ function loadApplicationsServer(status, page) {
     });
 }
 
-// Zero-Config Fallback: Filters by status/district in database without compound orderBy.
+// Zero-Config Fallback: Filters by status/district/photo in database without compound orderBy.
 // Instantly bypasses composite index errors and paginates/sorts in JavaScript memory.
 function loadApplicationsLocal(status, districtFilter, page) {
     const tableBody = document.getElementById('tableBody');
@@ -170,7 +171,7 @@ function loadApplicationsLocal(status, districtFilter, page) {
             return;
         }
         
-        const docs = snapshot.docs;
+        let docs = snapshot.docs;
         
         // Sort in memory by timestamp descending
         docs.sort((a, b) => {
@@ -191,12 +192,122 @@ function loadApplicationsLocal(status, districtFilter, page) {
         });
         
         renderTableRows(pageDocs);
+        
         updatePaginationControls(hasNextPage);
     }).catch((error) => {
         console.error("Local mode query failed:", error);
         tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--blood);">Error loading data. Check console.</td></tr>`;
     });
 }
+
+// ==========================================
+// PHOTO FILTER TOGGLE
+// ==========================================
+
+function togglePhotoFilter() {
+    photoFilterActive = !photoFilterActive;
+    
+    const btn = document.getElementById('tabPhotoOnly');
+    const badge = document.getElementById('photoFilterBadge');
+    
+    if (photoFilterActive) {
+        // Turn ON — visually activate button
+        if (btn) {
+            btn.style.background = '#d97706';
+            btn.style.color = '#fff';
+            btn.style.borderColor = '#92400e';
+            btn.style.boxShadow = '3px 3px 0 #92400e';
+            btn.textContent = '📸 Photo Filter: ON ✓';
+        }
+        if (badge) badge.style.display = 'inline-block';
+        
+        // Load ALL photo records across ALL statuses
+        currentPage = 1;
+        loadAllPhotoRecords(1);
+    } else {
+        // Turn OFF
+        if (btn) {
+            btn.style.background = '#fff7ed';
+            btn.style.color = '#d97706';
+            btn.style.borderColor = '#d97706';
+            btn.style.boxShadow = '3px 3px 0 #d97706';
+            btn.textContent = '📸 Photo वाले देखें';
+        }
+        if (badge) badge.style.display = 'none';
+        
+        // Restore normal tab view
+        _cachedPhotoDocs = null; // Clear cache so next ON is a fresh fetch
+        pageAnchors = { 1: null };
+        currentPage = 1;
+        loadApplications(currentStatus, 1);
+    }
+}
+
+// Cached photo docs so we don't re-fetch on every page turn
+let _cachedPhotoDocs = null;
+
+// सबसे पहले 100 records लाओ (जब photo mandatory थी)
+// Simple approach: orderBy timestamp asc, limit 100
+function loadAllPhotoRecords(page) {
+    currentPage = page;
+    const tableBody = document.getElementById('tableBody');
+    document.getElementById('paginationControls').style.display = 'flex';
+
+    // Use cached results for pagination
+    if (_cachedPhotoDocs !== null) {
+        _renderPhotoPage(_cachedPhotoDocs, page);
+        return;
+    }
+
+    tableBody.innerHTML = '<tr><td colspan="8" style="text-align:center; font-family:var(--mono); font-weight:700; padding:2rem;">⏳ शुरुआती 100 Photo वाले Forms लोड हो रहे हैं...</td></tr>';
+
+    // पहले 100 records (timestamp के हिसाब से सबसे पुराने) — यही photo वाले हैं
+    db.collection('applications')
+        .orderBy('timestamp', 'asc')
+        .limit(100)
+        .get()
+        .then((snapshot) => {
+            if (snapshot.empty) {
+                tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; font-family:var(--mono); padding:2rem;">कोई record नहीं मिला।</td></tr>`;
+                updatePaginationControls(false);
+                return;
+            }
+
+            const docs = snapshot.docs;
+            _cachedPhotoDocs = docs;
+            _renderPhotoPage(docs, page);
+        })
+        .catch((err) => {
+            console.error("First 100 records fetch failed:", err);
+            tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--blood); padding:2rem;">❌ Error: ${err.message}</td></tr>`;
+        });
+}
+
+function _renderPhotoPage(docs, page) {
+    const tableBody = document.getElementById('tableBody');
+    const totalCount = docs.length;
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const pageDocs = docs.slice(startIndex, endIndex);
+    const hasNextPage = docs.length > endIndex;
+
+    allApplications = {};
+    pageDocs.forEach(doc => {
+        allApplications[doc.id] = doc.data();
+    });
+
+    renderTableRows(pageDocs);
+
+    // Show first and last receipt numbers so user can confirm these are the survey records
+    const firstToken = docs[0]?.data()?.receiptNo || '#1';
+    const lastToken  = docs[docs.length - 1]?.data()?.receiptNo || `#${totalCount}`;
+    document.getElementById('pageIndicator').textContent =
+        `Page ${page} | 📸 ${totalCount} Forms | ${firstToken} → ${lastToken}`;
+
+    updatePaginationControls(hasNextPage);
+}
+
+
 
 function renderTableRows(pageDocs) {
     const tableBody = document.getElementById('tableBody');
@@ -266,7 +377,12 @@ function changePage(dir) {
         currentPage += dir;
         if (currentPage < 1) currentPage = 1;
     }
-    loadApplications(currentStatus, currentPage);
+    // If photo filter is ON, paginate through photo records instead of status-based
+    if (photoFilterActive) {
+        loadAllPhotoRecords(currentPage);
+    } else {
+        loadApplications(currentStatus, currentPage);
+    }
 }
 
 function updatePaginationControls(hasNextPage) {
@@ -469,11 +585,13 @@ function loadStats() {
     const statTotal = document.getElementById('statTotal');
     const statApproved = document.getElementById('statApproved');
     const statPending = document.getElementById('statPending');
+    const statWithPhoto = document.getElementById('statWithPhoto');
 
     db.collection('applications').get().then(snap => {
         let total = snap.size;
         let approved = 0;
         let pending = 0;
+        let withPhoto = 0;
         let activeSize = 0;
         const districtCounts = {};
 
@@ -481,6 +599,9 @@ function loadStats() {
             const data = doc.data();
             if (data.status === 'approved') approved++;
             if (data.status === 'pending') pending++;
+            
+            // Count records that have a valid photo
+            if (data.photoData && data.photoData.trim().length > 10) withPhoto++;
             
             if (data.status !== 'rejected') {
                 activeSize++;
@@ -494,6 +615,7 @@ function loadStats() {
         if (statTotal) statTotal.textContent = total;
         if (statApproved) statApproved.textContent = approved;
         if (statPending) statPending.textContent = pending;
+        if (statWithPhoto) statWithPhoto.textContent = withPhoto;
 
         // Update Campaign Progress Bar
         const target = 57000;
@@ -516,6 +638,45 @@ function loadStats() {
             console.warn("Silent background stats sync failed:", err);
         });
     });
+}
+
+// ==========================================
+// PHOTO FILTER TOGGLE
+// ==========================================
+
+function togglePhotoFilter() {
+    photoFilterActive = !photoFilterActive;
+    
+    const btn = document.getElementById('tabPhotoOnly');
+    const badge = document.getElementById('photoFilterBadge');
+    const statCard = btn ? null : null;
+    
+    if (photoFilterActive) {
+        // Turn ON
+        if (btn) {
+            btn.style.background = '#d97706';
+            btn.style.color = '#fff';
+            btn.style.borderColor = '#92400e';
+            btn.style.boxShadow = '3px 3px 0 #92400e';
+            btn.textContent = '📸 Photo Filter: ON';
+        }
+        if (badge) badge.style.display = 'inline-block';
+    } else {
+        // Turn OFF
+        if (btn) {
+            btn.style.background = '#fff7ed';
+            btn.style.color = '#d97706';
+            btn.style.borderColor = '#d97706';
+            btn.style.boxShadow = '3px 3px 0 #d97706';
+            btn.textContent = '📸 Photo वाले देखें';
+        }
+        if (badge) badge.style.display = 'none';
+    }
+    
+    // Reset to page 1 and reload with filter applied
+    pageAnchors = { 1: null };
+    currentPage = 1;
+    loadApplications(currentStatus, 1);
 }
 
 function restoreApplication(id) {

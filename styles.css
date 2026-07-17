@@ -15,9 +15,11 @@
     --sans: 'Inter', 'Hind', -apple-system, sans-serif;
     --mono: 'JetBrains Mono', monospace;
     
-    --border-ink: 3px solid var(--ink);
+    --border-ink: 2px solid var(--ink);
     --shadow-hard: 8px 8px 0 var(--ink);
-    --shadow-sm: 4px 4px 0 var(--ink);
+    --shadow-md: 5px 5px 0 var(--ink);
+    --shadow-sm: 3px 3px 0 var(--ink);
+    --shadow-xl: 10px 10px 0 var(--ink);
     
     --radius-sm: 0;
     --radius-md: 0;
@@ -178,23 +180,32 @@ body::before {
 
 .section-divider {
     border: none;
-    height: 4px;
+    height: 1px;
     background-color: var(--ink);
-    margin: 4.5rem 0;
+    margin: 3.5rem 0;
+    opacity: 0.15;
 }
 
 .section-info h3 {
     font-family: var(--condensed);
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--saffron-deep);
+    padding: 0 0 6px 0;
+    border-bottom: 2px solid var(--saffron);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+}
+
+.section-important .section-info h3 {
     color: var(--paper);
     background-color: var(--ink);
     padding: 12px 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1.2rem;
-    display: inline-block;
-    box-shadow: 5px 5px 0 var(--saffron);
+    box-shadow: var(--shadow-sm);
+    border-bottom: none;
+    font-weight: 700;
 }
 
 .section-info p {
@@ -229,7 +240,7 @@ body::before {
 .card {
     background-color: var(--paper);
     border: var(--border-ink);
-    box-shadow: var(--shadow-hard);
+    box-shadow: var(--shadow-md);
     padding: 3rem;
     position: relative;
 }

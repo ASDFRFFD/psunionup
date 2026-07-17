@@ -746,9 +746,9 @@ window.generateFreeReceipt = async function() {
     }
 };
 
-// Work Report Prompt Modal logic
-window.closeWorkReportPromptModal = function() {
-    const modal = document.getElementById('workReportPromptModal');
+// Dharna Prompt Modal logic
+window.closeDharnaPromptModal = function() {
+    const modal = document.getElementById('dharnaPromptModal');
     if (modal) {
         modal.style.display = 'none';
     }
@@ -756,13 +756,13 @@ window.closeWorkReportPromptModal = function() {
 
 // Check if prompt should be shown on page load (safe trigger)
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initWorkReportPrompt);
+    document.addEventListener('DOMContentLoaded', initDharnaPrompt);
 } else {
-    initWorkReportPrompt();
+    initDharnaPrompt();
 }
 
-function initWorkReportPrompt() {
-    const promptModal = document.getElementById('workReportPromptModal');
+function initDharnaPrompt() {
+    const promptModal = document.getElementById('dharnaPromptModal');
     if (promptModal) {
         promptModal.style.display = 'flex';
     }

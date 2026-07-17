@@ -44,67 +44,181 @@
                     <span class="badge">उत्तर प्रदेश</span>
                 </div>
             </div>
-            <div style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
-                <a href="javascript:void(0)" onclick="showComingSoonModal()" class="nav-btn-outline" style="background: var(--saffron); color: var(--paper); border-color: var(--saffron); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px; cursor: pointer;" title="जल्द आ रहा है (Coming Soon)">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-                    उपलब्धियां (Soon)
+
+            <!-- Desktop Nav Buttons -->
+            <div class="nav-desktop-actions">
+                <a href="dharna-guidelines.html" class="nav-pill nav-pill--red" title="धरना प्रदर्शन 20 जुलाई">
+                    धरना प्रदर्शन
                 </a>
-                <style>
-                    @keyframes superPulse {
-                        0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); transform: scale(1); }
-                        50% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); transform: scale(1.05); }
-                        100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); transform: scale(1); }
-                    }
-                    .kary-vivran-btn-active {
-                        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
-                        color: #fff !important;
-                        border: 2px solid #fff !important;
-                        border-radius: 50px !important;
-                        padding: 0.6rem 1.2rem !important;
-                        font-weight: 800 !important;
-                        animation: superPulse 1.5s infinite !important;
-                        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    .kary-vivran-btn-active::after {
-                        content: '';
-                        position: absolute;
-                        top: -50%;
-                        left: -50%;
-                        width: 200%;
-                        height: 200%;
-                        background: rgba(255, 255, 255, 0.2);
-                        transform: rotate(45deg);
-                        animation: sweep 3s infinite linear;
-                    }
-                    @keyframes sweep {
-                        0% { left: -100%; }
-                        100% { left: 100%; }
-                    }
-                </style>
-                <a href="work-report.html" class="nav-btn-outline kary-vivran-btn-active" style="margin: 0; display: inline-flex; align-items: center; gap: 6px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position: relative; z-index: 2;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></polyline><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    <span style="position: relative; z-index: 2;">कार्य रिपोर्ट (Active)</span>
+                <a href="work-report.html" class="nav-pill nav-pill--blue">
+                    कार्य रिपोर्ट
                 </a>
-                <a href="impact.html" class="nav-btn-outline" style="background: var(--paper-2); color: var(--ink); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px;" title="पहुँच और प्रभाव">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    पहुँच और प्रभाव
+                <a href="impact.html" class="nav-pill nav-pill--dark">
+                    पहुँच व प्रभाव
                 </a>
-                <a href="javascript:void(0)" onclick="showComingSoonModal()" class="nav-btn-outline" style="background: var(--paper-2); color: var(--ink); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px; cursor: pointer;" title="जल्द आ रहा है (Coming Soon)">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    भविष्य का विज़न (Soon)
-                </a>
-                <a href="admin.html" class="nav-btn-outline" style="margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron-deep); display: inline-flex; align-items: center; gap: 6px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
+                <a href="admin.html" class="nav-pill nav-pill--outline">
                     Login
                 </a>
             </div>
+
+            <!-- Hamburger Button (Mobile only) -->
+            <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Slide-down Menu -->
+        <div class="mobile-nav-drawer" id="mobileNavDrawer">
+            <a href="dharna-guidelines.html" class="mobile-nav-item mobile-nav-item--red" onclick="toggleMobileMenu()">
+                धरना प्रदर्शन — 20 जुलाई
+            </a>
+            <a href="work-report.html" class="mobile-nav-item mobile-nav-item--blue" onclick="toggleMobileMenu()">
+                कार्य रिपोर्ट
+            </a>
+            <a href="impact.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
+                पहुँच और प्रभाव
+            </a>
+            <a href="admin.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
+                Admin Login
+            </a>
         </div>
     </header>
+
+    <style>
+        /* ── Desktop Nav Pills ── */
+        .nav-desktop-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1.1rem;
+            border-radius: 50px;
+            font-family: var(--sans, 'Hind', sans-serif);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+            white-space: nowrap;
+        }
+        .nav-pill:hover { transform: translateY(-2px); opacity: 0.92; }
+
+        .nav-pill--red {
+            background: var(--blood, #b91c1c);
+            color: #fff;
+            border-color: var(--blood, #b91c1c);
+            box-shadow: 0 4px 14px rgba(185,28,28,0.35);
+            animation: dharnaPulseNew 2.2s infinite;
+        }
+        @keyframes dharnaPulseNew {
+            0%, 100% { box-shadow: 0 4px 14px rgba(185,28,28,0.35), 0 0 0 0 rgba(185,28,28,0.4); }
+            50%       { box-shadow: 0 4px 14px rgba(185,28,28,0.35), 0 0 0 7px rgba(185,28,28,0); }
+        }
+        .nav-pill--blue {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #fff;
+            border-color: #1d4ed8;
+            box-shadow: 0 3px 10px rgba(37,99,235,0.35);
+        }
+        .nav-pill--dark {
+            background: var(--ink, #1a1108);
+            color: var(--paper, #f4ebd7);
+            border-color: var(--ink, #1a1108);
+        }
+        .nav-pill--outline {
+            background: transparent;
+            color: var(--ink, #1a1108);
+            border-color: var(--ink, #1a1108);
+        }
+        .nav-pill--outline:hover { background: var(--ink, #1a1108); color: #fff; }
+
+        /* ── Hamburger Button ── */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: 2px solid var(--ink, #1a1108);
+            border-radius: 6px;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .hamburger-btn span {
+            display: block;
+            width: 22px;
+            height: 2.5px;
+            background: var(--ink, #1a1108);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-btn.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        .hamburger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger-btn.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+        /* ── Mobile Drawer ── */
+        .mobile-nav-drawer {
+            display: none;
+            flex-direction: column;
+            background: var(--paper, #f4ebd7);
+            border-top: 2px solid var(--ink, #1a1108);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.35s ease;
+        }
+        .mobile-nav-drawer.open { max-height: 400px; }
+        .mobile-nav-item {
+            display: block;
+            padding: 0.95rem 1.5rem;
+            font-family: var(--sans, 'Hind', sans-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--ink, #1a1108);
+            border-bottom: 1px solid rgba(26,17,8,0.1);
+            transition: background 0.15s ease, padding-left 0.15s ease;
+        }
+        .mobile-nav-item:last-child { border-bottom: none; }
+        .mobile-nav-item:hover { background: rgba(26,17,8,0.05); padding-left: 2rem; }
+        .mobile-nav-item--red {
+            color: var(--blood, #b91c1c) !important;
+            background: rgba(185,28,28,0.06);
+            font-size: 1.05rem;
+        }
+        .mobile-nav-item--blue {
+            color: #1d4ed8 !important;
+        }
+
+        /* ── Responsive Breakpoints ── */
+        @media (max-width: 768px) {
+            .nav-desktop-actions { display: none; }
+            .hamburger-btn { display: flex; }
+            .mobile-nav-drawer { display: flex; }
+        }
+        @media (min-width: 769px) {
+            .mobile-nav-drawer { display: none !important; }
+        }
+    </style>
+    <script>
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileNavDrawer');
+            const btn = document.getElementById('hamburgerBtn');
+            drawer.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            const drawer = document.getElementById('mobileNavDrawer');
+            const btn = document.getElementById('hamburgerBtn');
+            if (drawer && btn && !drawer.contains(e.target) && !btn.contains(e.target)) {
+                drawer.classList.remove('open');
+                btn.classList.remove('open');
+            }
+        });
+    </script>
 
     <!-- Bold Tagline Banner — MAIN HEADLINE (Stretches 100% Edge-to-Edge) -->
     <div class="tagline-banner">
@@ -745,32 +859,38 @@
         </div>
     </div>
 
-    <!-- Premium Work Report Prompt Modal -->
-    <div id="workReportPromptModal" class="premium-modal" style="display: none;">
-        <div class="modal-overlay" onclick="closeWorkReportPromptModal()"></div>
-        <div class="modal-card" style="border-color: var(--green); box-shadow: var(--shadow-hard);">
-            <button onclick="closeWorkReportPromptModal()" class="modal-close-btn"
+    <!-- Premium Dharna Prompt Modal -->
+    <div id="dharnaPromptModal" class="premium-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeDharnaPromptModal()"></div>
+        <div class="modal-card" style="border-color: var(--blood); box-shadow: var(--shadow-hard);">
+            <button onclick="closeDharnaPromptModal()" class="modal-close-btn"
                 style="position:absolute; top:14px; right:16px; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--ink-2); line-height:1;">✕</button>
-            <div class="success-icon-wrapper" style="background-color: var(--saffron-deep); margin-bottom: 1.25rem; border-color: var(--ink);">
-                <!-- Document/Report Icon -->
+            <div class="success-icon-wrapper" style="background-color: var(--blood); margin-bottom: 1.25rem; border-color: var(--ink);">
+                <!-- Protest/Rally Flag Icon -->
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 36px; height: 36px; color: var(--paper);">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                    <line x1="4" y1="22" x2="4" y2="15"></line>
                 </svg>
             </div>
-            <h2 class="modal-title" style="color: var(--saffron-deep); font-size: 1.6rem; margin-bottom: 0.6rem;">📊 कार्यों की रिपोर्ट बनाने में योगदान दें</h2>
+            <h2 class="modal-title" style="color: var(--blood); font-size: 1.6rem; margin-bottom: 0.6rem;">✊ विशाल धरना प्रदर्शन</h2>
+            
+            <div style="background: var(--paper-2); border: 2px dashed var(--ink); padding: 12px; margin-bottom: 1.5rem; text-align: center;">
+                <p style="margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--ink);">
+                    📅 तारीख: <span style="color: var(--blood);">20 जुलाई</span><br>
+                    📍 स्थान: <span style="color: var(--blood);">इको गार्डन, लखनऊ</span>
+                </p>
+            </div>
+
             <p class="modal-message" style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem; text-align: center; color: var(--ink);">
-                <strong>कार्यों की रिपोर्ट बनाने में भी सहयोग प्रदान करें और प्रमाणपत्र के साथ प्रतिभागी बनें एक उज्ज्वल भविष्य का।</strong><br><br>
-                यह डेटा हमारी एक बड़ी रिपोर्ट बनाने में सहायक होगा ताकि हम उन लोगों को दिखा सकें कि पंचायत सहायक कितना महत्वपूर्ण और अथक कार्य करते हैं!
+                <strong>अपने अधिकारों की लड़ाई में शामिल हों।</strong><br>
+                सभी पंचायत सहायक साथियों से अनुरोध है कि भारी संख्या में पहुँचकर इस प्रदर्शन को सफल बनाएं!
             </p>
+            
             <div class="modal-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                <a href="work-report.html" class="modal-btn-primary blink-highlight" style="background-color: var(--green); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); text-align: center; display: block; padding: 12px; font-weight:700; text-decoration: none; color: var(--paper); font-size: 1.15rem; width: 100%; border: 2px solid var(--ink);">
-                    📊 हाँ, कार्यों की रिपोर्ट बनाने में योगदान दें
+                <a href="dharna-guidelines.html" class="modal-btn-primary blink-highlight" style="background-color: var(--blood); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); text-align: center; display: block; padding: 12px; font-weight:700; text-decoration: none; color: var(--paper); font-size: 1.15rem; width: 100%; border: 2px solid var(--ink);">
+                    👉 धरना प्रदर्शन की जानकारी देखें
                 </a>
-                <button onclick="closeWorkReportPromptModal()" class="modal-btn-secondary" style="width: 100%; padding: 10px; font-weight: 600;">
+                <button onclick="closeDharnaPromptModal()" class="modal-btn-secondary" style="width: 100%; padding: 10px; font-weight: 600;">
                     ✍️ अभी हस्ताक्षर फॉर्म भरें
                 </button>
             </div>

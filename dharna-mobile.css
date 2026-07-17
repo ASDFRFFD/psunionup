@@ -1,0 +1,284 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   📱 DHARNA GUIDELINES — COMPREHENSIVE MOBILE FIX
+   Targets: max-width 600px (small phones)
+   Fixes: nav overflow, hero grid, page padding, table scroll,
+          QR stacking, journey planner, GPS buttons
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. Global overflow guard ─── */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box !important;
+}
+
+/* ─── 2. All sections/cards respect container ─── */
+section, .card, .why-protest-card, .timeline-content,
+.faq-item, .pack-card, .dos-card, .donts-card {
+    max-width: 100% !important;
+    word-break: break-word !important;
+}
+
+/* ─── Download table scrollable on all widths ─── */
+.download-table-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+.download-table {
+    min-width: 520px;
+}
+
+@media (max-width: 600px) {
+
+    /* ─── Main container ─── */
+    main, .page-container, .stacked-layout {
+        overflow-x: hidden !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        padding-bottom: 5rem !important;
+    }
+
+    /* ─── Header — icon-only compact nav on mobile ─── */
+    .header-inner {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
+        padding: 0.5rem 0.75rem !important;
+        flex-wrap: nowrap !important;
+    }
+    .brand-cluster {
+        flex-shrink: 0 !important;
+    }
+    .nav-actions-wrap {
+        flex-wrap: nowrap !important;
+        justify-content: flex-end !important;
+        gap: 5px !important;
+        flex-shrink: 1 !important;
+        overflow: hidden !important;
+    }
+    /* Hide text labels — show only icons */
+    .btn-text {
+        display: none !important;
+    }
+    /* Make icon buttons square and compact */
+    .nav-actions-wrap > a,
+    .nav-actions-wrap > button {
+        font-size: 1rem !important;
+        padding: 7px 9px !important;
+        gap: 0 !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        justify-content: center !important;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.3) !important;
+        flex-shrink: 0 !important;
+    }
+    .nav-actions-wrap svg {
+        width: 15px !important;
+        height: 15px !important;
+        flex-shrink: 0 !important;
+    }
+    .brand-text h1 {
+        font-size: 0.82rem !important;
+        line-height: 1.2 !important;
+    }
+    .nav-logo { height: 34px !important; width: 34px !important; }
+
+    /* ─── Hero card ─── */
+    .dharna-hero-card {
+        grid-template-columns: 1fr !important;
+        padding: 1.4rem 0.9rem !important;
+        gap: 1.25rem !important;
+    }
+    .dharna-meta-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+    }
+    .dharna-hero-actions {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+    .btn-wide { width: 100% !important; justify-content: center !important; }
+
+    /* ─── Countdown ─── */
+    .countdown-box { padding: 1.25rem 0.6rem !important; }
+    .countdown-digits-wrap { gap: 0.35rem !important; display: flex !important; width: 100% !important; justify-content: center !important; }
+    .countdown-segment {
+        padding: 0.6rem 0.3rem !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: center !important;
+    }
+    .countdown-segment .num {
+        font-size: 1.65rem !important;
+        white-space: nowrap !important;
+        display: block !important;
+        letter-spacing: -0.02em !important;
+    }
+    .countdown-segment .lbl { font-size: 0.62rem !important; display: block !important; }
+
+    /* ─── Map section ─── */
+    .map-grid-layout {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    .map-embed-wrapper { height: 240px !important; }
+    .map-action-grid { grid-template-columns: 1fr 1fr !important; }
+    .qr-transit-wrapper {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    .qr-box {
+        width: 70px !important;
+        height: 70px !important;
+        align-self: center !important;
+    }
+    .transit-list { gap: 6px !important; }
+    .transit-list li {
+        font-size: 0.78rem !important;
+        padding: 7px 9px !important;
+        line-height: 1.4 !important;
+    }
+    .map-layers-toolbar { gap: 4px !important; padding: 6px !important; }
+    .map-layer-btn { font-size: 0.72rem !important; padding: 4px 8px !important; }
+
+    /* GPS Calculator */
+    .card[style*="saffron"] > div[style*="flex"] {
+        flex-direction: column !important;
+    }
+
+    /* ─── Journey Planner ─── */
+    .journey-timeline {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1.5rem !important;
+        padding-left: 1.5rem !important;
+    }
+    .journey-timeline::before {
+        left: 22px !important;
+        top: 5% !important;
+        bottom: 5% !important;
+        width: 3px !important;
+        height: 90% !important;
+        right: auto !important;
+        transform: none !important;
+    }
+    .journey-step {
+        flex-direction: row !important;
+        gap: 10px !important;
+        padding: 4px 0 !important;
+        background: transparent !important;
+    }
+
+    /* ─── Why Protest ─── */
+    .why-protest-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    .why-protest-card {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        padding: 1.1rem !important;
+    }
+
+    /* ─── Timeline items ─── */
+    .timeline-content { padding: 1rem !important; }
+    .timeline-time { font-size: 0.8rem !important; }
+
+    /* ─── Demands ─── */
+    .demands-grid,
+    .demands-list {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+
+    /* ─── Checklist ─── */
+    .checklist-pack-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.6rem !important;
+    }
+    .pack-card {
+        padding: 0.85rem !important;
+        gap: 7px !important;
+        font-size: 0.82rem !important;
+    }
+
+    /* ─── Downloads ─── */
+    .media-kit-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.75rem !important;
+    }
+    .media-kit-card { padding: 0.85rem !important; }
+
+    /* ─── Dos & Don'ts ─── */
+    .dos-donts-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    .dos-card, .donts-card { padding: 1rem !important; }
+    .dos-donts-list li { font-size: 0.85rem !important; }
+
+    /* ─── Location hub ─── */
+    .loc-hub-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+
+    /* ─── Section headings ─── */
+    .section-info h3 { font-size: 1.2rem !important; }
+    .section-info p { font-size: 0.88rem !important; }
+
+    /* ─── FAQ ─── */
+    .faq-question-btn { padding: 1rem !important; }
+    .faq-question-btn h4 { font-size: 0.9rem !important; }
+
+    /* ─── OCW participation widget ─── */
+    .ocw-count { font-size: 2.2rem !important; }
+    .ocw-join-btn {
+        font-size: 0.92rem !important;
+        padding: 0.75rem !important;
+    }
+
+    /* ─── Motivational banner ─── */
+    .banner-slogan-wrap {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+        justify-content: center !important;
+    }
+    .slogan-word { font-size: 1rem !important; padding: 5px 12px !important; }
+    .banner-title { font-size: 1.35rem !important; }
+    .banner-quote { font-size: 0.9rem !important; }
+
+    /* ─── Footer ─── */
+    .premium-footer {
+        padding: 1.5rem 1rem 3rem !important;
+        text-align: center !important;
+    }
+    .premium-footer > div[style] {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+
+    /* ─── Zone banners (visible on mobile) ─── */
+    .page-zone-banner {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* ─── Bottom tab bar — ensure content not hidden ─── */
+    main, .page-container {
+        padding-bottom: 60px !important;
+    }
+}
+
+/* Small phones ─── max-width: 400px */
+@media (max-width: 400px) {
+    .checklist-pack-grid { grid-template-columns: 1fr !important; }
+    .media-kit-grid { grid-template-columns: 1fr !important; }
+    .dharna-meta-grid { grid-template-columns: 1fr !important; }
+    .map-action-grid { grid-template-columns: 1fr !important; }
+}

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gp-sahayak-cache-v18';
+const CACHE_NAME = 'gp-sahayak-cache-v20';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -23,7 +23,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate Service Worker
+// Activate Service Worker & Delete Old Caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -53,42 +53,42 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Network-First for HTML pages to ensure latest content is shown, fallback to cache
-  if (event.request.headers.get('accept').includes('text/html')) {
+  const acceptHeader = event.request.headers.get('accept') || '';
+  const isCodeAsset = acceptHeader.includes('text/html') || 
+                      requestUrl.pathname.endsWith('.js') || 
+                      requestUrl.pathname.endsWith('.css');
+
+  // Network-First for HTML, JS and CSS to ensure live site on GitHub Pages always gets latest code
+  if (isCodeAsset) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          // Clone response and update cache
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+          if (response && response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
           return response;
         })
         .catch(() => {
-          // If offline, serve from cache
           return caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            // If page is not in cache, fallback to index.html or offline indicator
-            return caches.match('/index.html');
+            return cachedResponse || caches.match('/index.html');
           });
         })
     );
   } else {
-    // Cache-First for static assets (CSS, JS, Images, manifest)
+    // Cache-First for static assets (Images, Fonts, Manifest)
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
         if (cachedResponse) {
-          // Return cached response and fetch updated version in background (Stale-While-Revalidate)
           fetch(event.request).then((networkResponse) => {
-            if (networkResponse.status === 200) {
+            if (networkResponse && networkResponse.status === 200) {
               caches.open(CACHE_NAME).then((cache) => {
                 cache.put(event.request, networkResponse);
               });
             }
-          }).catch(() => {/* Ignore network failures for background updates */});
+          }).catch(() => {});
           return cachedResponse;
         }
 

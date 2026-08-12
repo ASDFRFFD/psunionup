@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gp-sahayak-cache-v20';
+const CACHE_NAME = 'gp-sahayak-cache-v21';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -15,24 +15,23 @@ const ASSETS_TO_CACHE = [
 
 // Install Service Worker
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching app shell and core assets');
+      console.log('[Service Worker] Caching app shell');
       return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
+    })
   );
 });
 
-// Activate Service Worker & Delete Old Caches
+// Activate Service Worker & Delete ALL Old Caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            console.log('[Service Worker] Clearing old cache', cache);
-            return caches.delete(cache);
-          }
+          console.log('[Service Worker] Clearing old cache:', cache);
+          return caches.delete(cache);
         })
       );
     }).then(() => self.clients.claim())
@@ -58,7 +57,7 @@ self.addEventListener('fetch', (event) => {
                       requestUrl.pathname.endsWith('.js') || 
                       requestUrl.pathname.endsWith('.css');
 
-  // Network-First for HTML, JS and CSS to ensure live site on GitHub Pages always gets latest code
+  // Always Network-First for HTML, JS, CSS to prevent cached Demo code
   if (isCodeAsset) {
     event.respondWith(
       fetch(event.request)

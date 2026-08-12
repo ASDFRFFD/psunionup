@@ -1427,14 +1427,17 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then((reg) => console.log('Service Worker registered successfully!', reg.scope))
+        navigator.serviceWorker.register('/sw.js?v=21')
+          .then((reg) => {
+            console.log('Service Worker registered successfully!', reg.scope);
+            reg.update();
+          })
           .catch((err) => console.error('Service Worker registration failed:', err));
       });
     }
   </script>
   <script src="notifications.js?v=2" defer></script>
-  <script src="script.js?v=20" defer></script>
+  <script src="script.js?v=21" defer></script>
 </body>
 
 </html>

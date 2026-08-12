@@ -1,17 +1,4 @@
 User-agent: *
 Allow: /
 
-# Prevent crawling of admin pages
-Disallow: /admin-login.html
-Disallow: /admin-dashboard.html
-Disallow: /admin-setup.html
-Disallow: /panchayat-sahayak-dashboard.html
-Disallow: /blog-post.html
-Disallow: /download.html
-Disallow: /images/private/
-
-# Sitemap location for Googlebot & Bing & all crawlers
-Sitemap: https://gpsahayak.in/sitemap.xml
-
-# Crawl delay hint
-Crawl-delay: 5
+Sitemap: https://psunionup.site/sitemap.xml

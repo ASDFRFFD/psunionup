@@ -1,219 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gpsahayak.in/about.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/about_clean.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/achievements.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/blog-attendance-boycott-2026.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/admin.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/blog-census-self-enumeration-2026.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/certificate.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/blog-egram-swaraj-data-entry.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/chapter-detail.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/blog-panchayat-sahayak-attendance-app.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/future.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/blog-panchayat-sahayak-salary-2026.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/blog-panchayat-sahayak-strike-2026.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/history.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/blog-what-is-panchayat-sahayak.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/blog.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/contact.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/current-affairs-news.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/disclaimer.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/editorial-policy.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/faq_clean.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/farmer-id-card-generator.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/forum.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/gram-panchayat-yojana-list.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/hindi-office-editor.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/membership.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/info.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/panchayat-list-builder.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/order-certificate.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-all-portals.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/receipt.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-csc-calculator.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/vidhan.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-forms-pdfs.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://psunionup.site/work-report.html</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-image-tools.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-letter-generator.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-letterhead-generator.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-notices.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-pdf-tools.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-salary-calculator.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-salary-status.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-software-download.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-village-profile.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/panchayat-sahayak-work-register.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gpsahayak.in/privacy.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.9</priority>
   </url>
 </urlset>

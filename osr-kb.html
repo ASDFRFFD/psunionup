@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <!-- SEO & Metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Review Knowledge Base | UP Gram Panchayat OSR Policy Portal (50 Q&As)</title>
+    <meta name="description" content="Official 50 Q&A Government Policy Knowledge Portal for IAS Officers, Principal Secretaries, & Policy Makers: Comprehensive Documentation on Gram Panchayat OSR & DBT Salary Policy Reform.">
+    <meta name="author" content="Vaibhav Yadav / Panchayat Sahayak Union U.P.">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Government Review Knowledge Base | UP Policy Portal 2026">
+    <meta property="og:description" content="ग्राम पंचायत OSR सुदृढ़ीकरण एवं निश्चित मानदेय नीति प्रस्ताव पर शासकीय समीक्षा हेतु 50 प्रश्नों का संपूर्ण ज्ञान केंद्र।">
+    <meta property="og:image" content="https://psunionup.site/logo_gold_premium.webp">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CDN Libraries: Canvas-Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           GOVERNMENT KNOWLEDGE PORTAL DESIGN SYSTEM (STRIPE DOCS & WORLD BANK STYLE)
+           ========================================================================== */
+        :root {
+            --bg-page: #F9FAFB;
+            --bg-surface: #FFFFFF;
+            --bg-panel: #F3F4F6;
+            --bg-dark: #111827;
+            
+            --border-light: #E5E7EB;
+            --border-strong: #D1D5DB;
+            --border-blue: #BFDBFE;
+            --border-green: #A7F3D0;
+
+            --gov-green: #047857;
+            --gov-green-dark: #065F46;
+            --gov-green-bg: #ECFDF5;
+
+            --maroon: #7F1D1D;
+            --maroon-bg: #FEF2F2;
+
+            --gold: #D97706;
+            --gold-bg: #FFFBEB;
+
+            --blue-dept: #1E3A8A;
+            --blue-dept-bg: #EFF6FF;
+
+            --text-title: #111827;
+            --text-body: #374151;
+            --text-muted: #6B7280;
+
+            --font-display: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+            --font-body: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+
+            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-panel: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            font-family: var(--font-body);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Government Bar */
+        .top-gov-bar {
+            background: var(--bg-dark);
+            color: #F9FAFB;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 8px 0;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .top-gov-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Header Navigation */
+        .kb-nav {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 14px 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--gov-green);
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-title);
+        }
+
+        .brand-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-btn-back {
+            background: var(--bg-panel);
+            color: var(--text-title);
+            border: 1px solid var(--border-strong);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn-back:hover {
+            background: #E5E7EB;
+        }
+
+        /* Hero Search Area */
+        .kb-hero {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-light);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .kb-hero-inner {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .kb-eyebrow {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--gov-green);
+            background: var(--gov-green-bg);
+            border: 1px solid var(--border-green);
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .kb-title {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--text-title);
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .kb-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        /* Realtime Search Bar */
+        .search-wrapper {
+            position: relative;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            font-size: 1.05rem;
+            font-family: var(--font-body);
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            background: var(--bg-page);
+            color: var(--text-title);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--gov-green);
+            box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.15);
+            background: #FFFFFF;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* Quick Search Tags */
+        .quick-tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .tag-btn {
+            background: var(--bg-panel);
+            color: var(--text-body);
+            border: 1px solid var(--border-light);
+            padding: 4px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            transition: all 0.2s ease;
+        }
+
+        .tag-btn:hover {
+            background: var(--gov-green-bg);
+            border-color: var(--gov-green);
+            color: var(--gov-green);
+        }
+
+        /* Documentation Layout Grid */
+        .docs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* Sticky Left Sidebar Navigation */
+        .sidebar-sticky {
+            position: sticky;
+            top: 85px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .cat-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .cat-title {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-title);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--gov-green);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .q-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .q-item-link {
+            display: block;
+            padding: 8px 10px;
+            font-size: 0.82rem;
+            color: var(--text-body);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            line-height: 1.35;
+            transition: all 0.15s ease;
+        }
+
+        .q-item-link:hover, .q-item-link.active {
+            background: var(--gov-green-bg);
+            color: var(--gov-green-dark);
+            font-weight: 700;
+        }
+
+        /* Right Content Panel */
+        .content-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .doc-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 2.2rem;
+            box-shadow: var(--shadow-panel);
+            scroll-margin-top: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .doc-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1rem;
+        }
+
+        .doc-q-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--gov-green);
+            background: var(--gov-green-bg);
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-green);
+        }
+
+        .doc-q-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-title);
+            line-height: 1.35;
+            margin-top: 4px;
+        }
+
+        /* Action Toolbar Buttons */
+        .doc-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            background: var(--bg-panel);
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--gov-green);
+            color: #FFFFFF;
+            border-color: var(--gov-green);
+        }
+
+        /* Box Types */
+        .official-ans-block {
+            font-size: 0.98rem;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .box-blue-perspective {
+            background: var(--blue-dept-bg);
+            border-left: 4px solid var(--blue-dept);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .box-blue-perspective .title {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--blue-dept);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .box-green-takeaway {
+            background: var(--gov-green-bg);
+            border-left: 4px solid var(--gov-green);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .box-green-takeaway .title {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--gov-green-dark);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .box-grey-note {
+            background: var(--bg-panel);
+            border-left: 4px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.2rem;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Author Profile Footer */
+        .author-footer-card {
+            background: var(--bg-dark);
+            color: #FFFFFF;
+            border-radius: var(--radius-md);
+            padding: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 992px) {
+            .docs-container { grid-template-columns: 1fr; }
+            .sidebar-sticky { position: static; max-height: none; }
+            .kb-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Government Bar -->
+    <div class="top-gov-bar">
+        <div class="top-gov-container">
+            <div>🏛️ <strong>उत्तर प्रदेश शासन | पंचायती राज विभाग एवं वित्त विभाग</strong></div>
+            <div>शासकीय समीक्षा ज्ञान केंद्र (Government Review Knowledge Base - 50 Q&As)</div>
+        </div>
+    </div>
+
+    <!-- Executive Navigation -->
+    <nav class="kb-nav">
+        <div class="nav-inner">
+            <a href="osr-policy.html" class="brand-block">
+                <img src="logo.webp" alt="Logo" class="brand-logo">
+                <div>
+                    <div class="brand-title">शासकीय समीक्षा ज्ञान केंद्र 2026</div>
+                    <div class="brand-sub">UP Gram Panchayat Policy Review Portal</div>
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="osr-policy.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> मुख्य माइक्रोसाइट पर लौटें</a>
+                <a href="osr.pdf" target="_blank" class="nav-btn-back" style="background: var(--gov-green); color: #fff;"><i class="fa-solid fa-file-pdf"></i> OSR.PDF</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Search Area -->
+    <section class="kb-hero">
+        <div class="kb-hero-inner">
+            <span class="kb-eyebrow"><i class="fa-solid fa-book-bookmark"></i> Official Policy Review Knowledge Base</span>
+            <h1 class="kb-title">शासकीय समीक्षा प्रश्न एवं नीतिगत उत्तर (50 Q&As)</h1>
+            <p class="kb-subtitle">प्रमुख सचिव, वित्त विभाग, पंचायती राज विभाग एवं नीति-निर्माताओं द्वारा पूछे जाने वाले सम्भावित प्रश्नों के आधिकारिक उत्तर:</p>
+
+            <!-- Real-Time Search Bar -->
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" id="kb-search" placeholder="Search any policy question... (DBT, OSR, Commission, Tax, Salary, KPI)">
+            </div>
+
+            <!-- Quick Filter Tags -->
+            <div class="quick-tags">
+                <span class="tag-btn" onclick="filterByTag('DBT')">DBT</span>
+                <span class="tag-btn" onclick="filterByTag('OSR')">OSR</span>
+                <span class="tag-btn" onclick="filterByTag('Salary')">Salary</span>
+                <span class="tag-btn" onclick="filterByTag('Commission')">Commission</span>
+                <span class="tag-btn" onclick="filterByTag('House Tax')">House Tax</span>
+                <span class="tag-btn" onclick="filterByTag('Water Tax')">Water Tax</span>
+                <span class="tag-btn" onclick="filterByTag('KPI')">KPI Scorecard</span>
+                <span class="tag-btn" onclick="resetSearch()">Show All 50</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Layout Container -->
+    <main class="docs-container">
+
+        <!-- Sticky Left Sidebar Navigation -->
+        <aside class="sidebar-sticky">
+            <!-- Cat 1 -->
+            <div class="cat-group">
+                <div class="cat-title">🏛 Policy & Governance <span>(Q1-Q10)</span></div>
+                <ul class="q-list">
+                    <li><a href="#q1" class="q-item-link active">Q1. नीति पुनर्रचना का मुख्य उद्देश्य?</a></li>
+                    <li><a href="#q2" class="q-item-link">Q2. कमीशन व्यवस्था क्यों समाप्त?</a></li>
+                    <li><a href="#q3" class="q-item-link">Q3. अतिरिक्त बजटीय मांग का निराकरण?</a></li>
+                    <li><a href="#q4" class="q-item-link">Q4. 16th FC सिफारिशों से सामंजस्य?</a></li>
+                    <li><a href="#q5" class="q-item-link">Q5. ओएसआर (OSR) की संस्थागत भूमिका?</a></li>
+                    <li><a href="#q6" class="q-item-link">Q6. सीएससी के अलावा भावी दायरा?</a></li>
+                    <li><a href="#q7" class="q-item-link">Q7. 7 KPIs प्रशासनिक जवाबदेही?</a></li>
+                    <li><a href="#q8" class="q-item-link">Q8. शासन के दीर्घकालिक लाभ?</a></li>
+                    <li><a href="#q9" class="q-item-link">Q9. पंचायती राज में पारदर्शिता?</a></li>
+                    <li><a href="#q10" class="q-item-link">Q10. मुख्य प्रशासनिक ढांचा?</a></li>
+                    <li><a href="#q51" class="q-item-link" style="color: var(--gov-green); font-weight: 800;"><i class="fa-solid fa-user-pen"></i> Q51. यह प्रस्ताव किसने तैयार किया?</a></li>
+                </ul>
+            </div>
+
+            <!-- Cat 2 -->
+            <div class="cat-group">
+                <div class="cat-title">💰 Finance & OSR <span>(Q11-Q20)</span></div>
+                <ul class="q-list">
+                    <li><a href="#q11" class="q-item-link">Q11. ₹30 शुल्क का सटीक विभाजन?</a></li>
+                    <li><a href="#q12" class="q-item-link">Q12. कंपनी शेयर ₹17.79 की स्थिति?</a></li>
+                    <li><a href="#q13" class="q-item-link">Q13. वर्तमान ₹5 कमीशन कटौती प्रभाव?</a></li>
+                    <li><a href="#q14" class="q-item-link">Q14. GP प्राप्य अंश ₹12.21 100% OSR?</a></li>
+                    <li><a href="#q15" class="q-item-link">Q15. 5 सेवाओं पर वार्षिक OSR?</a></li>
+                    <li><a href="#q16" class="q-item-link">Q16. 35 सेवाओं पर वार्षिक OSR?</a></li>
+                    <li><a href="#q17" class="q-item-link">Q17. 57,000 GPs का कुल OSR प्रभाव?</a></li>
+                    <li><a href="#q18" class="q-item-link">Q18. ₹43,524 Cr केंद्रीय अनुदान लाभ?</a></li>
+                    <li><a href="#q19" class="q-item-link">Q19. मॉडल की स्वतः-पोषित प्रकृति?</a></li>
+                    <li><a href="#q20" class="q-item-link">Q20. राज्य अनुदान पर निर्भरता कमी?</a></li>
+                </ul>
+            </div>
+
+            <!-- Cat 3 -->
+            <div class="cat-group">
+                <div class="cat-title">👨‍💻 Panchayat Assistant <span>(Q21-Q30)</span></div>
+                <ul class="q-list">
+                    <li><a href="#q21" class="q-item-link">Q21. मानदेय का वित्तीय स्रोत?</a></li>
+                    <li><a href="#q22" class="q-item-link">Q22. कमीशन बंद होने से आर्थिक सुरक्षा?</a></li>
+                    <li><a href="#q23" class="q-item-link">Q23. Direct Benefit Transfer (DBT)?</a></li>
+                    <li><a href="#q24" class="q-item-link">Q24. समयबद्ध भुगतान की गारंटी?</a></li>
+                    <li><a href="#q25" class="q-item-link">Q25. पेशेवर पहचान में सुधार?</a></li>
+                    <li><a href="#q26" class="q-item-link">Q26. संविदा/अनुबंध की स्थिति?</a></li>
+                    <li><a href="#q27" class="q-item-link">Q27. O Level अर्हता का उपयोग?</a></li>
+                    <li><a href="#q28" class="q-item-link">Q28. विभागीय निष्ठा में वृद्धि?</a></li>
+                    <li><a href="#q29" class="q-item-link">Q29. पदोन्नति व प्रोत्साहन का मार्ग?</a></li>
+                    <li><a href="#q30" class="q-item-link">Q30. ग्राम सचिवालय संचालन सुधार?</a></li>
+                </ul>
+            </div>
+
+            <!-- Cat 4 -->
+            <div class="cat-group">
+                <div class="cat-title">⚖ Legal & Administrative <span>(Q31-Q40)</span></div>
+                <ul class="q-list">
+                    <li><a href="#q31" class="q-item-link">Q31. अनुच्छेद 243I व 243K संबंध?</a></li>
+                    <li><a href="#q32" class="q-item-link">Q32. भावी गृहकर (House Tax) दायरा?</a></li>
+                    <li><a href="#q33" class="q-item-link">Q33. भावी जलकर (Water Tax) नियम?</a></li>
+                    <li><a href="#q34" class="q-item-link">Q34. यूजर चार्ज व लाइसेंस प्रभार?</a></li>
+                    <li><a href="#q35" class="q-item-link">Q35. भावी राजस्व साझेदारी नियम?</a></li>
+                    <li><a href="#q36" class="q-item-link">Q36. GPDP में OSR विधिक भूमिका?</a></li>
+                    <li><a href="#q37" class="q-item-link">Q37. स्थानीय बाज़ार कर विभाजन?</a></li>
+                    <li><a href="#q38" class="q-item-link">Q38. शासनादेश (GR/GO) निर्गमन?</a></li>
+                    <li><a href="#q39" class="q-item-link">Q39. ई-ग्राम स्वराज व समर्थ पोर्टल?</a></li>
+                    <li><a href="#q40" class="q-item-link">Q40. OSR निधि का विधिक संरक्षण?</a></li>
+                </ul>
+            </div>
+
+            <!-- Cat 5 -->
+            <div class="cat-group">
+                <div class="cat-title">📊 Implementation <span>(Q41-Q50)</span></div>
+                <ul class="q-list">
+                    <li><a href="#q41" class="q-item-link">Q41. कार्यान्वयन का Phase 01?</a></li>
+                    <li><a href="#q42" class="q-item-link">Q42. DBT तकनीकी एकीकरण Phase 02?</a></li>
+                    <li><a href="#q43" class="q-item-link">Q43. 100% OSR शासनादेश Phase 03?</a></li>
+                    <li><a href="#q44" class="q-item-link">Q44. 7 KPIs ऑडिट ट्रैकिंग Phase 04?</a></li>
+                    <li><a href="#q45" class="q-item-link">Q45. KPI 01-06 ऑटोमैटिक स्कोर?</a></li>
+                    <li><a href="#q46" class="q-item-link">Q46. ⭐ KPI 07 जनसंतुष्टि बेंचमार्क?</a></li>
+                    <li><a href="#q47" class="q-item-link">Q47. कमजोर प्रदर्शन पर सुधार?</a></li>
+                    <li><a href="#q48" class="q-item-link">Q48. Grade A+ पुरस्कार प्रोत्साहन?</a></li>
+                    <li><a href="#q49" class="q-item-link">Q49. ऑनलाइन मॉनिटरिंग डैशबोर्ड?</a></li>
+                    <li><a href="#q50" class="q-item-link">Q50. 3-5 वर्षों का राज्य विज़न?</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right Content Panel (50 Q&As) -->
+        <section class="content-panel" id="questions-wrapper">
+
+            <!-- Category 1: Policy & Governance (Q1 - Q10) -->
+            <article class="doc-card" id="q1" data-keywords="policy governance commission salary osr">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q1. Policy & Governance</span>
+                        <h2 class="doc-q-title">नीति पुनर्रचना का मुख्य प्रशासनिक उद्देश्य क्या है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q1')"><i class="fa-solid fa-link"></i> Link</button>
+                        <button class="action-btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    यह प्रस्ताव केवल सीएससी (CSC) कमीशन का विषय नहीं है, बल्कि पंचायती राज व्यवस्था के सम्पूर्ण राजस्व मॉडल को नया स्वरूप देने का दूरदर्शी सुधार है। इसका उद्देश्य पंचायत सहायकों को ₹5 के अनिश्चित कमीशन के स्थान पर राज्य सरकार द्वारा पृथक रूप से Direct Benefit Transfer (DBT) के माध्यम से निश्चित मानदेय देना है, तथा ग्राम पंचायत के प्राप्य अंश (₹12.21) का 100% बिना किसी कटौती के ग्राम पंचायत के Own Source Revenue (OSR) खाते में जमा रखना है।
+                </div>
+                <div class="box-blue-perspective"><div class="title">🏛️ Policy Perspective</div>सरकारी कर्मचारियों को इंसेंटिव की अनिश्चितता पर नहीं छोड़ा जाना चाहिए। कर्मचारियों को निश्चित मानदेय मिलने से वे प्रशासनिक रूप से अधिक जवाबदेह बनते हैं।</div>
+                <div class="box-green-takeaway"><div class="title">✅ Key Takeaway</div>यह शासन पर अतिरिक्त बोझ डाले बिना ग्राम पंचायतों को वित्तीय रूप से स्वायत्त और कर्मचारियों को प्रशासनिक रूप से सुरक्षित बनाने का 4-Way Win-Win मॉडल है।</div>
+                <div class="box-grey-note">📌 <strong>महत्वपूर्ण बिंदु:</strong> यह प्रस्ताव किसी नए कर की मांग नहीं करता, बल्कि वर्तमान राजस्व विभाजन को सुव्यवस्थित करता है।</div>
+            </article>
+
+            <article class="doc-card" id="q2" data-keywords="policy governance commission end micro incentive">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q2. Policy & Governance</span>
+                        <h2 class="doc-q-title">कमीशन व्यवस्था को क्यों समाप्त किया जा रहा है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q2')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    कमीशन व्यवस्था व्यक्तिगत प्रोत्साहन के लिए बनाई गई थी, किन्तु ग्राम पंचायतों में इससे दो गंभीर दोष पैदा हुए: पहला, कर्मचारी की आय अनिश्चित रही जिससे उसका मनोबल गिरा; और दूसरा, ग्राम पंचायत का स्व-राजस्व (OSR) विखंडित हो गया। कमीशन बंद करने से पूरी राशि संस्थागत आय बनती है।
+                </div>
+                <div class="box-green-takeaway"><div class="title">✅ Key Takeaway</div>कमीशन व्यक्तिगत जेब में बटने के स्थान पर ग्राम पंचायत की सामूहिक संस्थागत निधि बनता है।</div>
+            </article>
+
+            <article class="doc-card" id="q3" data-keywords="policy budget extra cost finance">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q3. Policy & Governance</span>
+                        <h2 class="doc-q-title">क्या यह प्रस्ताव सरकार पर अतिरिक्त वित्तीय भार डालता है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q3')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    बिल्कुल नहीं। ग्राम पंचायतों का OSR मजबूत होने से 16वें वित्त आयोग के तहत उत्तर प्रदेश को ₹43,524 करोड़ के केंद्रीय Performance Grants का अधिकतम हिस्सा हासिल होगा, जो राज्य सरकार द्वारा दिए जाने वाले मानदेय की भरपाई से कहीं अधिक होगा।
+                </div>
+                <div class="box-blue-perspective"><div class="title">🏛️ Financial Alignment</div>यह मॉडल केंद्रीय अनुदानों की प्राप्ति बढ़ाकर राज्य के खजाने को और अधिक समृद्ध बनाता है।</div>
+            </article>
+
+            <article class="doc-card" id="q4" data-keywords="policy 16th finance commission grant osr benchmark">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q4. Policy & Governance</span>
+                        <h2 class="doc-q-title">16वें वित्त आयोग की सिफारिशों के साथ यह नीति कैसे तालमेल बनाती है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q4')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    16वाँ वित्त आयोग राज्यों को ग्राम पंचायतों के OSR में प्रतिवर्ष न्यूनतम 2.5% वृद्धि करने एवं ₹1,200 प्रति परिवार OSR बेंचमार्क पूरा करने पर करोड़ों का Performance Grant देता है। 100% GP प्राप्य अंश OSR में जमा होने से UP शत-प्रतिशत पात्र बन जाएगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q5" data-keywords="policy osr autonomy gram panchayat">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q5. Policy & Governance</span>
+                        <h2 class="doc-q-title">ग्राम पंचायतों को स्वायत्त बनाने में OSR की क्या भूमिका है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q5')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    OSR (Own Source Revenue) ग्राम पंचायत की स्वयं की अर्जित आय है। मजबूत OSR होने से पंचायतों को छोटे-छोटे कार्यों के लिए राज्य या केंद्र के अनुदान पर आश्रित नहीं रहना पड़ता और वे स्थानीय जरूरतों के अनुसार त्वरित विकास कर सकती हैं।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q6" data-keywords="policy future scope house tax water tax">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q6. Policy & Governance</span>
+                        <h2 class="doc-q-title">क्या यह नीति सीएससी के अलावा अन्य भावी करों पर भी लागू होगी?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q6')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    हाँ, यह इस नीति का मूल स्तंभ है। भविष्य में लागू होने वाले किसी भी गृहकर (House Tax), जलकर (Water Tax), यूजर चार्ज या ट्रेड लाइसेंस इंसेंटिव पर यही नियम लागू होगा कि इंसेंटिव कर्मचारी को न देकर 100% GP OSR में रखा जाएगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q7" data-keywords="policy kpi 7 accountability scorecard">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q7. Policy & Governance</span>
+                        <h2 class="doc-q-title">प्रशासनिक जवाबदेही तय करने के लिए 7 KPIs कैसे काम करेंगे?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q7')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    कमीशन समाप्त होने के बाद कर्मचारियों का मूल्यांकन 7 स्पष्ट मानकों पर होगा (OSR वृद्धि, कर संग्रह, डिजिटल सेवाएँ, CSC संचालन, GPDP, योजना पूर्ति व जनसंतुष्टि)। कमजोर प्रदर्शन पर सुधारात्मक प्रशासनिक कार्रवाई होगी।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q8" data-keywords="policy government long term benefit">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q8. Policy & Governance</span>
+                        <h2 class="doc-q-title">शासन को इस नीति पुनर्रचना से क्या दीर्घकालिक लाभ होंगे?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q8')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    उत्तर प्रदेश देश का पहला राज्य बनेगा जहाँ ग्राम पंचायतें पूर्णतः वित्तीय रूप से स्वायत्त होंगी। 57,000 ग्राम सचिवालयों में गुणवत्तापूर्ण डिजिटल सेवाएँ मिलेंगी और जनशिकायतों का शून्य-लंबित निवारण होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q9" data-keywords="policy transparency e gram swaraj">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q9. Policy & Governance</span>
+                        <h2 class="doc-q-title">क्या इससे पंचायती राज व्यवस्था में पारदर्शिता आएगी?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q9')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जी हाँ, 100% प्राप्य अंश ई-ग्राम स्वराज और पीएफएमएस (PFMS) के माध्यम से सीधे ग्राम पंचायत खाता संख्या 1 (OSR) में डिजिटल रूप से जमा होगा, जिससे किसी भी मध्यस्थ या नकद हेरफेर की सम्भावना समाप्त हो जाएगी।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q10" data-keywords="policy administrative framework gr go">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q10. Policy & Governance</span>
+                        <h2 class="doc-q-title">इस नीति को लागू करने का मुख्य प्रशासनिक ढांचा क्या होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q10')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    पंचायती राज विभाग एवं वित्त विभाग के संयुक्त शासनादेश (Joint GO) द्वारा इसे लागू किया जाएगा। निदेशक पंचायती राज द्वारा इसका राज्य-स्तरीय ऑनलाइन डैशबोर्ड से पर्यवेक्षण किया जाएगा।
+                </div>
+            </article>
+
+            <!-- Question 51 -->
+            <article class="doc-card" id="q51" data-keywords="author presenter vaibhav yadav panchayat sahayak policy creator proposal prepared by">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num" style="background: var(--gold-bg); color: var(--gold); border-color: var(--gold);">Q51. Proposal Creator & Authorship</span>
+                        <h2 class="doc-q-title">यह दूरदर्शी नीतिगत प्रस्ताव किसने और किस उद्देश्य से तैयार किया है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q51')"><i class="fa-solid fa-link"></i> Link</button>
+                        <button class="action-btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    यह नीतिगत प्रस्ताव <strong>वैभव यादव (पंचायत सहायक, उत्तर प्रदेश)</strong> एवं समस्त पंचायत सहायकों के सामूहिक विज़न द्वारा उत्तर प्रदेश की 57,000 ग्राम पंचायतों को वित्तीय रूप से स्वायत्त (OSR सुदृढ़ीकरण) बनाने तथा कर्मचारियों को कमीशन की अनिश्चितता से मुक्त कर Direct Benefit Transfer (DBT) के माध्यम से सम्मानजनक निश्चित मानदेय प्रदान करने हेतु तैयार कर पंचायती राज विभाग एवं वित्त विभाग, उत्तर प्रदेश शासन के समक्ष प्रेषित किया गया है।
+                </div>
+                <div class="box-blue-perspective">
+                    <div class="title">🏛️ Author & Ground Perspective (जमीनी नीतिगत दृष्टिकोण)</div>
+                    यह प्रस्ताव किसी बाहरी व्यावसायिक एजेंसी द्वारा नहीं, बल्कि ग्राम पंचायत स्तर पर 100% डिजिटल सेवाओं का प्रत्यक्ष संचालन करने वाले जमीनी पंचायत सहायकों द्वारा व्यावहारिक अनुभवों, 16वें वित्त आयोग की सिफारिशों और NITI Aayog की OSR गाइडलाइंस का गहन अध्ययन करके तैयार किया गया है।
+                </div>
+                <div class="box-green-takeaway">
+                    <div class="title">✅ Key Takeaway (मुख्य निष्कर्ष)</div>
+                    यह प्रस्ताव शासन पर अतिरिक्त वित्तीय भार डाले बिना उत्तर प्रदेश की सभी 57,000 ग्राम पंचायतों को ₹684 करोड़ से अधिक का वार्षिक OSR कोष देने और 57,000 कर्मचारियों को पूर्ण प्रशासनिक जवाबदेही (7 KPIs) देने का 100% व्यावहारिक रोडमैप प्रदान करता है।
+                </div>
+                <div class="box-grey-note">
+                    📌 <strong>प्रस्तोता विवरण:</strong> वैभव यादव (पंचायत सहायक, उत्तर प्रदेश)। <strong>समक्ष प्रेषित:</strong> प्रमुख सचिव (वित्त) एवं प्रमुख सचिव (पंचायती राज), उत्तर प्रदेश शासन, बापू भवन, सचिवालय, लखनऊ।
+                </div>
+            </article>
+
+
+            <!-- Category 2: Finance & OSR (Q11 - Q20) -->
+            <article class="doc-card" id="q11" data-keywords="finance fee 30 17.79 12.21 share">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q11. Finance & OSR</span>
+                        <h2 class="doc-q-title">₹30 नागरिक सेवा शुल्क का सटीक राजस्व विभाजन क्या है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q11')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    नागरिक द्वारा दिए गए ₹30 सेवा शुल्क में से कंपनी/प्लेटफॉर्म का शेयर (₹17.79) कटने के बाद ग्राम पंचायत का वास्तविक प्राप्य अंश ₹12.21 होता है। वर्तमान व्यवस्था में इसमें से ₹5 कमीशन कटने पर GP OSR ₹7.21 बचता है, जबकि प्रस्तावित मॉडल में पूरा ₹12.21 (100%) OSR में जमा होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q12" data-keywords="finance company platform share 17.79">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q12. Finance & OSR</span>
+                        <h2 class="doc-q-title">कंपनी/प्लेटफॉर्म शेयर (₹17.79) की स्थिति क्या रहेगी?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q12')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    कंपनी या प्लेटफ़ॉर्म शेयर (₹17.79) यथावत रहेगा जो डिजिटल अवसंरचना और सर्वर संचालन के लिए आवश्यक है। इस प्रस्ताव से कंपनी या तकनीकी प्रदाता के राजस्व पर कोई प्रभाव नहीं पड़ेगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q13" data-keywords="finance commission 5 rupees deduction old model">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q13. Finance & OSR</span>
+                        <h2 class="doc-q-title">वर्तमान मॉडल में ₹5 कमीशन कटौती का क्या नुकसान है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q13')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    ₹5 की कटौती से ग्राम पंचायत का प्राप्य अंश ₹12.21 से घटकर ₹7.21 रह जाता है। 35 दैनिक सेवाओं पर ग्राम पंचायत को प्रतिवर्ष लगभग ₹63,875 के OSR राजस्व का सीधा नुकसान होता है।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q14" data-keywords="finance 12.21 100 percent osr proposed model">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q14. Finance & OSR</span>
+                        <h2 class="doc-q-title">प्रस्तावित मॉडल में GP प्राप्य अंश ₹12.21 100% OSR कैसे बनता है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q14')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    प्रस्तावित मॉडल में चूंकि पंचायत सहायक को राज्य सरकार से निश्चित DBT मानदेय मिलता है, इसलिए ₹12.21 में से कोई ₹5 की कटौती नहीं होगी और पूरा ₹12.21 ग्राम पंचायत खातों में OSR के रूप में सुरक्षित जमा रहेगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q15" data-keywords="finance 5 services daily annual osr math">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q15. Finance & OSR</span>
+                        <h2 class="doc-q-title">प्रतिदिन न्यूनतम 5 सेवाओं पर वार्षिक OSR कितना प्राप्त होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q15')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    5 सेवाओं पर: दैनिक GP OSR = 5 × ₹12.21 = ₹61.05/दिन; मासिक OSR = ₹1,831.50/माह; तथा <strong>वार्षिक GP OSR = ₹22,283/वर्ष</strong> (पुराने मॉडल में केवल ₹13,158 मिलता था)।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q16" data-keywords="finance 35 services daily annual osr math">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q16. Finance & OSR</span>
+                        <h2 class="doc-q-title">प्रतिदिन औसत 35 सेवाओं पर वार्षिक OSR कितना प्राप्त होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q16')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    35 सेवाओं पर: दैनिक GP OSR = 35 × ₹12.21 = ₹427.35/दिन; मासिक OSR = ₹12,820.50/माह; तथा <strong>वार्षिक GP OSR = ₹1,55,982/वर्ष</strong> (पुराने मॉडल में केवल ₹92,107 मिलता था)।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q17" data-keywords="finance 57000 gps total up macro osr">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q17. Finance & OSR</span>
+                        <h2 class="doc-q-title">उत्तर प्रदेश की 57,000 ग्राम पंचायतों का कुल OSR कितना संभावित है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q17')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    यदि 57,000 ग्राम पंचायतें औसतन ₹1.20 लाख वार्षिक OSR अर्जित करती हैं, तो पूरे उत्तर प्रदेश में <strong>₹684 करोड़ से अधिक का वार्षिक OSR कोष</strong> निर्मित होगा जो ग्रामीण अर्थव्यवस्था को अभूतपूर्व शक्ति देगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q18" data-keywords="finance 43524 crore pool performance grant">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q18. Finance & OSR</span>
+                        <h2 class="doc-q-title">₹43,524 करोड़ के केंद्रीय अनुदान से UP को कितना लाभ मिलेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q18')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    16वें वित्त आयोग के ₹43,524 करोड़ राष्ट्रीय Performance Grant पूल में से उत्तर प्रदेश को अपनी 57,000 पंचायतों के OSR बेंचमार्क पूरा करने पर ₹5,000 करोड़ से अधिक का अतिरिक्त अनुदान प्राप्त होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q19" data-keywords="finance self sustaining model">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q19. Finance & OSR</span>
+                        <h2 class="doc-q-title">क्या यह मॉडल पूरी तरह स्वतः-पोषित (Self-Sustaining) है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q19')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जी हाँ। OSR वृद्धि से केंद्रीय अनुदानों की जो अतिरिक्त प्राप्ति होगी, वह राज्य सरकार द्वारा कर्मचारियों को दिए जाने वाले मानदेय व्यय से अधिक होगी, जिससे यह मॉडल पूरी तरह स्वतः-पोषित बन जाता है।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q20" data-keywords="finance State grant independence">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q20. Finance & OSR</span>
+                        <h2 class="doc-q-title">OSR बढ़ने से ग्राम पंचायतें राज्य अनुदान पर निर्भरता कैसे कम करेंगी?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q20')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    ग्राम पंचायतें अपने OSR फंड का उपयोग स्थानीय विकास, रखरखाव और स्वच्छता के लिए सीधे कर सकेंगी, जिससे राज्य सरकार के बजट पर अनुदान की मांग का दबाव कम होगा।
+                </div>
+            </article>
+
+
+            <!-- Category 3: Panchayat Assistant (Q21 - Q30) -->
+            <article class="doc-card" id="q21" data-keywords="assistant dbt salary source state budget">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q21. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">पंचायत सहायकों के मानदेय का वित्तीय स्रोत क्या होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q21')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    पंचायत सहायकों को राज्य सरकार द्वारा विभागीय बजट एवं 16वें वित्त आयोग के तहत प्राप्त अतिरिक्त केंद्रीय अनुदान से डायरेक्ट बेनिफिट ट्रांसफर (DBT) द्वारा निश्चित मानदेय दिया जाएगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q22" data-keywords="assistant security fixed income no commission">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q22. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">कमीशन बंद होने से पंचायत सहायकों को क्या सुरक्षा मिलेगी?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q22')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    कमीशन में सेवाएँ न मिलने पर आय शून्य होने का जोखिम रहता था। निश्चित मानदेय मिलने से कर्मचारी को आर्थिक सुरक्षा मिलती है, जिससे वह निश्चिंत होकर निष्ठापूर्वक कार्य कर सकता है।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q23" data-keywords="assistant dbt bank transfer pfms">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q23. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">Direct Benefit Transfer (DBT) से मानदेय भुगतान कैसे होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q23')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    राज्य कोष से ई-कुबेर (e-Kuber) या पीएफएमएस (PFMS) प्रणाली द्वारा सीधे प्रत्येक पंचायत सहायक के आधार-लिंक्ड बैंक खाते में मानदेय हस्तांतरित होगा, बिना किसी मध्यस्थ की देरी के।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q24" data-keywords="assistant timebound salary guarantee">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q24. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">क्या मानदेय का भुगतान समयबद्ध (Time-bound) होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q24')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जी हाँ, प्रत्येक माह की 1 से 5 तारीख के भीतर DBT द्वारा स्वचालित रूप से मानदेय खाते में जमा होगा, जिससे मानदेय लंबित रहने की समस्या स्थायी रूप से समाप्त हो जाएगी।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q25" data-keywords="assistant professional identity dignity">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q25. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">पंचायत सहायकों की पेशेवर पहचान में इससे क्या सुधार होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q25')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    कमीशन लेने वाले अभिकर्ता (Agent) के स्थान पर वे शासन के अधिकृत प्रशासनिक एवं तकनीकी कर्मचारी के रूप में प्रतिष्ठित होंगे, जिससे ग्राम स्तर पर उनका सामाजिक सम्मान बढ़ेगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q26" data-keywords="assistant contract status service rules">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q26. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">क्या संविदा/अनुबंध (Contract) की स्थिति पर कोई प्रभाव पड़ेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q26')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    निश्चित मानदेय और 7 KPIs पर उत्कृष्ट सेवा प्रदर्शन से सेवा निरंतरता में सुगमता आएगी और वार्षिक अनुबंध नवीनीकरण पारदर्शी और ऑटोमैटिक हो जाएगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q27" data-keywords="assistant o level qualification computer skill">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q27. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">O Level कंप्यूटर अर्हता व कौशल का इसमें क्या उपयोग है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q27')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    पंचायत सहायकों की 'O Level' तथा आईटी अर्हता का उपयोग ग्राम सचिवालय को पूरी तरह डिजिटल डेटा सेंटर बनाने, ऑनलाइन जन्म-मृत्यु प्रमाणपत्र, खतौनी और कर संग्रह ई-सेवाएँ देने में होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q28" data-keywords="assistant loyalty departmental efficiency">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q28. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">क्या कर्मचारी की निष्ठा और विभागीय उत्तरदायित्व बढ़ेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q28')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    निश्चित वेतन मिलने से कर्मचारी का ध्यान कमीशन की होड़ के बजाय विभागीय लक्ष्यों, योजनाओं के प्रचार-प्रसार और शत-प्रतिशत नागरिक संतुष्टि पर केंद्रित होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q29" data-keywords="assistant promotion incentive scorecard A+">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q29. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">क्या कर्मचारियों को 7 KPIs के आधार पर पदोन्नति का अवसर मिलेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q29')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जी हाँ, 7 KPIs में निरंतर Grade A+ (Outstanding) प्रदर्शन करने वाले पंचायत सहायकों को विभागीय पदोन्नति, विशेष प्रोत्साहन तथा वरीयता देने की अनुशंसा की गई है।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q30" data-keywords="assistant sachivalaya operation 100 percent attendance">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q30. Panchayat Assistant</span>
+                        <h2 class="doc-q-title">कमीशन निर्भरता खत्म होने से ग्राम सचिवालय संचालन में क्या सुधार होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q30')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    ग्राम सचिवालय निर्धारित समय पर खुलेंगे, बायोमेट्रिक/डिजिटल उपस्थिति सुनिश्चित होगी और ग्रामीणों को सभी ऑनलाइन सरकारी सेवाएँ एक ही छत के नीचे बिना भटके मिलेंगी।
+                </div>
+            </article>
+
+
+            <!-- Category 4: Legal & Administrative (Q31 - Q40) -->
+            <article class="doc-card" id="q31" data-keywords="legal constitution article 243I 243K">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q31. Legal & Administrative</span>
+                        <h2 class="doc-q-title">संविधान के अनुच्छेद 243I व 243K से इस नीति का क्या संबंध है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q31')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    भारतीय संविधान का भाग 9 (अनुच्छेद 243I व 243K) राज्य वित्त आयोग और पंचायती राज संस्थाओं को वित्तीय रूप से स्वायत्त बनाने का अधिकार देता है। OSR सुदृढ़ीकरण इसी संवैधानिक जनादेश की पूर्ति है।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q32" data-keywords="legal house tax future incentive osr">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q32. Legal & Administrative</span>
+                        <h2 class="doc-q-title">भविष्य में लागू होने वाले गृहकर (House Tax) पर यह नीति कैसे लागू होगी?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q32')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    गृहकर संग्रह से मिलने वाला प्रत्येक इंसेंटिव या अंश व्यक्तिगत रूप से बटने के स्थान पर 100% ग्राम पंचायत के OSR खाते में जमा होगा, जिससे पंचायत का टैक्स बेस मजबूत होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q33" data-keywords="legal water tax drinking water osr">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q33. Legal & Administrative</span>
+                        <h2 class="doc-q-title">भविष्य के जलकर (Water Tax) इंसेंटिव का OSR में क्या स्थान होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q33')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    हर घर जल योजना के तहत एकत्रित होने वाला जलकर प्रभार 100% GP OSR में जमा होगा, जिससे जल आपूर्ति पाइपलाइनों के रखरखाव हेतु पंचायत के पास स्थायी बजट उपलब्ध रहेगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q34" data-keywords="legal user charges trade license fee">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q34. Legal & Administrative</span>
+                        <h2 class="doc-q-title">यूज़र चार्ज व संपत्ति कर इंसेंटिव 100% OSR में कैसे जमा होंगे?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q34')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    ई-ग्राम स्वराज पोर्टल में ऐसा तकनीकी प्रावधान होगा कि समस्त स्थानीय कर, लाइसेंस शुल्क व यूजर चार्ज सीधे ग्राम पंचायत के मुख्य OSR बैंक खाते में डिजिटल रूप से रूट होंगे।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q35" data-keywords="legal future revenue sharing rules">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q35. Legal & Administrative</span>
+                        <h2 class="doc-q-title">क्या भविष्य की किसी भी राजस्व साझेदारी पर यही नियम लागू होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q35')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जी हाँ, यह नीति एक स्थायी नियम स्थापित करती है कि सरकार द्वारा भविष्य में शुरू किया गया कोई भी राजस्व शेयर मॉडल ग्राम पंचायत का OSR बनेगा, न कि कर्मचारी का कमीशन।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q36" data-keywords="legal gpdp village development plan">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q36. Legal & Administrative</span>
+                        <h2 class="doc-q-title">ग्राम पंचायत विकास योजना (GPDP) में OSR की क्या विधिक भूमिका है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q36')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    GPDP गाइडलाइंस के अनुसार ग्राम पंचायतें अपने OSR फंड का उपयोग गाँव की प्राथमिकताओं के अनुसार बिना सरकारी मंज़ूरी की लंबी प्रक्रिया के स्वतंत्र रूप से खर्च कर सकती हैं।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q37" data-keywords="legal local market trade fee">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q37. Legal & Administrative</span>
+                        <h2 class="doc-q-title">स्थानीय बाज़ार व ट्रेड लाइसेंस प्रभार का विभाजन कैसे होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q37')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    स्थानीय हाट-बाज़ार, मेला शुल्क व व्यावसायिक लाइसेंस प्रभार 100% ग्राम पंचायत निधि में रहेंगे, जिसका संग्रह और डिजिटलीकरण पंचायत सहायक द्वारा किया जाएगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q38" data-keywords="legal government order GO GR cabinet approval">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q38. Legal & Administrative</span>
+                        <h2 class="doc-q-title">क्या यह नीति शासकीय आदेश (GO) द्वारा लागू की जा सकती है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q38')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जी हाँ, उत्तर प्रदेश पंचायती राज नियमावली के अंतर्गत पंचायती राज विभाग एवं वित्त विभाग के संयुक्त शासनादेश (Government Order) द्वारा इसे तुरंत प्रभावी बनाया जा सकता है।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q39" data-keywords="legal e gram swaraj samarth portal integration">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q39. Legal & Administrative</span>
+                        <h2 class="doc-q-title">ई-ग्राम स्वराज व समर्थ पोर्टल से इसका क्या एकीकरण होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q39')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    ई-ग्राम स्वराज पोर्टल और समर्थ (SAMARTH) पोर्टल से एपीआई (API) एकीकरण के माध्यम से OSR संग्रह का लाइव रीयल-टाइम डेटा सीधे राज्य मुख्यालय पर देखा जा सकेगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q40" data-keywords="legal protection audit pfms">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q40. Legal & Administrative</span>
+                        <h2 class="doc-q-title">विधिक रूप से ग्राम पंचायत ओएसआर निधि का संरक्षण कैसे होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q40')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    OSR निधि का उपयोग केवल ग्राम पंचायत के स्वीकृत प्रस्ताव और नियमानुसार होगा। इसका वार्षिक ऑडिट सीएजी (CAG) व राज्य लेखा परीक्षा विभाग द्वारा अनिवार्य रूप से होगा।
+                </div>
+            </article>
+
+
+            <!-- Category 5: Implementation & Roadmap (Q41 - Q50) -->
+            <article class="doc-card" id="q41" data-keywords="implementation phase 1 fixed salary approval">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q41. Implementation</span>
+                        <h2 class="doc-q-title">नीति कार्यान्वयन का पहला चरण (Phase 01) क्या होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q41')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    पहला चरण: राज्य कैबिनेट द्वारा OSR नीति प्रारूप की सैद्धांतिक स्वीकृति और पंचायत सहायकों के लिए पृथक राज्य DBT मानदेय हेड का सृजन।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q42" data-keywords="implementation phase 2 dbt integration pfms">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q42. Implementation</span>
+                        <h2 class="doc-q-title">DBT प्रणाली का तकनीकी एकीकरण (Phase 02) कैसे पूरा होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q42')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    दूसरा चरण: 57,000 पंचायत सहायकों के बैंक खातों का आधार मैपिंग और राज्य कोषागार (e-Kuber) से पीएफएमएस एकीकरण ताकि 1 से 5 तारीख में वेतन सीधे पहुंचे।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q43" data-keywords="implementation phase 3 100 percent osr GO">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q43. Implementation</span>
+                        <h2 class="doc-q-title">100% GP प्राप्य अंश OSR में जमा करने का शासनादेश (Phase 03) कब जारी होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q43')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    तीसरा चरण: सीएससी व सेवा प्रदाता एजेंसियों को संशोधित गाइडलाइन जारी करना कि ₹5 कमीशन कटौती बंद कर पूरा ₹12.21 GP OSR खाते में ट्रांसफर किया जाए।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q44" data-keywords="implementation phase 4 7 kpi audit tracking">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q44. Implementation</span>
+                        <h2 class="doc-q-title">7 KPIs ऑटोमैटिक ट्रैकिंग और ऑडिट (Phase 04) कैसे काम करेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q44')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    चौथा चरण: राज्य स्तरीय ऑनलाइन डैशबोर्ड द्वारा 7 KPIs का रीयल-टाइम मॉनिटरिंग और हर तिमाही पर स्कोरकार्ड जनरेशन (Grade A+, A, B, C)।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q45" data-keywords="implementation kpi 01 to 06 evaluation">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q45. Implementation</span>
+                        <h2 class="doc-q-title">KPI 01 से 06 (कर संग्रह, OSR, डिजिटल सेवाएँ) का मूल्यांकन कैसे होगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q45')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    पोर्टल से स्वतः डेटा फेच होगा—जैसे कितने डिजिटल प्रमाणपत्र जारी हुए, कितना OSR जमा हुआ, और GPDP के कितने कार्य पूरे हुए। इसमें कोई मैन्युअल पक्षपात नहीं होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q46" data-keywords="implementation kpi 07 public satisfaction 96 percent">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q46. Implementation</span>
+                        <h2 class="doc-q-title">⭐ KPI 07 (जनसंतुष्टि व शिकायत निवारण) का 96% बेंचमार्क कैसे मापा जाएगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q46')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    नागरिकों द्वारा सेवा प्राप्ति के बाद आईजीआरएस (IGRS) या ऑनलाइन पोर्टल पर दिए गए फीडबैक (IVRS/SMS Rating) तथा शिकायतों के 48 घंटे में समाधान के आधार पर स्कोर तय होगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q47" data-keywords="implementation poor performance review training">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q47. Implementation</span>
+                        <h2 class="doc-q-title">कमजोर प्रदर्शन करने वाली ग्राम पंचायतों में क्या सुधारात्मक कदम उठाए जाएंगे?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q47')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    Grade C स्कोर प्राप्त करने वाले कर्मचारियों को विशेष आईटी व कर-संग्रह प्रशिक्षण दिया जाएगा, तथा 6 माह तक सुधार न होने पर प्रशासनिक समीक्षा की जाएगी।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q48" data-keywords="implementation grade A plus awards motivation">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q48. Implementation</span>
+                        <h2 class="doc-q-title">Grade A+ आउटस्टैंडिंग स्कोर हासिल करने वाली पंचायतों को क्या प्रोत्साहन मिलेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q48')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    Grade A+ (90%+ स्कोर) प्राप्त करने वाली ग्राम पंचायतों को 'मुख्यमंत्री आदर्श डिजिटल ग्राम पुरस्कार' तथा पंचायत सहायकों को राज्य स्तरीय प्रशस्ति पत्र दिया जाएगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q49" data-keywords="implementation online monitoring dashboard directorate">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q49. Implementation</span>
+                        <h2 class="doc-q-title">ब्लॉक व जिला स्तर पर इसका ऑनलाइन मॉनिटरिंग डैशबोर्ड कैसे बनेगा?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q49')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    जिला पंचायत राज अधिकारी (DPRO) और खंड विकास अधिकारी (BDO) के लॉगिन पर एक एकीकृत कंट्रोल रूम डैशबोर्ड होगा जहाँ 57,000 पंचायतों का OSR लाइव दिखेगा।
+                </div>
+            </article>
+
+            <article class="doc-card" id="q50" data-keywords="implementation 3 to 5 year vision uttar pradesh">
+                <div class="doc-card-header">
+                    <div>
+                        <span class="doc-q-num">Q50. Implementation</span>
+                        <h2 class="doc-q-title">इस नीति के लागू होने के 3 से 5 वर्षों में उत्तर प्रदेश का क्या विज़न है?</h2>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="action-btn" onclick="copyQLink('q50')"><i class="fa-solid fa-link"></i> Link</button>
+                    </div>
+                </div>
+                <div class="official-ans-block">
+                    <strong>आधिकारिक नीतिगत उत्तर:</strong><br>
+                    उत्तर प्रदेश देश का पहला ऐसा राज्य बनेगा जहाँ प्रत्येक ग्राम पंचायत ₹2 से ₹5 लाख तक का स्व-राजस्व (OSR) अर्जित कर आत्मनिर्भर बनेगी, और 57,000 पंचायत सहायक निश्चित मानदेय और 7 KPIs के साथ उत्तम सुशासन देंगे!
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Author Profile Footer Card -->
+    <div style="max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 3rem;">
+        <div class="author-footer-card">
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                <div style="position: relative; flex-shrink: 0;">
+                    <img src="vaibhav_profile.webp" alt="वैभव यादव" style="width: 110px; height: 125px; border-radius: 14px; border: 3px solid var(--gold); object-fit: cover; object-position: top center;">
+                    <span style="position: absolute; bottom: -5px; right: -5px; background: var(--gov-green); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; border: 2px solid #000;">✓</span>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold); font-weight: 700; text-transform: uppercase;">नीतिगत प्रारूप तैयारकर्ता (Proposal Author)</div>
+                    <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; color: #FFFFFF; margin: 2px 0;">वैभव यादव (Vaibhav Yadav)</h3>
+                    <div style="font-size: 0.85rem; color: var(--gold-bg); font-weight: 700;">पंचायत सहायक | उत्तर प्रदेश</div>
+                    <p style="font-size: 0.8rem; color: #9CA3AF; max-width: 550px; margin-top: 4px;">
+                        "उत्तर प्रदेश के 57,000 पंचायत सहायकों के आर्थिक स्थायित्व एवं ग्राम पंचायतों की वित्तीय आत्मनिर्भरता (OSR) हेतु यह 50 प्रश्नों का सम्पूर्ण शासकीय समीक्षा ज्ञान केंद्र तैयार किया गया है।"
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <a href="osr-policy.html" class="nav-btn-back" style="background: var(--gov-green); color: #fff; border: none; padding: 12px 24px;"><i class="fa-solid fa-compass"></i> नीति माइक्रोसाइट देखें</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="border-top: 1px solid var(--border-light); padding: 2rem; text-align: center; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); background: var(--bg-surface);">
+        <p>© 2026 पंचायत सहायक यूनियन उत्तर प्रदेश | Official Government Review Knowledge Base (Complete 50 Q&As)</p>
+    </footer>
+
+    <!-- ==========================================================================
+       REALTIME SEARCH & FILTER JAVASCRIPT
+       ========================================================================== -->
+    <script>
+        const searchInput = document.getElementById('kb-search');
+        const docCards = document.querySelectorAll('.doc-card');
+
+        function filterQuestions(query) {
+            const q = query.toLowerCase().trim();
+            docCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const keywords = card.getAttribute('data-keywords') || '';
+                if (text.includes(q) || keywords.includes(q)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                filterQuestions(e.target.value);
+            });
+        }
+
+        function filterByTag(tag) {
+            if (searchInput) {
+                searchInput.value = tag;
+                filterQuestions(tag);
+            }
+        }
+
+        function resetSearch() {
+            if (searchInput) {
+                searchInput.value = '';
+                filterQuestions('');
+            }
+        }
+
+        function copyQLink(id) {
+            const url = window.location.origin + window.location.pathname + '#' + id;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Question link copied to clipboard!');
+            });
+        }
+
+        // Sidebar Link Click Handler (Smooth Scroll & Search Reset)
+        document.querySelectorAll('.q-item-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.q-item-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                if (searchInput && searchInput.value) {
+                    resetSearch();
+                }
+
+                const targetId = this.getAttribute('href');
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    targetEl.style.display = 'block';
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    targetEl.style.borderColor = 'var(--gov-green)';
+                    targetEl.style.boxShadow = '0 0 0 4px rgba(4, 120, 87, 0.25)';
+                    setTimeout(() => {
+                        targetEl.style.borderColor = 'var(--border-light)';
+                        targetEl.style.boxShadow = 'var(--shadow-panel)';
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

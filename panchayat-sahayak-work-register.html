@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panchayat Sahayak Work Register 2026 | पंचायत सहायक काम</title>
+  <meta name="description" content="पंचायत सहायक के रोज़ाना के कामों (Work Duties) और अटेंडेंस रजिस्टर से जुड़ी हर जानकारी और ऑनलाइन एक्सेल फॉर्मेट।">
+  
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PDF & CHART LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <style>
+    /* SAAS NOTION-STYLE OVERRIDES */
+    body { background-color: #f8fafc; font-family: 'Inter', sans-serif;}
+    
+    .register-container { max-width: 1200px; margin: 20px auto; padding: 0 16px; display: flex; flex-direction: column; gap: 24px;}
+    
+    /* 1-CLICK QUICK ADD CHIPS */
+    .chip-btn { background: #f8fafc; color: #334155; border: 1px dashed #cbd5e1; padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 1px 2px rgba(0,0,0,0.02);}
+    .chip-btn:hover { background: #eff6ff; border-color: #3b82f6; color: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(59,130,246,0.15);}
+    
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(37,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(10deg); }
+    }
+    @keyframes spin3D {
+      from { transform: perspective(1000px) rotateY(-60deg) scale(0.6); opacity: 0; }
+      to { transform: perspective(1000px) rotateY(0deg) scale(1); opacity: 1; }
+    }
+    .anim-1 { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-2 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
+    .anim-3 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; }
+    
+    #pie-chart-3d { animation: spin3D 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; transform-origin: center right;}
+
+    /* APP HEADER */
+    .app-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #e2e8f0; padding-bottom: 16px; flex-wrap: wrap; gap: 16px;}
+    .app-title h2 { color: #0f172a; font-weight: 800; font-size: 24px; margin: 0 0 8px 0; font-family:'Poppins', sans-serif; letter-spacing:-0.02em;}
+    .app-title p { color: #64748b; font-size: 15px; margin: 0; font-weight: 500;}
+    .app-actions { display: flex; gap: 12px; }
+    
+    .btn-primary { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); display: flex; align-items: center; gap: 8px;}
+    .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); animation: pulseGlow 1.5s infinite;}
+    
+    .btn-secondary { background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
+    .btn-secondary:hover { background: #f8fafc; border-color: #94a3b8; color: #0f172a; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06);}
+
+    .btn-pdf { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+    .btn-pdf:hover { background: #fecaca; border-color: #fca5a5; color: #991b1b; }
+
+    /* STATUS METRICS */
+    .metric-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;}
+    .metric-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: 0.3s;}
+    .metric-card:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.04);}
+    .m-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;}
+    .metric-card.m-blue .m-icon { background: #eff6ff; color: #2563eb; }
+    .metric-card.m-green .m-icon { background: #f0fdf4; color: #16a34a; }
+    .metric-card.m-yellow .m-icon { background: #fefce8; color: #ca8a04; }
+    .m-text span { display: block; font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 4px;}
+    .m-text strong { display: block; font-size: 24px; font-weight: 800; color: #0f172a; font-family:'Poppins',sans-serif;}
+
+    /* DATA TABLE */
+    .data-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); overflow: hidden; }
+    .table-responsive { width: 100%; overflow-x: auto; }
+    .notion-table { width: 100%; border-collapse: collapse; min-width: 900px; text-align: left; }
+    .notion-table th { background: #f8fafc; padding: 16px 20px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; letter-spacing: 0.5px;}
+    .notion-table td { padding: 16px 20px; font-size: 14px; font-weight: 500; color: #1e293b; border-bottom: 1px solid #f1f5f9; vertical-align: middle;}
+    .notion-table tr:last-child td { border-bottom: none; }
+    .notion-table tr:hover { background: #f8fafc; }
+    .notion-table tbody tr { transition: 0.2s; }
+    
+    .cat-badge { background: #f1f5f9; color: #475569; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; display: inline-block; border: 1px solid #e2e8f0;}
+    .desc-text { color: #334155; line-height: 1.5; max-width: 400px; }
+    .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+    .s-comp { background: #22c55e; }
+    .s-pend { background: #eab308; }
+
+    .action-row { display: flex; gap: 8px; }
+    .action-row button { background: none; border: none; cursor: pointer; color: #94a3b8; font-size: 18px; transition: 0.2s; padding: 4px;}
+    .action-row button:hover.del { color: #ef4444; }
+    .action-row button:hover.edit { color: #2563eb; }
+
+    /* EMPTY STATE */
+    .empty-state { padding: 60px 24px; text-align: center; }
+    .empty-state img { width: 120px; opacity: 0.5; margin-bottom: 16px; }
+    .empty-state h3 { color: #0f172a; font-size: 20px; font-weight: 700; margin: 0 0 8px 0; }
+    .empty-state p { color: #64748b; font-size: 15px; margin: 0; }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px; opacity:0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);}
+    .modal-overlay.active { display: flex; opacity: 1;}
+    .modal-content { background: #ffffff; width: 100%; max-width: 500px; border-radius: 20px; padding: 32px; box-shadow: 0 24px 48px rgba(0,0,0,0.15); transform: translateY(40px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position:relative; border: 1px solid #e2e8f0;}
+    .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+    .modal-close { position: absolute; top: 24px; right: 24px; background: #f1f5f9; border: none; width:36px; height:36px; border-radius:50%; font-size: 20px; color: #64748b; cursor: pointer; transition: all 0.2s; display:flex; align-items:center; justify-content:center;}
+    .modal-close:hover { background: #e2e8f0; color: #0f172a; transform: rotate(90deg);}
+    
+    .modal-title { font-size: 20px; font-weight: 700; color: #0f172a; margin: 0 0 24px 0; font-family:'Poppins',sans-serif;}
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; }
+    .modal-input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif; color: #0f172a; outline: none; transition: 0.2s; box-sizing: border-box; background: #f8fafc;}
+    .modal-input:focus { border-color: #2563eb; background: #fff; box-shadow: 0 0 0 4px rgba(37,99,235,0.1);}
+    textarea.modal-input { resize: vertical; min-height: 80px; }
+    
+    .btn-save { background: #0f172a; color: #fff; border: none; padding: 14px; border-radius: 8px; font-weight: 600; font-size: 15px; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 12px;}
+    .btn-save:hover { background: #1e293b; box-shadow: 0 4px 12px rgba(15,23,42,0.2);}
+
+    /* BACKUP MODAL */
+    .backup-controls { display:flex; gap:12px; margin-top:16px; justify-content:space-between; padding-top:16px; border-top:1px solid #e2e8f0;}
+
+    @media (max-width: 768px) {
+       .metric-bar { grid-template-columns: 1fr; }
+       .app-header { flex-direction: column; align-items: flex-start; }
+       .app-actions { width: 100%; justify-content: space-between; flex-wrap:wrap;}
+    }
+
+    /* DARK MODE */
+    body.dark-theme { background-color: #0f172a; }
+    body.dark-theme .app-title h2, body.dark-theme .m-text strong { color: #f8fafc; }
+    body.dark-theme .app-header { border-color: #1e293b; }
+    body.dark-theme .btn-secondary { background: #1e293b; color: #f8fafc; border-color: #334155; }
+    body.dark-theme .metric-card, body.dark-theme .data-card, body.dark-theme .modal-content { background: #1e293b; border-color: #334155; }
+    body.dark-theme .notion-table th { background: #0f172a; border-color: #334155; color: #94a3b8; }
+    body.dark-theme .notion-table td { color: #f8fafc; border-color: #334155; }
+    body.dark-theme .notion-table tr:hover { background: #0f172a; }
+    body.dark-theme .modal-input { background: #0f172a; border-color: #334155; color: #f8fafc; }
+    body.dark-theme .modal-title { color: #f8fafc; }
+    body.dark-theme .cat-badge { background: #334155; border-color: #475569; color: #e2e8f0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gpsahayak.in/"},
+      {"@type": "ListItem", "position": 2, "name": "Work Register", "item": "https://gpsahayak.in/panchayat-sahayak-work-register.html"}
+    ]
+  }
+  </script>
+  <!-- SCHEMA_INJECTED_V2 -->
+</head>
+<body class="dl-page">
+
+  <div class="nic-top-bar">
+    <div class="nic-top-container">
+      <div class="nic-top-left">
+        <a href="index.html">← होम पेज पर वापस</a>
+      </div>
+      <div class="nic-top-right">
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')">
+          <button title="High Contrast">🌓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="register-container">
+
+    <div class="app-header anim-1">
+      <div class="app-title">
+        <h2>दैनिक कार्य रिपोर्ट (Work Log)</h2>
+
+        <p>कार्यों को सुरक्षित रखने का नया, सरल और एडवांस तरीका (IndexedDB Storage)।</p>
+
+      </div>
+      <div class="app-actions">
+
+        <button class="btn-secondary" onclick="openBackupModal()">💾 Backup</button>
+        <button class="btn-secondary" onclick="exportExcel()">📊 CSV</button>
+        <button class="btn-secondary btn-pdf" onclick="exportPDF()">📄 PDF</button>
+        <button class="btn-primary" onclick="openModal()">➕ Add Task</button>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metric-bar anim-2">
+       <div class="metric-card m-blue">
+          <div class="m-icon">📝</div>
+          <div class="m-text">
+            <span>Total Tasks</span>
+            <strong id="met-total">0</strong>
+          </div>
+       </div>
+       <div class="metric-card m-green">
+          <div class="m-icon">✅</div>
+          <div class="m-text">
+            <span>Completed</span>
+            <strong id="met-comp">0</strong>
+          </div>
+       </div>
+       <div class="metric-card m-yellow">
+          <div class="m-icon">⌛</div>
+          <div class="m-text">
+            <span>Pending</span>
+            <strong id="met-pend">0</strong>
+          </div>
+       </div>
+    </div>
+
+    <!-- DEPARTMENT ANALYTICS (PIE CHART) -->
+    <div class="data-card anim-3" id="dept-analytics" style="padding: 24px; margin-bottom: 24px; display:none;">
+       <h3 style="margin: 0 0 24px 0; font-size: 16px; font-weight: 700; color: #0f172a; border-bottom:1px solid #e2e8f0; padding-bottom:12px;">
+         विभागीय कार्य वितरण (Department-wise Work Share)
+       </h3>
+       <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; width: 100%;">
+         <!-- 3D PIE CHART CONTAINER -->
+         <div id="pie-chart-3d" style="width: 100%; height: 350px;"></div>
+       </div>
+    </div>
+
+    <!-- DATA TABLE & FILTERS -->
+    <div class="data-card anim-3">
+      
+      <!-- QUICK ADD TEMPLATES -->
+      <div style="padding: 16px 20px; border-bottom: 1px solid #e2e8f0; background:#fff;">
+         <div style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:12px; text-transform:uppercase; letter-spacing: 0.5px; display:flex; align-items:center; gap:6px;">
+            ⚡ 1-Click Quick Add (Templates)
+         </div>
+         <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button class="chip-btn" onclick="quickAdd('चिकित्सा एवं स्वास्थ्य (Health)', 'Feeding', 'आयुष्मान कार्ड बनाए गए', 'Completed')">+ Ayushman Card</button>
+            <button class="chip-btn" onclick="quickAdd('कृषि (Agriculture)', 'Feeding', 'PM किसान E-KYC / फीडिंग', 'Completed')">+ PM Kisan KYC</button>
+            <button class="chip-btn" onclick="quickAdd('पंचायती राज (Panchayati Raj)', 'Office Work', 'ग्राम सचिवालय में उपस्थित रहकर कार्य किया', 'Completed')">+ Secretariat Presence</button>
+            <button class="chip-btn" onclick="quickAdd('समाज कल्याण (Social Welfare)', 'Survey', 'वृद्धावस्था/विधवा पेंशन सत्यापन', 'Completed')">+ Pension Verification</button>
+            <button class="chip-btn" onclick="quickAdd('अन्य (Other)', 'Meeting', 'ग्राम प्रधान/सचिव के साथ समीक्षा बैठक', 'Completed')">+ Gram Panchayat Meeting</button>
+         </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div style="padding: 16px 20px; border-bottom: 1px solid #e2e8f0; display:flex; gap:16px; background:#f8fafc; align-items:center; flex-wrap:wrap;">
+         <div style="font-weight:700; font-size:14px; color:#475569; display:flex; align-items:center; gap:6px;">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+            Manager:
+         </div>
+         <input type="text" id="f-text" placeholder="Search tasks..." class="modal-input" style="width:220px; padding:8px; margin:0; border-radius:20px; font-size:13px;" onkeyup="refreshUI()">
+         
+         <input type="month" id="f-month" class="modal-input" style="width:150px; padding:8px; margin:0; border-radius:20px; font-size:13px;" onchange="refreshUI()">
+         
+         <select id="f-dept" class="modal-input" style="width:200px; padding:8px; margin:0; border-radius:20px; font-size:13px;" onchange="refreshUI()">
+            <option value="">All Departments</option>
+            <option value="पंचायती राज (Panchayati Raj)">पंचायती राज विभाग</option>
+            <option value="ग्राम्य विकास (Rural Dev)">ग्राम्य विकास विभाग</option>
+            <option value="समाज कल्याण (Social Welfare)">समाज कल्याण (पेंशन)</option>
+            <option value="राजस्व (Revenue)">राजस्व विभाग</option>
+            <option value="चिकित्सा एवं स्वास्थ्य (Health)">चिकित्सा एवं स्वास्थ्य</option>
+            <option value="कृषि (Agriculture)">कृषि विभाग</option>
+            <option value="महिला एवं बाल विकास (WCD)">महिला एवं बाल विकास</option>
+            <option value="खाद्य एवं रसद (Food/Ration)">खाद्य एवं रसद विभाग</option>
+            <option value="अन्य (Other)">अन्य / विविध</option>
+         </select>
+         
+         <button class="btn-secondary" style="padding:8px 14px; font-size:13px; border-radius:20px;" onclick="clearFilters()">Clear</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="notion-table">
+          <thead>
+            <tr>
+              <th style="width:110px;">Date</th>
+              <th style="width:180px;">Department (विभाग)</th>
+              <th style="width:160px;">Category</th>
+              <th style="width:100%;">Task Description</th>
+              <th style="width:110px;">Status</th>
+              <th style="width:80px; text-align:right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="log-body">
+            <!-- Data pushed here -->
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <span style="font-size:48px; display:block; margin-bottom:16px; opacity:0.8;">📭</span>
+        <h3>No tasks logged yet</h3>
+        <p>Click "Add New Task" to start building your work register.</p>
+      </div>
+    </div>
+
+</main>
+
+  <!-- WELCOME POPUP MODAL -->
+  <div class="modal-overlay" id="welcome-modal">
+    <div class="modal-content" style="max-width:420px; text-align:center; padding:40px 32px;">
+      <button class="modal-close" onclick="closeWelcomeModal()">×</button>
+      <div style="font-size:72px; margin-bottom:16px; animation: bounce 2s infinite; display:inline-block;">👋</div>
+      <h2 id="welcome-greet" style="font-size:24px; color:#0f172a; font-weight:800; margin:0 0 12px 0;">शुभ प्रभात 🌅</h2>
+      <p style="color:#475569; font-size:15px; line-height:1.6; margin:0 0 32px 0;">
+         <strong style="color:#2563eb; font-size:16px;">पंचायत सहायक महोदय,</strong><br>
+         आज का कार्य अभी तक दर्ज़ नहीं हुआ है। चलिए, बस एक मिनट में आज का काम पोर्टल पर दर्ज़ कर दीजिये!
+      </p>
+      <button class="btn-primary" style="width:100%; justify-content:center; padding:16px; font-size:16px;" onclick="closeWelcomeAndAdd()">✍️ आज का काम जोड़ें (Add Work)</button>
+    </div>
+  </div>
+
+  <!-- ADD TASK MODAL -->
+  <div class="modal-overlay" id="task-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h3 class="modal-title" id="modal-heading">Add Work Log</h3>
+      
+      <form id="task-form">
+        <input type="hidden" id="entry-id">
+        <div style="display:flex; gap:16px;">
+          <div class="form-group" style="flex:1;">
+            <label>Date (दिनांक) <a href="#" id="unlock-date-btn" style="float:right; font-size:11px; color:#ef4444; text-decoration:none;" onclick="unlockDate(event)">🔓 Unlock Backdate</a></label>
+            <input type="date" id="t-date" class="modal-input" required>
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>Status (स्थिति)</label>
+            <select id="t-status" class="modal-input" required>
+               <option value="Completed">✅ Completed</option>
+               <option value="Pending">⌛ Pending</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Department (विभाग)</label>
+          <select id="t-dept" class="modal-input" required>
+              <option value="">-- Select Department --</option>
+              <option value="पंचायती राज (Panchayati Raj)">पंचायती राज विभाग</option>
+              <option value="ग्राम्य विकास (Rural Dev)">ग्राम्य विकास विभाग</option>
+              <option value="समाज कल्याण (Social Welfare)">समाज कल्याण विभाग (पेंशन)</option>
+              <option value="राजस्व (Revenue)">राजस्व विभाग</option>
+              <option value="चिकित्सा एवं स्वास्थ्य (Health)">चिकित्सा एवं स्वास्थ्य</option>
+              <option value="कृषि (Agriculture)">कृषि विभाग</option>
+              <option value="महिला एवं बाल विकास (WCD)">महिला एवं बाल विकास</option>
+              <option value="खाद्य एवं रसद (Food/Ration)">खाद्य एवं रसद विभाग</option>
+              <option value="अन्य (Other)">अन्य / विविध</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Category (श्रेणी)</label>
+          <select id="t-cat" class="modal-input" required>
+              <option value="">-- Select Work Category --</option>
+              <option value="Feeding">फीडिंग (Feeding)</option>
+              <option value="Survey">सर्वेक्षण (Survey)</option>
+              <option value="Inspection">निरीक्षण (Inspection)</option>
+              <option value="Office Work">कार्यालय कार्य (Office Work)</option>
+              <option value="Meeting">बैठक (Meeting)</option>
+              <option value="Other">अन्य (Other)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Description (विवरण)</label>
+          <textarea id="t-desc" class="modal-input" placeholder="उदा: पंचायत भवन में 3 आय प्रमाण पत्र ऑनलाइन किये..." required></textarea>
+        </div>
+        <button type="submit" class="btn-save" id="save-btn">Save Task</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- BACKUP MODAL -->
+  <div class="modal-overlay" id="backup-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeBackupModal()">×</button>
+      <h3 class="modal-title">Database Backup</h3>
+      <p style="color:#64748b; font-size:14px; line-height:1.5; margin-bottom:20px;">चूँकि यह टूल 100% सुरक्षित और ऑफलाइन है, आपका डेटा सर्वर पर नहीं जाता। अपने डेटा को सुरक्षित रखने के लिए हर महीने एक JSON Backup फाइल डाउनलोड करें।</p>
+      
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; padding:16px; border-radius:8px; margin-bottom:16px;">
+         <h4 style="color:#1d4ed8; margin:0 0 8px 0; font-size:14px;">1. Export Backup (सुरक्षित करें)</h4>
+         <button class="btn-primary" style="width:100%; justify-content:center;" onclick="downloadBackup()">📥 Download JSON Backup</button>
+      </div>
+
+      <div style="background:#fefce8; border:1px solid #fef08a; padding:16px; border-radius:8px;">
+         <h4 style="color:#a16207; margin:0 0 8px 0; font-size:14px;">2. Restore Backup (वापस लाएं)</h4>
+         <input type="file" id="backup-file" accept=".json" style="margin-bottom:12px; font-size:13px;">
+         <button class="btn-secondary" style="width:100%; justify-content:center; border-color:#eab308; color:#854d0e;" onclick="restoreBackup()">📤 Upload & Restore</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- ADVANCED INDEXEDDB STORAGE (Instead of LocalStorage) ---
+    // IndexedDB allows massive capacity and won't be cleared easily like localStorage.
+    
+    let db;
+    const DB_NAME = "PanchayatLogsDB";
+    const STORE_NAME = "workLogs";
+
+    function initDB(callback) {
+        const request = window.indexedDB.open(DB_NAME, 1);
+        request.onupgradeneeded = (e) => {
+            let db = e.target.result;
+            if (!db.objectStoreNames.contains(STORE_NAME)) {
+                db.createObjectStore(STORE_NAME, { keyPath: "id" });
+            }
+        };
+        request.onsuccess = (e) => {
+            db = e.target.result;
+            if(callback) callback();
+        };
+        request.onerror = (e) => {
+            alert("Database Error: " + e.target.errorCode);
+        };
+    }
+
+    // --- DB OPERATIONS ---
+    function getAllLogs(callback) {
+        const tx = db.transaction(STORE_NAME, "readonly");
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.getAll();
+        req.onsuccess = () => {
+            // Sort by date DESC
+            let data = req.result.sort((a,b) => new Date(b.date) - new Date(a.date));
+            callback(data);
+        };
+    }
+
+    function saveLog(log, callback) {
+        const tx = db.transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+        store.put(log);
+        tx.oncomplete = () => { if(callback) callback(); };
+    }
+
+    function deleteLog(id, callback) {
+        if(!confirm('Delete this task?')) return;
+        const tx = db.transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+        store.delete(Number(id));
+        tx.oncomplete = () => { if(callback) callback(); };
+    }
+
+    // --- UI LOGIC ---
+    const tBody = document.getElementById('log-body');
+    const emptyState = document.getElementById('empty-state');
+    
+    function formatDate(dateStr) {
+        return new Date(dateStr).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year:'numeric' });
+    }
+
+    // Load Google Charts
+    google.charts.load('current', {'packages':['corechart']});
+    
+    // Globals for exports
+    let currentFilteredLogs = [];
+
+    function clearFilters() {
+        document.getElementById('f-month').value = '';
+        document.getElementById('f-dept').value = '';
+        document.getElementById('f-text').value = '';
+        refreshUI();
+    }
+
+    function quickAdd(dept, cat, desc, status) {
+        let log = {
+            id: Date.now(),
+            date: new Date().toISOString().slice(0,10),
+            dept: dept,
+            category: cat,
+            desc: desc,
+            status: status
+        };
+        saveLog(log, () => {
+            refreshUI();
+            // Optional: You can play a small animation or show an alert, but refreshUI is instant
+        });
+    }
+
+    function refreshUI() {
+        getAllLogs((logs) => {
+            
+            // APPLY FILTERS
+            const monthIdx = document.getElementById('f-month').value; // YYYY-MM
+            const deptIdx = document.getElementById('f-dept').value;
+            const textIdx = document.getElementById('f-text').value.toLowerCase();
+            
+            let filtered = logs.filter(log => {
+                let matchMonth = true;
+                let matchDept = true;
+                let matchText = true;
+                
+                if (monthIdx) matchMonth = log.date.startsWith(monthIdx);
+                if (deptIdx) matchDept = (log.dept === deptIdx);
+                if (textIdx) matchText = (log.desc.toLowerCase().includes(textIdx) || log.category.toLowerCase().includes(textIdx));
+                
+                return matchMonth && matchDept && matchText;
+            });
+            
+            // Sort Descending (Newest first)
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            currentFilteredLogs = filtered;
+            
+            tBody.innerHTML = '';
+            let comp = 0, pend = 0;
+            let deptStats = {};
+
+            if(filtered.length === 0) {
+                emptyState.style.display = 'block';
+                document.getElementById('dept-analytics').style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                document.getElementById('dept-analytics').style.display = 'block';
+                
+                filtered.forEach(log => {
+                    // Update main metrics
+                    if(log.status === 'Completed') comp++; else pend++;
+                    
+                    // Update department stats
+                    let deptVal = log.dept || 'अनजान (Unknown)';
+                    if(!deptStats[deptVal]) deptStats[deptVal] = { total: 0, completed: 0 };
+                    deptStats[deptVal].total++;
+                    if(log.status === 'Completed') deptStats[deptVal].completed++;
+                    
+                    let dot = log.status === 'Completed' ? 's-comp' : 's-pend';
+                    let tr = document.createElement('tr');
+                    
+                    // Dynamic Category Badging
+                    let badgeColor = '#64748b'; let badgeBg = '#f1f5f9';
+                    if(log.category === 'Feeding') { badgeColor = '#2563eb'; badgeBg = '#eff6ff'; }
+                    if(log.category === 'Survey') { badgeColor = '#8b5cf6'; badgeBg = '#f0fdfa'; }
+                    if(log.category === 'Inspection') { badgeColor = '#ea580c'; badgeBg = '#fff7ed'; }
+                    if(log.category === 'Office Work') { badgeColor = '#0d9488'; badgeBg = '#f0fdfa'; }
+                    if(log.category === 'Meeting') { badgeColor = '#db2777'; badgeBg = '#fdf2f8'; }
+
+                    tr.innerHTML = `
+                        <td><strong style="color:#0f172a;">${formatDate(log.date)}</strong></td>
+                        <td><span style="font-weight:700; color:#475569; font-size:13px;">${deptVal}</span></td>
+                        <td><span class="cat-badge" style="color:${badgeColor}; background:${badgeBg};">${log.category}</span></td>
+                        <td><div class="desc-text">${log.desc}</div></td>
+                        <td>
+                           <div style="display:flex; align-items:center; font-weight:600; color:#475569; font-size:13px;">
+                             <span class="status-dot ${dot}"></span> ${log.status}
+                           </div>
+                        </td>
+                        <td style="text-align:right;">
+                           <div class="action-row" style="justify-content:flex-end;">
+                              <button class="edit" onclick='editTask(${JSON.stringify(log)})'>✎</button>
+                              <button class="del" onclick="runDelete(${log.id})">🗑️</button>
+                           </div>
+                        </td>
+                    `;
+                    tBody.appendChild(tr);
+                });
+            }
+
+            // Render Metrics dynamically to filtered set
+            document.getElementById('met-total').innerText = filtered.length;
+            document.getElementById('met-comp').innerText = comp;
+            document.getElementById('met-pend').innerText = pend;
+
+            // Render 3D Circle Graph via Google Charts
+            if(Object.keys(deptStats).length > 0) {
+               google.charts.setOnLoadCallback(() => drawChart(deptStats));
+            } else {
+               document.getElementById('pie-chart-3d').innerHTML = ''; // Clear if zero
+            }
+        });
+    }
+
+    function drawChart(deptMap) {
+        let dataArray = [['Department', 'Tasks']];
+        for (let [deptName, stats] of Object.entries(deptMap)) {
+            dataArray.push([deptName, stats.total]);
+        }
+        
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+          is3D: true,
+          backgroundColor: 'transparent',
+          legend: { position: 'right', textStyle: { color: '#334155', fontSize: 13, bold: true } },
+          chartArea: { left: 20, top: 20, width: '100%', height: '100%' },
+          pieSliceText: 'percentage',
+          colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#14b8a6', '#64748b']
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('pie-chart-3d'));
+        chart.draw(data, options);
+    }
+
+    function runDelete(id) {
+        deleteLog(id, refreshUI);
+    }
+
+    // --- MODAL & GOVERNANCE LOGIC ---
+    const taskModal = document.getElementById('task-modal');
+    const welcomeModal = document.getElementById('welcome-modal');
+    let backdateReason = "";
+    
+    function openWelcomeModal() {
+        let hour = new Date().getHours();
+        let greet = 'शुभ रात्रि 🌙';
+        if(hour >= 5 && hour < 12) greet = 'शुभ प्रभात 🌅 (Good Morning)';
+        else if(hour >= 12 && hour < 17) greet = 'शुभ दोपहर ☀️ (Good Afternoon)';
+        else if(hour >= 17 && hour < 22) greet = 'शुभ संध्या 🌇 (Good Evening)';
+        
+        document.getElementById('welcome-greet').innerText = greet;
+        welcomeModal.classList.add('active');
+    }
+    function closeWelcomeModal() { welcomeModal.classList.remove('active'); }
+    function closeWelcomeAndAdd() {
+        closeWelcomeModal();
+        setTimeout(openModal, 300);
+    }
+
+    function openModal() {
+        document.getElementById('task-form').reset();
+        document.getElementById('entry-id').value = '';
+        
+        // Strict Date Governance (Lock to Today)
+        let today = new Date().toISOString().slice(0,10);
+        let dInput = document.getElementById('t-date');
+        dInput.value = today;
+        dInput.setAttribute('min', today);
+        dInput.setAttribute('max', today);
+        backdateReason = ""; // reset
+        
+        document.getElementById('modal-heading').innerHTML = '📋 आज का कार्य दर्ज़ करें';
+        taskModal.classList.add('active');
+    }
+    
+    function closeModal() { taskModal.classList.remove('active'); }
+
+    function unlockDate(e) {
+        e.preventDefault();
+        let reason = prompt("सुरक्षा अलर्ट: पिछली तारीख (Backdate) का काम जोड़ने का कारण बताएं:");
+        if(reason && reason.trim().length > 3) {
+            document.getElementById('t-date').removeAttribute('min');
+            backdateReason = reason.trim();
+            alert("✅ अनलॉक सफल! अब आप पुरानी तारीख चुन सकते हैं।");
+        } else {
+            alert("❌ मान्य कारण दर्ज करना अनिवार्य है!");
+        }
+    }
+
+    function editTask(log) {
+        document.getElementById('entry-id').value = log.id;
+        
+        let dInput = document.getElementById('t-date');
+        dInput.removeAttribute('min'); // unlock for edits
+        dInput.removeAttribute('max');
+        dInput.value = log.date;
+        
+        document.getElementById('t-dept').value = log.dept || '';
+        document.getElementById('t-cat').value = log.category;
+        document.getElementById('t-desc').value = log.desc.replace(/\[Backdated:.*?\] /, ''); // visual cleanup
+        document.getElementById('t-status').value = log.status;
+        document.getElementById('modal-heading').innerText = '✏️ Edit Work Log';
+        taskModal.classList.add('active');
+    }
+
+    document.getElementById('task-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let eId = document.getElementById('entry-id').value;
+        
+        let finalDesc = document.getElementById('t-desc').value;
+        let selectedDate = document.getElementById('t-date').value;
+        let today = new Date().toISOString().slice(0,10);
+        
+        // Architect accountability payload
+        if(selectedDate < today && backdateReason !== "") {
+            finalDesc = `[Backdated: ${backdateReason}] ${finalDesc}`;
+        }
+        
+        let log = {
+            id: eId ? Number(eId) : Date.now(),
+            date: selectedDate,
+            dept: document.getElementById('t-dept').value,
+            category: document.getElementById('t-cat').value,
+            desc: finalDesc,
+            status: document.getElementById('t-status').value
+        };
+        saveLog(log, () => {
+            closeModal();
+            refreshUI();
+        });
+    });
+
+    // --- SOCIAL SHARE LOGIC ---
+    function shareWhatsApp() {
+        getAllLogs((logs) => {
+            let today = new Date().toISOString().slice(0,10);
+            let todayLogs = logs.filter(l => l.date === today); 
+            
+            if(todayLogs.length === 0) return alert("⚠️ आज का कोई भी कार्य अभी तक दर्ज नहीं किया गया है!");
+            
+            let psName = localStorage.getItem('psName') || '___________';
+            let gpName = localStorage.getItem('gpName') || '___________';
+            
+            let text = `*दैनिक कार्य रिपोर्ट - ${new Date().toLocaleDateString('hi-IN')}*\n`;
+            text += `*पंचायत सहायक:* ${psName}\n`;
+            text += `*ग्राम पंचायत:* ${gpName}\n\n`;
+            
+            text += `*आज के प्रमुख कार्य:*\n`;
+            todayLogs.forEach((l, i) => {
+               let dVal = l.dept ? `(${l.dept})` : '';
+               let star = l.status === 'Completed' ? '✅' : '⌛';
+               text += `${star} ${i+1}. ${l.desc} ${dVal}\n`;
+            });
+            
+            text += `\n*कुल दर्ज कार्य:* ${todayLogs.length}`;
+            text += `\n*स्थिति:* ${todayLogs.filter(t => t.status==='Completed').length} पूर्ण, ${todayLogs.filter(t => t.status==='Pending').length} पेंडिंग`;
+            
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+        });
+    }
+
+    // --- EXCISE/BACKUP LOGIC ---
+    function exportPDF() {
+        const tableNode = document.querySelector('.notion-table');
+        if(!tableNode) return;
+        
+        // Ensure html2pdf is loaded
+        if (typeof html2pdf === 'undefined') {
+            alert('PDF Library is still loading... Please wait a second.');
+            return;
+        }
+
+        // Get details (cache in localStorage so they don't have to type every time)
+        let psName = localStorage.getItem('psName');
+        let gpName = localStorage.getItem('gpName');
+        
+        if(!psName) {
+            psName = prompt("रिपोर्ट के लिए पंचायत सहायक का नाम दर्ज करें:");
+            if(psName) localStorage.setItem('psName', psName);
+        }
+        if(!gpName) {
+            gpName = prompt("ग्राम पंचायत का नाम दर्ज करें:");
+            if(gpName) localStorage.setItem('gpName', gpName);
+        }
+
+        const btn = document.querySelector('.btn-pdf');
+        const origText = btn.innerHTML;
+        btn.innerHTML = "⏳ Generating...";
+        btn.disabled = true;
+
+        // Clone the table to strip action buttons for the PDF
+        const printWrap = document.createElement('div');
+        printWrap.style.padding = '20px';
+        printWrap.style.fontFamily = "'Nirmala UI', 'Mangal', 'Arial Unicode MS', sans-serif"; 
+        
+        printWrap.innerHTML = `
+            <div style="text-align:center; padding-bottom:16px; border-bottom:2px solid #e2e8f0; margin-bottom:20px;">
+                <h2 style="margin:0; color:#0f172a; font-size:26px; font-weight:700; letter-spacing: 1px;">DAILY WORK REGISTER</h2>
+                <h3 style="margin:8px 0 0 0; color:#475569; font-size:16px; font-weight:500;">Panchayat Sahayak, Uttar Pradesh</h3>
+            </div>
+            
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-size:14px; font-weight:600; color:#334155;">
+                <div>
+                   <p style="margin:4px 0;">Panchayat Sahayak Name: <span style="color:#0f172a;">${psName || '__________________'}</span></p>
+                   <p style="margin:4px 0;">Gram Panchayat: <span style="color:#0f172a;">${gpName || '__________________'}</span></p>
+                </div>
+                <div style="text-align:right;">
+                   <p style="margin:4px 0;">Report Date: <span style="color:#0f172a;">${new Date().toLocaleDateString('en-IN')}</span></p>
+                </div>
+            </div>
+
+            <table style="width:100%; border-collapse:collapse; font-size:12px; text-align:left; margin-bottom:40px;">
+                <thead>
+                    <tr style="background:#f8fafc; color:#0f172a;">
+                        <th style="padding:10px; border:1px solid #cbd5e1;">Date</th>
+                        <th style="padding:10px; border:1px solid #cbd5e1;">Department</th>
+                        <th style="padding:10px; border:1px solid #cbd5e1;">Category</th>
+                        <th style="padding:10px; border:1px solid #cbd5e1;">Description</th>
+                        <th style="padding:10px; border:1px solid #cbd5e1;">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="pdf-tbody">
+                </tbody>
+            </table>
+            
+            <div style="display:flex; justify-content:space-between; margin-top:50px; font-size:14px; font-weight:600; color:#0f172a;">
+                <div style="text-align:center;">
+                    <p style="margin-top:40px;">Signature<br><span style="font-size:12px; color:#64748b;">(Panchayat Sahayak)</span></p>
+                </div>
+                <div style="text-align:center;">
+                    <p style="margin-top:40px;">Signature / Seal<br><span style="font-size:12px; color:#64748b;">(Gram Pradhan / Secretary)</span></p>
+                </div>
+            </div>
+        `;
+        
+        const tbody = printWrap.querySelector('#pdf-tbody');
+        
+        // Use the globally filtered logs so the PDF reflects the UI
+        if(currentFilteredLogs.length === 0) { 
+            btn.innerHTML = origText; 
+            btn.disabled = false; 
+            return alert("No data available in current filter to export!"); 
+        }
+        
+        // Algorithm to group contiguous dates natively using rowspan
+        let i = 0;
+        while(i < currentFilteredLogs.length) {
+            let currentDate = currentFilteredLogs[i].date;
+            
+            // 1. Calculate the contiguous group size for this specific date
+            let groupSize = 0;
+            while((i + groupSize) < currentFilteredLogs.length && currentFilteredLogs[i + groupSize].date === currentDate) {
+                groupSize++;
+            }
+            
+            // 2. Render the physical rows
+            for(let j = 0; j < groupSize; j++) {
+                let log = currentFilteredLogs[i + j];
+                let statusColor = log.status === 'Completed' ? '#166534' : '#854d0e';
+                let tr = document.createElement('tr');
+                
+                let dateCell = '';
+                // Only print the date on the FIRST row of the daily group, spanning across the height
+                if(j === 0) {
+                   dateCell = `<td rowspan="${groupSize}" style="padding:10px; border:1px solid #e2e8f0; vertical-align:top; font-weight:700;">${formatDate(currentDate)}<br><span style="font-size:10px; color:#64748b; font-weight:normal;">(${groupSize} Tasks)</span></td>`;
+                }
+
+                tr.innerHTML = `
+                    ${dateCell}
+                    <td style="padding:10px; border:1px solid #e2e8f0; vertical-align:top;">${log.dept || '-'}</td>
+                    <td style="padding:10px; border:1px solid #e2e8f0; vertical-align:top;">${log.category}</td>
+                    <td style="padding:10px; border:1px solid #e2e8f0; vertical-align:top;">${log.desc}</td>
+                    <td style="padding:10px; border:1px solid #e2e8f0; vertical-align:top; color:${statusColor}; font-weight:bold;">${log.status}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+            
+            // Fast-forward cursor past the processed group
+            i += groupSize;
+        }
+
+        var opt = {
+          margin:       10,
+          filename:     `Work_Register_Filtered_${new Date().toISOString().slice(0,10)}.pdf`,
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2, useCORS: true },
+          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(printWrap).save().then(() => {
+            btn.innerHTML = origText;
+            btn.disabled = false;
+        });
+    }
+
+    function exportExcel() {
+        if(currentFilteredLogs.length === 0) return alert('No data to export.');
+        let csv = "\uFEFFDate,Department,Category,Description,Status\n";
+        currentFilteredLogs.forEach(l => {
+            let d = l.desc.replace(/"/g, '""');
+            let deptVal = l.dept || 'Unknown';
+            csv += `"${l.date}","${deptVal}","${l.category}","${d}","${l.status}"\n`;
+        });
+        downloadBlob(csv, "WorkLog_Export.csv", "text/csv");
+    }
+
+    const backupModal = document.getElementById('backup-modal');
+    function openBackupModal() { backupModal.classList.add('active'); }
+    function closeBackupModal() { backupModal.classList.remove('active'); }
+
+    function downloadBackup() {
+        getAllLogs((logs) => {
+            if(logs.length === 0) return alert('No data to backup.');
+            let json = JSON.stringify(logs, null, 2);
+            downloadBlob(json, `Backup_Panchayat_${Date.now()}.json`, "application/json");
+        });
+    }
+
+    function restoreBackup() {
+        let file = document.getElementById('backup-file').files[0];
+        if(!file) return alert("Please select a JSON backup file first.");
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                let data = JSON.parse(e.target.result);
+                if(Array.isArray(data)) {
+                    if(confirm("This will merge backup data with current data. Continue?")) {
+                        let tx = db.transaction(STORE_NAME, "readwrite");
+                        let store = tx.objectStore(STORE_NAME);
+                        data.forEach(item => store.put(item));
+                        tx.oncomplete = () => {
+                            alert("Restore successful!");
+                            closeBackupModal();
+                            refreshUI();
+                        }
+                    }
+                } else { alert("Invalid Backup Format."); }
+            } catch(err) { alert("Error parsing file."); }
+        };
+        reader.readAsText(file);
+    }
+
+    function downloadBlob(content, filename, type) {
+        const blob = new Blob([content], {type: type});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    // Init App
+    window.onload = () => {
+        initDB(() => {
+            refreshUI();
+            
+            // Auto-Popup Governance: Enforce daily compliance
+            setTimeout(() => {
+                if(!sessionStorage.getItem('promptedToday')) {
+                    sessionStorage.setItem('promptedToday', 'true');
+                    getAllLogs((logs) => {
+                        let today = new Date().toISOString().slice(0,10);
+                        let hasToday = logs.some(l => l.date === today);
+                        if(!hasToday) {
+                            openWelcomeModal();
+                        }
+                    });
+                }
+            }, 600); // Slight delay for smoother UX
+        });
+    }
+  </script>
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,619 @@
+﻿<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panchayat Sahayak PDF Tools | PDF Merge, Compress & Convert Online</title>
+  <meta name="description" content="पंचायत सहायक के लिए फ्री PDF टूल्स। PDF मर्ज करें, कंप्रेस करें, और JPG को PDF में कन्वर्ट करें बिना किसी ऐप के।">
+  
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Load pdf-lib and pdf.js for client-side PDF manipulation and compression -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';</script>
+  
+  <style>
+    /* PAGE SPECIFIC OVERRIDES */
+    body { background-color: var(--bg-main); }
+    .hero-title { text-align: center; margin-top: 16px; margin-bottom: 12px; padding: 0 16px; }
+    .hero-title h2 { color: var(--primary); font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em;}
+    .hero-title p { color: var(--text-muted); font-size: 14px; font-weight: 500; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+    /* TAB NAVIGATION */
+    .tools-nav-wrapper { display: flex; justify-content: center; margin-bottom: 0px; padding: 0 16px; inset: 0;}
+    .tools-nav { display: inline-flex; background: #ffffff; border-radius: 16px 16px 0 0; border: 1px solid var(--border); border-bottom: none; overflow: hidden; box-shadow: 0 -4px 12px rgba(0,0,0,0.02); }
+    .tool-tab { padding: 18px 32px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; color: var(--text-muted); font-size: 16px; display: flex; align-items: center; gap: 8px; transition: 0.3s; position:relative;}
+    .tool-tab:hover { background: #f1f5f9; color: var(--primary); }
+    .tool-tab.active { background: #ef4444; color: #ffffff; } /* PDF Red Highlight */
+    
+    /* SPLIT WORKSPACE */
+    .ilove-workspace { display: flex; background: #fff; min-height: 550px; position:relative; overflow:hidden; border-top: 1px solid var(--border); box-shadow: var(--shadow-lg); max-width: 1200px; margin: 0 auto 60px auto; border-radius: 16px;}
+    .workspace-left { flex: 1.5; background: #f8fafc; border-right: 1px solid var(--border); padding: 40px; display: flex; flex-direction: column; position: relative;}
+    .workspace-right { flex: 1; padding: 40px; display: flex; flex-direction: column; background: #ffffff; z-index: 10; position:relative;}
+    
+    .tool-body { display: none; width: 100%; animation: fadeIn 0.4s ease-out; height: 100%;}
+    .tool-body.active { display: flex; flex-direction:row; width:100%; height:100%;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* DROPZONE & FILE LIST */
+    .ilove-dropzone { border: 3px dashed #cbd5e1; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; transition: all 0.3s; background: #ffffff; cursor: pointer; flex: 1; padding: 20px;}
+    .ilove-dropzone:hover, .ilove-dropzone.dragover { border-color: #ef4444; background: #fef2f2; }
+    .ilove-dropzone svg { width: 80px; height: 80px; fill: #94a3b8; transition: 0.3s;}
+    .ilove-dropzone:hover svg { fill: #ef4444; transform: scale(1.1);}
+    
+    .file-select-btn { background: #ef4444; color: #fff; border: none; padding: 16px 32px; font-size: 20px; font-weight: 800; border-radius: 12px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); font-family: 'Montserrat', sans-serif;}
+    .file-select-btn:hover { background: #dc2626; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);}
+    
+    /* FILE LIST RENDER */
+    .file-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; width: 100%; align-content: start; overflow-y: auto; max-height: 400px; flex:1;}
+    .file-item-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; box-shadow: var(--shadow-sm); position:relative;}
+    .file-item-card .remove-item { position:absolute; top:-8px; right:-8px; background:#ef4444; color:#fff; width:24px; height:24px; border-radius:50%; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; border:2px solid #fff; box-shadow:var(--shadow-sm);}
+    .file-item-card img, .file-item-card svg { width: 48px; height: 48px; object-fit: contain; }
+    .file-item-card span { font-size: 12px; font-weight: 600; color: var(--text-main); line-height: 1.2; word-break: break-all; }
+    
+    /* CONTROLS (Right Pane) */
+    .control-group { margin-bottom: 24px; }
+    .control-group label { display: block; font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 8px; }
+    .help-text { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;}
+    
+    .action-btn-massive { background: #ef4444; color: #fff; border: none; border-radius: 12px; padding: 24px; font-size: 20px; font-weight: 800; width: 100%; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 16px; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3); font-family: 'Montserrat', sans-serif; margin-top: auto;}
+    .action-btn-massive:hover { background: #dc2626; transform: translateY(-4px); box-shadow: 0 16px 32px rgba(239, 68, 68, 0.4); }
+    .action-btn-massive:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none;}
+    
+    .remove-all-btn { background: #f1f5f9; color: var(--text-main); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; margin-bottom: 16px;}
+    .remove-all-btn:hover { background: #e2e8f0; border-color: #cbd5e1; }
+
+    /* SUCCESS PANEL */
+    .success-panel { background: #f0fdf4; border: 2px solid #22c55e; border-radius: 16px; padding: 32px; text-align: center; margin-top: auto; display: none; animation: fadeIn 0.3s;}
+    .success-panel h3 { color: #166534; margin-bottom: 8px; font-size: 20px; font-weight:800; font-family: 'Montserrat', sans-serif;}
+    .success-panel p { color: #15803d; font-weight: 600; font-size: 14px; margin-bottom: 24px;}
+    .dl-btn { background: #22c55e; color: #fff; padding: 16px 24px; border-radius: 12px; font-weight: 800; font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3); transition:0.3s;}
+    .dl-btn:hover { background: #16a34a; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(34, 197, 94, 0.4); color: #fff;}
+
+    /* DARK MODE */
+    body.dark-theme .tools-nav { background: #1e293b; border-color: #334155; }
+    body.dark-theme .tool-tab { color: #94a3b8; }
+    body.dark-theme .tool-tab.active { background: #dc2626; color: #fff; }
+    body.dark-theme .ilove-workspace { background: #0f172a; border-color: #334155; }
+    body.dark-theme .workspace-left { background: #1e293b; border-color: #334155; }
+    body.dark-theme .workspace-right { background: #0f172a; }
+    body.dark-theme .ilove-dropzone { background: #0f172a; border-color: #475569; }
+    body.dark-theme .hero-title h2 { color: #f8fafc; }
+    body.dark-theme .file-item-card { background: #1e293b; border-color:#334155; color: #f8fafc;}
+    body.dark-theme .file-item-card span { color: #e2e8f0;}
+    body.dark-theme .remove-all-btn { background: #1e293b; border-color:#334155; color:#f8fafc;}
+    
+    @media (max-width: 768px) {
+       .ilove-workspace { flex-direction: column; }
+       .tool-body.active { flex-direction: column; }
+       .workspace-left, .workspace-right { width: 100%; border-right: none; }
+       .workspace-left { border-bottom: 1px solid var(--border); min-height: 300px;}
+    }
+
+    /* Loader */
+    .loader { border: 4px solid #f3f3f3; border-top: 4px solid #ef4444; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display:none; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gpsahayak.in/"},
+      {"@type": "ListItem", "position": 2, "name": "PDF Tools", "item": "https://gpsahayak.in/panchayat-sahayak-pdf-tools.html"}
+    ]
+  }
+  </script>
+  <!-- SCHEMA_INJECTED_V2 -->
+</head>
+<body class="dl-page">
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  
+
+  <main class="page" id="main-content" style="max-width:1200px;">
+
+    <div class="breadcrumb">
+      <a href="index.html">होम</a> <span>»</span>
+      <span>पीडीऍफ़ टूल्स</span>
+    </div>
+
+    <div class="hero-title">
+      <h2>एडवांस्ड पीडीऍफ़ टूल्स</h2>
+      <p>बिना इंटरनेट पर डेटा अपलोड किए, सीधे अपने ब्राउज़र में सुरक्षित रूप से PDF मर्ज करें (जोड़ें) या फोटो को पीडीऍफ़ में बदलें।</p>
+    </div>
+
+    <div class="tools-nav-wrapper">
+      <div class="tools-nav">
+        <div class="tool-tab active" data-target="compress-tab">🗜️ PDF कम्प्रेस (Compress PDF)</div>
+        <div class="tool-tab" data-target="img2pdf-tab">🖼️ फोटो से PDF (Image to PDF)</div>
+      </div>
+    </div>
+
+    <div class="ilove-workspace">
+      
+      <!-- ==============================================
+           TAB 1: COMPRESS PDF
+      =============================================== -->
+      <div class="tool-body active" id="compress-tab">
+        <!-- LEFT: Dropzone & Files -->
+        <div class="workspace-left">
+           <div class="ilove-dropzone" id="dz-compress" onclick="document.getElementById('file-compress').click()">
+              <svg viewBox="0 0 24 24"><path d="M19.5 22.5h-15a2.25 2.25 0 01-2.25-2.25v-15A2.25 2.25 0 014.5 3h10.5l6.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25zM14.25 4.5v6h6"/><path d="M12 12v6m-3-3h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <div>
+                <button class="file-select-btn">Select PDF file (पीडीऍफ़ चुनें)</button>
+                <p style="color:#64748b; margin-top:12px; font-weight:500;">or drop PDF here (Max 1 file)</p>
+              </div>
+           </div>
+           <input type="file" id="file-compress" accept=".pdf" style="display:none;">
+           <div class="file-list-grid" id="grid-compress" style="display:none; margin-top:20px;"></div>
+        </div>
+        
+        <!-- RIGHT: Settings & Actions -->
+        <div class="workspace-right">
+           <h3 style="color:var(--primary); font-size:24px; font-weight:800; margin-bottom:12px; font-family:'Montserrat',sans-serif;">Compress PDF</h3>
+           <p class="help-text">अपनी PDF को छोटा करें ताकि वह पोर्टल (200KB / 500KB) पर आसानी से अपलोड हो सके। यह सारी फाइल्स आपके डिवाइस पर ही सुरक्षित रूप से प्रोसेस होती हैं।</p>
+           
+           <div class="control-group">
+               <label>Compression Level (क्वालिटी)</label>
+               <select id="comp-level" style="width:100%; padding:12px; border-radius:8px; border:2px solid #cbd5e1; outline:none; font-size:15px; font-weight:600;">
+                  <option value="0.7">Normal Compression (Good Quality)</option>
+                  <option value="0.5" selected>Extreme Compression (Low Size)</option>
+                  <option value="0.3">Ultra Extreme (Lowest Size)</option>
+               </select>
+           </div>
+           
+           <button class="remove-all-btn" id="clear-compress" style="display:none;">🗑️ Clear File</button>
+
+           <div class="success-panel" id="succ-compress">
+             <h3>Success!</h3>
+             <p id="succ-compress-msg">PDF Compressed Successfully.</p>
+             <a href="#" class="dl-btn" id="dl-compress" download="Compressed_NIC.pdf">
+                Download PDF ⬇️
+             </a>
+           </div>
+
+           <button class="action-btn-massive" id="btn-compress" disabled>
+              <div class="loader" id="load-compress"></div>
+              <span>Compress PDF (छोटा करें) 🗜️</span>
+           </button>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           TAB 2: IMAGE TO PDF
+      =============================================== -->
+      <div class="tool-body" id="img2pdf-tab">
+        <!-- LEFT: Dropzone & Files -->
+        <div class="workspace-left">
+           <div class="ilove-dropzone" id="dz-img2pdf" onclick="document.getElementById('file-img2pdf').click()">
+              <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <button class="file-select-btn" style="background:#2563eb; box-shadow:0 4px 12px rgba(37,99,235,0.3);">Select Images (फोटो चुनें)</button>
+                <p style="color:#64748b; margin-top:12px; font-weight:500;">or drop JPG/PNG here</p>
+              </div>
+           </div>
+           <input type="file" id="file-img2pdf" accept="image/jpeg, image/png, image/webp" multiple style="display:none;">
+           <div class="file-list-grid" id="grid-img2pdf" style="display:none; margin-top:20px;"></div>
+        </div>
+        
+        <!-- RIGHT: Settings & Actions -->
+        <div class="workspace-right">
+           <h3 style="color:#2563eb; font-size:24px; font-weight:800; margin-bottom:12px; font-family:'Montserrat',sans-serif;">JPG to PDF</h3>
+           <p class="help-text">JPG, PNG या WEBP इमेजेज को सीधे एक PDF दस्तावेज़ में बदलें। स्कैनर या मोबाइल से ली गई तस्वीरों की PDF बनाने के लिए यह सबसे बेहतरीन है। एक साथ कई फोटो चुनें।</p>
+           
+           <button class="remove-all-btn" id="clear-img2pdf" style="display:none;">🗑️ Clear Images</button>
+
+           <div class="success-panel" id="succ-img2pdf">
+             <h3 style="color:#1d4ed8;">PDF Ready!</h3>
+             <p>Images converted to PDF successfully.</p>
+             <a href="#" class="dl-btn" id="dl-img2pdf" style="background:#2563eb; box-shadow:0 4px 12px rgba(37,99,235,0.3);" download="Document_NIC.pdf">
+                Download PDF ⬇️
+             </a>
+           </div>
+
+           <button class="action-btn-massive" id="btn-img2pdf" style="background:#2563eb; box-shadow:0 8px 24px rgba(37,99,235,0.3);" disabled>
+              <div class="loader" id="load-img2pdf" style="border-top-color:#1e3a8a;"></div>
+              <span>Convert to PDF 🖼️➜📄</span>
+           </button>
+        </div>
+      </div>
+
+    </div>
+
+</main>
+
+  
+  
+    
+  
+  
+    <section class="related-links-section">
+    <div style="max-width: var(--maxw); margin: 0 auto;">
+      <h3>संबंधित जानकारियाँ (Related Links)</h3>
+      <div class="rl-cards">
+        <a href="panchayat-sahayak-salary-calculator.html" class="rl-card"><span class="rl-card-icon">💰</span> सैलरी कैलकुलेटर</a>
+        <a href="panchayat-list-builder.html" class="rl-card"><span class="rl-card-icon">⚡</span> Quick List Builder</a>
+        <a href="gram-panchayat-yojana-list.html" class="rl-card"><span class="rl-card-icon">🏘️</span> ग्राम पंचायत योजनाएं</a>
+        <a href="panchayat-sahayak-forms-pdfs.html" class="rl-card"><span class="rl-card-icon">📄</span> PDF Forms</a>
+        <a href="panchayat-sahayak-work-register.html" class="rl-card"><span class="rl-card-icon">📋</span> Work Register</a>
+        <a href="panchayat-sahayak-salary-status.html" class="rl-card"><span class="rl-card-icon">✅</span> Salary Status</a>
+        <a href="panchayat-sahayak-image-tools.html" class="rl-card"><span class="rl-card-icon">🖼️</span> Image Tools</a>
+        <a href="panchayat-sahayak-all-portals.html" class="rl-card"><span class="rl-card-icon">🌐</span> सभी Portals</a>
+        <a href="blog.html" class="rl-card"><span class="rl-card-icon">📰</span> Blog</a>
+        <a href="index.html" class="rl-card rl-card-home"><span class="rl-card-icon">🏠</span> Home Page</a>
+      </div>
+    </div>
+  </section>
+  <div style="max-width:960px; margin:24px auto 10px auto; padding:16px 24px; background:#fff3cd; border:1px solid #ffc107; border-radius:10px; color:#856404; text-align:center; font-size:14px; line-height:1.6;">
+    <strong>⚠️ Disclaimer:</strong> This website (Panchayat Sahayak Portal) <strong style="text-decoration:underline;">is NOT an official government website</strong>. It is not affiliated, associated, or endorsed by the Panchayati Raj Department (PRD) or the Government of Uttar Pradesh in any way. It is created solely for informational and educational purposes.
+  </div>
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-grid" style="max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+      <div class="footer-brand">
+        <div class="f-logo-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="Logo" class="f-logo" style="height: 40px;">
+          <span class="f-title" style="font-size: 16px; font-weight: 700; color: var(--white);">Panchayat Sahayak</span>
+        </div>
+        <p class="f-desc" style="font-size: 12px; color: var(--gray-300); line-height: 1.6;">उत्तर प्रदेश के 58,000+ पंचायत सहायकों को सशक्त बनाने का प्रयास। सभी सरकारी लिंक, फॉर्म और टूल्स एक जगह।</p>
+        <div class="footer-socials" style="display: flex; gap: 8px; margin-top: 16px;">
+          <a href="https://whatsapp.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">💬</a>
+          <a href="https://t.me" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">✈️</a>
+          <a href="https://youtube.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Quick Links</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏠 Home</a>
+          <a href="blog.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📝 Blog</a>
+          <a href="panchayat-sahayak-notices.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Forms</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Tools</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="panchayat-sahayak-salary-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">💰 Salary Calc</a>
+          <a href="panchayat-sahayak-csc-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏬 CSC Calc</a>
+          <a href="panchayat-sahayak-image-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🖼️ Image Tools</a>
+          <a href="panchayat-sahayak-pdf-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Tools</a>
+          <a href="panchayat-sahayak-work-register.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Work Register</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Legal & Trust</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="about.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">ℹ️ About Us</a>
+          <a href="editorial-policy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Editorial Policy</a>
+          <a href="privacy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🔒 Privacy Policy</a>
+          <a href="disclaimer.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">⚠️ Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: var(--maxw); margin: 20px auto 0 auto;">
+      <p style="font-size: 12px; color: var(--gray-500); margin:0;">© 2026 <strong>gpsahayak.in</strong>. All Rights Reserved.</p>
+      <p style="font-size: 11px; margin:0; color: var(--gray-500);">Independent Educational Portal | Not affiliated with Govt. of UP</p>
+    </div>
+  </footer>
+
+
+  <script>
+    const { PDFDocument } = PDFLib;
+
+    // --- TAB SWITCHING ---
+    document.querySelectorAll('.tool-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tool-body').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById(this.getAttribute('data-target')).classList.add('active');
+        
+        // Match button colors to tab theme
+        if(this.getAttribute('data-target') === 'img2pdf-tab'){
+           this.style.background = '#2563eb';
+        } else {
+           document.querySelector('.tool-tab[data-target="img2pdf-tab"]').style.background = '';
+        }
+      });
+    });
+
+    // --- GLOBAL FILE HANDLERS ---
+    let compressFile = null;
+    let img2pdfFiles = [];
+
+    function formatBytes(bytes) {
+        if(bytes === 0) return '0 Bytes';
+        const k = 1024, sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function renderFileList(mode) {
+       let arr = mode === 'compress' ? (compressFile ? [compressFile] : []) : img2pdfFiles;
+       let grid = document.getElementById(`grid-${mode}`);
+       let dz = document.getElementById(`dz-${mode}`);
+       let btn = document.getElementById(`btn-${mode}`);
+       let clr = document.getElementById(`clear-${mode}`);
+       let succ = document.getElementById(`succ-${mode}`);
+
+       if(arr.length === 0) {
+           dz.style.display = 'flex';
+           grid.style.display = 'none';
+           btn.disabled = true;
+           clr.style.display = 'none';
+           succ.style.display = 'none';
+           return;
+       }
+
+       dz.style.display = 'none';
+       grid.style.display = 'grid';
+       btn.disabled = false;
+       clr.style.display = 'block';
+       succ.style.display = 'none';
+
+       grid.innerHTML = '';
+       arr.forEach((file, index) => {
+           let card = document.createElement('div');
+           card.className = 'file-item-card';
+           
+           let rem = document.createElement('div');
+           rem.className = 'remove-item';
+           rem.innerHTML = '×';
+           rem.onclick = (e) => {
+              if(mode === 'compress') compressFile = null;
+              else arr.splice(index, 1);
+              renderFileList(mode);
+           };
+
+           if(mode === 'img2pdf') {
+               let img = document.createElement('img');
+               img.src = URL.createObjectURL(file);
+               card.appendChild(rem);
+               card.appendChild(img);
+               
+               let title = document.createElement('span');
+               title.innerText = file.name.substring(0, 15) + (file.name.length > 15 ? '...' : '');
+               card.appendChild(title);
+           } else {
+               card.innerHTML = `<div class="remove-item" onclick="compressFile=null; renderFileList('compress');">×</div><svg viewBox="0 0 24 24" style="fill:#ef4444;"><path d="M19.5 22.5h-15a2.25 2.25 0 01-2.25-2.25v-15A2.25 2.25 0 014.5 3h10.5l6.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25zM14.25 4.5v6h6"/><path d="M12 12v6m-3-3h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>${file.name.substring(0,18)}<br>(${formatBytes(file.size)})</span>`;
+           }
+           grid.appendChild(card);
+       });
+    }
+
+    // --- COMPRESS PDF LOGIC ---
+    document.getElementById('file-compress').addEventListener('change', (e) => {
+        if(e.target.files.length > 0) {
+           compressFile = e.target.files[0];
+           renderFileList('compress');
+        }
+    });
+    document.getElementById('clear-compress').addEventListener('click', () => { compressFile = null; renderFileList('compress'); });
+    
+    document.getElementById('btn-compress').addEventListener('click', async () => {
+        if(!compressFile) return;
+        
+        let loader = document.getElementById('load-compress');
+        let btn = document.getElementById('btn-compress');
+        let txt = btn.querySelector('span');
+        let qual = parseFloat(document.getElementById('comp-level').value);
+        
+        try {
+            btn.disabled = true; loader.style.display = 'block'; txt.innerText = 'Compressing... (कृपया प्रतीक्षा करें)';
+            
+            // Step 1: Read PDF via pdf.js
+            const fileReader = new FileReader();
+            
+            const pdfData = await new Promise((resolve) => {
+                fileReader.onload = function() { resolve(new Uint8Array(this.result)); }
+                fileReader.readAsArrayBuffer(compressFile);
+            });
+
+            const loadingTask = pdfjsLib.getDocument({data: pdfData});
+            const pdfDocument = await loadingTask.promise;
+            
+            // Step 2: Create new empty PDF via pdf-lib
+            const newPdf = await PDFDocument.create();
+            
+            // Step 3: Loop pages, render to canvas, compress to JPG, embed in new PDF
+            for (let pageNum = 1; pageNum <= pdfDocument.numPages; pageNum++) {
+                const page = await pdfDocument.getPage(pageNum);
+                // Lower scale for extreme compression to reduce pixel count
+                let scale = qual === 0.3 ? 1.0 : (qual === 0.5 ? 1.3 : 1.8);
+                const viewport = page.getViewport({scale: scale});
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                await page.render({canvasContext: ctx, viewport: viewport}).promise;
+                
+                const jpgDataUrl = canvas.toDataURL('image/jpeg', qual);
+                const imageBytes = Uint8Array.from(atob(jpgDataUrl.split(',')[1]), c => c.charCodeAt(0));
+                
+                const embeddedImage = await newPdf.embedJpg(imageBytes);
+                // Standard A4 sizes approx
+                const newPage = newPdf.addPage([viewport.width, viewport.height]);
+                newPage.drawImage(embeddedImage, { x: 0, y: 0, width: viewport.width, height: viewport.height });
+            }
+            
+            const compressedPdfBytes = await newPdf.save();
+            const blob = new Blob([compressedPdfBytes], { type: "application/pdf" });
+            const url = URL.createObjectURL(blob);
+            
+            document.getElementById('dl-compress').href = url;
+            document.getElementById('succ-compress-msg').innerHTML = `Old Size: <b>${formatBytes(compressFile.size)}</b> <br> New Size: <b style="color:#ef4444;">${formatBytes(blob.size)}</b>`;
+            document.getElementById('succ-compress').style.display = 'block';
+            
+        } catch(err) {
+            console.error(err);
+            alert("कम्प्रेस करते समय एक त्रुटि हुई। यह PDF शायद बहुत अधिक जटिल (Complex) है।");
+        } finally {
+            btn.disabled = false; loader.style.display = 'none'; txt.innerText = 'Compress PDF (छोटा करें) 🗜️';
+        }
+    });
+
+    // --- IMG TO PDF LOGIC ---
+    document.getElementById('file-img2pdf').addEventListener('change', (e) => {
+        img2pdfFiles.push(...Array.from(e.target.files));
+        renderFileList('img2pdf');
+    });
+    document.getElementById('clear-img2pdf').addEventListener('click', () => { img2pdfFiles = []; renderFileList('img2pdf'); });
+
+    document.getElementById('btn-img2pdf').addEventListener('click', async () => {
+        if(img2pdfFiles.length < 1) { return; }
+        
+        let loader = document.getElementById('load-img2pdf');
+        let btn = document.getElementById('btn-img2pdf');
+        let txt = btn.querySelector('span');
+        
+        try {
+            btn.disabled = true; loader.style.display = 'block'; txt.innerText = 'Converting...';
+            
+            const pdfDoc = await PDFDocument.create();
+            
+            for (let file of img2pdfFiles) {
+                const arrayBuffer = await file.arrayBuffer();
+                let image;
+                if(file.type === 'image/jpeg') {
+                    image = await pdfDoc.embedJpg(arrayBuffer);
+                } else if(file.type === 'image/png' || file.type === 'image/webp') {
+                    // pdf-lib supports PNG. WEBP might fail natively, but standard scanner is JPG/PNG.
+                    image = await pdfDoc.embedPng(arrayBuffer);
+                } else {
+                    continue; // skip unsupported
+                }
+                
+                const page = pdfDoc.addPage([image.width, image.height]);
+                page.drawImage(image, {
+                    x: 0,
+                    y: 0,
+                    width: image.width,
+                    height: image.height,
+                });
+            }
+            
+            const pdfBytes = await pdfDoc.save();
+            const blob = new Blob([pdfBytes], { type: "application/pdf" });
+            const url = URL.createObjectURL(blob);
+            
+            document.getElementById('dl-img2pdf').href = url;
+            document.getElementById('succ-img2pdf').style.display = 'block';
+            
+        } catch(err) {
+            console.error(err);
+            alert("फोटो को प्रोसेस करने में त्रुटि। केवल JPG/PNG इस्तेमाल करें।");
+        } finally {
+            btn.disabled = false; loader.style.display = 'none'; txt.innerText = 'Convert to PDF 🖼️➜📄';
+        }
+    });
+  </script>
+
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

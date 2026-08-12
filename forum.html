@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>चर्चा मंच (Community Forum) | Panchayat Sahayak Portal</title>
+  <meta name="description" content="उत्तर प्रदेश पंचायत सहायकों के लिए स्वतंत्र चर्चा मंच। e-Gram Swaraj, e-District, PFMS, DSC और सैलरी से जुड़े सवालों के जवाब पाएं और एक-दूसरे की मदद करें।">
+  <meta name="keywords" content="Panchayat Sahayak Forum, पंचायत सहायक चर्चा मंच, up panchayat sahayak portal, swaraj portal, pfms, dsc dongle">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gpsahayak.in/forum.html">
+
+  <link rel="icon" type="image/png" href="images/panchayat_favicon.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+    <!-- TOP BAR -->
+  <div class="nic-top-bar">
+    <div class="nic-top-container">
+      <div class="nic-top-left">
+        <a href="index.html" style="color:var(--gray-300); text-decoration:none; font-weight:700;">🏛️ पंचायत सहायक पोर्टल</a>
+      </div>
+      <div class="nic-top-right">
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')">
+          <button title="Toggle Dark/Light Mode" style="border:none; background:none; cursor:pointer; color:#fbbf24; font-weight:700;">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 14px; align-items: center;">
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+    <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="page">
+    
+    <!-- FORUM HERO SECTION -->
+    <div class="forum-header-section">
+      <div class="forum-header-container">
+        <div class="forum-title-group">
+          <h2>पंचायत सहायक चर्चा मंच (Community Forum)</h2>
+          <p>सवालों के जवाब पूछें, समस्याओं का निवारण करें और अपने अनुभव साझा करें।</p>
+        </div>
+        <button class="new-thread-btn" id="openNewThreadModalBtn">
+          <span>✍️ नया सवाल पूछें (Ask Question)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FORUM GRID LAYOUT -->
+    <div class="forum-layout">
+      
+      <!-- MAIN FEED COLUMN (LEFT) -->
+      <div class="forum-main">
+        
+        <!-- SEARCH & FILTERS CONTROLS -->
+        <div class="forum-controls-bar">
+          <div class="forum-search">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="forumSearchInput" placeholder="सवालों के शीर्षक में खोजें...">
+          </div>
+          
+          <div class="forum-filter-chips">
+            <div class="forum-chip active" data-category="all">सभी विषय</div>
+            <div class="forum-chip" data-category="e-District">e-District (आय/जाति)</div>
+            <div class="forum-chip" data-category="e-Gram Swaraj">e-Gram Swaraj</div>
+            <div class="forum-chip" data-category="PFMS & Salary">PFMS & सैलरी</div>
+            <div class="forum-chip" data-category="DSC Dongles">DSC डोंगल</div>
+            <div class="forum-chip" data-category="General">सामान्य (General)</div>
+          </div>
+        </div>
+
+        <!-- THREAD LIST FEED -->
+        <div class="thread-list" id="threadListFeed">
+          <!-- Live Loader -->
+          <div style="text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">
+            ⏳ चर्चा सूची लोड हो रही है...
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR COLUMN (RIGHT) -->
+      <div class="forum-sidebar">
+        
+        <!-- FORUM GUIDELINES -->
+        <div class="forum-sidebar-card">
+          <h3>📜 नियम व निर्देश (Guidelines)</h3>
+          <div class="forum-guideline-item">
+            <span>1.</span>
+            <p>मर्यादित भाषा का प्रयोग करें। किसी भी अभद्र टिप्पणी की अनुमति नहीं है।</p>
+          </div>
+          <div class="forum-guideline-item">
+            <span>2.</span>
+            <p>सैलरी या डोंगल संबंधी समस्याओं में व्यक्तिगत जानकारी (जैसे पासवर्ड) साझा न करें।</p>
+          </div>
+          <div class="forum-guideline-item">
+            <span>3.</span>
+            <p>एक विषय पर एक ही बार सवाल पूछें।</p>
+          </div>
+        </div>
+
+        <!-- COMMUNITY STATS -->
+        <div class="forum-sidebar-card">
+          <h3>📊 मंच सांख्यिकी (Stats)</h3>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--text-main);">
+            <span>कुल सवाल (Threads):</span>
+            <span id="statTotalThreads">0</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--text-main); margin-top: 10px;">
+            <span>कुल उत्तर (Replies):</span>
+            <span id="statTotalReplies">0</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- RELATED LINKS SECTION -->
+  <section class="related-links-section">
+    <div style="max-width: var(--maxw); margin: 0 auto;">
+      <h3>संबंधित जानकारियाँ (Related Links)</h3>
+      <div class="rl-cards">
+        <a href="panchayat-sahayak-salary-calculator.html" class="rl-card"><span class="rl-card-icon">💰</span> सैलरी कैलकुलेटर</a>
+        <a href="panchayat-list-builder.html" class="rl-card"><span class="rl-card-icon">⚡</span> Quick List Builder</a>
+        <a href="gram-panchayat-yojana-list.html" class="rl-card"><span class="rl-card-icon">🏘️</span> ग्राम पंचायत योजनाएं</a>
+        <a href="panchayat-sahayak-forms-pdfs.html" class="rl-card"><span class="rl-card-icon">📄</span> PDF Forms</a>
+        <a href="panchayat-sahayak-work-register.html" class="rl-card"><span class="rl-card-icon">📋</span> Work Register</a>
+        <a href="panchayat-sahayak-salary-status.html" class="rl-card"><span class="rl-card-icon">✅</span> Salary Status</a>
+        <a href="panchayat-sahayak-all-portals.html" class="rl-card"><span class="rl-card-icon">🌐</span> सभी Portals</a>
+        <a href="blog.html" class="rl-card"><span class="rl-card-icon">📰</span> Blog</a>
+        <a href="index.html" class="rl-card rl-card-home"><span class="rl-card-icon">🏠</span> Home Page</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div style="max-width:960px; margin:24px auto 10px auto; padding:16px 24px; background:var(--accent-light); border:1px solid var(--primary); border-radius:10px; color:var(--primary); text-align:center; font-size:14px; line-height:1.6;">
+    <strong>⚠️ Disclaimer:</strong> This website (Panchayat Sahayak Portal) <strong style="text-decoration:underline;">is NOT an official government website</strong>. It is created solely for informational, educational, and community assistance purposes.
+  </div>
+
+  <!-- FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-grid" style="max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+      <div class="footer-brand">
+        <div class="f-logo-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="Logo" class="f-logo" style="height: 40px;">
+          <span class="f-title" style="font-size: 16px; font-weight: 700; color: var(--white);">Panchayat Sahayak</span>
+        </div>
+        <p class="f-desc" style="font-size: 12px; color: var(--gray-300); line-height: 1.6;">उत्तर प्रदेश के 58,000+ पंचायत सहायकों को सशक्त बनाने का प्रयास। सभी सरकारी लिंक, फॉर्म और टूल्स एक जगह।</p>
+        <div class="footer-socials" style="display: flex; gap: 8px; margin-top: 16px;">
+          <a href="https://whatsapp.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">💬</a>
+          <a href="https://t.me" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">✈️</a>
+          <a href="https://youtube.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Quick Links</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏠 Home</a>
+          <a href="blog.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📝 Blog</a>
+          <a href="panchayat-sahayak-notices.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Forms</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Tools</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="panchayat-sahayak-salary-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">💰 Salary Calc</a>
+          <a href="panchayat-sahayak-csc-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏬 CSC Calc</a>
+          <a href="panchayat-sahayak-image-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🖼️ Image Tools</a>
+          <a href="panchayat-sahayak-pdf-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Tools</a>
+          <a href="panchayat-sahayak-work-register.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Work Register</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Legal & Trust</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="about.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">ℹ️ About Us</a>
+          <a href="editorial-policy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Editorial Policy</a>
+          <a href="privacy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🔒 Privacy Policy</a>
+          <a href="disclaimer.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">⚠️ Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: var(--maxw); margin: 20px auto 0 auto;">
+      <p style="font-size: 12px; color: var(--gray-500); margin:0;">© 2026 <strong>gpsahayak.in</strong>. All Rights Reserved.</p>
+      <p style="font-size: 11px; margin:0; color: var(--gray-500);">Independent Educational Portal | Not affiliated with Govt. of UP</p>
+    </div>
+  </footer>
+
+  <!-- NEW THREAD MODAL BACKDROP -->
+  <div class="forum-modal-backdrop" id="newThreadModalBackdrop">
+    <div class="forum-modal">
+      <div class="forum-modal-header">
+        <h3>✍️ नया सवाल पूछें (Ask a Question)</h3>
+        <button class="forum-modal-close" id="closeNewThreadModalBtn">✕</button>
+      </div>
+      <form id="newThreadForm">
+        <div class="forum-modal-body">
+          <div class="form-group">
+            <label for="threadTitle">सवाल का शीर्षक (Question Title) *</label>
+            <input type="text" id="threadTitle" placeholder="जैसे: e-District CSC ID पासवर्ड रिसेट एरर कैसे ठीक करें?" required>
+          </div>
+          <div class="form-group">
+            <label for="threadCategory">श्रेणी (Category) *</label>
+            <select id="threadCategory" required>
+              <option value="e-District">e-District (आय/जाति/निवास)</option>
+              <option value="e-Gram Swaraj">e-Gram Swaraj</option>
+              <option value="PFMS & Salary">PFMS & सैलरी</option>
+              <option value="DSC Dongles">DSC डोंगल</option>
+              <option value="General">सामान्य (General)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="threadBody">समस्या का विस्तृत विवरण (Details) *</label>
+            <textarea id="threadBody" placeholder="अपनी समस्या के बारे में विस्तार से लिखें..." rows="5" required></textarea>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="threadAuthor">आपका नाम (Your Name) *</label>
+              <input type="text" id="threadAuthor" placeholder="जैसे: विवेक कुमार" required>
+            </div>
+            <div class="form-group">
+              <label for="threadGP">ग्राम पंचायत व ब्लॉक (GP & Block) *</label>
+              <input type="text" id="threadGP" placeholder="जैसे: रामपुर, ब्लॉक मलिहाबाद" required>
+            </div>
+          </div>
+          <button type="submit" class="forum-form-submit-btn" id="threadSubmitBtn">सवाल सबमिट करें</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- THREAD DETAIL & REPLY DRAWER -->
+  <div class="notification-backdrop" id="forumDrawerBackdrop"></div>
+  <div class="forum-drawer" id="forumDrawer">
+    <div class="notification-drawer-header">
+      <h3 style="font-size:16px;">💬 सवाल व उत्तर (Discussion Details)</h3>
+      <button class="notification-close-btn" id="forumDrawerCloseBtn">✕</button>
+    </div>
+    
+    <div class="forum-drawer-body">
+      <!-- Original Question Box -->
+      <div class="forum-drawer-thread-detail">
+        <span class="category-badge cat-general" id="drawerThreadCategory">General</span>
+        <h2 id="drawerThreadTitle" style="margin-top: 10px;">लोड हो रहा है...</h2>
+        <p id="drawerThreadBody">लोड हो रहा है...</p>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); font-weight: 600;">
+          <span id="drawerThreadAuthor">द्वारा: -</span>
+          <span id="drawerThreadDate">-</span>
+        </div>
+      </div>
+
+      <!-- Comments List -->
+      <div class="comments-section">
+        <h4>💬 सभी उत्तर (<span id="drawerCommentsCount">0</span>)</h4>
+        <div class="comment-list" id="drawerCommentList">
+          <div style="text-align: center; color: var(--text-muted); padding: 20px; font-size: 13px;">उत्तर लोड हो रहे हैं...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Reply Footer Form -->
+    <div class="forum-drawer-footer">
+      <form id="newCommentForm" class="comment-input-form">
+        <textarea id="commentBody" placeholder="अपना उत्तर या सुझाव लिखें..." required></textarea>
+        <div class="comment-author-row">
+          <input type="text" id="commentAuthor" placeholder="आपका नाम (जैसे: अमित कुमार, GP रामपुर)" required style="width: 100%;">
+          <button type="submit" class="comment-submit-btn" id="commentSubmitBtn">उत्तर भेजें</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Translation Support -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'hi', includedLanguages: 'en,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Auth Nav Navbar logic -->
+  <script src="auth-nav.js" defer></script>
+  <script src="notifications.js?v=2" defer></script>
+
+  <!-- FORUM FIREBASE LOGIC -->
+  <script>
+    (function() {
+      'use strict';
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyACe8pL0vqD_2NqzhTNOi0VoTyJaYVTkbA",
+        authDomain: "panchayat-sahahayk-portal-up.firebaseapp.com",
+        projectId: "panchayat-sahahayk-portal-up",
+        storageBucket: "panchayat-sahahayk-portal-up.firebasestorage.app",
+        messagingSenderId: "709368114724",
+        appId: "1:709368114724:web:208c828040f499060e72b1",
+        measurementId: "G-5K1E4LZV20"
+      };
+
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      const db = firebase.firestore();
+
+      let threads = [];
+      let activeThreadId = null;
+      let activeCategory = 'all';
+      let activeSearch = '';
+      let repliesUnsubscribe = null;
+
+      // DOM Elements
+      const openModalBtn = document.getElementById('openNewThreadModalBtn');
+      const closeModalBtn = document.getElementById('closeNewThreadModalBtn');
+      const modalBackdrop = document.getElementById('newThreadModalBackdrop');
+      const newThreadForm = document.getElementById('newThreadForm');
+      
+      const drawer = document.getElementById('forumDrawer');
+      const drawerBackdrop = document.getElementById('forumDrawerBackdrop');
+      const drawerCloseBtn = document.getElementById('forumDrawerCloseBtn');
+      const newCommentForm = document.getElementById('newCommentForm');
+
+      const threadListFeed = document.getElementById('threadListFeed');
+      const searchInput = document.getElementById('forumSearchInput');
+      const filterChips = document.querySelectorAll('.forum-chip');
+
+      // Modal functions
+      const openModal = () => modalBackdrop.classList.add('open');
+      const closeModal = () => {
+        modalBackdrop.classList.remove('open');
+        newThreadForm.reset();
+      };
+      openModalBtn.addEventListener('click', openModal);
+      closeModalBtn.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) closeModal();
+      });
+
+      // Drawer functions
+      const closeDrawer = () => {
+        drawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+        activeThreadId = null;
+        newCommentForm.reset();
+        if (repliesUnsubscribe) {
+          repliesUnsubscribe();
+          repliesUnsubscribe = null;
+        }
+      };
+      drawerCloseBtn.addEventListener('click', closeDrawer);
+      drawerBackdrop.addEventListener('click', closeDrawer);
+
+      // Date Format
+      function formatDate(date) {
+        if (!date) return '';
+        try {
+          const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+          return date.toLocaleDateString('hi-IN', options);
+        } catch (e) {
+          return date.toLocaleString();
+        }
+      }
+
+      // Render category badge class
+      function getCategoryClass(cat) {
+        switch(cat) {
+          case 'e-Gram Swaraj': return 'cat-swaraj';
+          case 'e-District': return 'cat-edistrict';
+          case 'PFMS & Salary': return 'cat-pfms';
+          case 'DSC Dongles': return 'cat-dsc';
+          default: return 'cat-general';
+        }
+      }
+
+      // Read Threads Feed Realtime
+      db.collection('forum_threads').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+        threads = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          threads.push({
+            id: doc.id,
+            ...data,
+            createdAt: data.createdAt ? data.createdAt.toDate() : new Date()
+          });
+        });
+        
+        // Update stats
+        document.getElementById('statTotalThreads').innerText = threads.length;
+        
+        filterAndRenderThreads();
+      }, (error) => {
+        console.error("Failed to load threads", error);
+        threadListFeed.innerHTML = `<div style='text-align:center; padding:20px; color:#ef4444; font-weight:700;'>❌ एरर: थ्रेड लोड करने में विफल। कृपया नेटवर्क जांचें।</div>`;
+      });
+
+      // Filter and Render Feed
+      function filterAndRenderThreads() {
+        let filtered = threads;
+
+        // Apply Category
+        if (activeCategory !== 'all') {
+          filtered = filtered.filter(t => t.category === activeCategory);
+        }
+
+        // Apply Search
+        if (activeSearch.trim()) {
+          const query = activeSearch.toLowerCase();
+          filtered = filtered.filter(t => 
+            t.title.toLowerCase().includes(query) || 
+            (t.body && t.body.toLowerCase().includes(query))
+          );
+        }
+
+        if (filtered.length === 0) {
+          threadListFeed.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 12px; border: 1px solid var(--border); color: var(--text-muted);">
+              <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+              <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">कोई सवाल नहीं मिला</h3>
+              <p style="font-size: 13px;">अपनी खोज या विषय श्रेणी बदल कर प्रयास करें, या नया सवाल पूछें।</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = '';
+        filtered.forEach((t) => {
+          const catClass = getCategoryClass(t.category);
+          html += `
+            <div class="thread-card" onclick="window.openThreadDetails('${t.id}')">
+              <div class="thread-card-header">
+                <h3 class="thread-card-title">${t.title}</h3>
+                <span class="category-badge ${catClass}">${t.category}</span>
+              </div>
+              <div class="thread-card-body">${t.body || ''}</div>
+              <div class="thread-card-footer">
+                <div class="thread-author-info">
+                  👤 <span>${t.authorName || 'अनाम'} (${t.gp || '-'})</span>
+                </div>
+                <div class="thread-replies-count">
+                  💬 <span id="reply-count-${t.id}">${t.replyCount || 0} उत्तर</span>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        threadListFeed.innerHTML = html;
+      }
+
+      // Open Thread Details in Drawer
+      window.openThreadDetails = function(threadId) {
+        const t = threads.find(x => x.id === threadId);
+        if (!t) return;
+
+        activeThreadId = threadId;
+
+        // Setup details in drawer
+        document.getElementById('drawerThreadTitle').innerText = t.title;
+        document.getElementById('drawerThreadBody').innerText = t.body || '';
+        document.getElementById('drawerThreadAuthor').innerText = `द्वारा: ${t.authorName || 'अनाम'} (${t.gp || '-'})`;
+        document.getElementById('drawerThreadDate').innerText = formatDate(t.createdAt);
+        
+        const catBadge = document.getElementById('drawerThreadCategory');
+        catBadge.innerText = t.category;
+        catBadge.className = `category-badge ${getCategoryClass(t.category)}`;
+
+        // Open drawer
+        drawer.classList.add('open');
+        drawerBackdrop.classList.add('open');
+
+        // Unsubscribe old replies listener if any
+        if (repliesUnsubscribe) {
+          repliesUnsubscribe();
+        }
+
+        // Fetch replies in realtime
+        document.getElementById('drawerCommentList').innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted);">उत्तर लोड हो रहे हैं...</div>`;
+        
+        repliesUnsubscribe = db.collection('forum_replies')
+          .where('threadId', '==', threadId)
+          .orderBy('createdAt', 'asc')
+          .onSnapshot((snapshot) => {
+            const commentList = document.getElementById('drawerCommentList');
+            document.getElementById('drawerCommentsCount').innerText = snapshot.size;
+
+            // Optional: update the thread replyCount inside the thread document to match
+            db.collection('forum_threads').doc(threadId).update({
+              replyCount: snapshot.size
+            }).catch(()=>{}); // ignore error if offline or permissions issue
+            
+            if (snapshot.size === 0) {
+              commentList.innerHTML = `
+                <div style="text-align: center; color: var(--text-muted); padding: 40px 20px; background: var(--bg-main); border-radius: 8px;">
+                  <div style="font-size: 24px; margin-bottom: 8px;">💭</div>
+                  <p style="font-size: 13px;">इस सवाल का अभी तक कोई उत्तर नहीं मिला है। पहला उत्तर लिखकर सहायता करें!</p>
+                </div>
+              `;
+              return;
+            }
+
+            let commentHtml = '';
+            snapshot.forEach((doc) => {
+              const r = doc.data();
+              const dateObj = r.createdAt ? r.createdAt.toDate() : new Date();
+              commentHtml += `
+                <div class="comment-card">
+                  <div class="comment-meta">
+                    <span>👤 ${r.authorName || 'अनाम'}</span>
+                    <span>${formatDate(dateObj)}</span>
+                  </div>
+                  <div class="comment-body">${r.body || ''}</div>
+                </div>
+              `;
+            });
+            commentList.innerHTML = commentHtml;
+          }, (error) => {
+            console.error("Replies load failed", error);
+            document.getElementById('drawerCommentList').innerHTML = `<div style="color:red; text-align:center; padding:10px;">❌ उत्तर लोड करने में त्रुटि हुई।</div>`;
+          });
+      };
+
+      // Search and Filter Listeners
+      searchInput.addEventListener('input', (e) => {
+        activeSearch = e.target.value;
+        filterAndRenderThreads();
+      });
+
+      filterChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          filterChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          activeCategory = chip.getAttribute('data-category');
+          filterAndRenderThreads();
+        });
+      });
+
+      // Submit Thread Form
+      newThreadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('threadSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "सबमिट हो रहा है...";
+
+        const newThread = {
+          title: document.getElementById('threadTitle').value,
+          category: document.getElementById('threadCategory').value,
+          body: document.getElementById('threadBody').value,
+          authorName: document.getElementById('threadAuthor').value,
+          gp: document.getElementById('threadGP').value,
+          replyCount: 0,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        db.collection('forum_threads').add(newThread)
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "सवाल सबमिट करें";
+            closeModal();
+            // Show custom alert or notify user
+            alert("✅ आपका सवाल सफलतापूर्वक सबमिट हो गया है!");
+          })
+          .catch((err) => {
+            console.error("Failed to add thread", err);
+            submitBtn.disabled = false;
+            submitBtn.innerText = "सवाल सबमिट करें";
+            alert("❌ सवाल सबमिट करने में विफल। कृपया इंटरनेट चेक करें।");
+          });
+      });
+
+      // Submit Comment Form
+      newCommentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!activeThreadId) return;
+
+        const submitBtn = document.getElementById('commentSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "भेजें...";
+
+        const newReply = {
+          threadId: activeThreadId,
+          body: document.getElementById('commentBody').value,
+          authorName: document.getElementById('commentAuthor').value,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        db.collection('forum_replies').add(newReply)
+          .then(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "उत्तर भेजें";
+            document.getElementById('commentBody').value = '';
+            // Save commenter name in localStorage for convenience
+            localStorage.setItem('gp_forum_author_name', newReply.authorName);
+          })
+          .catch((err) => {
+            console.error("Failed to add reply", err);
+            submitBtn.disabled = false;
+            submitBtn.innerText = "उत्तर भेजें";
+            alert("❌ उत्तर भेजने में त्रुटि हुई।");
+          });
+      });
+
+      // Auto-fill Author Name from localStorage if available
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedName = localStorage.getItem('gp_forum_author_name');
+        if (savedName) {
+          document.getElementById('commentAuthor').value = savedName;
+          document.getElementById('threadAuthor').value = savedName.split('(')[0].trim();
+        }
+      });
+
+      // Simple real-time count of total replies in the forum (using a quick fetch or estimate)
+      // Since firestore doesn't do cheap counts, we will query replies collection limit 100 or listen to threads counts
+      // Let's sum thread replies locally for stats
+      db.collection('forum_threads').onSnapshot((snapshot) => {
+        let totalReplies = 0;
+        snapshot.forEach((doc) => {
+          totalReplies += (doc.data().replyCount || 0);
+        });
+        document.getElementById('statTotalReplies').innerText = totalReplies;
+      });
+
+    })();
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => console.log('Service Worker registered successfully!', reg.scope))
+          .catch((err) => console.error('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+
+</html>

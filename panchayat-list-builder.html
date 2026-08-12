@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick List Builder | Panchayat Sahayak Tools</title>
+  <meta name="description"
+    content="Panchayat Sahayak ke liye quick multi-column list banane ka tool. Kisi bhi suchi jaldi banayein aur print karein." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1a3c6e;
+      --primary-light: #2563a8;
+      --thead-bg: #1a3c6e;
+      --accent: #f97316;
+      --accent-light: #fb923c;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --bg3: #334155;
+      --surface: #1e293b;
+      --surface2: #2d3f58;
+      --border: #334155;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light-theme {
+      --bg: #f8fafc;
+      --bg2: #ffffff;
+      --bg3: #e2e8f0;
+      --surface: #ffffff;
+      --surface2: #f1f5f9;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #0f2550 100%);
+      border-bottom: 2px solid var(--accent);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .header-brand .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .header-brand .brand-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .header-brand .brand-text p {
+      font-size: 11px;
+      color: #93c5fd;
+      margin-top: 2px;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-btn.primary-btn {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-btn.primary-btn:hover {
+      background: var(--accent-light);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .app-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .page-title h2 {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #93c5fd, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-title p {
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    /* ── TWO COLUMN LAYOUT ── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+
+    /* Column Manager */
+    .col-manager {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .col-add-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .col-input {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .col-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .col-add-btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+
+    .col-add-btn:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .col-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .col-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .col-item .drag-handle {
+      color: var(--text-dim);
+      cursor: grab;
+      font-size: 14px;
+    }
+
+    .col-item .col-name {
+      flex: 1;
+    }
+
+    .col-item .col-width-input {
+      width: 52px;
+      padding: 3px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .col-item .del-col-btn {
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .col-item .del-col-btn:hover {
+      background: rgba(220, 38, 38, 0.15);
+    }
+
+    /* Settings */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .setting-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .setting-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .setting-input,
+    .setting-select {
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .setting-input:focus,
+    .setting-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .setting-item.full {
+      grid-column: 1 / -1;
+    }
+
+    /* ── TABLE AREA ── */
+    .table-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-right {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tool-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tool-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tool-btn.success {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .tool-btn.success:hover {
+      background: rgba(22, 163, 74, 0.1);
+    }
+
+    .tool-btn.danger {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .tool-btn.danger:hover {
+      background: rgba(220, 38, 38, 0.1);
+    }
+
+    .tool-btn.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .tool-btn.accent:hover {
+      background: var(--accent-light);
+    }
+
+    .tool-btn.blue {
+      background: var(--primary-light);
+      border-color: var(--primary-light);
+      color: #fff;
+    }
+
+    .tool-btn.blue:hover {
+      background: #1d4ed8;
+    }
+
+    .row-count-badge {
+      padding: 7px 14px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .row-count-badge strong {
+      color: var(--text);
+    }
+
+    /* ── TABLE WRAPPER ── */
+    .table-wrapper {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: auto;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .empty-state {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-state .empty-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .empty-state h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .empty-state p {
+      font-size: 14px;
+    }
+
+    table#listTable {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 400px;
+    }
+
+    table#listTable thead {
+      background: var(--thead-bg);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    table#listTable thead th {
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      user-select: none;
+    }
+
+    table#listTable thead th:last-child {
+      border-right: none;
+    }
+
+    table#listTable thead th .th-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    table#listTable thead th .sort-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    table#listTable thead th .sort-btn:hover {
+      color: #fff;
+    }
+
+    table#listTable tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    table#listTable tbody tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    table#listTable tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    table#listTable tbody tr.selected {
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    table#listTable tbody td {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+
+    table#listTable tbody td:last-child {
+      border-right: none;
+    }
+
+    .sno-cell {
+      color: var(--text-dim);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .row-act-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .row-act-btn.del {
+      background: rgba(220, 38, 38, 0.1);
+      color: var(--danger);
+    }
+
+    .row-act-btn.del:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .row-act-btn.dup {
+      background: rgba(37, 99, 168, 0.1);
+      color: #60a5fa;
+    }
+
+    .row-act-btn.dup:hover {
+      background: #2563a8;
+      color: #fff;
+    }
+
+    .row-act-btn.up,
+    .row-act-btn.down {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    .row-act-btn.up:hover,
+    .row-act-btn.down:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .cell-input {
+      width: 100%;
+      min-width: 80px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 4px 6px;
+      color: var(--text);
+      font-size: 13px;
+      font-family: inherit;
+      transition: border 0.2s;
+      resize: none;
+      min-height: 28px;
+    }
+
+    .cell-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(249, 115, 22, 0.05);
+    }
+
+    /* CHECKBOX COLUMN */
+    .chk-cell {
+      width: 36px;
+      text-align: center;
+      padding: 10px 8px !important;
+    }
+
+    .row-checkbox {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      .site-header,
+      .sidebar,
+      .table-toolbar,
+      .no-print {
+        display: none !important;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .print-header {
+        display: block !important;
+      }
+
+      .table-wrapper {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+      }
+
+      table#listTable {
+        min-width: unset;
+      }
+
+      table#listTable thead {
+        background: var(--thead-bg) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      table#listTable thead th {
+        color: #fff !important;
+      }
+
+      table#listTable tbody tr {
+        background: #fff !important;
+      }
+
+      table#listTable tbody td {
+        color: #000 !important;
+        border-color: #ddd !important;
+      }
+
+      .chk-cell,
+      .actions-col,
+      .row-actions {
+        display: none !important;
+      }
+
+      .cell-input {
+        border: none !important;
+        background: transparent !important;
+        color: #000 !important;
+      }
+    }
+
+    /* ── PRINT HEADER (hidden in screen) ── */
+    .print-header {
+      display: none;
+      text-align: center;
+      padding: 16px 0 12px;
+    }
+
+    .print-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .print-header p {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .print-header .print-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-size: 12px;
+      border-bottom: 2px solid #1a3c6e;
+      padding-bottom: 8px;
+    }
+
+    /* ── SEARCH BAR ── */
+    .search-bar-wrap {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .search-input {
+      padding: 8px 14px 8px 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 13px;
+      width: 220px;
+      transition: all 0.2s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 10px center;
+      background-size: 16px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      width: 260px;
+    }
+
+    /* ── TOAST ── */
+    .toast-wrap {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 9999;
+    }
+
+    .toast {
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      animation: slideIn 0.3s ease;
+      max-width: 280px;
+    }
+
+    .toast.success {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .toast.error {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    .toast.info {
+      background: #2563a8;
+      color: #fff;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      transform: scale(0.95);
+      transition: transform 0.2s;
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1);
+    }
+
+    .modal h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .modal .modal-body {
+      margin-bottom: 20px;
+    }
+
+    .modal .modal-body p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .modal .modal-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .modal .modal-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .modal-btn {
+      padding: 9px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .modal-btn.cancel {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .modal-btn.cancel:hover {
+      color: var(--text);
+    }
+
+    .modal-btn.confirm {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .modal-btn.confirm:hover {
+      background: var(--accent-light);
+    }
+
+    /* ── ADD ROW BUTTON ── */
+    .add-row-btn-full {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px dashed var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .add-row-btn-full:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(249, 115, 22, 0.05);
+    }
+
+    /* ── STATUS BAR ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      display: inline-block;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg3);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    .highlight {
+      background: rgba(249, 115, 22, 0.2) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+    </div>
+  </header>
+
+  <!-- PRINT HEADER (only visible in print) -->
+  <div class="print-header" id="printHeader">
+    <h2 id="printTitle">सूची / List</h2>
+    <p id="printSubtitle">ग्राम पंचायत</p>
+    <div class="print-meta">
+      <span id="printGP"></span>
+      <span id="printDate"></span>
+      <span id="printBlock"></span>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <main class="app-container" role="main">
+    <div class="page-title no-print">
+      <h2>Quick List Builder for Panchayat Sahayaks</h2>
+      <p>
+        पंचायत सहायको के लिए लिस्ट बनाने हेतु टूल,बस डाटा भरें और सीधा प्रिंट करें —</p>
+    </div>
+
+    <div class="main-grid">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" role="complementary">
+
+        <!-- BASIC TEMPLATE -->
+        <div class="card">
+          <div class="card-title">Basic Template</div>
+          <button class="template-btn" onclick="loadBasicTemplate()" id="tplBasic">
+            <span class="t-icon">⚡</span> Basic List (खाली सूची जोड़े)
+          </button>
+          <p style="font-size:11px;color:var(--text-dim);margin-top:8px;">S.No., नाम, विवरण, टिप्पणी — 5 rows</p>
+        </div>
+
+        <!-- COLUMN MANAGER -->
+        <div class="card">
+          <div class="card-title">🗂️ Columns (खाने)</div>
+          <div class="col-manager">
+            <div class="col-add-row">
+              <input type="text" class="col-input" id="newColName" placeholder="Column का नाम लिखें..."
+                onkeydown="if(event.key==='Enter') addColumn()" maxlength="30" />
+              <button class="col-add-btn" onclick="addColumn()" title="Column जोड़ें" id="addColBtn">+</button>
+            </div>
+            <div class="col-list" id="colList"></div>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="card">
+          <div class="card-title">⚙️ Settings</div>
+          <div class="settings-grid">
+            <div class="setting-item full">
+              <label class="setting-label" for="listTitle">सूची का शीर्षक</label>
+              <input type="text" class="setting-input" id="listTitle" placeholder="जैसे: उपस्थिति रजिस्टर" value="सूची"
+                oninput="updatePrintTitle()" />
+            </div>
+            <div class="setting-item full">
+              <label class="setting-label" for="gpName">ग्राम पंचायत का नाम</label>
+              <input type="text" class="setting-input" id="gpName" placeholder="जैसे: ग्रा.पं. रामनगर"
+                oninput="updatePrintMeta()" />
+            </div>
+            <div class="setting-item">
+              <label class="setting-label" for="blockName">Block/Tehsil</label>
+              <input type="text" class="setting-input" id="blockName" placeholder="Block का नाम"
+                oninput="updatePrintMeta()" />
+            </div>
+            <div class="setting-item">
+              <label class="setting-label" for="listDate">दिनांक</label>
+              <input type="date" class="setting-input" id="listDate" oninput="updatePrintMeta()" />
+            </div>
+            <div class="setting-item full">
+              <label class="setting-label" for="fontSizeSelect">Font Size</label>
+              <select class="setting-select" id="fontSizeSelect" onchange="changeFontSize()">
+                <option value="11">छोटा (11px)</option>
+                <option value="13" selected>सामान्य (13px)</option>
+                <option value="15">बड़ा (15px)</option>
+                <option value="17">बहुत बड़ा (17px)</option>
+              </select>
+            </div>
+            <div class="setting-item full">
+              <label class="setting-label" for="theadColor">Header Color (मुख्य कॉलम का रंग)</label>
+              <input type="color" class="setting-input" id="theadColor" value="#1a3c6e"
+                onchange="changeHeaderColor(this.value)"
+                style="height:36px; padding:2px; cursor:pointer; width:100%;" />
+            </div>
+            <div class="setting-item full">
+              <label class="setting-label">Options</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-bottom:6px">
+                <input type="checkbox" id="autoSnoCheck" checked onchange="renderTable()"
+                  style="accent-color:var(--accent)" />
+                Auto S.No. दिखाएं
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer">
+                <input type="checkbox" id="autoDateCheck" onchange="renderTable()" style="accent-color:var(--accent)" />
+                Row में दिनांक column जोड़ें
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAVE/LOAD -->
+        <div class="card">
+          <div class="card-title">💾 Save & Load</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="tool-btn success" onclick="saveLocal()" id="saveLocalBtn"
+              style="width:100%;justify-content:center">
+              💾 Local Storage में Save करें
+            </button>
+            <button class="tool-btn" onclick="loadLocal()" id="loadLocalBtn" style="width:100%;justify-content:center">
+              📂 Saved Data Load करें
+            </button>
+            <button class="tool-btn" onclick="exportCSV()" id="exportCSVBtn" style="width:100%;justify-content:center">
+              📊 CSV Export (Excel)
+            </button>
+            <button class="tool-btn danger" onclick="confirmClearAll()" id="clearAllBtn"
+              style="width:100%;justify-content:center">
+              🗑️ सब साफ करें
+            </button>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- TABLE AREA -->
+      <section class="table-area">
+        <!-- TOOLBAR -->
+        <div class="table-toolbar no-print">
+          <div class="toolbar-left">
+            <button class="tool-btn accent" onclick="addRow()" id="addRowBtn">➕ Row जोड़ें</button>
+            <button class="tool-btn" onclick="addMultipleRows()" id="addMultipleBtn">📦 5 Rows जोड़ें</button>
+            <button class="tool-btn danger" onclick="deleteSelectedRows()" id="deleteSelectedBtn">🗑️ Delete</button>
+            <button class="tool-btn" onclick="undo()" id="undoBtn" title="Undo (Ctrl+Z)" style="opacity:0.4" disabled>↩
+              Undo</button>
+            <button class="tool-btn" onclick="redo()" id="redoBtn" title="Redo (Ctrl+Y)" style="opacity:0.4" disabled>↪
+              Redo</button>
+          </div>
+          <div class="toolbar-right">
+            <div class="search-bar-wrap">
+              <input type="text" class="search-input" id="searchInput" placeholder="Search करें..."
+                oninput="searchRows(this.value)" />
+            </div>
+            <div class="row-count-badge">
+              <span>📊</span> Rows: <strong id="rowCountDisplay">0</strong>
+            </div>
+            <button class="tool-btn blue" onclick="triggerPrint()" id="printBtn">🖨️ Print</button>
+          </div>
+        </div>
+
+        <!-- TABLE WRAPPER -->
+        <div class="table-wrapper" id="tableWrapper">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📋</div>
+            <h3>सूची खाली है</h3>
+            <p>ऊपर "Basic Template" click करें<br>या खुद Column का नाम लिखकर जोड़ें</p>
+          </div>
+          <table id="listTable" style="display:none" aria-label="Dynamic List Table"></table>
+        </div>
+
+        <!-- ADD ROW BUTTON FULL WIDTH -->
+        <button class="add-row-btn-full no-print" onclick="addRow()" id="addRowFullBtn" style="display:none">
+          ➕ नई Row जोड़ें
+        </button>
+
+        <!-- STATUS BAR -->
+        <div class="status-bar no-print" id="statusBar">
+          <span><span class="status-dot"></span> Ready</span>
+          <span id="lastSavedInfo">कोई डेटा save नहीं हुआ</span>
+          <span id="colCountInfo">0 Columns</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h3 id="modalTitle">⚠️ Confirm</h3>
+      <div class="modal-body">
+        <p id="modalMsg"></p>
+        <input type="text" class="modal-input" id="modalInput" style="display:none" />
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel" onclick="closeModal()" id="modalCancelBtn">रद्द करें</button>
+        <button class="modal-btn confirm" onclick="modalConfirmAction()" id="modalConfirmBtn">हाँ, करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script>
+    /* ─────────────────────────────────────────
+       STATE
+    ───────────────────────────────────────── */
+    let columns = [];   // [{id, name, width}]
+    let rows = [];      // [{id, cells:{colId:val}}]
+    let nextColId = 1;
+    let nextRowId = 1;
+    let modalCallback = null;
+    let searchTerm = '';
+    let sortConfig = { colId: null, dir: 'asc' };
+
+
+    /* ─────────────────────────────────────────
+       HISTORY (Undo / Redo)
+    ───────────────────────────────────────── */
+    let historyStack = [];
+    let redoStack = [];
+
+    function saveHistory() {
+      historyStack.push(JSON.stringify({ columns, rows, nextColId, nextRowId }));
+      redoStack = [];
+      updateHistoryButtons();
+    }
+
+    function updateHistoryButtons() {
+      const uBtn = document.getElementById('undoBtn');
+      const rBtn = document.getElementById('redoBtn');
+      if (uBtn) {
+        uBtn.disabled = historyStack.length === 0;
+        uBtn.style.opacity = uBtn.disabled ? '0.4' : '1';
+      }
+      if (rBtn) {
+        rBtn.disabled = redoStack.length === 0;
+        rBtn.style.opacity = rBtn.disabled ? '0.4' : '1';
+      }
+    }
+
+    function undo() {
+      if (historyStack.length === 0) return;
+      const current = JSON.stringify({ columns, rows, nextColId, nextRowId });
+      redoStack.push(current);
+      const prev = JSON.parse(historyStack.pop());
+      columns = prev.columns; rows = prev.rows; nextColId = prev.nextColId; nextRowId = prev.nextRowId;
+      updateHistoryButtons();
+      renderColList(); renderTable();
+    }
+
+    function redo() {
+      if (redoStack.length === 0) return;
+      const current = JSON.stringify({ columns, rows, nextColId, nextRowId });
+      historyStack.push(current);
+      const next = JSON.parse(redoStack.pop());
+      columns = next.columns; rows = next.rows; nextColId = next.nextColId; nextRowId = next.nextRowId;
+      updateHistoryButtons();
+      renderColList(); renderTable();
+    }
+
+    /* ─────────────────────────────────────────
+       TEMPLATES
+    ───────────────────────────────────────── */
+    function loadBasicTemplate() {
+      openModal('⚠️ नया Template?', 'क्या आप नया Basic Template लोड करना चाहते हैं? इससे सारा मौजूदा डेटा मिट जाएगा।', false, () => {
+        saveHistory();
+        // Default 4 columns
+        columns = [
+          { id: 1, name: 'नाम', width: 150 },
+          { id: 2, name: 'पिता/पति का नाम', width: 150 },
+          { id: 3, name: 'ग्राम', width: 120 },
+          { id: 4, name: 'टिप्पणी', width: 180 }
+        ];
+        nextColId = 5;
+
+        // 5 empty rows
+        rows = [];
+        nextRowId = 1;
+        for (let i = 0; i < 5; i++) {
+          rows.push({
+            id: nextRowId++,
+            cells: { 1: '', 2: '', 3: '', 4: '' },
+            selected: false
+          });
+        }
+
+        document.getElementById('listTitle').value = 'सामान्य सूची';
+        updatePrintTitle();
+        renderColList();
+        renderTable();
+        toast('Basic Template लोड किया गया', 'success');
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       COLUMN MANAGEMENT
+    ───────────────────────────────────────── */
+    function addColumn() {
+      saveHistory();
+      const input = document.getElementById('newColName');
+      const name = input.value.trim();
+      if (!name) { input.focus(); return; }
+      if (columns.length >= 20) { toast('अधिकतम 20 columns हो सकते हैं', 'error'); return; }
+
+      columns.push({ id: nextColId++, name, width: 140 });
+      input.value = '';
+      input.focus();
+
+      renderColList();
+      renderTable();
+      toast(`"${name}" column जोड़ा गया`, 'success');
+    }
+
+    function deleteColumn(id) {
+      saveHistory();
+      columns = columns.filter(c => c.id !== id);
+      rows.forEach(r => delete r.cells[id]);
+      renderColList();
+      renderTable();
+    }
+
+    function renderColList() {
+      const list = document.getElementById('colList');
+      if (columns.length === 0) {
+        list.innerHTML = '<div style="font-size:12px;color:var(--text-dim);text-align:center;padding:8px">कोई column नहीं</div>';
+        return;
+      }
+      list.innerHTML = columns.map((c, i) => `
+    <div class="col-item" id="colItem_${c.id}">
+      <span class="drag-handle">⠿</span>
+      <span class="col-name">${escHTML(c.name)}</span>
+      <input type="number" class="col-width-input" value="${c.width}" min="60" max="400"
+             title="Column चौड़ाई (px)" onchange="setColWidth(${c.id}, this.value)"/>
+      <button class="del-col-btn" onclick="deleteColumn(${c.id})" title="Column हटाएं">✕</button>
+    </div>
+  `).join('');
+
+      document.getElementById('colCountInfo').textContent = columns.length + ' Columns';
+    }
+
+    function setColWidth(id, val) {
+      const col = columns.find(c => c.id === id);
+      if (col) {
+        col.width = Math.max(60, Math.min(400, parseInt(val) || 140));
+        renderTable();
+      }
+    }
+
+    /* ─────────────────────────────────────────
+       ROW MANAGEMENT
+    ───────────────────────────────────────── */
+    function addRowData(vals = {}) {
+      const cells = {};
+      columns.forEach(c => { cells[c.id] = vals[c.id] || ''; });
+      rows.push({ id: nextRowId++, cells, selected: false });
+    }
+
+    function addRow() {
+      if (columns.length === 0) {
+        toast('पहले कोई column जोड़ें', 'error');
+        return;
+      }
+      saveHistory();
+      addRowData();
+      renderTable();
+      // focus last row first cell
+      setTimeout(() => {
+        const inputs = document.querySelectorAll('.cell-input');
+        if (inputs.length > 0) inputs[inputs.length - columns.length].focus();
+      }, 50);
+    }
+
+    function addMultipleRows() {
+      if (columns.length === 0) { toast('पहले कोई column जोड़ें', 'error'); return; }
+      saveHistory();
+      for (let i = 0; i < 5; i++) addRowData();
+      renderTable();
+      toast('5 rows जोड़ी गईं', 'info');
+    }
+
+    function deleteRow(id) {
+      saveHistory();
+      rows = rows.filter(r => r.id !== id);
+      renderTable();
+    }
+
+    function duplicateRow(id) {
+      const orig = rows.find(r => r.id === id);
+      if (!orig) return;
+      const newRow = { id: nextRowId++, cells: { ...orig.cells }, selected: false };
+      const idx = rows.indexOf(orig);
+      rows.splice(idx + 1, 0, newRow);
+      renderTable();
+    }
+
+    function moveRow(id, dir) {
+      const idx = rows.findIndex(r => r.id === id);
+      const swapIdx = idx + dir;
+      if (swapIdx < 0 || swapIdx >= rows.length) return;
+      [rows[idx], rows[swapIdx]] = [rows[swapIdx], rows[idx]];
+      renderTable();
+    }
+
+    function deleteSelectedRows() {
+      const selected = rows.filter(r => r.selected);
+      if (selected.length === 0) { toast('कोई row selected नहीं है', 'error'); return; }
+      saveHistory();
+      rows = rows.filter(r => !r.selected);
+      renderTable();
+      toast(`${selected.length} rows delete हुईं`, 'info');
+    }
+
+    function toggleRowSelect(id) {
+      const row = rows.find(r => r.id === id);
+      if (row) row.selected = !row.selected;
+      const tr = document.querySelector(`tr[data-id="${id}"]`);
+      if (tr) tr.classList.toggle('selected', row.selected);
+      const chk = document.querySelector(`#chk_${id}`);
+      if (chk) chk.checked = row.selected;
+    }
+
+    function toggleAllSelect(chk) {
+      rows.forEach(r => r.selected = chk.checked);
+      renderTable();
+    }
+
+    /* ─────────────────────────────────────────
+       TABLE RENDER
+    ───────────────────────────────────────── */
+    function renderTable() {
+      const table = document.getElementById('listTable');
+      const empty = document.getElementById('emptyState');
+      const addBtn = document.getElementById('addRowFullBtn');
+      const autoSno = document.getElementById('autoSnoCheck').checked;
+
+      if (columns.length === 0) {
+        table.style.display = 'none';
+        empty.style.display = '';
+        addBtn.style.display = 'none';
+        document.getElementById('rowCountDisplay').textContent = '0';
+        return;
+      }
+
+      table.style.display = '';
+      empty.style.display = 'none';
+      addBtn.style.display = 'flex';
+
+      const visibleRows = searchTerm
+        ? rows.filter(r => Object.values(r.cells).some(v => v.toLowerCase().includes(searchTerm.toLowerCase())))
+        : rows;
+
+      // HEADER
+      let thead = `<thead><tr>
+    <th class="chk-cell no-print"><input type="checkbox" id="selectAllChk" class="row-checkbox" onchange="toggleAllSelect(this)"/></th>
+    ${autoSno ? `<th style="width:50px"><div class="th-inner">S.No.</div></th>` : ''}
+    ${columns.map(c => `
+      <th style="min-width:${c.width}px">
+        <div class="th-inner">
+          <span>${escHTML(c.name)}</span>
+          <button class="sort-btn" onclick="sortByCol(${c.id})" title="Sort">
+            ${sortConfig.colId === c.id ? (sortConfig.dir === 'asc' ? '▲' : '▼') : '⇅'}
+          </button>
+        </div>
+      </th>
+    `).join('')}
+    <th class="actions-col no-print" style="width:110px">Actions</th>
+  </tr></thead>`;
+
+      // BODY
+      let tbody = '<tbody>';
+      visibleRows.forEach((row, idx) => {
+        tbody += `
+      <tr data-id="${row.id}" class="${row.selected ? 'selected' : ''}">
+        <td class="chk-cell no-print">
+          <input type="checkbox" id="chk_${row.id}" class="row-checkbox"
+                 ${row.selected ? 'checked' : ''} onchange="toggleRowSelect(${row.id})"/>
+        </td>
+        ${autoSno ? `<td class="sno-cell">${idx + 1}</td>` : ''}
+        ${columns.map(c => `
+          <td>
+            <textarea class="cell-input" rows="1"
+                      oninput="updateCell(${row.id},${c.id},this.value); autoResize(this)"
+                      onfocus="autoResize(this)">${escHTML(row.cells[c.id] || '')}</textarea>
+          </td>
+        `).join('')}
+        <td class="no-print">
+          <div class="row-actions">
+            <button class="row-act-btn up" onclick="moveRow(${row.id},-1)" title="ऊपर">↑</button>
+            <button class="row-act-btn down" onclick="moveRow(${row.id},1)" title="नीचे">↓</button>
+            <button class="row-act-btn dup" onclick="duplicateRow(${row.id})" title="Copy">⎘</button>
+            <button class="row-act-btn del" onclick="deleteRow(${row.id})" title="Delete">✕</button>
+          </div>
+        </td>
+      </tr>`;
+      });
+      tbody += '</tbody>';
+
+      table.innerHTML = thead + tbody;
+      document.getElementById('rowCountDisplay').textContent = visibleRows.length + (searchTerm ? ` (कुल: ${rows.length})` : '');
+
+      // Textarea auto-resize
+      document.querySelectorAll('.cell-input').forEach(ta => {
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
+      });
+    }
+
+    function autoResize(ta) {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    }
+
+    function updateCell(rowId, colId, val) {
+      const row = rows.find(r => r.id === rowId);
+      if (row) row.cells[colId] = val;
+    }
+
+    function sortByCol(colId) {
+      if (sortConfig.colId === colId) {
+        sortConfig.dir = sortConfig.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortConfig = { colId, dir: 'asc' };
+      }
+      rows.sort((a, b) => {
+        const va = (a.cells[colId] || '').toLowerCase();
+        const vb = (b.cells[colId] || '').toLowerCase();
+        const n = !isNaN(va) && !isNaN(vb);
+        const cmp = n ? parseFloat(va) - parseFloat(vb) : va.localeCompare(vb, 'hi');
+        return sortConfig.dir === 'asc' ? cmp : -cmp;
+      });
+      renderTable();
+    }
+
+    function searchRows(val) {
+      searchTerm = val.trim();
+      renderTable();
+    }
+
+    /* ─────────────────────────────────────────
+       FONT SIZE
+    ───────────────────────────────────────── */
+    function changeFontSize() {
+      const sz = document.getElementById('fontSizeSelect').value;
+      document.querySelectorAll('.cell-input').forEach(el => el.style.fontSize = sz + 'px');
+      document.querySelectorAll('table#listTable tbody td').forEach(el => el.style.fontSize = sz + 'px');
+    }
+
+    /* ─────────────────────────────────────────
+       PRINT
+    ───────────────────────────────────────── */
+    function updatePrintTitle() {
+      document.getElementById('printTitle').textContent =
+        document.getElementById('listTitle').value || 'सूची';
+    }
+
+    function updatePrintMeta() {
+      const gp = document.getElementById('gpName').value;
+      const bl = document.getElementById('blockName').value;
+      const dt = document.getElementById('listDate').value;
+
+      document.getElementById('printGP').textContent = gp ? 'ग्रा.पं.: ' + gp : '';
+      document.getElementById('printBlock').textContent = bl ? 'Block: ' + bl : '';
+      document.getElementById('printDate').textContent = dt
+        ? 'दिनांक: ' + new Date(dt).toLocaleDateString('hi-IN')
+        : 'दिनांक: ' + new Date().toLocaleDateString('hi-IN');
+    }
+
+    function triggerPrint() {
+      if (rows.length === 0) { toast('कोई data नहीं है', 'error'); return; }
+      updatePrintMeta();
+      window.print();
+    }
+
+    /* ─────────────────────────────────────────
+       SAVE / LOAD / EXPORT
+    ───────────────────────────────────────── */
+    function saveLocal() {
+      const data = {
+        columns, rows, nextColId, nextRowId,
+        meta: {
+          title: document.getElementById('listTitle').value,
+          gp: document.getElementById('gpName').value,
+          block: document.getElementById('blockName').value,
+          date: document.getElementById('listDate').value,
+          theadColor: document.getElementById('theadColor').value
+        },
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem('qlb_data', JSON.stringify(data));
+      const ts = new Date().toLocaleTimeString('hi-IN');
+      document.getElementById('lastSavedInfo').textContent = 'Last saved: ' + ts;
+      toast('Data save हो गया! 💾', 'success');
+    }
+
+    function loadLocal() {
+      const raw = localStorage.getItem('qlb_data');
+      if (!raw) { toast('कोई saved data नहीं मिला', 'error'); return; }
+
+      const data = JSON.parse(raw);
+      columns = data.columns || [];
+      rows = data.rows || [];
+      nextColId = data.nextColId || 1;
+      nextRowId = data.nextRowId || 1;
+
+      if (data.meta) {
+        document.getElementById('listTitle').value = data.meta.title || '';
+        document.getElementById('gpName').value = data.meta.gp || '';
+        document.getElementById('blockName').value = data.meta.block || '';
+        document.getElementById('listDate').value = data.meta.date || '';
+      }
+
+      const dt = new Date(data.savedAt);
+      document.getElementById('lastSavedInfo').textContent = 'Loaded: ' + dt.toLocaleString('hi-IN');
+
+      if (data.meta && data.meta.theadColor) {
+        document.getElementById('theadColor').value = data.meta.theadColor;
+        changeHeaderColor(data.meta.theadColor);
+      }
+
+      renderColList();
+      renderTable();
+      updatePrintTitle();
+      toast('Saved data load हो गया! 📂', 'success');
+    }
+
+    function exportCSV() {
+      if (rows.length === 0) { toast('Export करने के लिए data नहीं है', 'error'); return; }
+
+      const header = ['S.No.', ...columns.map(c => c.name)].join(',');
+      const bodyRows = rows.map((r, i) =>
+        [i + 1, ...columns.map(c => `"${(r.cells[c.id] || '').replace(/"/g, '""')}"`)]
+          .join(',')
+      );
+
+      const csv = '\uFEFF' + [header, ...bodyRows].join('\r\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = (document.getElementById('listTitle').value || 'list') + '.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('CSV Export हो गया! 📊', 'success');
+    }
+
+    function confirmClearAll() {
+      openModal('⚠️ सब साफ करें?', 'इससे सारे columns और rows मिट जाएंगे। क्या आप आगे बढ़ना चाहते हैं?', false, () => {
+        columns = []; rows = []; nextColId = 1; nextRowId = 1;
+        renderColList(); renderTable();
+        toast('सब साफ हो गया', 'info');
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       MODAL
+    ───────────────────────────────────────── */
+    function openModal(title, msg, needsInput, callback) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalMsg').textContent = msg;
+      const inp = document.getElementById('modalInput');
+      inp.style.display = needsInput ? 'block' : 'none';
+      inp.value = '';
+      modalCallback = callback;
+      document.getElementById('modalOverlay').classList.add('active');
+      if (needsInput) setTimeout(() => inp.focus(), 100);
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      modalCallback = null;
+    }
+
+    function modalConfirmAction() {
+      if (modalCallback) modalCallback();
+      closeModal();
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    /* ─────────────────────────────────────────
+       TOAST
+    ───────────────────────────────────────── */
+    function toast(msg, type = 'info') {
+      const wrap = document.getElementById('toastWrap');
+      const el = document.createElement('div');
+      el.className = `toast ${type}`;
+      el.textContent = msg;
+      wrap.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.3s';
+        setTimeout(() => el.remove(), 300);
+      }, 2800);
+    }
+
+    /* ─────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────── */
+    function escHTML(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    /* ─────────────────────────────────────────
+       AUTO-SAVE (every 2 mins)
+    ───────────────────────────────────────── */
+    setInterval(() => {
+      if (rows.length > 0) {
+        saveLocal();
+        // silent save
+      }
+    }, 2 * 60 * 1000);
+
+    /* ─────────────────────────────────────────
+       KEYBOARD SHORTCUT
+    ───────────────────────────────────────── */
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') { addRow(); e.preventDefault(); }
+      if (e.ctrlKey && e.key === 's') { saveLocal(); e.preventDefault(); }
+      if (e.ctrlKey && e.key === 'p') { triggerPrint(); e.preventDefault(); }
+    });
+
+    /* ─────────────────────────────────────────
+       INIT
+    ───────────────────────────────────────── */
+    document.getElementById('listDate').value = new Date().toISOString().split('T')[0];
+    updatePrintMeta();
+    renderColList();
+    renderTable();
+
+    // Auto-load if saved data exists
+    if (localStorage.getItem('qlb_data')) {
+      setTimeout(() => {
+        toast('Saved data मिला — "Load करें" button दबाएं', 'info');
+      }, 800);
+    }
+
+    function changeHeaderColor(color) {
+      document.documentElement.style.setProperty('--thead-bg', color);
+      saveLocal();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+      const btn = document.getElementById('themeBtn');
+      if (document.body.classList.contains('light-theme')) {
+        btn.textContent = '🌙 Night Mode';
+        localStorage.setItem('qlb_theme', 'light');
+      } else {
+        btn.textContent = '☀️ Day Mode';
+        localStorage.setItem('qlb_theme', 'dark');
+      }
+    }
+
+    if (localStorage.getItem('qlb_theme') === 'light') {
+      document.body.classList.add('light-theme');
+      document.getElementById('themeBtn').textContent = '🌙 Night Mode';
+    }
+  </script>
+</body>
+
+</html>

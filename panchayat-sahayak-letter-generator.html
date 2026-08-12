@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="hi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panchayat Sahayak Letter Generator | पत्र स्वतः निर्माण टूल</title>
+  <meta name="description" content="पंचायत सहायक के लिए ऑटोमेटिक पत्र (Application Letter) जनरेटर। ग्राम प्रधान, BDO, या DM को पत्र हिंदी में एक क्लिक में तैयार करें।">
+  
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- html2pdf for generating authentic A4 printouts locally -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body { font-family: 'Poppins', 'Hind', sans-serif; background: #f1f5f9; color: #0f172a; margin: 0; padding: 0; }
+        
+        .layout-grid {
+            max-width: 1300px;
+            margin: 24px auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 24px;
+            padding: 0 16px;
+        }
+
+        @media (max-width: 900px) {
+            .layout-grid { grid-template-columns: 1fr; }
+        }
+
+        .controls-panel {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #475569; }
+        .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Hind', sans-serif;
+            transition: 0.2s;
+            box-sizing: border-box;
+        }
+        .form-control:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        
+        textarea.form-control { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: #fff;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            box-shadow: 0 4px 12px rgba(22,163,74,0.3);
+            transition: 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-generate:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(22,163,74,0.4); }
+
+        .template-pills {
+            display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+        }
+        .template-pills button {
+            background: #e2e8f0; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer;
+            font-size: 13px; font-weight: 600; color: #334155; transition: 0.2s;
+        }
+        .template-pills button:hover { background: #cbd5e1; }
+        .template-pills button.active { background: #2563eb; color: #fff; }
+
+        .btn-ai {
+            background: linear-gradient(135deg, #a855f7, #7e22ce);
+            color: #fff; border: none; padding: 6px 14px; border-radius: 20px; cursor: pointer;
+            font-size: 13px; font-weight: 600; transition: 0.2s; box-shadow: 0 4px 10px rgba(168,85,247,0.3);
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-ai:hover { background: linear-gradient(135deg, #9333ea, #6b21a8); transform: scale(1.05); }
+
+        /* The Authentic A4 Letter Preview */
+        .preview-panel {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        #a4-surface {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            padding: 25mm; /* Standard official margins */
+            box-sizing: border-box;
+            margin: 0 auto;
+            font-family: 'Hind', 'Arial', sans-serif; /* Authentic official native fonts */
+            color: #000;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Letter Styling Elements */
+        .letter-header { margin-bottom: 20px; }
+        .letter-indent { margin-left: 50px; }
+        .letter-body { text-align: justify; text-justify: inter-word; margin-bottom: 40px; }
+        .letter-footer { display: flex; justify-content: space-between; margin-top: 50px; }
+
+        .loading-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9);
+            z-index: 9999; justify-content: center; align-items: center; flex-direction: column;
+        }
+
+
+
+        /* NATIVE PRINT STYLES FOR ZERO-BUG A4 PDF EXPORT */
+        @media print {
+            body { background: white; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .main-nav, .controls-panel, .loading-overlay { display: none !important; }
+            .layout-grid { display: block !important; margin: 0 !important; padding: 0 !important; }
+            .preview-panel { padding: 0 !important; box-shadow: none !important; background: transparent !important; overflow: visible !important; border-radius: 0 !important; }
+            
+            #a4-surface {
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                min-height: auto !important;
+            }
+            
+            @page {
+                size: a4 portrait;
+                margin: 25mm; /* Authentic 25mm Official Margins enforced natively by Browser */
+            }
+        }
+    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gpsahayak.in/"},
+      {"@type": "ListItem", "position": 2, "name": "Letter Generator", "item": "https://gpsahayak.in/panchayat-sahayak-letter-generator.html"}
+    ]
+  }
+  </script>
+  <!-- SCHEMA_INJECTED_V2 -->
+</head>
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<div class="layout-grid">
+        <!-- CONTROLS PANEL -->
+        <div class="controls-panel">
+            <h2 style="margin:0 0 8px 0; font-size:20px; color:#1e3a8a;">📝 ऑटोमेटिक पत्र-लेखक</h2>
+            <p style="margin:0 0 16px 0; font-size:13px; color:#64748b;">केवल 3 आसान स्टेप्स में अपना प्रार्थना-पत्र तैयार करें।</p>
+
+            <div style="background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:16px;">
+                <h4 style="margin:0 0 10px 0; font-size:14px; color:#334155;">👉 Step 1: आप किसके लिए पत्र लिखना चाहते हैं?</h4>
+                <div class="template-pills" style="margin-bottom:0;">
+                    <button class="active" onclick="setTemplate('leave')">आकस्मिक अवकाश (Leave)</button>
+                    <button onclick="setTemplate('salary')">मानदेय मांग (Salary)</button>
+                    <button onclick="setTemplate('complaint')">सामान्य शिकायत (Complaint)</button>
+                    <button onclick="setTemplate('equipment')">सामग्री मांग (Materials)</button>
+                    <button onclick="setTemplate('reply')">स्पष्टीकरण (Notice Reply)</button>
+                    <button onclick="setTemplate('resign')">इस्तीफा (Resignation)</button>
+                    <a href="https://chatgpt.com/" target="_blank" class="btn-ai" style="text-decoration: none;">✨ AI (ChatGPT) से लिखवाएं</a>
+                </div>
+            </div>
+
+            <h4 style="margin:24px 0 12px 0; font-size:14px; color:#334155; border-bottom:1px solid #e2e8f0; padding-bottom:6px;">👉 Step 2: पत्र की ज़रूरी जानकारी भरें</h4>
+
+            <div class="form-group">
+                <label>किस अधिकारी को भेजना है? (To)</label>
+                <select id="i-to-select" class="form-control" onchange="handleToChange()">
+                    <option value="श्रीमान खंड विकास अधिकारी महोदय">खंड विकास अधिकारी (BDO)</option>
+                    <option value="श्रीमान ग्राम पंचायत सचिव महोदय">ग्राम पंचायत सचिव (Secretary)</option>
+                    <option value="श्रीमान ग्राम प्रधान महोदय">ग्राम प्रधान (Pradhan)</option>
+                    <option value="श्रीमान सहायक विकास अधिकारी (पंचायत) महोदय">सहायक विकास अधिकारी (ADO Panchayat)</option>
+                    <option value="श्रीमान जिला पंचायत राज अधिकारी (DPRO) महोदय">जिला पंचायत राज अधिकारी (DPRO)</option>
+                    <option value="other">अन्य लिखें... (Custom)</option>
+                </select>
+                <input type="text" id="i-to" class="form-control" style="margin-top:8px; display:none;" value="श्रीमान खंड विकास अधिकारी महोदय" placeholder="अधिकारी का पद (जैसे- जिलाधिकारी महोदय)">
+            </div>
+            <div class="form-group">
+                <label>उनका कार्यालय/ब्लॉक का नाम (Office)</label>
+                <input type="text" id="i-office" class="form-control" placeholder="उदा० विकास खंड - सदर">
+            </div>
+
+            <!-- GENDER SALUTATION TOGGLE -->
+            <div class="form-group" style="margin-top: -6px; background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <label style="display:inline-block; font-size:13px; margin-right:12px; margin-bottom:0; color:#475569;">अधिकारी कौन हैं?</label>
+                <label style="font-size:13px; font-weight:600; margin-right:12px; cursor:pointer;">
+                    <input type="radio" name="r-gender" value="महोदय" checked onchange="updatePreview()"> 👨 पुरुष (महोदय)
+                </label>
+                <label style="font-size:13px; font-weight:600; cursor:pointer;">
+                    <input type="radio" name="r-gender" value="महोदया" onchange="updatePreview()"> 👩 महिला (महोदया)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>मुख्य विषय (Subject)</label>
+                <input type="text" id="i-subject" class="form-control" style="font-weight:600;" value="2 दिनों के आकस्मिक अवकाश हेतु प्रार्थना पत्र।">
+            </div>
+            <div class="form-group">
+                <label>पत्र में क्या लिखना है? (Main Body)</label>
+                <textarea id="i-body" class="form-control">सविनय निवेदन है कि प्रार्थी को घर पर कुछ आवश्यक कार्य पड़ जाने के कारण प्रार्थी दिनांक [यहाँ तारीख लिखें] तक पंचायत सचिवालय पर उपस्थित होने में असमर्थ है।
+
+अतः श्रीमान जी से विनम्र निवेदन है कि प्रार्थी को 2 दिनों का आकस्मिक अवकाश प्रदान करने की कृपा करें।</textarea>
+            </div>
+            
+            <div style="background:#fffbeb; padding:12px; border-radius:8px; border:1px solid #fde68a; margin-top:20px;">
+                <label style="font-size:12px; color:#92400e; display:block; margin-bottom:10px; font-weight:bold;">आपकी अपनी व्यक्तिगत जानकारी</label>
+                <div style="display:flex; gap:12px;">
+                    <div class="form-group" style="flex:1; margin-bottom:0;">
+                        <input type="text" id="i-sender" class="form-control" placeholder="आपका पूरा नाम">
+                    </div>
+                    <div class="form-group" style="flex:1; margin-bottom:0;">
+                        <input type="text" id="i-gp" class="form-control" placeholder="ग्राम पंचायत का नाम">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:10px; margin-bottom:0;">
+                    <input type="date" id="i-date" class="form-control">
+                </div>
+            </div>
+
+            <h4 style="margin:24px 0 12px 0; font-size:14px; color:#334155;">👉 Step 3: प्रिंट या सेव करें</h4>
+            <button class="btn-generate" onclick="downloadLetterPDF()">🖨️ प्रिंट करें / PDF सेव करें</button>
+            <p style="font-size:11px; text-align:center; color:#64748b; margin-top:8px;">💡 टिप: प्रिंट डायलॉग खुलने पर 'Destination' को 'Save as PDF' चुनें।</p>
+        </div>
+
+        <!-- A4 PREVIEW PANEL -->
+        <div class="preview-panel">
+            <div id="a4-surface">
+                <!-- Output Header -->
+                <div class="letter-header" id="o-header">
+                    <div style="font-weight: bold; margin-bottom: 8px;">सेवा में,</div>
+                    <div class="letter-indent">
+                        <div style="font-weight:bold; font-size: 17px;" id="o-to">श्रीमान खंड विकास अधिकारी महोदय</div>
+                        <div id="o-office">विकास खंड - सदर</div>
+                        <div id="o-district">जनपद - (यहाँ अपना ज़िला लिखें)</div>
+                    </div>
+                </div>
+
+                <!-- Output Subject -->
+                <div style="margin: 24px 0;" class="letter-indent">
+                    <span style="font-weight:bold; margin-right:8px;">विषय -</span>
+                    <span id="o-subject" style="font-weight:bold;">2 दिनों के आकस्मिक अवकाश हेतु प्रार्थना पत्र।</span>
+                </div>
+
+                <div style="margin-bottom: 16px; font-weight: bold;" id="o-salutation">महोदय,</div>
+
+                <!-- Output Body -->
+                <div class="letter-body letter-indent" id="o-body">
+                    सविनय निवेदन है कि प्रार्थी को घर पर कुछ आवश्यक कार्य पड़ जाने के कारण प्रार्थी दिनांक [यहाँ तारीख लिखें] तक पंचायत सचिवालय पर उपस्थित होने में असमर्थ है।
+                    <br><br>
+                    अतः श्रीमान जी से विनम्र निवेदन है कि प्रार्थी को 2 दिनों का आकस्मिक अवकाश प्रदान करने की कृपा करें।
+                </div>
+
+                <!-- Output Footer -->
+                <div class="letter-footer">
+                    <div style="margin-top: 20px;">
+                        <div style="font-weight: bold; margin-bottom: 30px;">सधन्यवाद</div>
+                        <div><strong>दिनांक:</strong> <span id="o-date"></span></div>
+                    </div>
+                    <div style="text-align:center; min-width: 250px;">
+                        <div style="font-weight: bold;">आपका आज्ञाकारी,</div>
+                        <br><br>
+                        <strong id="o-sender-name" style="font-size: 17px;">पंचायत सहायक नाम</strong><br>
+                        (पंचायत सहायक / DEO)<br>
+                        ग्राम पंचायत: <span id="o-sender-gp">____________</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Loading Screen for PDF Gen -->
+    <div class="loading-overlay" id="loader">
+        <div style="font-size:40px; animation:bounce 1s infinite;">⚙️</div>
+        <h3 style="color:#1e3a8a;">पत्र (Letter) तैयार हो रहा है...</h3>
+    </div>
+
+
+    <script>
+        // --- LIVE DATA BINDING ENGINE ---
+        const inputs = ['i-to', 'i-office', 'i-subject', 'i-body', 'i-sender', 'i-gp', 'i-date'];
+        
+        // Populate specific cache variables directly from previous micro-services
+        document.getElementById('i-sender').value = localStorage.getItem('psName') || '';
+        document.getElementById('i-gp').value = localStorage.getItem('gpName') || '';
+        document.getElementById('i-date').value = new Date().toISOString().slice(0,10);
+        
+        function updatePreview() {
+            // Apply Salutation Logic Automatically
+            let gender = document.querySelector('input[name="r-gender"]:checked').value;
+            document.getElementById('o-salutation').innerText = gender + ',';
+            
+            let toStr = document.getElementById('i-to').value;
+            // Magically transform 'Shreeman -> Shrimati' and 'Mahoday -> Mahodaya' based on toggle for printing
+            if(gender === 'महोदया') {
+                toStr = toStr.replace(/श्रीमान/g, 'श्रीमती').replace(/महोदय/g, 'महोदया');
+            } else {
+                toStr = toStr.replace(/श्रीमती/g, 'श्रीमान').replace(/महोदया/g, 'महोदय');
+            }
+            document.getElementById('o-to').innerText = toStr;
+
+            document.getElementById('o-office').innerText = document.getElementById('i-office').value;
+            document.getElementById('o-subject').innerText = document.getElementById('i-subject').value;
+            
+            // Format body with paragraph breaks preserving official whitespace
+            let rawBody = document.getElementById('i-body').value;
+            document.getElementById('o-body').innerHTML = rawBody.replace(/\n/g, '<br>');
+            
+            let dt = new Date(document.getElementById('i-date').value);
+            document.getElementById('o-date').innerText = isNaN(dt.getTime()) ? '' : dt.toLocaleDateString('hi-IN');
+            
+            document.getElementById('o-sender-name').innerText = document.getElementById('i-sender').value || 'प्रार्थी';
+            document.getElementById('o-sender-gp').innerText = document.getElementById('i-gp').value || '__________';
+            
+            // Sync district automatically if available in villageDB cache via generic localstore logic
+            let dist = localStorage.getItem('gpDistrict') || 'जनपद - ________________';
+            if(!dist.startsWith('जनपद')) dist = 'जनपद - ' + dist;
+            document.getElementById('o-district').innerText = dist;
+        }
+
+        // Attach listeners for real-time live-preview
+        let debounceTimer;
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(updatePreview, 150);
+            });
+        });
+
+        // First paint render
+        updatePreview();
+
+        // --- TO-DROPDOWN HANDLER ---
+        function handleToChange() {
+            const selectVal = document.getElementById('i-to-select').value;
+            const inputEl = document.getElementById('i-to');
+            if (selectVal === 'other') {
+                inputEl.style.display = 'block';
+                inputEl.value = '';
+                inputEl.focus();
+            } else {
+                inputEl.style.display = 'none';
+                inputEl.value = selectVal;
+            }
+            updatePreview();
+        }
+
+        function syncToSelect(val) {
+            const selectEl = document.getElementById('i-to-select');
+            const inputEl = document.getElementById('i-to');
+            let found = Array.from(selectEl.options).some(opt => opt.value === val);
+            
+            if (found) {
+                selectEl.value = val;
+                inputEl.style.display = 'none';
+                inputEl.value = val;
+            } else {
+                selectEl.value = 'other';
+                inputEl.style.display = 'block';
+                inputEl.value = val;
+            }
+        }
+
+        // --- TEMPLATE ENGINE ---
+        function setTemplate(type) {
+            // UI pills toggle
+            document.querySelectorAll('.template-pills button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(type === 'leave') {
+                syncToSelect("श्रीमान खंड विकास अधिकारी महोदय");
+                document.getElementById('i-subject').value = "2 दिनों के आकस्मिक अवकाश हेतु प्रार्थना पत्र।";
+                document.getElementById('i-body').value = "सविनय निवेदन है कि प्रार्थी को घर पर कुछ आवश्यक कार्य पड़ जाने के कारण प्रार्थी दिनांक [यहाँ तारीख लिखें] तक पंचायत सचिवालय पर उपस्थित होने में असमर्थ है।\n\nअतः श्रीमान जी से विनम्र निवेदन है कि प्रार्थी को 2 दिनों का आकस्मिक अवकाश प्रदान करने की कृपा करें।";
+            } 
+            else if(type === 'salary') {
+                syncToSelect("श्रीमान जिला पंचायत राज अधिकारी (DPRO) महोदय");
+                document.getElementById('i-subject').value = "पंचायत सहायक का रुका हुआ मानदेय भुगतान कराने के संबंध में।";
+                document.getElementById('i-body').value = "सविनय निवेदन है कि प्रार्थी पिछले [X] महीनों से ग्राम पंचायत सचिवालय में नियमित रूप से पूर्ण निष्ठा के साथ अपने डेटा एंट्री व अन्य सभी विभागीय कार्यों का निर्वहन कर रहा है।\n\nपरन्तु प्रार्थी को पिछले [X] महीनों से मानदेय (Honorarium) का भुगतान प्राप्त नहीं हुआ है, जिससे प्रार्थी को आर्थिक कठिनाइयों का सामना करना पड़ रहा है।\n\nअतः श्रीमान जी से आग्रह है कि कृपया उक्त समस्या का संज्ञान लेते हुए प्रार्थी का अवशेष मानदेय भुगतान कराने की कृपा करें। प्रार्थी सदैव आभारी रहेगा।";
+            }
+            else if(type === 'complaint') {
+                syncToSelect("श्रीमान ग्राम पंचायत सचिव महोदय");
+                document.getElementById('i-subject').value = "पंचायत सचिवालय में इन्टरनेट / सिस्टम ख़राब होने के संबंध में।";
+                document.getElementById('i-body').value = "सविनय निवेदन है कि ग्राम पंचायत सचिवालय में स्थापित कंप्यूटर सिस्टम / इन्टरनेट सेवा पिछले कुछ दिनों से बाधित/ख़राब है। इसके कारण विभागीय पोर्टल (e-Gram Swaraj, CSC आदि) पर दैनिक कार्यों (फीडिंग) का निष्पादन करने में गंभीर समस्या उत्पन्न চরম हो रही है।\n\nअतः श्रीमान जी से सविनय निवेदन है कि कृपया जल्द से जल्द सचिवालय के सिस्टम/इन्टरनेट को सुचारू कराने की व्यवस्था सुनिश्चित करें ताकि सरकारी कार्य सुगमता से संपन्न हो सकें।";
+            }
+            else if(type === 'equipment') {
+                syncToSelect("श्रीमान ग्राम प्रधान महोदय");
+                document.getElementById('i-subject').value = "पंचायत सचिवालय हेतु आवश्यक सामग्री / उपकरण उपलब्ध कराने के संबंध में।";
+                document.getElementById('i-body').value = "सविनय निवेदन है कि ग्राम पंचायत सचिवालय में सुचारू रूप से विभागीय कार्य (जैसे- e-Gram Swaraj फीडिंग, परिवार रजिस्टर, CSC आदि) करने हेतु कुछ अत्यंत आवश्यक सामग्री (जैसे- प्रिंटर इंक, A4 पेपर, इन्टरनेट रिचार्ज) की आवश्यकता है या पुराना उपकरण कार्य नहीं कर रहा है।\n\nअतः श्रीमान जी से विनम्र अनुरोध है कि पंचायत सचिवालय के कार्यों को निर्बाध रूप से चलाने हेतु यथाशीघ्र उक्त सामग्री/उपकरण की व्यवस्था कराने की कृपा करें।";
+            }
+            else if(type === 'reply') {
+                syncToSelect("श्रीमान खंड विकास अधिकारी महोदय");
+                document.getElementById('i-subject').value = "कारण बताओ नोटिस (स्पष्टीकरण) का उत्तर प्रस्तुत करने के संबंध में।";
+                document.getElementById('i-body').value = "सविनय निवेदन है कि प्रार्थी को दिनांक [यहाँ नोटिस की तारीख लिखें] को पंचायत सचिवालय में अनुपस्थित रहने / कार्य में शिथिलता के संबंध में एक 'कारण बताओ नोटिस' प्राप्त हुआ है। उस दिन प्रार्थी के घर में अचानक गंभीर स्वास्थ्य समस्या उत्पन्न हो जाने के कारण प्रार्थी को बिना पूर्व सूचना के अवकाश लेना पड़ा, जिसका प्रार्थी को खेद है।\n\nप्रार्थी पूर्ण निष्ठा से अपना कार्य करता है और भविष्य में ऐसी पुनरावृत्ति न होने का पूर्ण आश्वासन देता है। अतः श्रीमान जी से विनम्र निवेदन है कि प्रार्थी का यह स्पष्टीकरण स्वीकार करते हुए अग्रिम कार्यवाही समाप्त करने की कृपा करें।";
+            }
+            else if(type === 'resign') {
+                syncToSelect("श्रीमान जिला पंचायत राज अधिकारी (DPRO) महोदय");
+                document.getElementById('i-subject').value = "पंचायत सहायक / Account-cum-Data Entry Operator के पद से त्यागपत्र (इस्तीफा) हेतु।";
+                document.getElementById('i-body').value = "सविनय निवेदन है कि प्रार्थी वर्तमान में अपने ग्राम पंचायत सचिवालय में पंचायत सहायक (DEO) के पद पर कार्यरत है। कुछ व्यक्तिगत एवं अपरिहार्य पारिवारिक कारणों (या अन्य सरकारी नौकरी में चयन होने) के कारण प्रार्थी अब इस पद पर अपनी सेवाएँ देने में पूर्ण रूप से असमर्थ है।\n\nअतः श्रीमान जी से विनम्र निवेदन है कि प्रार्थी का यह त्यागपत्र (Resignation) आज से ही स्वीकार करने की कृपा करें। प्रार्थी विभाग द्वारा दिए गए दिशा-निर्देशों के तहत अपना पूर्व कार्य-प्रभार (Charge) ग्राम सचिव महोदय को सौंपने के लिए तैयार है।";
+            }
+            updatePreview();
+        }
+
+        // --- AUTHENTIC PDF ENGINE (Native Print - 100% Bug Free & Scalable) ---
+        function downloadLetterPDF() {
+            // Save explicitly the name metadata into local scope for other modules
+            let pName = document.getElementById('i-sender').value;
+            let gName = document.getElementById('i-gp').value;
+            if(pName) localStorage.setItem('psName', pName);
+            if(gName) localStorage.setItem('gpName', gName);
+            
+            // Trigger native browser high-quality PDF generation
+            window.print();
+        }
+
+
+    </script>
+
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

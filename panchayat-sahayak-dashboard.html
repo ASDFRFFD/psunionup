@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panchayat Sahayak Dashboard | Secure Login</title>
+  <link rel="icon" type="image/png" href="images/panchayat_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* DASHBOARD SPECIFIC CSS */
+    body { background-color: #f1f5f9; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+    
+    /* Layout */
+    .dashboard-wrapper { display: flex; flex: 1; max-width: 1440px; margin: 0 auto; width: 100%; gap: 24px; padding: 24px; }
+    
+    /* Sidebar */
+    .sidebar { width: 280px; background: rgba(255, 255, 255, 0.95); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); padding: 32px 24px; display: flex; flex-direction: column; flex-shrink: 0; }
+    .sb-logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+    .sb-logo-area img { height: 48px; filter: drop-shadow(0 8px 12px rgba(15, 118, 110, 0.3)); }
+    .sb-logo-texts h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 18px; color: var(--primary); margin:0; line-height: 1.2; }
+    .sb-logo-texts p { font-size: 12px; color: var(--text-muted); font-weight: 600; margin:0; }
+    
+    .nav-menu { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .nav-btn { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 16px; color: var(--text-muted); font-weight: 600; text-decoration: none; transition: all 0.3s ease; font-family: 'Plus Jakarta Sans', sans-serif;}
+    .nav-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+    .nav-btn:hover { background: #f8fafc; color: var(--primary); transform: translateX(4px); }
+    .nav-btn.active { background: var(--primary); color: #fff; box-shadow: 0 10px 20px rgba(15, 118, 110, 0.25); }
+    
+    .logout-btn { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-radius: 16px; color: #ef4444; font-weight: 700; background: #fef2f2; cursor: pointer; transition: 0.3s; border: 1px solid #fee2e2; }
+    .logout-btn:hover { background: #fee2e2; border-color: #fca5a5; }
+
+    /* Main Dashboard Area */
+    .main-area { flex: 1; display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+    
+    /* Top Header */
+    .dash-header { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.85); backdrop-filter: var(--glass-blur); padding: 24px 32px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+    .greeting h1 { font-family: 'Outfit', sans-serif; font-size: 28px; color: var(--primary); margin: 0 0 4px 0; }
+    .greeting p { color: var(--text-muted); margin: 0; font-weight: 500; font-size: 15px; }
+    
+    .header-actions { display: flex; align-items: center; gap: 24px; }
+    .notification-btn { position: relative; width: 48px; height: 48px; background: #f1f5f9; border-radius: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; color: var(--primary); }
+    .notification-btn:hover { background: #e2e8f0; transform: translateY(-2px); }
+    .badge-dot { position: absolute; top: 12px; right: 14px; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; border: 2px solid #fff; }
+    .user-profile { display: flex; align-items: center; gap: 12px; background: #fff; padding: 8px 16px 8px 8px; border-radius: 99px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02);}
+    .user-profile:hover { border-color: var(--primary-light); box-shadow: 0 8px 16px rgba(15, 118, 110, 0.1); }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-light); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Outfit'; font-size: 16px; }
+    .user-info .u-name { font-weight: 700; color: var(--primary); font-size: 14px; margin: 0; }
+    .user-info .u-role { font-size: 12px; color: var(--accent); font-weight: 600; margin: 0; }
+
+    /* Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .stat-card { background: #fff; border-radius: 24px; padding: 32px; display: flex; align-items: center; gap: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: transform 0.4s ease, box-shadow 0.4s ease; position: relative; overflow: hidden; }
+    .stat-card::after { content:''; position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, transparent, var(--bg-hover, #f1f5f9)); border-radius: 0 0 0 100px; opacity: 0.5; }
+    .stat-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .stat-icon { width: 64px; height: 64px; border-radius: 20px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stat-icon svg { width: 28px; height: 28px; stroke-width: 2.5; stroke: currentColor; fill: none; }
+    .stat-details h3 { font-size: 28px; font-weight: 800; font-family: 'Outfit'; margin: 0 0 4px 0; color: var(--primary); }
+    .stat-details p { color: var(--text-muted); font-size: 14px; font-weight: 600; margin: 0; }
+    .stat-trend { margin-top: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; }
+    .trend-up { background: #dcfce7; color: #15803d; }
+    .trend-neutral { background: #fef9c3; color: #a16207; }
+
+    /* Bento Grid Bottom Area */
+    .bento-grid { display: grid; grid-template-columns: 2fr 1.2fr; gap: 24px; }
+    
+    /* Panel generic */
+    .dash-panel { background: #fff; border-radius: 24px; padding: 32px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 24px; }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; }
+    .panel-header h2 { font-size: 20px; margin: 0; }
+    .btn-outline { padding: 8px 16px; border-radius: 12px; border: 2px solid var(--border); background: transparent; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: 0.3s; font-size: 13px; }
+    .btn-outline:hover { background: #f1f5f9; border-color: var(--primary-light); color: var(--primary); }
+
+    /* Task Tracker */
+    .task-list { display: flex; flex-direction: column; gap: 16px; }
+    .task-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #e2e8f0; transition: 0.3s; cursor: pointer; }
+    .task-item:hover { border-color: var(--primary-light); background: #fff; box-shadow: 0 4px 12px rgba(15, 118, 110, 0.1); transform: translateX(4px); }
+    .task-left { display: flex; align-items: center; gap: 16px; }
+    .task-check { width: 24px; height: 24px; border: 2px solid #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .task-item.done .task-check { background: #10b981; border-color: #10b981; color: #fff; }
+    .task-item.done .task-title { text-decoration: line-through; color: #94a3b8; }
+    .task-title { font-weight: 700; color: var(--primary); font-size: 15px; }
+    .task-meta { font-size: 13px; color: var(--text-muted); font-weight: 600; display: flex; gap: 12px; margin-top: 4px; }
+    .task-priority { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .prio-high { background: #fee2e2; color: #b91c1c; }
+    .prio-med { background: #fef9c3; color: #a16207; }
+
+    /* App Drawer (Services) */
+    .app-drawer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .app-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; cursor: pointer; transition: 0.3s; text-decoration: none; color: var(--primary); }
+    .app-card:hover { transform: translateY(-4px) scale(1.05); background: #fff; border-color: var(--primary-light); box-shadow: 0 10px 20px rgba(15, 118, 110, 0.15); }
+    .app-card img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05)); }
+    .app-card span { font-weight: 700; font-size: 12px; line-height: 1.2; font-family: 'Outfit'; }
+
+    @media (max-width: 1024px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .app-drawer { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .dashboard-wrapper { flex-direction: column; padding: 16px; }
+      .sidebar { width: 100%; padding: 24px; }
+      .nav-menu { flex-direction: row; overflow-x: auto; padding-bottom: 8px; }
+      .nav-btn span { display: none; } /* Show icons only on mobile top */
+      .dash-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .header-actions { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body class="dl-page" style="background-image: none;">
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+      
+      <div class="logout-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="width:20px; height:20px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+        Sign Out Securely
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN AREA -->
+    <main class="main-area">
+      
+      <!-- HEADER -->
+      <header class="dash-header">
+        <div class="greeting">
+          <h1>Welcome back, <span style="color:var(--accent);" id="header-greet-name">Ramesh!</span> 👋</h1>
+          <p id="header-greet-details">Gram Panchayat: Rampur | Block: Vikas Nagar</p>
+        </div>
+        <div class="header-actions">
+          <div class="notification-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px; height:24px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="badge-dot"></span>
+          </div>
+          <div class="user-profile" style="cursor:pointer; padding:4px 8px; border-radius:8px; transition:0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="openEditProfile()">
+            <div class="avatar" id="header-avatar">R</div>
+            <div class="user-info">
+              <p class="u-name" id="header-user-name">Ramesh Kumar</p>
+              <p class="u-role" style="display:flex; align-items:center;">Panchayat Sahayak <span style="color:var(--primary); font-size:11px; margin-left:6px; font-weight:700;">✏️ Edit</span></p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+
+      <!-- BENTO GRID (Tasks & Services) -->
+      <div class="bento-grid">
+        
+        <!-- SAVED LISTS PANEL -->
+        <section class="dash-panel">
+          <div class="panel-header">
+            <h2>💾 Quick Lists (Draft)</h2>
+            <a href="panchayat-list-builder.html" class="btn-outline" style="text-decoration:none; font-size:13px; padding:6px 12px;">+ New List</a>
+          </div>
+          <div class="task-list" id="savedListsContainer">
+            <!-- Dynamic entries from localstorage -->
+          </div>
+        </section>
+
+        <!-- WORK REGISTER PANEL -->
+        <section class="dash-panel">
+          <div class="panel-header">
+            <h2>📝 Recent Work Logs</h2>
+            <a href="panchayat-sahayak-work-register.html" class="btn-outline" style="text-decoration:none; font-size:13px; padding:6px 12px; border-color:#eab308; color:#d97706;">+ Log Work</a>
+          </div>
+          <div class="task-list" id="workLogsContainer">
+            <!-- Dynamic entries from IndexedDB -->
+          </div>
+        </section>
+
+        <!-- APP DRAWER / PORTALS PANEL -->
+        <section class="dash-panel" style="grid-column: 1 / -1;">
+          <div class="panel-header">
+            <h2>🚀 Gateway Portals</h2>
+            <a href="panchayat-sahayak-all-portals.html" style="font-size:13px; color:var(--primary); font-weight:700; text-decoration:none;">View All &rarr;</a>
+          </div>
+          
+          <div class="app-drawer">
+            <a href="https://egramswaraj.gov.in" target="_blank" class="app-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" alt="eGram">
+              <span>e-Gram<br>Swaraj</span>
+            </a>
+            <a href="https://edistrict.up.gov.in" target="_blank" class="app-card">
+              <img src="images/ed.png" alt="eDistrict" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+              <span>e-District<br>(UP)</span>
+            </a>
+            <a href="https://digitalseva.csc.gov.in" target="_blank" class="app-card">
+              <img src="images/sahaj.jpeg" alt="CSC" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+              <span>CSC /<br>Sahaj</span>
+            </a>
+            <a href="panchayat-sahayak-image-tools.html" class="app-card" style="grid-column: 1/-1; flex-direction:row; align-items:center; justify-content:flex-start; padding: 12px 20px; text-align:left; background: var(--primary); color:#fff; border:none;">
+              <div style="background:rgba(255,255,255,0.2); width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px;">🖼️</div>
+              <div style="flex:1;">
+                <span style="font-size:14px; display:block;">Smart Image Tools</span>
+                <span style="font-size:11px; font-weight:500; font-family:'Plus Jakarta Sans'; opacity:0.8;">Resize/Compress DP & Docs</span>
+              </div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="panchayat-list-builder.html" class="app-card" style="grid-column: 1/-1; flex-direction:row; align-items:center; justify-content:flex-start; padding: 12px 20px; text-align:left; background: linear-gradient(135deg,#f97316,#ea580c); color:#fff; border:none;">
+              <div style="background:rgba(255,255,255,0.2); width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px;">⚡</div>
+              <div style="flex:1;">
+                <span style="font-size:14px; display:block;">Quick List Builder</span>
+                <span style="font-size:11px; font-weight:500; font-family:'Plus Jakarta Sans'; opacity:0.8;">उपस्थिति, लाभार्थी, राशन — कोई भी सूची बनाएं</span>
+              </div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ONBOARDING MODAL -->
+  <div class="modal-overlay" id="onboardingModal" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center; opacity:0; transition:0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+    <div class="modal-content" style="background:#fff; width:90%; max-width:400px; border-radius:20px; padding:32px; box-shadow:0 24px 48px rgba(0,0,0,0.15); transform:scale(0.9) translateY(20px); transition:0.4s cubic-bezier(0.16, 1, 0.3, 1); position:relative;">
+      <button id="ob-close" onclick="closeOnboardingModal(event)" style="position:absolute; top:20px; right:20px; background:#f1f5f9; border:none; width:34px; height:34px; border-radius:50%; font-size:22px; color:#64748b; cursor:pointer; display:none; align-items:center; justify-content:center; transition:0.2s;" onmouseover="this.style.background='#e2e8f0'; this.style.color='#0f172a';">&times;</button>
+      <div style="text-align:center; font-size:52px; margin-bottom:12px; animation: bounce 2s infinite;">👋</div>
+      <h2 style="font-size:22px; color:#0f172a; margin:0 0 8px 0; text-align:center; font-family:'Plus Jakarta Sans',sans-serif;" id="ob-title">डैशबोर्ड में आपका स्वागत है!</h2>
+      <p style="color:#64748b; font-size:14px; text-align:center; margin-bottom:24px; line-height:1.5;" id="ob-desc">पोर्टल को आपके लिए तैयार करने के लिए कृपया अपनी जानकारी भरें। (यह डेटा केवल आपके फोन/कंप्यूटर में सेव रहेगा)</p>
+      
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:13px; font-weight:600; color:#475569; margin-bottom:6px;">आपका नाम (Panchayat Sahayak Name)</label>
+        <input type="text" id="ob-name" style="width:100%; padding:12px 16px; border:2px solid #e2e8f0; border-radius:10px; font-size:15px; outline:none; font-family:inherit; transition:0.2s;" placeholder="उदा: रमेश कुमार" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#e2e8f0'">
+      </div>
+      
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:13px; font-weight:600; color:#475569; margin-bottom:6px;">ग्राम पंचायत का नाम (Gram Panchayat)</label>
+        <input type="text" id="ob-gp" style="width:100%; padding:12px 16px; border:2px solid #e2e8f0; border-radius:10px; font-size:15px; outline:none; font-family:inherit; transition:0.2s;" placeholder="उदा: रामपुर" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#e2e8f0'">
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <label style="display:block; font-size:13px; font-weight:600; color:#475569; margin-bottom:6px;">विकास खंड (Block)</label>
+        <input type="text" id="ob-block" style="width:100%; padding:12px 16px; border:2px solid #e2e8f0; border-radius:10px; font-size:15px; outline:none; font-family:inherit; transition:0.2s;" placeholder="उदा: विकास नगर" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#e2e8f0'">
+      </div>
+      
+      <button onclick="saveOnboarding()" style="width:100%; padding:14px; background:var(--primary); color:#fff; border:none; border-radius:10px; font-weight:600; font-size:16px; cursor:pointer; box-shadow:0 4px 12px rgba(37,99,235,0.2); transition:0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">Save & Dashboard 🚀</button>
+    </div>
+  </div>
+
+</body>
+<script>
+  function renderSavedLists() {
+    const container = document.getElementById('savedListsContainer');
+    const rawData = localStorage.getItem('qlb_data');
+    if (!rawData) {
+      container.innerHTML = '<div style="text-align:center; padding: 24px 20px; color: #64748b; font-size: 13px; background:#f8fafc; border-radius:12px; border:1px dashed #cbd5e1; margin-top:8px;">कोई लिस्ट सेव नहीं है।<br> <a href="panchayat-list-builder.html" style="color:var(--primary); text-decoration:none; font-weight:600; margin-top:6px; display:inline-block;">+ नई लिस्ट बनाएं</a></div>';
+      return;
+    }
+    
+    try {
+      const data = JSON.parse(rawData);
+      const title = data.meta && data.meta.title ? data.meta.title : 'Untitled List';
+      const date = data.meta && data.meta.date ? data.meta.date : 'N/A';
+      const rowCount = data.rows ? data.rows.length : 0;
+      const t = new Date(data.savedAt);
+      
+      container.innerHTML = `
+        <a href="panchayat-list-builder.html" class="task-item" style="text-decoration:none;">
+          <div class="task-left" style="align-items:flex-start;">
+            <div class="task-check" style="border-radius:10px; background:var(--primary-light); border:none; color:var(--primary); font-size:18px; width:40px; height:40px;">⚡</div>
+            <div style="flex:1;">
+              <div class="task-title" style="font-size:15px; margin-bottom:4px; line-height:1.3;">${title}</div>
+              <div class="task-meta">
+                <span class="task-priority" style="background:#f1f5f9; color:#475569;">${rowCount} Rows</span>
+                <span>Date: ${date}</span>
+              </div>
+              <div style="font-size:11px; color:#94a3b8; margin-top:6px;">Last updated: ${t.toLocaleDateString()} ${t.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+            </div>
+          </div>
+        </a>
+      `;
+    } catch(e) {
+      container.innerHTML = '<div style="color:red; font-size:12px;">Error loading data</div>';
+    }
+  }
+
+  function renderWorkLogs() {
+    const container = document.getElementById('workLogsContainer');
+    const request = window.indexedDB.open("PanchayatLogsDB", 1);
+    
+    request.onsuccess = (e) => {
+      let db = e.target.result;
+      if (!db.objectStoreNames.contains("workLogs")) {
+        container.innerHTML = '<div style="text-align:center; padding: 24px 20px; color: #64748b; font-size: 13px; background:#fefce8; border-radius:12px; border:1px dashed #fde047; margin-top:8px;">आज का काम दर्ज़ नहीं किया? <br> <a href="panchayat-sahayak-work-register.html" style="color:#d97706; text-decoration:none; font-weight:600; margin-top:6px; display:inline-block;">अभी दर्ज़ करें</a></div>';
+        return;
+      }
+      const tx = db.transaction("workLogs", "readonly");
+      const store = tx.objectStore("workLogs");
+      const req = store.getAll();
+      
+      req.onsuccess = () => {
+        let logs = req.result;
+        if (!logs || logs.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding: 24px 20px; color: #64748b; font-size: 13px; background:#fefce8; border-radius:12px; border:1px dashed #fde047; margin-top:8px;">कोई रिपोर्ट नहीं मिली। <br> <a href="panchayat-sahayak-work-register.html" style="color:#d97706; text-decoration:none; font-weight:600; margin-top:6px; display:inline-block;">+ कार्य दर्ज़ करें</a></div>';
+          return;
+        }
+        
+        // Sort newest first
+        logs.sort((a,b) => new Date(b.date) - new Date(a.date));
+        // Take top 3
+        let topLogs = logs.slice(0, 3);
+        
+        let html = '';
+        topLogs.forEach(log => {
+          let isComp = log.status === 'Completed';
+          let badgeBg = isComp ? '#dcfce7' : '#fef3c7';
+          let badgeColor = isComp ? '#16a34a' : '#d97706';
+          let icon = isComp ? '✅' : '⌛';
+          
+          // Truncate desc if too long
+          let shortDesc = log.desc.length > 50 ? log.desc.substring(0, 48) + '...' : log.desc;
+          
+          html += `
+            <a href="panchayat-sahayak-work-register.html" class="task-item" style="text-decoration:none;">
+              <div class="task-left" style="align-items:flex-start;">
+                <div class="task-check" style="border-radius:50%; background:${badgeBg}; color:${badgeColor}; border:none; width:36px; height:36px; font-size:16px;">${icon}</div>
+                <div style="flex:1;">
+                  <div class="task-title" style="font-size:14px; margin-bottom:4px; line-height:1.4;">${shortDesc}</div>
+                  <div class="task-meta">
+                    <span class="task-priority" style="background:#f1f5f9; color:#475569; padding:2px 6px; font-size:11px;">${log.dept}</span>
+                    <span style="font-size:11px;">${new Date(log.date).toLocaleDateString('hi-IN')}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+        });
+        
+        if(logs.length > 3) {
+          html += `<a href="panchayat-sahayak-work-register.html" style="display:block; text-align:center; font-size:13px; color:var(--primary); font-weight:600; padding-top:8px; text-decoration:none;">और ${logs.length - 3} कार्य देखें &rarr;</a>`;
+        }
+        
+        container.innerHTML = html;
+      };
+    };
+    request.onerror = () => {
+      container.innerHTML = '<div style="color:red; font-size:12px;">Error loading work logs</div>';
+    };
+  }
+
+  function checkOnboarding() {
+    let name = localStorage.getItem('psName');
+    let gp = localStorage.getItem('gpName');
+    let block = localStorage.getItem('psBlock');
+    
+    if(!name || !gp) {
+      document.getElementById('ob-close').style.display = 'none'; // Cannot close first time
+      const modal = document.getElementById('onboardingModal');
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        modal.querySelector('.modal-content').style.transform = 'scale(1) translateY(0)';
+      }, 10);
+    } else {
+      updateHeaderUI(name, gp, block);
+    }
+  }
+  
+  function openEditProfile() {
+    document.getElementById('ob-name').value = localStorage.getItem('psName') || '';
+    document.getElementById('ob-gp').value = localStorage.getItem('gpName') || '';
+    document.getElementById('ob-block').value = localStorage.getItem('psBlock') || '';
+    
+    document.getElementById('ob-title').innerText = 'प्रोफ़ाइल बदलें';
+    document.getElementById('ob-desc').innerText = 'अपनी जानकारी को नीचे अपडेट करें और सेव करें।';
+    document.getElementById('ob-close').style.display = 'flex'; // Can close when editing
+    
+    const modal = document.getElementById('onboardingModal');
+    modal.style.display = 'flex';
+    setTimeout(() => {
+      modal.style.opacity = '1';
+      modal.querySelector('.modal-content').style.transform = 'scale(1) translateY(0)';
+    }, 10);
+  }
+  
+  function closeOnboardingModal(e) {
+    if(e) e.preventDefault();
+    const modal = document.getElementById('onboardingModal');
+    modal.style.opacity = '0';
+    modal.querySelector('.modal-content').style.transform = 'scale(0.9) translateY(20px)';
+    setTimeout(() => modal.style.display = 'none', 300);
+  }
+
+  function saveOnboarding() {
+    let name = document.getElementById('ob-name').value.trim();
+    let gp = document.getElementById('ob-gp').value.trim();
+    let block = document.getElementById('ob-block').value.trim();
+    
+    if(!name || !gp) {
+      alert("कृपया अपना नाम और ग्राम पंचायत भरें!");
+      return;
+    }
+    
+    localStorage.setItem('psName', name);
+    localStorage.setItem('gpName', gp);
+    if(block) localStorage.setItem('psBlock', block);
+    
+    updateHeaderUI(name, gp, block);
+    closeOnboardingModal();
+  }
+  
+  function updateHeaderUI(name, gp, block) {
+    if(!name) name = "Panchayat Sahayak";
+    if(!gp) gp = "Unknown GP";
+    if(!block) block = "Unknown Block";
+    
+    let shortName = name.split(' ')[0];
+    document.getElementById('header-greet-name').innerText = shortName + "!";
+    document.getElementById('header-greet-details').innerText = `Gram Panchayat: ${gp} | Block: ${block}`;
+    
+    document.getElementById('header-user-name').innerText = name;
+    document.getElementById('header-avatar').innerText = name.charAt(0).toUpperCase();
+  }
+
+  // Initial render
+  setTimeout(() => {
+    checkOnboarding();
+    renderSavedLists();
+    renderWorkLogs();
+  }, 100);
+</script>
+</html>

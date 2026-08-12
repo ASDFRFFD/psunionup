@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T48Y2LMSJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1T48Y2LMSJ');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loading Blog... | Panchayat Sahayak Portal</title>
+  <meta name="description" id="meta-desc" content="Panchayat Sahayak Blog">
+  
+  <link rel="icon" type="image/png" href="images/panchayat_favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .article-layout {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 16px;
+      min-height: 60vh;
+    }
+    .article-body {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .article-header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f8fafc;
+    }
+    .breadcrumb {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .breadcrumb a { color: #2563eb; text-decoration: none; font-weight: 600;}
+    .breadcrumb a:hover { text-decoration: underline; color: #1d4ed8;}
+    
+    .article-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 12px 0;
+      line-height: 1.4;
+      font-family: 'Montserrat', sans-serif;
+      color: #0f172a;
+    }
+    .article-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #475569;
+      font-weight: 600;
+      align-items: center;
+    }
+    .article-meta img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+    @media (max-width: 768px) {
+      .article-layout { margin: 20px auto; }
+      .article-body { padding: 20px; }
+      .article-header h1 { font-size: 24px; }
+    }
+    
+    /* Dynamic Content Styling (Quill output) */
+    .dynamic-content {
+      font-size: 16px;
+      color: #334155;
+      line-height: 1.8;
+      font-family: 'Poppins', sans-serif;
+    }
+    .dynamic-content h1, .dynamic-content h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f766e;
+      border-left: 4px solid #16a34a;
+      padding-left: 14px;
+      margin: 36px 0 16px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .dynamic-content h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #374151;
+      margin: 24px 0 10px;
+    }
+    .dynamic-content p {
+      margin: 0 0 16px;
+    }
+    .dynamic-content ul, .dynamic-content ol {
+      padding-left: 22px;
+      margin: 0 0 16px;
+    }
+    .dynamic-content li {
+      margin-bottom: 6px;
+    }
+    .dynamic-content a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    .dynamic-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    #loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article Content -->
+  <main class="page article-layout">
+    <div class="article-body" id="blog-container">
+      <div id="loader">Loading Article...</div>
+    </div>
+  </main>
+
+  <!-- Disclaimer -->
+  <div style="max-width:1000px; margin:0 auto 24px; padding:16px 24px; background:#fff3cd; border:1px solid #ffc107; border-radius:10px; color:#856404; text-align:center; font-size:14px; line-height:1.6;">
+    <strong>⚠️ Disclaimer:</strong> यह एक स्वतंत्र शैक्षणिक पोर्टल है। यह जानकारी सामान्य मार्गदर्शन के लिए है।
+  </div>
+
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-grid" style="max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+      <div class="footer-brand">
+        <div class="f-logo-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="Logo" class="f-logo" style="height: 40px;">
+          <span class="f-title" style="font-size: 16px; font-weight: 700; color: var(--white);">Panchayat Sahayak</span>
+        </div>
+        <p class="f-desc" style="font-size: 12px; color: var(--gray-300); line-height: 1.6;">उत्तर प्रदेश के 58,000+ पंचायत सहायकों को सशक्त बनाने का प्रयास। सभी सरकारी लिंक, फॉर्म और टूल्स एक जगह।</p>
+        <div class="footer-socials" style="display: flex; gap: 8px; margin-top: 16px;">
+          <a href="https://whatsapp.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">💬</a>
+          <a href="https://t.me" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">✈️</a>
+          <a href="https://youtube.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Quick Links</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏠 Home</a>
+          <a href="blog.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📝 Blog</a>
+          <a href="panchayat-sahayak-notices.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Forms</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Tools</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="panchayat-sahayak-salary-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">💰 Salary Calc</a>
+          <a href="panchayat-sahayak-csc-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏬 CSC Calc</a>
+          <a href="panchayat-sahayak-image-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🖼️ Image Tools</a>
+          <a href="panchayat-sahayak-pdf-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Tools</a>
+          <a href="panchayat-sahayak-work-register.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Work Register</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Legal & Trust</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="about.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">ℹ️ About Us</a>
+          <a href="editorial-policy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Editorial Policy</a>
+          <a href="privacy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🔒 Privacy Policy</a>
+          <a href="disclaimer.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">⚠️ Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: var(--maxw); margin: 20px auto 0 auto;">
+      <p style="font-size: 12px; color: var(--gray-500); margin:0;">© 2026 <strong>gpsahayak.in</strong>. All Rights Reserved.</p>
+      <p style="font-size: 11px; margin:0; color: var(--gray-500);">Independent Educational Portal | Not affiliated with Govt. of UP</p>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'hi', includedLanguages: 'en,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Firebase v8 SDK Setup -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyACe8pL0vqD_2NqzhTNOi0VoTyJaYVTkbA",
+      authDomain: "panchayat-sahahayk-portal-up.firebaseapp.com",
+      projectId: "panchayat-sahahayk-portal-up",
+      storageBucket: "panchayat-sahahayk-portal-up.firebasestorage.app",
+      messagingSenderId: "709368114724",
+      appId: "1:709368114724:web:208c828040f499060e72b1"
+    };
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
+    // Get ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const blogId = urlParams.get('id');
+
+    const container = document.getElementById('blog-container');
+
+    if (!blogId) {
+       container.innerHTML = '<div style="color:red; text-align:center; font-size:18px;">Error: No Blog ID provided in URL.</div>';
+    } else {
+       db.collection("blogs").doc(blogId).get().then((doc) => {
+         if (doc.exists) {
+           const data = doc.data();
+           
+           // Update Meta tags
+           document.title = data.title + " | Panchayat Sahayak Portal";
+           document.getElementById('meta-desc').content = data.desc;
+
+           // Determine content (Handle old static link vs new rich text)
+           let richContent = data.content || `<div style="text-align:center; padding: 40px;"><a href="${data.pageUrl}" style="background:#2563eb; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:600;">Open Static Blog Article</a></div>`;
+
+           // Create Share URL Variables
+           const shareUrl = encodeURIComponent(window.location.href);
+           const shareTitle = encodeURIComponent(data.title);
+
+           // Inject HTML
+           container.innerHTML = `
+            <header class="article-header">
+              <div class="breadcrumb">
+                <a href="index.html">Home</a> → <a href="blog.html">Blog</a> → ${data.category}
+              </div>
+              <h1>${data.title}</h1>
+              <div class="article-meta" style="margin-bottom:20px;">
+                <span>📅 ${data.date}</span>
+                <span>⏱️ ${data.readTime} min read</span>
+                <span><img src="${data.imgUrl || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'}" alt="icon"></span>
+                <span style="background:#f1f5f9; padding:4px 10px; border-radius:12px; font-size:12px;">${data.category}</span>
+              </div>
+              
+              <!-- Custom Share Buttons -->
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px solid #e2e8f0;">
+                <span style="font-size:14px; font-weight:700; color:#475569; display:flex; align-items:center;">शेयर करें:</span>
+                <a href="https://api.whatsapp.com/send?text=${shareTitle}%0A${shareUrl}" target="_blank" style="background:#25D366; color:white; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:13px; font-weight:600; display:flex; align-items:center; gap:6px; transition:0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" style="width:16px; height:16px; filter:brightness(0) invert(1);" alt="WhatsApp"> WhatsApp
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" style="background:#1877F2; color:white; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:13px; font-weight:600; display:flex; align-items:center; gap:6px; transition:0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                  <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" style="width:16px; height:16px; filter:brightness(0) invert(1);" alt="Facebook"> Facebook
+                </a>
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('लिंक कॉपी हो गया!');" style="background:#f1f5f9; color:#475569; border:1px solid #cbd5e1; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; transition:0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                  🔗 Copy Link
+                </button>
+              </div>
+            </header>
+            
+            <div class="dynamic-content">
+               ${richContent}
+            </div>
+           `;
+         } else {
+           container.innerHTML = '<div style="color:red; text-align:center; font-size:18px;">Error: Blog article not found!</div>';
+         }
+       }).catch((error) => {
+         console.error("Error getting document:", error);
+         container.innerHTML = '<div style="color:red; text-align:center; font-size:18px;">Error loading data from server.</div>';
+       });
+    }
+  </script>
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

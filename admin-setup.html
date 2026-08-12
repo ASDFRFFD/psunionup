@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Setup</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      font-family: 'Poppins', sans-serif;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 44px 40px;
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+      width: 100%; max-width: 420px; text-align: center;
+    }
+    h2 { color: #0f172a; font-size: 22px; margin: 0 0 6px; }
+    p { color: #64748b; font-size: 13px; margin-bottom: 28px; line-height: 1.6; }
+    form { display: flex; flex-direction: column; gap: 14px; }
+    .inp-wrap { position: relative; }
+    .iico { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:#94a3b8; }
+    input {
+      width: 100%; padding: 13px 14px 13px 40px;
+      border: 1.5px solid #e2e8f0; border-radius: 10px;
+      font-size: 14px; font-family: 'Poppins', sans-serif;
+      outline: none; transition: 0.2s; background: #f8fafc;
+    }
+    input:focus { border-color: #2563eb; background: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    button {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff; border: none; padding: 14px;
+      border-radius: 10px; font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: 0.2s;
+    }
+    button:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(37,99,235,0.3); }
+    button:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
+    #msg { display:none; padding:11px 14px; border-radius:8px; font-size:13px; margin-top:8px; text-align:left; }
+    .msg-err { background:#fee2e2; color:#991b1b; }
+    .msg-ok  { background:#dcfce7; color:#166534; }
+    .warning-box {
+      background: #fff7ed; border: 1px solid #fdba74;
+      border-radius: 10px; padding: 14px 16px;
+      text-align: left; margin-bottom: 22px; font-size: 12.5px; color: #9a3412;
+    }
+    .warning-box strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    #key-block { color: #64748b; font-size: 13px; }
+    #key-block input { letter-spacing: 2px; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+
+<div class="card">
+  <div style="font-size:48px; margin-bottom:10px;">⚙️</div>
+  <h2>First Time Admin Setup</h2>
+  <p>यह page सिर्फ पहली बार Admin Account बनाने के लिए है।<br>Account बनने के बाद इसे bookmark से हटा देना।</p>
+
+  <div class="warning-box">
+    <strong>⚠️ Security Notice</strong>
+    यह URL किसी को share मत करें। एक बार account बनाने के बाद इस page को दोबारा use मत करना।
+  </div>
+
+  <!-- Step 1: Secret Key -->
+  <div id="key-block">
+    <p style="margin-bottom:12px; color:#0f172a; font-weight:600;">🔑 पहले Secret Key डालें:</p>
+    <div class="inp-wrap">
+      <span class="iico">🗝️</span>
+      <input type="password" id="secretKey" placeholder="Secret Setup Key">
+    </div>
+    <button type="button" onclick="verifyKey()" style="margin-top:12px;">Verify Key →</button>
+    <div id="msg"></div>
+  </div>
+
+  <!-- Step 2: Create Account (hidden initially) -->
+  <div id="setup-block" style="display:none;">
+    <p style="margin-bottom:16px; color:#0f172a; font-weight:600;">✅ Key Verified! अब Admin Account बनाएं:</p>
+    <form id="setupForm">
+      <div class="inp-wrap">
+        <span class="iico">📧</span>
+        <input type="email" id="newEmail" placeholder="Admin Email" required>
+      </div>
+      <div class="inp-wrap">
+        <span class="iico">🔑</span>
+        <input type="password" id="newPass" placeholder="Strong Password (min 8 chars)" required minlength="8">
+      </div>
+      <button type="submit" id="createBtn">🛡️ Create Admin Account</button>
+    </form>
+    <div id="msg2" style="display:none; padding:11px 14px; border-radius:8px; font-size:13px; margin-top:8px; text-align:left;"></div>
+  </div>
+</div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyACe8pL0vqD_2NqzhTNOi0VoTyJaYVTkbA",
+    authDomain: "panchayat-sahahayk-portal-up.firebaseapp.com",
+    projectId: "panchayat-sahahayk-portal-up",
+    storageBucket: "panchayat-sahahayk-portal-up.firebasestorage.app",
+    messagingSenderId: "709368114724",
+    appId: "1:709368114724:web:208c828040f499060e72b1"
+  };
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // If already logged in, go to dashboard
+  auth.onAuthStateChanged(user => {
+    if (user) window.location.href = "admin-dashboard.html";
+  });
+
+  // ⚠️ CHANGE THIS SECRET KEY TO SOMETHING ONLY YOU KNOW
+  const SETUP_SECRET = "PanchayatUP@2026#Admin";
+
+  function verifyKey() {
+    const key = document.getElementById('secretKey').value;
+    const msg = document.getElementById('msg');
+    if (key === SETUP_SECRET) {
+      document.getElementById('key-block').style.display = 'none';
+      document.getElementById('setup-block').style.display = 'block';
+    } else {
+      msg.className = 'msg-err';
+      msg.innerText = '❌ गलत Key! Access Denied.';
+      msg.style.display = 'block';
+    }
+  }
+
+  document.getElementById('setupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('newEmail').value;
+    const pass = document.getElementById('newPass').value;
+    const btn = document.getElementById('createBtn');
+    const msg2 = document.getElementById('msg2');
+
+    btn.innerText = '⏳ Creating...';
+    btn.disabled = true;
+    msg2.style.display = 'none';
+
+    auth.createUserWithEmailAndPassword(email, pass)
+      .then(() => {
+        msg2.className = 'msg-ok';
+        msg2.innerText = '✅ Admin account बन गया! Dashboard पर redirect हो रहे हैं...';
+        msg2.style.display = 'block';
+        setTimeout(() => { window.location.href = "admin-dashboard.html"; }, 1500);
+      })
+      .catch(error => {
+        let errMsg = error.message;
+        if (error.code === 'auth/email-already-in-use') errMsg = '⚠️ यह Email पहले से registered है। Login page पर जाएं।';
+        if (error.code === 'auth/weak-password') errMsg = '❌ Password कम से कम 8 characters का होना चाहिए।';
+        msg2.className = 'msg-err';
+        msg2.innerText = errMsg;
+        msg2.style.display = 'block';
+        btn.innerText = '🛡️ Create Admin Account';
+        btn.disabled = false;
+      });
+  });
+</script>
+</body>
+</html>

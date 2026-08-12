@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पंचायत सहायक यूनियन सदस्यता फॉर्म</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="membership.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+    <!-- Razorpay Checkout -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <!-- jsPDF for receipt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <!-- Header -->
+        <div class="form-header">
+            <div class="left-col">
+                <p>पंजी संख्या: .............</p>
+            </div>
+            <div class="center-col">
+                <h1>पंचायत सहायक यूनियन (संविदा)</h1>
+                <h3>लखनऊ, उत्तर प्रदेश</h3>
+                <h2>सदस्यता हेतु आवेदन पत्र</h2>
+            </div>
+            <div class="right-col">
+                <p style="text-align: right;">सदस्यता क्रमांक: .............</p>
+                <div class="photo-box" id="photoBox" onclick="document.getElementById('photoInput').click()">
+                    <span id="photoText">पासपोर्ट साइज<br>फोटो यहाँ चिपकाएं</span>
+                    <img id="photoPreview" style="display:none;" />
+                </div>
+                <input type="file" id="photoInput" accept="image/*" style="display:none;" />
+            </div>
+        </div>
+
+        <hr style="border: 1px solid black; margin-bottom: 20px;">
+
+        <form id="membershipForm">
+            <div class="form-row">
+                <label>1. नाम:</label>
+                <input type="text" id="m_name" required>
+            </div>
+            <div class="form-row">
+                <label>2. पिता/पति का नाम:</label>
+                <input type="text" id="m_father" required>
+            </div>
+            <div class="form-row">
+                <label>3. जन्मतिथि / आयु:</label>
+                <input type="text" id="m_dob" required placeholder="DD/MM/YYYY या आयु">
+            </div>
+            <div class="form-row">
+                <label>4. लिंग:</label>
+                <select id="m_gender" required>
+                    <option value="" disabled selected>चुनें...</option>
+                    <option value="पुरुष">पुरुष (Male)</option>
+                    <option value="महिला">महिला (Female)</option>
+                    <option value="अन्य">अन्य (Other)</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>5. मोबाइल नंबर:</label>
+                <input type="tel" id="m_mobile" required pattern="[0-9]{10}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर">
+            </div>
+            <div class="form-row">
+                <label>6. पद:</label>
+                <input type="text" id="m_post" value="पंचायत सहायक" readonly>
+            </div>
+            <div class="form-row">
+                <label>7. नियुक्ति स्थान:</label>
+                <input type="text" id="m_location" required placeholder="ग्राम पंचायत / ब्लॉक / जिला">
+            </div>
+            <div class="form-row">
+                <label>8. स्थायी पता:</label>
+                <textarea id="m_address" rows="2" required></textarea>
+            </div>
+            <div class="form-row">
+                <label>9. आधार नंबर (Optional):</label>
+                <input type="text" id="m_aadhaar" placeholder="12 अंकों का आधार नंबर" maxlength="12">
+            </div>
+            
+            <div class="form-footer-row">
+                <div class="footer-left">
+                    <label>दिनांक:</label>
+                    <input type="date" id="m_date" required>
+                </div>
+                <div class="footer-right">
+                    <label>स्थान:</label>
+                    <input type="text" id="m_place" required>
+                </div>
+            </div>
+
+            <div class="declaration">
+                मैं एतद्द्वारा घोषणा करता/करती हूँ कि ऊपर दी गई सभी जानकारी मेरी जानकारी के अनुसार सत्य है। मैं यूनियन के नियमों और विनियमों का पालन करने के लिए सहमत हूँ।
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" id="payBtn" class="btn-primary">ऑनलाइन शुल्क जमा करें (₹100)</button>
+                <button type="submit" id="submitBtn" class="btn-success" disabled>फॉर्म सबमिट करें</button>
+            </div>
+            
+            <p id="paymentStatus" class="payment-status"></p>
+        </form>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content">
+            <h2 style="text-align:center; color:#15803d;">✅ आवेदन सफलतापूर्वक जमा हो गया!</h2>
+            <div class="receipt-card" id="receiptCard">
+                <h3 style="text-align:center; margin-top:0;">रसीद (Receipt)</h3>
+                <p><strong>नाम:</strong> <span id="r_name"></span></p>
+                <p><strong>पंजीकरण संख्या:</strong> <span id="r_regid"></span></p>
+                <p><strong>भुगतान ID:</strong> <span id="r_payid"></span></p>
+                <p><strong>दिनांक:</strong> <span id="r_date"></span></p>
+                <p style="color:#d97706; font-size:12px; margin-top:15px; text-align:center;">आपका आवेदन स्वीकार होने के बाद आप अपना सर्टिफिकेट डाउनलोड कर सकेंगे।</p>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+                <button onclick="downloadReceipt()" class="btn-primary">रसीद PDF डाउनलोड करें</button>
+                <a href="index.html" class="btn-outline">होम पेज पर जाएं</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader-overlay" style="display:none;">
+        <div class="spinner"></div>
+        <p id="loaderText">कृपया प्रतीक्षा करें...</p>
+    </div>
+
+    <script src="membership.js"></script>
+</body>
+</html>

@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T48Y2LMSJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1T48Y2LMSJ');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="NjKEys-M3hLrTEfVqG4QfLA7qd05KJSEf3mo6aYD0gs" />
+
+  <title>Farmer Registry Card Generator | किसान रजिस्ट्री कार्ड जनरेटर | gpsahayak.in</title>
+  <meta name="description" content="AgriStack Farmer ID Card ऑनलाइन बनाएं — पिता का नाम, आधार (Last 4 Digits), फोटो, किसान ID और असीमित भूमि खसरा (Multi-page Back Cards) विवरण दर्ज करें। Bilkul Free!">
+  <meta name="keywords" content="farmer id card generator, किसान पहचान पत्र, agristack farmer id, kisan id card, farmer card print, किसान कार्ड बनाएं, multi page land records">
+  <meta name="author" content="Panchayat Sahayak Portal Team">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#16a34a">
+
+  <link rel="canonical" href="https://gpsahayak.in/farmer-id-card-generator.html">
+  <link rel="icon" type="image/png" href="images/panchayat_favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Farmer ID Card Generator | किसान पहचान पत्र बनाएं (Front + Multi-Page Back)">
+  <meta property="og:description" content="AgriStack Farmer ID Card (पिता का नाम, Masked Aadhaar & Multi-Page Land Records) ऑनलाइन बनाएं — FREE!">
+  <meta property="og:image" content="https://gpsahayak.in/images/panchayat_logo.png">
+  <meta property="og:url" content="https://gpsahayak.in/farmer-id-card-generator.html">
+  <meta property="og:locale" content="hi_IN">
+  <meta property="og:site_name" content="Panchayat Sahayak Portal">
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gpsahayak.in/"},
+      {"@type": "ListItem", "position": 2, "name": "Farmer ID Card Generator", "item": "https://gpsahayak.in/farmer-id-card-generator.html"}
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- QRCode Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    /* ============ PAGE VARIABLES ============ */
+    :root {
+      --green-primary: #0f766e;
+      --green-dark: #064e3b;
+      --green-header: #0d5c48;
+      --agri-green: #15803d;
+      --agri-accent: #22c55e;
+      --card-radius: 14px;
+    }
+
+    body { background: #f0fdf4; font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; }
+
+    /* ============ HERO BANNER ============ */
+    .farmer-hero {
+      background: linear-gradient(135deg, #064e3b 0%, #0d5c48 40%, #15803d 80%, #22c55e 100%);
+      padding: 22px 16px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+    .farmer-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .farmer-hero h1 {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      line-height: 1.2;
+    }
+    .farmer-hero p {
+      color: rgba(255,255,255,0.9);
+      font-size: 13.5px;
+      font-weight: 500;
+      margin: 0 0 14px 0;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; color: #fff; }
+    .hero-stat strong { display: block; font-size: 24px; font-weight: 800; }
+    .hero-stat span { font-size: 12px; opacity: 0.85; font-weight: 500; }
+
+    /* ============ DISCLAIMER ============ */
+    .farmer-disclaimer {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #92400e;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    /* ============ LAYOUT ============ */
+    .farmer-main {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 28px;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+    @media (max-width: 1024px) { .farmer-main { grid-template-columns: 1fr; } }
+
+    .farmer-preview-section {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+    }
+
+    /* ============ FORM CARDS ============ */
+    .form-card {
+      background: #fff;
+      border-radius: var(--card-radius);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .form-card-header {
+      background: linear-gradient(90deg, #0d5c48 0%, #15803d 100%);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+    .form-card-header h3 { font-size: 15px; font-weight: 700; margin: 0; }
+    .form-card-body { padding: 18px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-row.thirds { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 600px) { .form-row.thirds { grid-template-columns: 1fr; } }
+
+    .field-group { display: flex; flex-direction: column; gap: 5px; }
+    .field-group label { font-size: 12.5px; font-weight: 600; color: #374151; }
+    .field-group label .req { color: #ef4444; }
+    .field-group input, .field-group select {
+      padding: 9px 12px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 13.5px;
+      outline: none;
+      transition: 0.2s;
+      background: #fafafa;
+    }
+    .field-group input:focus, .field-group select:focus {
+      border-color: #15803d;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(21,128,61,0.12);
+    }
+    .field-divider { height: 12px; }
+
+    /* Photo Upload */
+    .photo-upload-box {
+      border: 2px dashed #86efac;
+      border-radius: 10px;
+      padding: 18px;
+      text-align: center;
+      background: #f0fdf4;
+      cursor: pointer;
+      position: relative;
+    }
+    .photo-upload-box:hover { border-color: #15803d; background: #dcfce7; }
+    #photoPreviewImg {
+      width: 100px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid #15803d;
+      display: none;
+      margin: 0 auto;
+    }
+    .upload-btn-group { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+    .btn-sub {
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-sub-green { background: #15803d; color: #fff; }
+
+    /* Land Table Inputs */
+    .land-table-container { overflow-x: auto; max-height: 380px; overflow-y: auto; }
+    .land-table-form { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+    .land-table-form th { background: #f0fdf4; color: #166534; padding: 6px; border: 1px solid #cbd5e1; text-align: left; font-size: 11px; sticky: top; }
+    .land-table-form td { padding: 4px; border: 1px solid #e2e8f0; }
+    .land-table-form input { width: 100%; padding: 4px 6px; font-size: 12px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; }
+
+    .btn-add-row {
+      margin-top: 10px;
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px dashed #86efac;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-add-row:hover { background: #bbf7d0; }
+
+    .multi-land-badge {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid #86efac;
+    }
+
+    /* PREVIEW TABS */
+    .preview-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 10px;
+    }
+    .preview-tab {
+      flex: 1;
+      padding: 8px;
+      text-align: center;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #475569;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .preview-tab.active { background: #fff; color: #15803d; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+
+    /* ======================================================== */
+    /* CARD DESIGN                                              */
+    /* ======================================================== */
+    .card-container-wrapper {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      border: 1px solid #cbd5e1;
+      padding: 16px;
+    }
+    @media (max-width: 480px) {
+      .card-container-wrapper { padding: 10px 6px; overflow-x: auto; }
+    }
+
+    .id-card-front, .id-card-back {
+      width: 100%;
+      max-width: 380px;
+      height: 240px; /* FIXED EQUAL HEIGHT FOR BOTH FRONT & BACK CARDS */
+      margin: 0 auto 16px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid #0d5c48;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ----------- FRONT SIDE ------------ */
+    .card-front-header {
+      background: linear-gradient(90deg, #07382c 0%, #0d5c48 35%, #15803d 70%, #16a34a 100%);
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+    .cfh-left { display: flex; align-items: center; gap: 6px; }
+    .cfh-logo-icon { width: 26px; height: 26px; background: #fff; border-radius: 50%; padding: 2px; display: flex; align-items: center; justify-content: center; }
+    .cfh-logo-icon img { width: 18px; height: 18px; }
+    .cfh-title { font-size: 13.5px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.1; }
+    .cfh-title span { color: #facc15; font-size: 13px; }
+    .cfh-subtitle { font-size: 9.5px; opacity: 0.9; font-weight: 600; margin-top: 1px; }
+
+    .card-front-body {
+      padding: 6px 10px 4px;
+      display: grid;
+      grid-template-columns: 82px 1fr 68px;
+      gap: 8px;
+      align-items: center;
+      background: #ffffff;
+      position: relative;
+      flex: 1;
+    }
+
+    .card-front-body::before, .card-back-body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 350' opacity='0.12'><g fill='none' stroke='%2315803d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M100 200 Q140 130 220 140 Q290 150 330 200 Q360 170 390 180 Q430 190 450 220 M220 140 Q200 90 170 80 Q150 90 140 130 M170 80 Q190 70 210 90'/><path d='M160 220 L170 290 M190 220 L200 290 M290 210 L295 290 M320 210 L325 290 M400 220 L405 290 M420 220 L425 290'/><path d='M170 110 L380 150 L480 210' stroke-dasharray='5 3'/><circle cx='490' cy='140' r='14'/><path d='M490 154 L490 230 M490 180 L440 200 M490 180 L520 220'/><path d='M480 230 L460 295 M500 230 L520 295'/><path d='M440 200 L430 280 L490 280 M430 280 L380 300' stroke-width='3.5'/><path d='M30 300 Q150 290 270 305 T470 295 T570 300' stroke-width='1.8' opacity='0.6'/><path d='M20 315 Q130 310 250 320 T450 315 T580 318' stroke-width='1.2' opacity='0.4'/></g></svg>");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 85%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card-front-body > *, .card-back-body > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cf-photo-box {
+      width: 82px;
+      height: 100px;
+      border: 1.5px solid #15803d;
+      background: #f0fdf4;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .cf-photo-box img { width: 100%; height: 100%; object-fit: cover; }
+    .cf-photo-name {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(13, 92, 72, 0.9);
+      color: #fff;
+      font-size: 7px;
+      font-weight: 800;
+      text-align: center;
+      padding: 1px;
+      text-transform: uppercase;
+    }
+
+    .cf-details { font-size: 9.5px; color: #000; line-height: 1.35; }
+    .cf-row { font-weight: 700; margin-bottom: 1px; }
+    .cf-row span.val { font-weight: 800; color: #000; }
+    .cf-row.hindi { font-size: 9px; color: #1e293b; font-weight: 700; margin-bottom: 1.5px; }
+
+    .cf-qr-box { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #qrcodeCanvas { width: 64px; height: 64px; }
+
+    .card-front-bottom-id {
+      text-align: center;
+      padding: 2px 0 1px;
+      background: #fff;
+    }
+    .cf-id-label { font-size: 14.5px; font-weight: 900; color: #0f583e; letter-spacing: 1px; }
+
+    .card-front-footer {
+      background: #0d5c48;
+      color: #fff;
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cff-left { font-size: 8.5px; font-style: italic; font-weight: 500; opacity: 0.95; }
+    .cff-right-badge {
+      background: linear-gradient(135deg, #15803d 0%, #22c55e 100%);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 1.5px 8px 1.5px 12px;
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+      letter-spacing: 0.5px;
+    }
+
+    /* ----------- BACK SIDE ------------ */
+    .card-back-header {
+      background: #07382c;
+      color: #fff;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cbh-title { font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; }
+    .cbh-id { font-size: 12px; font-weight: 900; color: #4ade80; letter-spacing: 0.5px; }
+    .cbh-page-badge { background: #15803d; color: #fff; font-size: 8.5px; font-weight: 800; padding: 1px 5px; border-radius: 3px; }
+
+    .card-back-body {
+      padding: 5px 8px;
+      background: #fff;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cb-address { font-size: 9px; font-weight: 700; color: #1e293b; margin-bottom: 3px; padding-bottom: 2px; border-bottom: 1px solid #cbd5e1; line-height: 1.25; }
+    .cb-land-heading { font-size: 9.5px; font-weight: 800; color: #0d5c48; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: center; }
+
+    .cb-land-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7px;
+      text-align: center;
+      line-height: 1.0;
+    }
+    .cb-land-table th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 800;
+      padding: 1.5px 1px;
+      border: 1px solid #94a3b8;
+      font-size: 6.5px;
+    }
+    .cb-land-table td {
+      padding: 1px 1px;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 7px;
+      height: 13px;
+    }
+
+    .cb-annexure {
+      margin-top: 3px;
+      font-size: 5.5px;
+      color: #64748b;
+      line-height: 1.1;
+      text-align: justify;
+    }
+
+    .card-back-footer {
+      background: #f0fdf4;
+      border-top: 1px solid #86efac;
+      padding: 3px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #166534;
+    }
+
+    /* ACTION BUTTONS */
+    .btn-action-main {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #15803d 0%, #22c55e 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(21,128,61,0.25);
+      transition: 0.2s;
+    }
+    .btn-action-main:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(21,128,61,0.35); }
+
+    .btn-row-flex { display: flex; gap: 10px; margin-top: 10px; }
+    .btn-flex-child {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+    .btn-print { background: #e0f2fe; color: #0369a1; }
+    .btn-pdf { background: #fee2e2; color: #dc2626; }
+
+    /* PRINT STYLES (GUARANTEED NO-BLANK 1-PAGE A4 & PVC FRIENDLY) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 5mm;
+      }
+      header, nav, footer, .nic-header, .main-nav, .farmer-hero, .breadcrumb, .farmer-disclaimer, .farmer-form-section, .preview-tabs, .preview-header, .btn-action-main, .btn-row-flex, .premium-footer, section, div[style*="background:#f0fdf4"] {
+        display: none !important;
+      }
+      html, body {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+      .page, .farmer-main, .farmer-preview-section, .card-container-wrapper {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        display: block !important;
+      }
+      #printContainer {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 6mm !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        padding: 4mm !important;
+        margin: 0 !important;
+        position: relative !important;
+      }
+      #cardFrontView, .id-card-back {
+        display: flex !important;
+        width: 86mm !important;
+        max-width: 86mm !important;
+        min-width: 86mm !important;
+        height: 54mm !important;
+        border: 1.5px solid #0d5c48 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      #backCardsContainer {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 6mm !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <section class="farmer-hero">
+    <div class="farmer-hero-badge">🌾 AgriStack Farmer Registry Card Generator</div>
+    <h1>Farmer Registry Card Generator</h1>
+    <p>किसान पहचान पत्र (आगे का कार्ड + पिता का नाम + आधार + पीछे असीमित खसरा कार्ड्स)</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>👨‍👦 Father's Name</strong><span>पिता का नाम</span></div>
+      <div class="hero-stat"><strong>🔒 Masked Aadhaar</strong><span>Last 4 Digits</span></div>
+      <div class="hero-stat"><strong>📚 Multi-Page Land</strong><span>असीमित खसरा</span></div>
+      <div class="hero-stat"><strong>📥 HD PDF Print</strong><span>1-Click Print</span></div>
+    </div>
+  </section>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="page" id="main-content" style="max-width: 1240px; margin: 20px auto; padding: 0 16px;">
+    <div class="breadcrumb" style="margin-bottom: 16px;">
+      <a href="index.html">होम</a> <span>»</span>
+      <span>Farmer ID Card Generator</span>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="farmer-disclaimer">
+      <span>⚠️</span>
+      <div><strong>नोटिस:</strong> यह कार्ड Farmer ID विवरण को सुविधा के लिए रखने हेतु एक Format है। यह कोई सरकारी पहचान पत्र नहीं है।</div>
+    </div>
+
+    <!-- MAIN TWO COLUMN LAYOUT -->
+    <div class="farmer-main">
+
+      <!-- LEFT: INPUT FORM -->
+      <div class="farmer-form-section">
+
+        <!-- PERSONAL DETAILS -->
+        <div class="form-card">
+          <div class="form-card-header">
+            <h3>👤 1. व्यक्तिगत विवरण (Personal Details)</h3>
+          </div>
+          <div class="form-card-body">
+            <div class="form-row">
+              <div class="field-group">
+                <label for="nameEng">Farmer Full Name (English) <span class="req">*</span></label>
+                <input type="text" id="nameEng" placeholder="Ramnaresh Chaudhari" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="nameHindi">किसान का पूरा नाम (हिंदी में) <span class="req">*</span></label>
+                <input type="text" id="nameHindi" placeholder="रामनरेश चौधरी" oninput="updateLiveCard()">
+              </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <!-- FATHER'S NAME FIELDS -->
+            <div class="form-row">
+              <div class="field-group">
+                <label for="fatherEng">Father's Name (English) <span class="req">*</span></label>
+                <input type="text" id="fatherEng" placeholder="Suresh Chaudhari" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="fatherHindi">पिता का नाम (हिंदी में) <span class="req">*</span></label>
+                <input type="text" id="fatherHindi" placeholder="सुरेश चौधरी" oninput="updateLiveCard()">
+              </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="form-row thirds">
+              <div class="field-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" onchange="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="gender">Gender / लिंग</label>
+                <select id="gender" onchange="updateLiveCard()">
+                  <option value="Male">Male / पुरुष</option>
+                  <option value="Female">Female / महिला</option>
+                  <option value="Other">Other / अन्य</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="caste">Caste Category</label>
+                <select id="caste" onchange="updateLiveCard()">
+                  <option value="General">General</option>
+                  <option value="OBC">OBC</option>
+                  <option value="SC">SC</option>
+                  <option value="ST">ST</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="form-row">
+              <div class="field-group">
+                <label for="mobile">Mobile No.</label>
+                <input type="tel" id="mobile" placeholder="7070393730" maxlength="10" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="aadhar">Aadhaar No. (केवल अंतिम 4 अंक कार्ड पर दिखेंगे) <span class="req">*</span></label>
+                <input type="text" id="aadhar" placeholder="5095 0342 7099" maxlength="14" oninput="formatAadhar(this); updateLiveCard()">
+              </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="form-row">
+              <div class="field-group">
+                <label for="farmerId">Farmer ID (10-Digit) <span class="req">*</span></label>
+                <input type="text" id="farmerId" placeholder="36565207294" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="enrollmentId">Farmer Enrollment ID (Back side)</label>
+                <input type="text" id="enrollmentId" placeholder="10_217_1284_236194_005001" oninput="updateLiveCard()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHOTO UPLOAD -->
+        <div class="form-card">
+          <div class="form-card-header">
+            <h3>📸 2. फोटो (Farmer Photo)</h3>
+          </div>
+          <div class="form-card-body">
+            <div class="photo-upload-box" onclick="document.getElementById('photoInput').click()">
+              <img id="photoPreviewImg" src="" alt="Farmer Photo">
+              <div id="uploadPlaceholder">
+                <div style="font-size: 32px; margin-bottom: 4px;">🖼️</div>
+                <div style="font-size: 13px; font-weight: 700; color: #15803d;">यहाँ Click करके फोटो अपलोड करें</div>
+                <div style="font-size: 11px; color: #64748b;">(JPG, PNG Format)</div>
+              </div>
+            </div>
+            <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+            <div class="upload-btn-group">
+              <button class="btn-sub btn-sub-green" onclick="document.getElementById('photoInput').click()">📂 फोटो चुनें</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADDRESS -->
+        <div class="form-card">
+          <div class="form-card-header">
+            <h3>📍 3. पता (Address Details - Back Side)</h3>
+          </div>
+          <div class="form-card-body">
+            <div class="form-row">
+              <div class="field-group">
+                <label for="village">Village / ग्राम / Ward</label>
+                <input type="text" id="village" placeholder="yadu paran, ward no. 14" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="tehsil">Tehsil / Sub District</label>
+                <input type="text" id="tehsil" placeholder="Kalyanpur" oninput="updateLiveCard()">
+              </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="form-row thirds">
+              <div class="field-group">
+                <label for="district">District</label>
+                <input type="text" id="district" placeholder="Samastipur" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="state">State</label>
+                <input type="text" id="state" placeholder="Bihar / UP" oninput="updateLiveCard()">
+              </div>
+              <div class="field-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" placeholder="848302" maxlength="6" oninput="updateLiveCard()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAND RECORD DETAILS (MULTI-PAGE JUGAD SUPPORT) -->
+        <div class="form-card">
+          <div class="form-card-header">
+            <h3>📜 4. भूमि विवरण (Land Records - Multi-Page Auto Generator)</h3>
+            <span class="multi-land-badge" id="landCountBadge">1 खसरा जोड़ा गया</span>
+          </div>
+          <div class="form-card-body">
+            <div style="font-size: 12px; color: #166534; background: #f0fdf4; padding: 8px 12px; border-radius: 6px; margin-bottom: 10px; border: 1px solid #86efac;">
+              💡 <strong>बहु-खसरा जुगाड़ (Multi-Page Feature):</strong> यदि 5 से अधिक खसरे हैं तो पीछे के कार्ड स्वचालित (Auto Multi-Page Back Cards) के रूप में पार्ट 1, पार्ट 2 आदि में प्रिंट होंगे।
+            </div>
+
+            <div class="land-table-container">
+              <table class="land-table-form">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>State</th>
+                    <th>District</th>
+                    <th>Sub District</th>
+                    <th>Village</th>
+                    <th>SNo.</th>
+                    <th>S/Sno.</th>
+                    <th>Owner Name</th>
+                    <th>Identifier</th>
+                    <th>Type</th>
+                    <th>Area</th>
+                    <th>Del</th>
+                  </tr>
+                </thead>
+                <tbody id="landInputTbody">
+                  <tr>
+                    <td>1</td>
+                    <td><input type="text" class="l-state" value="BIHAR" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-dist" value="SAMASTIPUR" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-subdist" value="Kalyanpur" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-vill" value="Jadu Paran" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-sno" value="215" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-ssno" value="*" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-owner" value="राम नरेश" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-ident" value="परीक्षण" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-type" value="Joint" oninput="updateLiveCard()"></td>
+                    <td><input type="text" class="l-area" value="1.333 Hec" oninput="updateLiveCard()"></td>
+                    <td><button onclick="this.closest('tr').remove(); updateLiveCard();" style="color:red; background:none; border:none; cursor:pointer;">✕</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <button class="btn-add-row" onclick="addLandRow()">➕ एक और खसरा पंक्ति जोड़ें (Add More Land Record)</button>
+          </div>
+        </div>
+
+        <button class="btn-action-main" onclick="generateAndScroll()">
+          <span>⚡ Live Card अपडेट करें व देखें</span>
+        </button>
+
+      </div><!-- /form section -->
+
+      <!-- RIGHT: LIVE PREVIEW & PRINT -->
+      <div class="farmer-preview-section">
+        <div class="card-container-wrapper">
+
+          <div style="font-size: 14px; font-weight: 800; color: #0d5c48; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+            <span>📱 Card Live Preview</span>
+            <span style="font-size: 11px; background: #22c55e; color: #fff; padding: 2px 8px; border-radius: 999px;">● LIVE</span>
+          </div>
+
+          <!-- TABS -->
+          <div class="preview-tabs">
+            <div class="preview-tab active" id="tabBoth" onclick="switchTab('both')">दोनों साइड (Both)</div>
+            <div class="preview-tab" id="tabFront" onclick="switchTab('front')">आगे (Front)</div>
+            <div class="preview-tab" id="tabBack" onclick="switchTab('back')">पीछे (Back Cards)</div>
+          </div>
+
+          <!-- PRINT CONTAINER -->
+          <div id="printContainer">
+
+            <!-- FRONT SIDE CARD -->
+            <div class="id-card-front" id="cardFrontView">
+              <!-- Header -->
+              <div class="card-front-header">
+                <div class="cfh-left">
+                  <div class="cfh-logo-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="Logo">
+                  </div>
+                  <div>
+                    <div class="cfh-title">Agri<span>Stack</span> फार्मर आईडी कार्ड</div>
+                    <div class="cfh-subtitle">(Farmer ID Card)</div>
+                  </div>
+                </div>
+                <div style="font-size: 26px;">🚜</div>
+              </div>
+
+              <!-- Body -->
+              <div class="card-front-body">
+                <!-- Photo -->
+                <div class="cf-photo-box">
+                  <img id="cardPhotoImg" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Farmer">
+                  <div class="cf-photo-name" id="cardPhotoName">FARMER</div>
+                </div>
+
+                <!-- Info (WITH FATHER'S NAME & MASKED AADHAAR, WITHOUT AGE) -->
+                <div class="cf-details">
+                  <div class="cf-row">Name: <span class="val" id="cNameEng">Ramnaresh Chaudhari</span></div>
+                  <div class="cf-row hindi">नाव: <span id="cNameHindi">रामनरेश चौधरी</span></div>
+
+                  <div class="cf-row">Father: <span class="val" id="cFatherEng">Suresh Chaudhari</span></div>
+                  <div class="cf-row hindi">पिता: <span id="cFatherHindi">सुरेश चौधरी</span></div>
+
+                  <div class="cf-row">DOB: <span class="val" id="cDob">01/01/1981</span></div>
+                  <div class="cf-row">Gender: <span class="val" id="cGender">Male</span></div>
+                  <div class="cf-row">Caste Category: <span class="val" id="cCaste">General</span></div>
+                  <div class="cf-row">Mobile No.: <span class="val" id="cMobile">7070393730</span></div>
+                  <div class="cf-row">Aadhaar No.: <span class="val" id="cAadhar">XXXX XXXX 7099</span></div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="cf-qr-box">
+                  <div id="qrcodeCanvas"></div>
+                </div>
+              </div>
+
+              <!-- Bottom Farmer ID -->
+              <div class="card-front-bottom-id">
+                <div class="cf-id-label">Farmer ID : <span id="cFarmerId">36565207294</span></div>
+              </div>
+
+              <!-- Footer -->
+              <div class="card-front-footer">
+                <div class="cff-left">Generated by farmerid digital india services</div>
+                <div class="cff-right-badge">FARMER ID</div>
+              </div>
+            </div><!-- /id-card-front -->
+
+            <!-- DYNAMIC BACK CARDS CONTAINER (Support 1 or Multiple Pages!) -->
+            <div id="backCardsContainer">
+              <!-- Back Cards render dynamically here via JS -->
+            </div>
+
+          </div><!-- /printContainer -->
+
+          <!-- ACTION BUTTONS -->
+          <div style="margin-top: 14px;">
+            <button class="btn-action-main" onclick="window.print()">
+              <span>🖨️</span>
+              <span>HD Print Card (आगे व पीछे)</span>
+            </button>
+            <div class="btn-row-flex">
+              <button class="btn-flex-child btn-pdf" onclick="downloadPDF()">📄 PDF डाउनलोड</button>
+              <button class="btn-flex-child" style="background:#f59e0b; color:#fff;" onclick="downloadJPG()">🖼️ JPG फोटो डाउनलोड</button>
+              <button class="btn-flex-child btn-print" onclick="window.print()">🖨️ Fast Print</button>
+            </div>
+          </div>
+
+          <!-- EASY PRINT GUIDE (NO PHOTOSHOP NEEDED) -->
+          <div style="margin-top:16px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:14px; color:#166534;">
+            <h4 style="margin:0 0 8px; font-size:13.5px; font-weight:800; display:flex; align-items:center; gap:6px;">
+              <span>💡</span> बिना Photoshop के 1-Click प्रिंट कैसे करें?
+            </h4>
+            <ol style="margin:0; padding-left:18px; font-size:12px; line-height:1.6; font-weight:600; color:#374151;">
+              <li><strong>Photoshop की कोई जरूरत नहीं है!</strong></li>
+              <li>बस <strong>"🖨️ HD Print Card"</strong> बटन दबाएं।</li>
+              <li>कार्ड स्वतः कोने में 86mm x 54mm (PVC साइज) में प्रिंट होगा।</li>
+              <li>प्रिंट होने के बाद कोने से कार्ड काट लें, बाकी का A4 पेज दोबारा काम में लें!</li>
+            </ol>
+          </div>
+
+        </div><!-- /card-container-wrapper -->
+      </div><!-- /preview section -->
+
+    </div><!-- /farmer-main -->
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let photoDataURL = null;
+    let qrCodeObj = null;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initQRCode();
+      updateLiveCard();
+    });
+
+    function initQRCode() {
+      const el = document.getElementById("qrcodeCanvas");
+      el.innerHTML = "";
+      qrCodeObj = new QRCode(el, {
+        text: "36565207294",
+        width: 75,
+        height: 75,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+    }
+
+    function formatAadhar(input) {
+      let val = input.value.replace(/\D/g, '').substring(0, 12);
+      let formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+      input.value = formatted;
+    }
+
+    function handlePhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        photoDataURL = ev.target.result;
+        document.getElementById('photoPreviewImg').src = photoDataURL;
+        document.getElementById('photoPreviewImg').style.display = 'block';
+        document.getElementById('uploadPlaceholder').style.display = 'none';
+        document.getElementById('cardPhotoImg').src = photoDataURL;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function addLandRow() {
+      const tbody = document.getElementById('landInputTbody');
+      const rowCount = tbody.children.length + 1;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${rowCount}</td>
+        <td><input type="text" class="l-state" value="BIHAR" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-dist" value="SAMASTIPUR" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-subdist" value="Kalyanpur" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-vill" value="Jadu Paran" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-sno" value="${215 + rowCount}" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-ssno" value="*" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-owner" value="राम नरेश" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-ident" value="परीक्षण" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-type" value="Joint" oninput="updateLiveCard()"></td>
+        <td><input type="text" class="l-area" value="0.500 Hec" oninput="updateLiveCard()"></td>
+        <td><button onclick="this.closest('tr').remove(); updateLiveCard();" style="color:red; background:none; border:none; cursor:pointer;">✕</button></td>
+      `;
+      tbody.appendChild(tr);
+      updateLiveCard();
+    }
+
+    function updateLiveCard() {
+      const nameEng = document.getElementById('nameEng').value.trim() || 'Ramnaresh Chaudhari';
+      const nameHindi = document.getElementById('nameHindi').value.trim() || 'रामनरेश चौधरी';
+      const fatherEng = document.getElementById('fatherEng').value.trim() || 'Suresh Chaudhari';
+      const fatherHindi = document.getElementById('fatherHindi').value.trim() || 'सुरेश चौधरी';
+
+      const dob = document.getElementById('dob').value;
+      const gender = document.getElementById('gender').value;
+      const caste = document.getElementById('caste').value;
+      const mobile = document.getElementById('mobile').value.trim() || '7070393730';
+      const rawAadhar = document.getElementById('aadhar').value.replace(/\s+/g, '');
+      const farmerId = document.getElementById('farmerId').value.trim() || '36565207294';
+      const enrollmentId = document.getElementById('enrollmentId').value.trim() || '10_217_1284_236194_005001';
+
+      const village = document.getElementById('village').value.trim() || 'yadu paran, ward no. 14';
+      const tehsil = document.getElementById('tehsil').value.trim() || 'Kalyanpur';
+      const district = document.getElementById('district').value.trim() || 'Samastipur';
+      const state = document.getElementById('state').value.trim() || 'Bihar';
+      const pincode = document.getElementById('pincode').value.trim() || '848302';
+
+      // 1. MASKED AADHAAR (Only last 4 digits visible!)
+      let maskedAadhaar = "XXXX XXXX 7099";
+      if (rawAadhar.length >= 4) {
+        const last4 = rawAadhar.slice(-4);
+        maskedAadhaar = `XXXX XXXX ${last4}`;
+      }
+
+      // FRONT CARD ASSIGNMENTS
+      document.getElementById('cNameEng').textContent = nameEng;
+      document.getElementById('cNameHindi').textContent = nameHindi;
+      document.getElementById('cFatherEng').textContent = fatherEng;
+      document.getElementById('cFatherHindi').textContent = fatherHindi;
+
+      document.getElementById('cardPhotoName').textContent = nameEng;
+      document.getElementById('cGender').textContent = gender;
+      document.getElementById('cCaste').textContent = caste;
+      document.getElementById('cMobile').textContent = mobile;
+      document.getElementById('cAadhar').textContent = maskedAadhaar;
+      document.getElementById('cFarmerId').textContent = farmerId;
+
+      // DOB
+      if (dob) {
+        const birthDate = new Date(dob);
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        document.getElementById('cDob').textContent = birthDate.toLocaleDateString('en-GB', options);
+      } else {
+        document.getElementById('cDob').textContent = '01/01/1981';
+      }
+
+      // Update QR Code
+      if (qrCodeObj) {
+        qrCodeObj.clear();
+        qrCodeObj.makeCode(farmerId + "|" + rawAadhar + "|" + nameEng);
+      }
+
+      // 2. MULTI-PAGE BACK CARDS JUGAD GENERATION!
+      const landRows = document.querySelectorAll('#landInputTbody tr');
+      document.getElementById('landCountBadge').textContent = `${landRows.length} खसरा जोड़ा गया`;
+
+      // Extract all land records into an array
+      const landData = [];
+      landRows.forEach(tr => {
+        landData.push({
+          st: tr.querySelector('.l-state')?.value || '',
+          dt: tr.querySelector('.l-dist')?.value || '',
+          sdt: tr.querySelector('.l-subdist')?.value || '',
+          vl: tr.querySelector('.l-vill')?.value || '',
+          sno: tr.querySelector('.l-sno')?.value || '',
+          ssno: tr.querySelector('.l-ssno')?.value || '',
+          own: tr.querySelector('.l-owner')?.value || '',
+          idn: tr.querySelector('.l-ident')?.value || '',
+          typ: tr.querySelector('.l-type')?.value || '',
+          ara: tr.querySelector('.l-area')?.value || ''
+        });
+      });
+
+      // Split land records into pages of minimum 7 rows per card
+      const ROWS_PER_PAGE = 7;
+      const totalPages = Math.ceil(landData.length / ROWS_PER_PAGE) || 1;
+
+      const backContainer = document.getElementById('backCardsContainer');
+      backContainer.innerHTML = '';
+
+      for (let p = 0; p < totalPages; p++) {
+        const pageRecords = landData.slice(p * ROWS_PER_PAGE, (p + 1) * ROWS_PER_PAGE);
+        const pageBadgeText = totalPages > 1 ? `Part ${p + 1} of ${totalPages}` : '';
+
+        let tableRowsHtml = '';
+        pageRecords.forEach(item => {
+          tableRowsHtml += `
+            <tr>
+              <td>${item.st}</td>
+              <td>${item.dt}</td>
+              <td>${item.sdt}</td>
+              <td>${item.vl}</td>
+              <td>${item.sno}</td>
+              <td>${item.ssno}</td>
+              <td>${item.own}</td>
+              <td>${item.idn}</td>
+              <td>${item.typ}</td>
+              <td>Equal Share</td>
+              <td>${item.ara}</td>
+            </tr>
+          `;
+        });
+
+        // If page has less than 7 rows, fill empty rows to keep card height consistent
+        if (pageRecords.length < 7 && totalPages === 1) {
+          for (let e = pageRecords.length; e < 2; e++) {
+            tableRowsHtml += `<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`;
+          }
+        }
+
+        const backCardHtml = `
+          <div class="id-card-back" style="margin-bottom:16px;">
+            <div class="card-back-header">
+              <div>
+                <span class="cbh-title">Farmer Enrollment Id: </span>
+                <span class="cbh-id">${enrollmentId}</span>
+              </div>
+              ${pageBadgeText ? `<span class="cbh-page-badge">${pageBadgeText}</span>` : ''}
+            </div>
+
+            <div class="card-back-body">
+              <div class="cb-address">
+                Address .: ${village}, ${tehsil}, ${district}, ${state}-${pincode}
+              </div>
+
+              <div class="cb-land-heading">
+                <span>Land Ownership Details</span>
+                ${pageBadgeText ? `<span style="font-size:9.5px; color:#15803d;">(${pageBadgeText})</span>` : ''}
+              </div>
+
+              <table class="cb-land-table">
+                <thead>
+                  <tr>
+                    <th>State</th>
+                    <th>District</th>
+                    <th>Sub District</th>
+                    <th>Village</th>
+                    <th>SNo.</th>
+                    <th>S/Sno.</th>
+                    <th>Owner Name</th>
+                    <th>Identifier</th>
+                    <th>Type</th>
+                    <th>ShareType</th>
+                    <th>Extent Total Area</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tableRowsHtml}
+                </tbody>
+              </table>
+
+              <div class="cb-annexure">
+                <strong>Annexure:</strong> I also give my consent to State and Central Governments to use my aadhaar, my identity information and my data available into Pradhan Mantri Kisan SammanNidhi. I agree to share my identity information along with my Aadhaar number with the State Government to seed my Aadhaar data with my landholding in the Record of Rights maintained by the Revenue Department of the State.
+              </div>
+            </div>
+
+            <div class="card-back-footer">
+              <div>This Card Is For Personal Use Only And is not a government-issued identity.</div>
+              <div>👨‍🌾</div>
+            </div>
+          </div>
+        `;
+        backContainer.insertAdjacentHTML('beforeend', backCardHtml);
+      }
+    }
+
+    function switchTab(type) {
+      document.getElementById('tabBoth').classList.toggle('active', type === 'both');
+      document.getElementById('tabFront').classList.toggle('active', type === 'front');
+      document.getElementById('tabBack').classList.toggle('active', type === 'back');
+
+      const front = document.getElementById('cardFrontView');
+      const backContainer = document.getElementById('backCardsContainer');
+
+      if (type === 'front') { front.style.display = 'block'; backContainer.style.display = 'none'; }
+      else if (type === 'back') { front.style.display = 'none'; backContainer.style.display = 'block'; }
+      else { front.style.display = 'block'; backContainer.style.display = 'block'; }
+    }
+
+    function generateAndScroll() {
+      updateLiveCard();
+      if (window.innerWidth < 1024) {
+        document.querySelector('.farmer-preview-section').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function downloadPDF() {
+      if (typeof html2canvas === 'undefined') {
+        const s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        s.onload = () => {
+          const s2 = document.createElement('script');
+          s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+          s2.onload = () => doPDF();
+          document.head.appendChild(s2);
+        };
+        document.head.appendChild(s);
+      } else { doPDF(); }
+    }
+
+    function doPDF() {
+      const container = document.getElementById('printContainer');
+      html2canvas(container, { scale: 2.5, useCORS: true }).then(canvas => {
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'JPEG', 10, 10, pdfWidth, pdfHeight);
+        pdf.save('AgriStack_Farmer_ID_Card.pdf');
+      });
+    }
+    function downloadJPG() {
+      if (typeof html2canvas === 'undefined') {
+        const s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        s.onload = () => doJPG();
+        document.head.appendChild(s);
+      } else { doJPG(); }
+    }
+
+    function doJPG() {
+      const container = document.getElementById('printContainer');
+      html2canvas(container, { scale: 3, useCORS: true, backgroundColor: '#ffffff' }).then(canvas => {
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        const link = document.createElement('a');
+        link.download = 'Farmer_ID_Card_HD.jpg';
+        link.href = imgData;
+        link.click();
+      });
+    }
+  </script>
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

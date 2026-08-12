@@ -1,0 +1,436 @@
+﻿<!doctype html>
+<html lang="hi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UP Panchayat Village Profile & Data Tools | पंचायत सहायक</title>
+  <meta name="description" content="ग्राम पंचायत का प्रोफाइल, जनसंख्या, और अन्य आंकड़े आसानी से देखने और मैनेज करने के लिए पंचायत सहायक टूल्स।">
+  
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body { font-family: 'Poppins', 'Hind', sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
+        
+        .profile-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header-title { margin: 0; font-size: 24px; font-weight: 700; color: #1e3a8a; }
+        .header-sub { margin: 4px 0 0 0; color: #64748b; font-size: 15px; }
+
+        /* FORM MODE */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 8px;
+            margin-top: 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .input-group { display: flex; flex-direction: column; gap: 6px; }
+        .input-group label { font-size: 13px; font-weight: 600; color: #475569; }
+        .input-group input {
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px; font-size: 15px;
+            transition: all 0.2s; background: #f8fafc;
+        }
+        .input-group input:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); background: #fff; }
+
+        .btn-action {
+            background: #2563eb; color: #fff; border: none; padding: 14px 24px;
+            border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: 0.2s; box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+            display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-action:hover { background: #1d4ed8; transform: translateY(-2px); }
+        .btn-secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; box-shadow: none; }
+        .btn-secondary:hover { background: #e2e8f0; color: #0f172a; }
+
+        /* PROFESSIONAL DASHBOARD VIEW MODE */
+        #view-mode { display: none; }
+        .dashboard-header {
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+            color: #0f172a; border-radius: 12px; padding: 30px; margin-bottom: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 2px solid #bae6fd;
+        }
+        .dashboard-header h2 { font-size: 24px; margin: 0 0 8px 0; font-weight: 800; display:flex; align-items:center; gap:12px; color: #0369a1; }
+        .dashboard-header p { margin: 0; font-size: 16px; opacity: 0.9; color: #334155; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            background: #3b82f6; border-radius: 12px 0 0 12px;
+        }
+        .stat-card.green::before { background: #10b981; }
+        .stat-card.purple::before { background: #8b5cf6; }
+        .stat-card.orange::before { background: #f59e0b; }
+        .stat-card.red::before { background: #ef4444; }
+        .stat-card.cyan::before { background: #06b6d4; }
+
+        .stat-title { font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 8px; }
+        .stat-value { font-size: 32px; font-weight: 700; color: #0f172a; margin: 0; }
+
+        .toast {
+            position: fixed; top: 20px; right: 20px; background: #10b981; color: #fff;
+            padding: 12px 24px; border-radius: 8px; font-weight: 600; opacity: 0;
+            transform: translateY(-20px); transition: 0.3s; z-index: 1000;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE LAYOUT ENGINE */
+        @media (max-width: 1000px) {
+            .form-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .profile-container { padding: 16px; margin: 16px; }
+            .dashboard-header { padding: 20px; }
+            .dashboard-header h2 { font-size: 24px; }
+        }
+    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gpsahayak.in/"},
+      {"@type": "ListItem", "position": 2, "name": "Village Profile", "item": "https://gpsahayak.in/panchayat-sahayak-village-profile.html"}
+    ]
+  }
+  </script>
+  <!-- SCHEMA_INJECTED_V2 -->
+</head>
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <div class="profile-container">
+        
+        <!-- ================= EDIT MODE (FORM) ================= -->
+        <div id="edit-mode">
+            <div class="header-section">
+                <div>
+                    <h1 class="header-title">📊 ग्राम पंचायत प्रोफाइल रजिस्टर</h1>
+                    <p class="header-sub">एक बार डेटा भरें, और हमेशा के लिए सुरक्षित रखें।</p>
+
+                </div>
+                <div>
+                    <button class="btn-action btn-secondary" onclick="toggleMode('view')">👁️ व्यू (View)</button>
+                    <button class="btn-action" onclick="saveProfile()">💾 सेव करें</button>
+                </div>
+            </div>
+
+            <div class="form-grid" id="profile-form">
+                <!-- 1. पंचायत की बेसिक जानकारी -->
+                <div class="section-title">🏛️ सामान्य जानकारी (General Info)</div>
+                <div class="input-group"><label>ग्राम पंचायत का नाम</label><input type="text" id="vp-gpName" placeholder="उदा० रामनगर"></div>
+                <div class="input-group"><label>विकास खंड (Block)</label><input type="text" id="vp-block" placeholder="उदा० विकास खंड नाम"></div>
+                <div class="input-group"><label>जनपद (District)</label><input type="text" id="vp-district" placeholder="उदा० लखनऊ"></div>
+                <div class="input-group"><label>ग्राम प्रधान का नाम व नंबर</label><input type="text" id="vp-pradhan" placeholder="नाम - 9876543210"></div>
+                <div class="input-group"><label>पंचायत सचिव का नाम व नंबर</label><input type="text" id="vp-sachiv" placeholder="नाम - 9876543210"></div>
+                <div class="input-group"><label>पंचायत सहायक (Sahayak)</label><input type="text" id="vp-sahayak" placeholder="नाम - 9876543210"></div>
+                <div class="input-group"><label>कुल वार्ड (Total Wards)</label><input type="number" id="vp-wards" placeholder="उदा० 11"></div>
+
+                <!-- 2. जनसांख्यिकी (Demographics) -->
+                <div class="section-title">👥 जनसांख्यिकी डेटा (Census Data)</div>
+                <div class="input-group"><label>कुल जनसंख्या (Total Population)</label><input type="number" id="vp-pop" placeholder="उदा० 2500"></div>
+                <div class="input-group"><label>कुल पुरुष (Male)</label><input type="number" id="vp-male" placeholder="उदा० 1300"></div>
+                <div class="input-group"><label>कुल महिलाएँ (Female)</label><input type="number" id="vp-female" placeholder="उदा० 1200"></div>
+                <div class="input-group"><label>कुल परिवार (Total Households)</label><input type="number" id="vp-households" placeholder="उदा० 450"></div>
+                <div class="input-group"><label>कुल मतदाता (Total Voters)</label><input type="number" id="vp-voters" placeholder="उदा० 1800"></div>
+                <div class="input-group"><label>BPL परिवार (BPL Families)</label><input type="number" id="vp-bpl" placeholder="उदा० 85"></div>
+
+                <!-- 3. सरकारी योजना डेटा (Scheme Beneficiaries) -->
+                <div class="section-title">📝 लाभार्थी व बुनियादी ढांचा (Beneficiaries & Infra)</div>
+                <div class="input-group"><label>अंत्योदय राशन कार्ड (Antyodaya)</label><input type="number" id="vp-antyodaya" placeholder="संख्या"></div>
+                <div class="input-group"><label>पात्र गृहस्थी राशन (PHH)</label><input type="number" id="vp-phh" placeholder="संख्या"></div>
+                <div class="input-group"><label>कुल पेंशन धारक (Pensioners)</label><input type="number" id="vp-pension" placeholder="संख्या"></div>
+                <div class="input-group"><label>PM किसान लाभार्थी</label><input type="number" id="vp-pmkisan" placeholder="संख्या"></div>
+                <div class="input-group"><label>प्राथमिक विद्यालय (Schools)</label><input type="number" id="vp-schools" placeholder="संख्या"></div>
+                <div class="input-group"><label>आंगनवाड़ी केंद्र (Anganwadi)</label><input type="number" id="vp-anganwadi" placeholder="संख्या"></div>
+            </div>
+
+            <button class="btn-action" style="width:100%" onclick="saveProfile()">डेटा सुरक्षित करें (Save Profile Data)</button>
+        </div>
+
+        <!-- ================= VIEW MODE (DASHBOARD) ================= -->
+        <div id="view-mode">
+            <div class="header-section" style="border-bottom:none; margin-bottom:0;">
+                <h1 class="header-title"></h1>
+                <button class="btn-action btn-secondary" onclick="toggleMode('edit')">✏️ डेटा एडिट करें</button>
+            </div>
+
+            <div class="dashboard-header">
+                <h2>🏛️ ग्राम पंचायत: <span id="v-gpName">अज्ञात</span></h2>
+
+                <p><strong>विकास खंड:</strong> <span id="v-block">-</span> &nbsp;|&nbsp; <strong>जनपद:</strong> <span id="v-district">-</span></p>
+                <div style="margin-top:16px; background: rgba(56,189,248,0.15); padding:12px; border-radius:8px; display:inline-block; border: 1px solid #bae6fd;">
+                    <strong>सुशासन संपर्क (Keys):</strong>
+                    <span style="margin-left:12px;">प्रधान: <span id="v-pradhan">-</span></span>
+                    <span style="margin-left:12px;">सचिव: <span id="v-sachiv">-</span></span>
+                    <span style="margin-left:12px; color:#0369a1; font-weight:600;">सहायक: <span id="v-sahayak">-</span></span>
+                </div>
+            </div>
+
+            <h3 style="color:#334155; margin-bottom:16px;">👥 जनसांख्यिकी प्रोफाइल (Demographics)</h3>
+            <div class="stats-grid">
+                <div class="stat-card">  <div class="stat-title">कुल जनसंख्या</div> <div class="stat-value" id="v-pop">0</div> </div>
+                <div class="stat-card green"> <div class="stat-title">कुल पुरुष</div> <div class="stat-value" id="v-male">0</div> </div>
+                <div class="stat-card purple"> <div class="stat-title">कुल महिलाएँ</div> <div class="stat-value" id="v-female">0</div> </div>
+                <div class="stat-card orange"> <div class="stat-title">कुल परिवार</div> <div class="stat-value" id="v-households">0</div> </div>
+                <div class="stat-card red">   <div class="stat-title">कुल मतदाता</div> <div class="stat-value" id="v-voters">0</div> </div>
+                <div class="stat-card cyan">  <div class="stat-title">कुल वार्ड</div> <div class="stat-value" id="v-wards">0</div> </div>
+            </div>
+
+            <h3 style="color:#334155; margin-bottom:16px;">📋 योजना व आधारभूत ढांचा (Schemes)</h3>
+            <div class="stats-grid">
+                <div class="stat-card orange"> <div class="stat-title">BPL परिवार</div> <div class="stat-value" id="v-bpl">0</div> </div>
+                <div class="stat-card red">    <div class="stat-title">अंत्योदय (AAY)</div> <div class="stat-value" id="v-antyodaya">0</div> </div>
+                <div class="stat-card green">  <div class="stat-title">पात्र गृहस्थी (PHH)</div> <div class="stat-value" id="v-phh">0</div> </div>
+                <div class="stat-card purple"> <div class="stat-title">क‍ुल पेंशन धारक</div> <div class="stat-value" id="v-pension">0</div> </div>
+                <div class="stat-card">        <div class="stat-title">PM किसान लाभार्थी</div> <div class="stat-value" id="v-pmkisan">0</div> </div>
+                <div class="stat-card cyan">   <div class="stat-title">विद्यालय / आंगनवाड़ी</div> <div class="stat-value" id="v-infra">0</div> </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="toast" class="toast">✅ जानकारी सफलतापूर्वक सुरक्षित कर ली गई है! (Saved)</div>
+
+    <script>
+        const DB_NAME = "VillageProfileDB";
+        const STORE_NAME = "profileData";
+        let db;
+        let pData = {}; // memory cache
+
+        function initDB() {
+            const request = window.indexedDB.open(DB_NAME, 1);
+            request.onerror = (e) => console.error("Database error", e);
+            request.onupgradeneeded = (e) => {
+                db = e.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME, { keyPath: "id" });
+            };
+            request.onsuccess = (e) => {
+                db = e.target.result;
+                loadProfile();
+            };
+        }
+
+        function toggleMode(mode) {
+            if(mode === 'view') {
+                document.getElementById('edit-mode').style.display = 'none';
+                document.getElementById('view-mode').style.display = 'block';
+                renderDashboard();
+            } else {
+                document.getElementById('edit-mode').style.display = 'block';
+                document.getElementById('view-mode').style.display = 'none';
+            }
+        }
+
+        const ids = ['gpName','block','district','pradhan','sachiv','sahayak','wards','pop','male','female',
+                     'households','voters','bpl','antyodaya','phh','pension','pmkisan','schools','anganwadi'];
+
+        function loadProfile() {
+            const tx = db.transaction(STORE_NAME, "readonly");
+            const store = tx.objectStore(STORE_NAME);
+            const req = store.get("village_1");
+            
+            req.onsuccess = () => {
+                if (req.result) {
+                    pData = req.result;
+                    ids.forEach(id => { document.getElementById(`vp-${id}`).value = pData[id] || ''; });
+                    
+                    if(pData.gpName) localStorage.setItem('gpName', pData.gpName);
+                    
+                    // Auto-flip to professional dashboard mode if data exists!
+                    if(pData.gpName) toggleMode('view'); else toggleMode('edit');
+                } else {
+                    toggleMode('edit');
+                }
+            };
+        }
+
+        function renderDashboard() {
+            document.getElementById('v-gpName').innerText = pData.gpName || 'अज्ञात';
+            document.getElementById('v-block').innerText = pData.block || '-';
+            document.getElementById('v-district').innerText = pData.district || '-';
+            document.getElementById('v-pradhan').innerText = pData.pradhan || 'दर्ज़ नहीं';
+            document.getElementById('v-sachiv').innerText = pData.sachiv || 'दर्ज़ नहीं';
+            document.getElementById('v-sahayak').innerText = pData.sahayak || 'दर्ज़ नहीं';
+            
+            document.getElementById('v-pop').innerText = pData.pop || '0';
+            document.getElementById('v-male').innerText = pData.male || '0';
+            document.getElementById('v-female').innerText = pData.female || '0';
+            document.getElementById('v-households').innerText = pData.households || '0';
+            document.getElementById('v-voters').innerText = pData.voters || '0';
+            document.getElementById('v-wards').innerText = pData.wards || '0';
+            
+            document.getElementById('v-bpl').innerText = pData.bpl || '0';
+            document.getElementById('v-antyodaya').innerText = pData.antyodaya || '0';
+            document.getElementById('v-phh').innerText = pData.phh || '0';
+            document.getElementById('v-pension').innerText = pData.pension || '0';
+            document.getElementById('v-pmkisan').innerText = pData.pmkisan || '0';
+            
+            let s = pData.schools || '0';
+            let a = pData.anganwadi || '0';
+            document.getElementById('v-infra').innerText = `${s} / ${a}`;
+        }
+
+        function saveProfile() {
+            pData = { id: "village_1" };
+            ids.forEach(id => { pData[id] = document.getElementById(`vp-${id}`).value; });
+
+            const tx = db.transaction(STORE_NAME, "readwrite");
+            const store = tx.objectStore(STORE_NAME);
+            store.put(pData);
+
+            tx.oncomplete = () => {
+                if(pData.gpName) localStorage.setItem('gpName', pData.gpName);
+                if(pData.district) localStorage.setItem('gpDistrict', pData.district);
+                if(pData.sahayak) localStorage.setItem('psName', pData.sahayak.split('-')[0].trim());
+                
+                let toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+                
+                // Instantly flip to the beautiful view mode
+                toggleMode('view');
+            };
+        }
+
+        window.onload = initDB;
+    </script>
+
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

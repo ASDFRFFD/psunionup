@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gram Panchayat Letterhead & Notice Generator | ग्राम पंचायत लेटरपैड</title>
+    <meta name="description"
+        content="ऑटोमेटिक ग्राम पंचायत लेटरपैड जनरेटर। ग्राम प्रधान या पंचायत सचिव की तरफ से गाँव वालों के लिए 'आदेश/सूचना' का असली पीडीएफ लेटरहेड मिनटों में तैयार करें।">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Hind', sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout-grid {
+            max-width: 1300px;
+            margin: 24px auto;
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 24px;
+            padding: 0 16px;
+        }
+
+        @media (max-width: 900px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .controls-panel {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #475569;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Hind', sans-serif;
+            transition: 0.2s;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.6;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            color: #fff;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+            transition: 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(234, 88, 12, 0.4);
+        }
+
+        .template-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .template-pills button {
+            background: #e2e8f0;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            transition: 0.2s;
+            border: 1px solid #cbd5e1;
+        }
+
+        .template-pills button:hover {
+            background: #cbd5e1;
+        }
+
+        .template-pills button.active {
+            background: #ea580c;
+            color: #fff;
+            border-color: #c2410c;
+        }
+
+        .btn-ai {
+            background: linear-gradient(135deg, #a855f7, #7e22ce);
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-ai:hover {
+            background: linear-gradient(135deg, #9333ea, #6b21a8);
+        }
+
+
+        /* The Authentic A4 Letter Preview */
+        .preview-panel {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        #a4-surface {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            padding: 20mm;
+            box-sizing: border-box;
+            margin: 0 auto;
+            font-family: 'Hind', 'Arial', sans-serif;
+            color: #000;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .letter-body {
+            text-align: justify;
+            text-justify: inter-word;
+            margin-bottom: 40px;
+        }
+
+        /* NATIVE PRINT STYLES FOR ZERO-BUG A4 PDF EXPORT */
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .main-nav,
+            .controls-panel {
+                display: none !important;
+            }
+
+            .layout-grid {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .preview-panel {
+                padding: 0 !important;
+                box-shadow: none !important;
+                background: transparent !important;
+                overflow: visible !important;
+                border-radius: 0 !important;
+                margin-bottom: 0 !important;
+            }
+
+            #preview-label {
+                display: none !important;
+            }
+
+            #a4-surface {
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                min-height: auto !important;
+            }
+
+            @page {
+                size: a4 portrait;
+                margin: 20mm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <div class="layout-grid">
+        <!-- CONTROLS PANEL -->
+        <div class="controls-panel">
+            <h2 style="margin:0 0 8px 0; font-size:20px; color:#ea580c;">📜 साफ़-सुथरा लेटरपैड जनरेटर</h2>
+            <p style="margin:0 0 16px 0; font-size:13px; color:#64748b;">गाँव वालों के लिए 'आदेश' या 'सूचना' का बिलकुल
+                असली ग्राम पंचायत लेटरपैड (Letterhead) बनाएं।</p>
+
+            <div
+                style="background:#fff7ed; padding:12px; border-radius:8px; border:1px solid #ffedd5; margin-bottom:16px;">
+                <h4 style="margin:0 0 10px 0; font-size:14px; color:#9a3412;">👉 Step 1: पंचायत की जानकारी</h4>
+                <div style="display:flex; gap:12px;">
+                    <div class="form-group" style="flex:1;">
+                        <input type="text" id="i-gp" class="form-control" placeholder="ग्राम पंचायत का नाम"
+                            value="[Your GP Name]">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <input type="text" id="i-block" class="form-control" placeholder="विकास खंड (Block)"
+                            value="[Your Block]">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <input type="text" id="i-district" class="form-control" placeholder="जनपद (District)"
+                        value="[Your District]">
+                </div>
+            </div>
+
+            <div
+                style="background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:16px;">
+                <h4 style="margin:0 0 10px 0; font-size:14px; color:#334155;">👉 Step 2: पत्र/नोटिस का प्रकार</h4>
+                <div class="template-pills" style="margin-bottom:12px;">
+                    <button class="active" onclick="setTemplate('meeting')">ग्राम सभा बैठक</button>
+                    <button onclick="setTemplate('encroachment')">अतिक्रमण नोटिस</button>
+                    <button onclick="setTemplate('swachh')">सफाई की अपील</button>
+                    <button onclick="setTemplate('pension')">कैंप की सूचना</button>
+                    <a href="https://chatgpt.com/" target="_blank" class="btn-ai" style="text-decoration: none;">✨ AI
+                        (ChatGPT) से लिखवाएं</a>
+                </div>
+
+                <div style="display:flex; gap:12px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>पत्रांक संख्या (Dispatch No.)</label>
+                        <input type="text" id="i-dispatch" class="form-control" placeholder="उदा० 45/2026-27">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>दिनांक (Date)</label>
+                        <input type="date" id="i-date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>क्या जारी किया जा रहा है? (Heading/Type)</label>
+                    <select id="i-type" class="form-control">
+                        <option value="सूचना (Notice)">सूचना (Notice)</option>
+                        <option value="कार्यालय आदेश (Order)">कार्यालय आदेश (Order)</option>
+                        <option value="बैठक कार्यवृत्त (Meeting Minutes)">बैठक कार्यवृत्त (Meeting Minutes)</option>
+                        <option value="प्रस्ताव (Resolution)">प्रस्ताव (Resolution)</option>
+                        <option value="अपील (Appeal)">अपील (Appeal)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>विषय (Subject)</label>
+                    <input type="text" id="i-subject" class="form-control" style="font-weight:600;"
+                        value="आगामी ग्राम सभा की खुली बैठक के आयोजन के संबंध में।">
+                </div>
+
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>पत्र में क्या लिखना है? (Main Body)</label>
+                    <textarea id="i-body"
+                        class="form-control">समस्त ग्रामवासियों को सूचित किया जाता है कि आगामी दिनांक [यहाँ तारीख लिखें] को पंचायत भवन पर एक 'ग्राम सभा की खुली बैठक' का आयोजन किया गया है।
+
+इस बैठक में गाँव के विकास कार्यों, राशन कार्ड, पेंशन, व आवास योजना के पात्र लाभार्थियों की सूची पर चर्चा की जाएगी। अतः आप सभी से अनुरोध है कि निर्धारित समय सुबह 10:00 बजे मीटिंग में अपनी गरिमामयी उपस्थिति दर्ज़ कराने का कष्ट करें。</textarea>
+                </div>
+            </div>
+
+            <div
+                style="background:#fffbeb; padding:12px; border-radius:8px; border:1px solid #fde68a; margin-bottom:16px;">
+                <h4 style="margin:0 0 10px 0; font-size:14px; color:#92400e;">👉 Step 3: किसके हस्ताक्षर (Sign) होंगे?
+                </h4>
+                <div style="display:flex; gap:12px;">
+                    <div class="form-group" style="flex:1; margin-bottom:0;">
+                        <label>पहला हस्ताक्षर (बायीं ओर)</label>
+                        <select id="i-sign-1" class="form-control">
+                            <option value="ग्राम पंचायत सचिव">ग्राम पंचायत सचिव</option>
+                            <option value="पंचायत सहायक (DEO)">पंचायत सहायक (DEO)</option>
+                            <option value="ग्राम प्रधान">ग्राम प्रधान</option>
+                            <option value="none">-- कोई नहीं (Hide) --</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1; margin-bottom:0;">
+                        <label>दूसरा हस्ताक्षर (दायीं ओर)</label>
+                        <select id="i-sign-2" class="form-control">
+                            <option value="ग्राम प्रधान">ग्राम प्रधान</option>
+                            <option value="पंचायत सहायक (DEO)">पंचायत सहायक (DEO)</option>
+                            <option value="ग्राम पंचायत सचिव">ग्राम पंचायत सचिव</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="margin:24px 0 12px 0; font-size:14px; color:#334155;">👉 Step 4: प्रिंट या सेव करें</h4>
+            <button class="btn-generate" onclick="downloadLetterPDF()">🖨️ लेटरपैड (PDF) प्रिंट करें</button>
+        </div>
+
+        <!-- A4 PREVIEW PANEL -->
+        <div>
+            <div id="preview-label"
+                style="margin-bottom: 12px; font-size: 14px; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 8px;">
+                <span>👀 </span> ऐसा दिखेगा आपका असली ग्राम पंचायत लेटरपैड:
+            </div>
+
+            <div class="preview-panel">
+                <div id="a4-surface">
+
+                    <!-- OFFICAL LETTERHEAD HEADER -->
+                    <div style="border-bottom: 3px double #1e3a8a; padding-bottom: 16px; margin-bottom: 24px;">
+                        <div style="text-align: center; padding: 0 10px;">
+                            <div
+                                style="font-size: 32px; font-weight: 800; color: #b91c1c; font-family: 'Hind', sans-serif;">
+                                कार्यालय ग्राम पंचायत - <span id="o-gp">____________</span></div>
+                            <div style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-top: 4px;">विकास
+                                खंड - <span id="o-block">____________</span>, <span id="o-district">जनपद -
+                                    ____________</span>, (उ०प्र०)</div>
+                        </div>
+                    </div>
+
+                    <!-- LETTERHEAD METADATA -->
+                    <div
+                        style="display: flex; justify-content: space-between; margin-bottom: 30px; font-weight: 700; font-size: 15px;">
+                        <div>पत्रांक सँख्या: <span id="o-dispatch">______</span></div>
+                        <div>दिनांक: <span id="o-date">__/__/20__</span></div>
+                    </div>
+
+                    <!-- TYPE & SUBJECT -->
+                    <div style="text-align: center; margin-bottom: 24px;">
+                        <div style="display: inline-block; font-size: 20px; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 2px;"
+                            id="o-type">सूचना (Notice)</div>
+                    </div>
+
+                    <div style="margin-bottom: 24px; font-weight: bold; font-size: 17px;" id="o-subject-container">
+                        विषय: <span id="o-subject">____________________</span>
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="letter-body" id="o-body" style="font-size: 17px; line-height: 1.8;">
+                        समस्त ग्रामवासियों को...
+                    </div>
+
+                    <!-- SIGNATURES -->
+                    <div style="display: flex; justify-content: space-between; margin-top: 80px; text-align: center;">
+                        <div style="min-width: 200px;" id="o-sign-box-1">
+                            <div style="height: 60px;"></div>
+                            <div style="font-weight: bold; border-top: 1px dashed #94a3b8; padding-top: 10px;">
+                                (हस्ताक्षर/मोहर)<br>
+                                <span id="o-sign-title-1">ग्राम पंचायत सचिव</span><br>
+                                ग०पं० - <span id="o-gp-sec">____________</span>
+                            </div>
+                        </div>
+
+                        <div style="min-width: 200px;" id="o-sign-box-2">
+                            <div style="height: 60px;"></div>
+                            <div style="font-weight: bold; border-top: 1px dashed #94a3b8; padding-top: 10px;">
+                                (हस्ताक्षर/मोहर)<br>
+                                <span id="o-sign-title-2">ग्राम प्रधान</span><br>
+                                ग०पं० - <span id="o-gp-pra">____________</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- LIVE DATA BINDING ENGINE ---
+        const inputs = ['i-gp', 'i-block', 'i-district', 'i-dispatch', 'i-date', 'i-type', 'i-subject', 'i-body', 'i-sign-1', 'i-sign-2'];
+
+        // Auto-populate from cache
+        if (localStorage.getItem('gpName')) document.getElementById('i-gp').value = localStorage.getItem('gpName');
+        else document.getElementById('i-gp').value = '';
+
+        // Setup Date
+        document.getElementById('i-date').value = new Date().toISOString().slice(0, 10);
+
+        function updatePreview() {
+            let gpName = document.getElementById('i-gp').value || '__________';
+            document.getElementById('o-gp').innerText = gpName;
+            document.getElementById('o-gp-sec').innerText = gpName;
+            document.getElementById('o-gp-pra').innerText = gpName;
+
+            let blockStr = document.getElementById('i-block').value || '__________';
+            if (blockStr.includes('विकास खंड')) blockStr = blockStr.replace('विकास खंड', '').replace('-', '').trim();
+            document.getElementById('o-block').innerText = blockStr;
+
+            let distStr = document.getElementById('i-district').value || '____________';
+            if (!distStr.startsWith('जनपद')) {
+                document.getElementById('o-district').innerText = 'जनपद - ' + distStr;
+            } else {
+                document.getElementById('o-district').innerText = distStr;
+            }
+
+            document.getElementById('o-dispatch').innerText = document.getElementById('i-dispatch').value || '______';
+
+            let dt = new Date(document.getElementById('i-date').value);
+            document.getElementById('o-date').innerText = isNaN(dt.getTime()) ? '' : dt.toLocaleDateString('hi-IN');
+
+            document.getElementById('o-type').innerText = document.getElementById('i-type').value;
+
+            let subj = document.getElementById('i-subject').value;
+            if (!subj) document.getElementById('o-subject-container').style.display = 'none';
+            else {
+                document.getElementById('o-subject-container').style.display = 'block';
+                document.getElementById('o-subject').innerText = subj;
+            }
+
+            let rawBody = document.getElementById('i-body').value;
+            // Support spacing perfectly via mapping newlines to HTML <br>
+            document.getElementById('o-body').innerHTML = rawBody.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+
+            // SIGNATURE LOGIC
+            let sign1 = document.getElementById('i-sign-1').value;
+            if (sign1 === 'none') {
+                document.getElementById('o-sign-box-1').style.visibility = 'hidden';
+            } else {
+                document.getElementById('o-sign-box-1').style.visibility = 'visible';
+                document.getElementById('o-sign-title-1').innerText = sign1;
+            }
+
+            document.getElementById('o-sign-title-2').innerText = document.getElementById('i-sign-2').value;
+        }
+
+        let debounceTimer;
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', function () {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(updatePreview, 150);
+            });
+        });
+
+        // First paint render
+        updatePreview();
+
+        // --- TEMPLATE ENGINE ---
+        function setTemplate(type) {
+            document.querySelectorAll('.template-pills button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (type === 'meeting') {
+                document.getElementById('i-type').value = "सूचना (Notice)";
+                document.getElementById('i-subject').value = "आगामी ग्राम सभा की खुली बैठक के आयोजन के संबंध में।";
+                document.getElementById('i-body').value = "समस्त ग्रामवासियों को सूचित किया जाता है कि आगामी दिनांक [यहाँ तारीख लिखें] को पंचायत भवन पर एक 'ग्राम सभा की खुली बैठक' का आयोजन किया गया है।\n\nइस बैठक में गाँव के विकास कार्यों, राशन कार्ड, पेंशन, व आवास योजना के पात्र लाभार्थियों की सूची पर चर्चा की जाएगी। अतः आप सभी से अनुरोध है कि निर्धारित समय सुबह 10:00 बजे मीटिंग में अपनी गरिमामयी उपस्थिति दर्ज़ कराने का कष्ट करें।";
+            }
+            else if (type === 'encroachment') {
+                document.getElementById('i-type').value = "कार्यालय आदेश (Order)";
+                document.getElementById('i-subject').value = "सार्वजनिक मार्ग/नाली से अतिक्रमण हटाने के संबंध में अंतिम चेतावनी।";
+                document.getElementById('i-body').value = "ग्राम पंचायत संज्ञान में यह आया है कि कतिपय लोगों द्वारा गाँव के मुख्य मार्गों एवं सरकारी नालियों पर अवैध कब्ज़ा (अतिक्रमण) कर लिया गया है, जिससे जलभराव और आवागमन में गंभीर समस्या उत्पन्न हो रही है।\n\nअतः इस सार्वजनिक आदेश (Order) के माध्यम से अंतिम चेतावनी दी जाती है कि 3 दिनों के भीतर अपना अतिक्रमण स्वयं हटा लें। यदि तय समय में अतिक्रमण नहीं हटाया गया, तो ग्राम पंचायत द्वारा राजस्व विभाग/पुलिस के सहयोग से बलपूर्वक अतिक्रमण हटाया जाएगा तथा संबंधित व्यक्ति के विरुद्ध विधिक कार्यवाही व जुर्माना वसूला जाएगा।";
+            }
+            else if (type === 'swachh') {
+                document.getElementById('i-type').value = "अपील (Appeal)";
+                document.getElementById('i-subject').value = "स्वच्छ भारत मिशन (ग्रामीण) के अंतर्गत गाँव में स्वच्छता बनाए रखने की अपील।";
+                document.getElementById('i-body').value = "ग्राम पंचायत के सभी सम्मानित नागरिकों से अपील की जाती है कि कृपया अपने घर का कूड़ा सार्वजनिक मार्गों, नालियों या तालाबों में ना फेंकें। कूड़ा सदैव कूड़ा-दान (Dustbin) में ही डालें और पंचायत के सफाई कर्मचारी को दें।\n\nसड़क पर कूड़ा फेंकने, गोबर पाथने या गंदगी फैलाने वालों को चिह्नित कर 'स्वच्छ भारत मिशन' के तहत ग्राम पंचायत द्वारा आर्थिक जुर्माना लगाया जाएगा। हमारा गाँव, स्वच्छ व सुंदर गाँव बनाने में अपना सहयोग दें।";
+            }
+            else if (type === 'pension') {
+                document.getElementById('i-type').value = "सूचना (Notice)";
+                document.getElementById('i-subject').value = "वृद्धावस्था/विधवा/दिव्यांग पेंशन आवेदन व KYC कैम्प के संबंध में।";
+                document.getElementById('i-body').value = "समस्त ग्रामवासियों को सूचित किया जाता है कि दिनांक [यहाँ तारीख लिखें] को पंचायत सचिवालय पर 'पेंशन विशेष कैम्प' का आयोजन किया जा रहा है।\n\nजिन भी पात्र नागरिकों की वृद्धावस्था, विधवा या दिव्यांग पेंशन किन्ही कारणों से रुकी हुई है या उनका आधार प्रमाणीकरण (e-KYC) नहीं हुआ है, वे अपना आधार कार्ड, बैंक पासबुक और मोबाइल नंबर लेकर समय सुबह 10 बजे पंचायत भवन पर उपस्थित होकर पंचायत सहायक से अपना आधार लिंक करा लें।";
+            }
+            updatePreview();
+        }
+
+        // --- PRINT ENGINE ---
+        function downloadLetterPDF() {
+            let gpName = document.getElementById('i-gp').value;
+            if (gpName) localStorage.setItem('gpName', gpName);
+            window.print();
+        }
+    </script>
+</body>
+
+</html>

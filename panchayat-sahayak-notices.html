@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>नवीनतम आदेश और नोटिस | Panchayat Sahayak Orders</title>
+  <meta name="description" content="सभी पंचायत सहायकों के लिए नवीनतम आदेश, शासनादेश, शासनादेश PDF, वेतन अपडेट, एवं सभी जिला और राज्य स्तरीय नोटिस।">
+  <link rel="icon" type="image/png" href="images/panchayat_favicon.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body { background-color: #f8fafc; }
+
+    /* Page Hero */
+    .notices-hero {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+      padding: 25px 20px 55px 20px;
+      text-align: center;
+      color: #0f172a;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .notices-hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: -0.5px;
+      color: #0f766e;
+    }
+    .notices-hero-desc {
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: -30px auto 40px;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    /* Filter Card */
+    .filter-card {
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      display: flex;
+      gap: 16px;
+      margin-bottom: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+      border: 1px solid #e2e8f0;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 4px;
+    }
+
+    .f-search { flex: 2; min-width: 250px; position: relative; }
+    .f-search input {
+      width: 100%;
+      padding: 14px 20px 14px 45px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      outline: none;
+      transition: 0.2s;
+      box-sizing: border-box;
+      color: #0f172a;
+      background: #f8fafc;
+    }
+    .f-search input:focus { border-color: #f97316; background: #fff; box-shadow: 0 0 0 4px rgba(249,115,22,0.1); }
+    .f-search svg {
+      position: absolute;
+      left: 16px;
+      top: 38px;
+      fill: #94a3b8;
+      width: 20px;
+      height: 20px;
+    }
+
+    .f-select { flex: 1; min-width: 200px; }
+    .f-select select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e293b;
+      background: #f8fafc;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      transition: 0.2s;
+    }
+    .f-select select:focus { border-color: #f97316; background: #fff; }
+
+    /* Notices Grid */
+    .notices-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .n-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .n-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); border-color: #f97316; }
+
+    /* Level Tags — neutral professional colors */
+    .tag-state {
+      background: #eef2f7;
+      color: #0f766e;
+      border: 1px solid #c8d6e8;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .tag-dist {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .n-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px; }
+    .n-date { font-size: 12px; font-weight: 600; color: #64748b; }
+
+    /* NEW tag — green instead of red */
+    .n-tag { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #15803d; padding: 4px 8px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; white-space: nowrap; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .blink-dot { width: 8px; height: 8px; background: #16a34a; border-radius: 50%; animation: blink 1s linear infinite; }
+
+    .n-title { font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4; font-family: 'Poppins', 'Hind', sans-serif; }
+    .n-desc { font-size: 13px; color: #475569; line-height: 1.5; margin: 0 0 16px 0; flex-grow: 1; }
+
+    .n-action { display: flex; justify-content: flex-start; }
+    .btn-read {
+      background: #fff7ed;
+      color: #f97316;
+      border: 1px solid #fed7aa;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: 0.25s;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .n-card:hover .btn-read { background: #f97316; color: #fff; border-color: #f97316; box-shadow: 0 4px 12px rgba(249,115,22,0.25); }
+
+    #empty-state { text-align: center; padding: 60px 20px; color: #64748b; display: none; background: #fff; border-radius: 12px; border: 1px dashed #cbd5e1; }
+    #empty-state svg { width: 64px; height: 64px; fill: #cbd5e1; margin-bottom: 16px; }
+    #empty-state h3 { font-size: 20px; color: #0f172a; margin: 0 0 8px 0; font-weight: 700; }
+
+    @media (max-width: 1200px) {
+      .notices-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .notices-grid { grid-template-columns: repeat(2, 1fr); }
+      .filter-card { flex-direction: column; align-items: stretch; }
+      .f-select, .f-search { width: 100%; min-width: auto; }
+    }
+    @media (max-width: 600px) {
+      .notices-grid { grid-template-columns: 1fr; }
+      .notices-hero { padding: 20px 16px 45px; }
+      .notices-hero-title { font-size: 22px; }
+    }
+  </style>
+
+</head>
+
+<body>
+  <header class="nic-header">
+    <div class="nic-header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px;">
+      <a href="index.html" class="nic-logo-left" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="पंचायत सहायक पोर्टल लोगो" style="height: 52px; margin-right: 12px;">
+        <div class="nic-titles">
+          <div style="font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif;">Panchayat Sahayak Portal</div>
+          <h2 style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-top: 3px; text-transform: none; letter-spacing: normal;">Independent Informational & Tool Portal</h2>
+        </div>
+      </a>
+      <div class="header-utils" style="display: flex; gap: 18px; align-items: center;">
+        <div id="google_translate_element"></div>
+        <div class="theme-switch" onclick="document.body.classList.toggle('dark-theme')" style="cursor:pointer; display:flex; align-items:center;">
+          <button title="Toggle Dark/Light Mode" style="border:1px solid var(--border); background:var(--white); cursor:pointer; color:var(--text-main); font-weight:700; padding: 6px 12px; border-radius: 6px; font-size:12px; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; box-shadow: var(--shadow-sm); transition: var(--transition);">🌓 Night Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <!-- HOME -->
+      <div class="nav-item">
+        <span class="nav-link">होम ▾</span>
+        <div class="dropdown">
+          <a href="index.html">होम (Home)</a>
+          <a href="about.html">About Portal</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="nav-item">
+        <span class="nav-link">सेवाएँ ▾</span>
+        <div class="dropdown">
+          <a href="index.html#services">सभी सेवाएँ</a>
+          <a href="panchayat-sahayak-software-download.html">Software Drive</a>
+          <a href="panchayat-sahayak-all-portals.html">सभी वेबसाइट</a>
+          <a href="forum.html">पंचायत फोरम (Forum)</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="nav-item">
+        <span class="nav-link">आदेश ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-notices.html">सभी शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html">सभी फ़ॉर्म व PDF</a>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="nav-item">
+        <span class="nav-link">टूल्स ▾</span>
+        <div class="dropdown">
+          <a href="panchayat-sahayak-salary-calculator.html">सैलरी कैलकुलेटर</a>
+          <a href="panchayat-sahayak-csc-calculator.html">CSC शुल्क कैलकुलेटर</a>
+          <a href="panchayat-sahayak-image-tools.html">इमेज टूल्स</a>
+          <a href="panchayat-sahayak-pdf-tools.html">पीडीऍफ़ टूल्स</a>
+          <a href="panchayat-sahayak-work-register.html">कार्य रजिस्टर</a>
+          <a href="panchayat-sahayak-letter-generator.html">Auto-Letter</a>
+          <a href="panchayat-sahayak-letterhead-generator.html">Notice Pad</a>
+          <a href="panchayat-list-builder.html">List Builder</a>
+          <a href="panchayat-sahayak-village-profile.html">Village Profile</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nav-item">
+        <span class="nav-link">संपर्क ▾</span>
+        <div class="dropdown">
+          <a href="contact.html">Helpdesk & Support</a>
+          <a href="panchayat-sahayak-salary-status.html">Salary Status Check</a>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="nav-item">
+        <span class="nav-link" style="color:#facc15; font-weight:700; cursor:pointer;">Login ▾</span>
+        <div class="dropdown" style="padding: 16px; width: 260px; right: 0; left: auto; color:var(--text-main); text-align:left; max-width:90vw;">
+          <form id="globalNavLoginForm" style="display:flex; flex-direction:column; gap:10px; margin:0;" action="panchayat-sahayak-dashboard.html" method="GET">
+            <div style="font-size:13px; color:var(--text-muted); font-weight:600; margin-bottom:5px;">LOGIN</div>
+            <input type="email" id="gNavEmail" placeholder="Email Address" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <input type="password" id="gNavPass" placeholder="Password" required style="padding:8px; border:1px solid var(--border); border-radius:4px; font-size:13px; outline:none; font-family:'Poppins', sans-serif;">
+            <button type="submit" id="gNavBtn" style="background:var(--accent); color:white; border:none; padding:8px; border-radius:4px; font-weight:600; cursor:pointer; font-family:'Poppins', sans-serif;">Sign In</button>
+            <div id="gNavErr" style="color:#ef4444; font-size:12px; display:none; background:#fee2e2; padding:6px; border-radius:4px;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="notices-hero">
+    <h1 class="notices-hero-title">महत्वपूर्ण आदेश एवं सूचनाएँ</h1>
+    <p class="notices-hero-desc">राज्य एवं जिला स्तरीय पंचायत सहायक शासनादेश, वेतन अलर्ट, और प्रशिक्षण सूचनाओं को खोजें एवं सुरक्षित रूप से डाउनलोड करें।</p>
+  </section>
+
+  <main class="container">
+    <!-- Advanced Filter Board -->
+    <div class="filter-card">
+      <div class="filter-group f-search">
+        <label class="filter-label">खोजें (Search)</label>
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="n-search" placeholder="आदेश का नाम या विषय खोजें...">
+      </div>
+
+      <div class="filter-group f-select">
+        <label class="filter-label">स्तर (Level)</label>
+        <select id="n-level">
+          <option value="all">🌐 सभी (All)</option>
+          <option value="state">🏛️ राज्य स्तर (State Level)</option>
+          <option value="district">📍 जिला स्तर (District Level)</option>
+        </select>
+      </div>
+
+      <div class="filter-group f-select">
+        <label class="filter-label">श्रेणी (Category)</label>
+        <select id="n-category">
+          <option value="all">📂 सभी (All)</option>
+          <option value="urgent">🚨 अति महत्वपूर्ण (Urgent)</option>
+          <option value="salary">💰 वेतन व मानदेय (Salary)</option>
+          <option value="gov">📜 शासनादेश (Gov. Orders)</option>
+          <option value="training">💻 ट्रेनिंग (Training)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Notices Grid -->
+    <div class="notices-grid" id="n-grid">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <h3>कोई आदेश नहीं मिला</h3>
+      <p>कृपया कोई अन्य कीवर्ड या जिले का नाम डालकर खोजें।</p>
+    </div>
+  </main>
+
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+    <!-- PREMIUM FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-grid" style="max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+      <div class="footer-brand">
+        <div class="f-logo-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <img src="https://cdn-icons-png.flaticon.com/512/8145/8145028.png" alt="Logo" class="f-logo" style="height: 40px;">
+          <span class="f-title" style="font-size: 16px; font-weight: 700; color: var(--white);">Panchayat Sahayak</span>
+        </div>
+        <p class="f-desc" style="font-size: 12px; color: var(--gray-300); line-height: 1.6;">उत्तर प्रदेश के 58,000+ पंचायत सहायकों को सशक्त बनाने का प्रयास। सभी सरकारी लिंक, फॉर्म और टूल्स एक जगह।</p>
+        <div class="footer-socials" style="display: flex; gap: 8px; margin-top: 16px;">
+          <a href="https://whatsapp.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">💬</a>
+          <a href="https://t.me" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">✈️</a>
+          <a href="https://youtube.com" class="social-btn" target="_blank" style="background: rgba(255,255,255,0.06); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: var(--transition); color: var(--white); text-decoration: none;">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Quick Links</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏠 Home</a>
+          <a href="blog.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📝 Blog</a>
+          <a href="panchayat-sahayak-notices.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 शासनादेश</a>
+          <a href="panchayat-sahayak-forms-pdfs.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Forms</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Tools</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="panchayat-sahayak-salary-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">💰 Salary Calc</a>
+          <a href="panchayat-sahayak-csc-calculator.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🏬 CSC Calc</a>
+          <a href="panchayat-sahayak-image-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🖼️ Image Tools</a>
+          <a href="panchayat-sahayak-pdf-tools.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📄 PDF Tools</a>
+          <a href="panchayat-sahayak-work-register.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Work Register</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 style="font-size: 11px; font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Legal & Trust</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="about.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">ℹ️ About Us</a>
+          <a href="editorial-policy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">📋 Editorial Policy</a>
+          <a href="privacy.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">🔒 Privacy Policy</a>
+          <a href="disclaimer.html" style="color: var(--gray-300); font-size: 13px; font-weight: 600; text-decoration: none;">⚠️ Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: var(--maxw); margin: 20px auto 0 auto;">
+      <p style="font-size: 12px; color: var(--gray-500); margin:0;">© 2026 <strong>gpsahayak.in</strong>. All Rights Reserved.</p>
+      <p style="font-size: 11px; margin:0; color: var(--gray-500);">Independent Educational Portal | Not affiliated with Govt. of UP</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyACe8pL0vqD_2NqzhTNOi0VoTyJaYVTkbA",
+      authDomain: "panchayat-sahahayk-portal-up.firebaseapp.com",
+      projectId: "panchayat-sahahayk-portal-up",
+      storageBucket: "panchayat-sahahayk-portal-up.firebasestorage.app",
+      messagingSenderId: "709368114724",
+      appId: "1:709368114724:web:208c828040f499060e72b1",
+      measurementId: "G-5K1E4LZV20"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
+    let noticesData = [];
+
+    db.collection("notices").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+      noticesData = [];
+      snapshot.forEach(doc => {
+        noticesData.push({ id: doc.id, ...doc.data() });
+      });
+      renderNotices();
+    });
+
+    const nGrid = document.getElementById('n-grid');
+    const nSearch = document.getElementById('n-search');
+    const nCategory = document.getElementById('n-category');
+    const nLevel = document.getElementById('n-level');
+    const emptyState = document.getElementById('empty-state');
+
+    nLevel.addEventListener('change', () => {
+       if(nLevel.value === 'district') {
+           nSearch.placeholder = "जिले का नाम (उदा. लखनऊ, कानपुर) या विषय डालें...";
+       } else {
+           nSearch.placeholder = "आदेश का नाम या विषय खोजें...";
+       }
+       renderNotices();
+    });
+
+    function renderNotices() {
+      const q = nSearch.value.toLowerCase().trim();
+      const catVal = nCategory.value;
+      const lvlVal = nLevel.value;
+
+      nGrid.innerHTML = '';
+
+      const filtered = noticesData.filter(item => {
+        const matchText = item.title.toLowerCase().includes(q) ||
+                          item.desc.toLowerCase().includes(q) ||
+                          (item.dist && item.dist.toLowerCase().includes(q));
+        const matchCat = catVal === 'all' || item.cat === catVal;
+        const matchLvl = lvlVal === 'all' || item.level === lvlVal;
+        return matchText && matchCat && matchLvl;
+      });
+
+      if(filtered.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      } else {
+        emptyState.style.display = 'none';
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `n-card`;
+
+        const safeUrl = `download.html?file=${encodeURIComponent(item.fileUrl)}&title=${encodeURIComponent(item.title)}&type=pdf`;
+
+        let rightTag = '';
+        if(item.isNew) {
+           rightTag = `<div class="n-tag"><div class="blink-dot"></div> NEW</div>`;
+        } else {
+           let icon = "📄";
+           if(item.cat === 'urgent') icon = "🚨";
+           else if(item.cat === 'salary') icon = "💰";
+           else if(item.cat === 'training') icon = "💻";
+           rightTag = `<div style="font-size:16px;">${icon}</div>`;
+        }
+
+        let levelBadge = '';
+        if(item.level === 'state') {
+           levelBadge = `<div class="tag-state">🏛️ राज्य स्तर</div>`;
+        } else {
+           levelBadge = `<div class="tag-dist">📍 जिला: ${item.dist || 'UP'}</div>`;
+        }
+
+        card.innerHTML = `
+          <div class="n-meta">
+            ${levelBadge}
+            ${rightTag}
+          </div>
+          <h3 class="n-title">${item.title}</h3>
+          <p class="n-desc">${item.desc}</p>
+          <div style="margin-top:auto;" class="n-action">
+            <a href="${safeUrl}" class="btn-read">
+               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+               <span>PDF डाउनलोड करें</span>
+            </a>
+          </div>
+        `;
+        nGrid.appendChild(card);
+      });
+    }
+
+    nSearch.addEventListener('input', renderNotices);
+    nCategory.addEventListener('change', renderNotices);
+    renderNotices();
+  </script>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'hi', includedLanguages: 'en,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="auth-nav.js" defer></script>
+</body>
+</html>

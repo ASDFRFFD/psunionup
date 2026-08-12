@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Panchayat Sahayak Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Quill Editor CSS & JS -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <!-- jsPDF for Certificate Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <style>
+    body { margin: 0; font-family: 'Poppins', sans-serif; background: #f8fafc; color: #0f172a; display: flex; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: #ffffff; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+    .s-header { padding: 24px; border-bottom: 1px solid #e2e8f0; text-align: center; }
+    .s-header h2 { font-size: 18px; margin: 0; color: #1e293b; font-weight: 700; }
+    .s-header p { font-size: 12px; color: #64748b; margin: 4px 0 0 0; }
+    
+    .s-menu { list-style: none; padding: 20px 0; margin: 0; flex-grow: 1; }
+    .s-menu li { padding: 12px 24px; color: #475569; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s; border-right: 3px solid transparent;}
+    .s-menu li:hover { background: #f1f5f9; color: #2563eb; }
+    .s-menu li.active { background: #eff6ff; color: #2563eb; border-right: 3px solid #2563eb; }
+    
+    .s-footer { padding: 20px; border-top: 1px solid #e2e8f0; }
+    .btn-logout { width: 100%; padding: 10px; background: #fee2e2; color: #ef4444; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    .btn-logout:hover { background: #fca5a5; color: #b91c1c; }
+
+    /* Main Content */
+    .main-area { flex-grow: 1; overflow-y: auto; padding: 40px; }
+    .panel-section { display: none; }
+    .panel-section.active { display: block; animation: fadeIn 0.3s; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .top-bar h1 { font-size: 28px; margin: 0; }
+
+    /* Forms & Cards */
+    .admin-card { background: #fff; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);}
+    .admin-card h3 { margin: 0 0 20px 0; font-size: 18px; color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; }
+    
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .f-group { display: flex; flex-direction: column; gap: 8px; }
+    .f-group.full { grid-column: 1 / -1; }
+    label { font-size: 13px; font-weight: 700; color: #475569; }
+    input, select, textarea { padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Poppins', sans-serif; outline: none;}
+    input:focus, select:focus, textarea:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.1); }
+    
+    .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+    .checkbox-group input { width: 20px; height: 20px; }
+    
+    .btn-submit { background: #2563eb; color: #fff; border: none; padding: 14px 24px; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; margin-top: 20px; transition: 0.2s;}
+    .btn-submit:hover { background: #1d4ed8; transform: translateY(-2px);}
+    .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; transform: none;}
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 14px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+    th { background: #f8fafc; font-weight: 600; color: #64748b; }
+    td { color: #1e293b; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .bg-green { background: #dcfce7; color: #166534; }
+    .bg-red { background: #fee2e2; color: #991b1b; }
+    .bg-blue { background: #dbeafe; color: #1e40af; }
+    .bg-gray { background: #f1f5f9; color: #475569; }
+    
+    .btn-del { background: #fee2e2; color: #ef4444; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; transition: 0.2s; }
+    .btn-del:hover { background: #ef4444; color: #fff; }
+
+    /* Loader */
+    #loader { display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; background: #fff; z-index: 99; flex-direction: column;}
+    .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3b82f6; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 16px;}
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Firebase v8 SDK Setup -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+
+  <!-- Full Page Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <div style="font-weight:600; color:#475569;">Verifying Admin Access...</div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="s-header">
+      <div style="font-size:36px; margin-bottom:8px;">🛡️</div>
+      <h2>Panchayat Admin</h2>
+      <p id="admin-email-display" style="font-size:11px; color:#2563eb; background:#eff6ff; padding:4px 10px; border-radius:20px; margin-top:6px; font-weight:600;">Loading...</p>
+    </div>
+    <ul class="s-menu">
+      <li id="tab-notices" class="active" onclick="switchTab('notices')">📝 Orders & Notices</li>
+      <li id="tab-forms" onclick="switchTab('forms')">📄 PDF Forms</li>
+      <li id="tab-drivers" onclick="switchTab('drivers')">💻 Software & Drivers</li>
+      <li id="tab-blogs" onclick="switchTab('blogs')">📚 Manage Blogs</li>
+      <li id="tab-ticker" onclick="switchTab('ticker')">📢 News Ticker (पट्टी)</li>
+      <li id="tab-members" onclick="switchTab('members')">👥 Union Members</li>
+    </ul>
+    <div class="s-footer">
+      <a href="index.html" target="_blank" style="display:block; width:100%; padding:11px; background:#dcfce7; color:#16a34a; border-radius:8px; text-align:center; font-weight:700; font-size:14px; text-decoration:none; margin-bottom:10px; transition:0.2s;" onmouseover="this.style.background='#bbf7d0'" onmouseout="this.style.background='#dcfce7'">🌐 Website देखें</a>
+      <button class="btn-logout" onclick="logout()">🔒 Secure Log Out</button>
+    </div>
+  </aside>
+
+  <main class="main-area">
+
+    <!-- ================= ORDERS & NOTICES PANEL ================= -->
+    <section id="panel-notices" class="panel-section active">
+      <div class="top-bar">
+        <h1>Orders & Notices Database</h1>
+        <div class="badge bg-blue" id="count-notices">Loading...</div>
+      </div>
+
+      <div class="admin-card">
+        <h3>➕ Upload New Order / Notice</h3>
+        <form id="noticeForm">
+          <div class="form-grid">
+            <div class="f-group full">
+              <label>आदेश का शीर्षक (Order Title)</label>
+              <input type="text" id="n_title" required placeholder="उदा: पंचायत सहायकों की उपस्थिति निर्देश">
+            </div>
+            <div class="f-group full">
+              <label>संक्षिप्त जानकारी (Description)</label>
+              <textarea id="n_desc" rows="2" required placeholder="आदेश के बारे में 2 लाइन..."></textarea>
+            </div>
+            <div class="f-group">
+              <label>दिनांक (Display Date)</label>
+              <input type="text" id="n_date" required placeholder="07 Dec 2025" value="Update Date Here">
+            </div>
+            <div class="f-group">
+              <label>श्रेणी (Category)</label>
+              <select id="n_cat" required>
+                <option value="urgent">अति महत्वपूर्ण (Urgent)</option>
+                <option value="salary">वेतन व मानदेय (Salary)</option>
+                <option value="gov">शासनादेश (Gov. Orders)</option>
+                <option value="training">ट्रेनिंग (Training)</option>
+              </select>
+            </div>
+            <div class="f-group">
+              <label>स्तर (Level)</label>
+              <select id="n_level" required onchange="toggleDist()">
+                <option value="state">राज्य स्तर (State Level)</option>
+                <option value="district">जिला स्तर (District Level)</option>
+              </select>
+            </div>
+            <div class="f-group">
+              <label>जिला का नाम (If District Level)</label>
+              <input type="text" id="n_dist" placeholder="उदा: Lucknow, Varanasi" disabled>
+            </div>
+            <div class="f-group full">
+              <label>Google Drive File URL</label>
+              <input type="url" id="n_file" required placeholder="https://drive.google.com/="...">
+            </div>
+            <div class="f-group full" style="border-top:1px solid #e2e8f0; padding-top:15px;">
+              <div class="checkbox-group">
+                <input type="checkbox" id="n_new" checked>
+                <label for="n_new" style="color:#ef4444; font-size:15px;">Enable "NEW" Blinking Alert</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="btn-submit-notices">Publish Notice</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>📂 Currently Published Orders</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Title</th><th>Category</th><th>Level</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-notices"><tr><td colspan="5" style="text-align:center;">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= PDF FORMS PANEL ================= -->
+    <section id="panel-forms" class="panel-section">
+      <div class="top-bar">
+        <h1>PDF Forms Repository</h1>
+        <div class="badge bg-green" id="count-forms">Loading...</div>
+      </div>
+
+      <div class="admin-card">
+        <h3>➕ Upload New PDF Form</h3>
+        <form id="formForm">
+          <div class="form-grid">
+            <div class="f-group full">
+              <label>फ़ॉर्म का नाम (Hindi Title)</label>
+              <input type="text" id="f_title_hi" required placeholder="उदा: पंचायत भवन सामग्री क्रय समिति फॉर्म">
+            </div>
+            <div class="f-group full">
+              <label>Form Name (English Title)</label>
+              <input type="text" id="f_title_en" required placeholder="उदा: Panchayat Bhawan Material Form">
+            </div>
+            <div class="f-group">
+              <label>Icon</label>
+              <select id="f_icon">
+                <option value="📄">📄 Standard Document</option>
+                <option value="📋">📋 Application Form</option>
+                <option value="📊">📊 Excel Data / Report</option>
+                <option value="📝">📝 Contract/Agreement</option>
+              </select>
+            </div>
+            <div class="f-group">
+              <label>Category</label>
+              <select id="f_cat">
+                <option value="all">All / General Form</option>
+                <option value="yojana">Yojana (Govt Scheme)</option>
+                <option value="certificate">Certificate Application</option>
+                <option value="pension">Pension Form</option>
+              </select>
+            </div>
+            <div class="f-group full">
+              <label>Google Drive Form URL</label>
+              <input type="url" id="f_file" required placeholder="https://drive.google.com/="...">
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="btn-submit-forms">Publish Form</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>📄 Currently Available Forms</h3>
+        <table>
+          <thead>
+            <tr>
+              <th width="50">Icon</th><th>Hindi Title</th><th>English Title</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-forms"><tr><td colspan="4" style="text-align:center;">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SOFTWARE DRIVERS PANEL ================= -->
+    <section id="panel-drivers" class="panel-section">
+      <div class="top-bar">
+        <h1>Software & Drivers</h1>
+        <div class="badge bg-red" id="count-drivers">Loading...</div>
+      </div>
+
+      <div class="admin-card">
+        <h3>➕ Add Utility/Software Link</h3>
+        <form id="driverForm">
+          <div class="form-grid">
+            <div class="f-group">
+              <label>Software Name</label>
+              <input type="text" id="d_name" required placeholder="उदा: CSC Driver / Mantra Setup">
+            </div>
+            <div class="f-group">
+              <label>Icon URL (Optional, from Flaticon)</label>
+              <input type="url" id="d_icon" placeholder="https://cdn-icons-png... (Keep empty for default)">
+            </div>
+            <div class="f-group full">
+              <label>Direct Download Link (Drive or Official Site)</label>
+              <input type="url" id="d_file" required placeholder="https://...">
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="btn-submit-drivers">Publish Software</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>💻 Currently Available Software</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Software Name</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-drivers"><tr><td colspan="2" style="text-align:center;">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= MANAGE BLOGS PANEL ================= -->
+    <section id="panel-blogs" class="panel-section">
+      <div class="top-bar">
+        <h1>Manage Blog Articles</h1>
+        <div class="badge bg-blue" id="count-blogs">Loading...</div>
+      </div>
+
+      <div class="admin-card">
+        <h3>➕ Publish New Blog Link</h3>
+        <form id="blogForm">
+          <div class="form-grid">
+            <div class="f-group full">
+               <label>Blog Title</label>
+               <input type="text" id="b_title" required placeholder="उदा: Panchayat Sahayak Salary 2026">
+            </div>
+            <div class="f-group full">
+               <label>Short Description (Meta)</label>
+               <textarea id="b_desc" rows="2" required placeholder="Blog summary for 2 lines..."></textarea>
+            </div>
+            <div class="f-group">
+               <label>Category (Type or Select)</label>
+               <input type="text" id="b_cat" list="cat_list" required placeholder="Type new category..." />
+               <datalist id="cat_list">
+                 <option value="Salary Guide">
+                 <option value="e-Gram Swaraj Guide">
+                 <option value="Job Update">
+                 <option value="General News">
+               </datalist>
+            </div>
+            <div class="f-group">
+               <label>Read Time (Min)</label>
+               <input type="number" id="b_time" required placeholder="5">
+            </div>
+            <div class="f-group">
+               <label>Publish Date</label>
+               <input type="text" id="b_date" required placeholder="28 March 2026">
+            </div>
+            <div class="f-group">
+               <label>Thumbnail / Icon URL (Optional)</label>
+               <input type="url" id="b_img" placeholder="https://cdn-icons-png.flaticon.com/...">
+            </div>
+            <div class="f-group full" style="border-top:1px solid #e2e8f0; padding-top:15px; margin-bottom: 5px;">
+               <div class="checkbox-group">
+                 <input type="checkbox" id="b_popular">
+                 <label for="b_popular" style="color:#2563eb; font-size:15px;">⭐ Mark as Popular Post (लोकप्रिय पोस्ट में दिखाएँ)</label>
+               </div>
+            </div>
+            <div class="f-group full">
+               <label>Blog Content (Write directly here)</label>
+               <div id="editor-container" style="height: 300px; background: white; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;"></div>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="btn-submit-blogs">Publish Blog Article</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>📚 Currently Published Blogs</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Title</th><th>Category</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-blogs"><tr><td colspan="4" style="text-align:center;">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= NEWS TICKER PANEL ================= -->
+    <section id="panel-ticker" class="panel-section">
+      <div class="top-bar">
+        <h1>📢 News Ticker / समाचार पट्टी</h1>
+        <div class="badge bg-blue" id="count-ticker">Loading...</div>
+      </div>
+
+      <div class="admin-card" style="border-left: 4px solid #f59e0b;">
+        <h3>ℹ️ News Ticker क्या है?</h3>
+        <p style="margin:0; font-size:14px; color:#475569; line-height:1.7;">यह वेबसाइट के ऊपर चलने वाली <strong style="color:#d97706;">स्क्रोलिंग न्यूज़ पट्टी</strong> है। आप यहाँ से नई सूचनाएँ जोड़ और हटा सकते हैं — Live Website पर तुरंत अपडेट होगा।</p>
+      </div>
+
+      <div class="admin-card">
+        <h3>➕ Add New Ticker Message</h3>
+        <form id="tickerForm">
+          <div class="form-grid">
+            <div class="f-group full">
+              <label>📝 सूचना का Text (Ticker Message)</label>
+              <input type="text" id="t_text" required placeholder="उदा: पंचायत सहायकों की उपस्थिति संबंधी नया आदेश जारी — 01/04/2026">
+            </div>
+            <div class="f-group">
+              <label>🔗 Link URL (Optional)</label>
+              <input type="url" id="t_url" placeholder="https://... (खाली छोड़ें अगर link नहीं है)">
+            </div>
+            <div class="f-group">
+              <label>🗓️ तारीख (Display Date)</label>
+              <input type="text" id="t_date" placeholder="01 Apr 2026" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="btn-submit-ticker">📢 Publish to Ticker</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>📋 Active Ticker Messages (Live on Website)</h3>
+        <p style="font-size:12px; color:#64748b; margin-top:0;">नीचे दिए गए सभी messages website की news पट्टी में scroll होते हैं।</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Message</th><th>Link</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-ticker"><tr><td colspan="4" style="text-align:center;">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= UNION MEMBERS PANEL ================= -->
+    <section id="panel-members" class="panel-section">
+      <div class="top-bar">
+        <h1>👥 Union Members Registrations</h1>
+        <div class="badge bg-green" id="count-members">Loading...</div>
+      </div>
+
+      <div class="admin-card">
+        <h3>📋 All Registered Members</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Photo</th><th>Name & ID</th><th>Location & Mobile</th><th>Status</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-members"><tr><td colspan="5" style="text-align:center;">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Firebase Setup
+    const firebaseConfig = {
+      apiKey: "AIzaSyACe8pL0vqD_2NqzhTNOi0VoTyJaYVTkbA",
+      authDomain: "panchayat-sahahayk-portal-up.firebaseapp.com",
+      projectId: "panchayat-sahahayk-portal-up",
+      storageBucket: "panchayat-sahahayk-portal-up.firebasestorage.app",
+      messagingSenderId: "709368114724",
+      appId: "1:709368114724:web:208c828040f499060e72b1",
+      measurementId: "G-5K1E4LZV20"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Set Default Date for Notices
+    const d = new Date();
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    document.getElementById('n_date').value = `${String(d.getDate()).padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+    // Auth Guard
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "admin-login.html";
+      } else {
+        document.getElementById('loader').style.display = "none";
+        // Show logged-in admin email in sidebar
+        const emailEl = document.getElementById('admin-email-display');
+        if (emailEl) emailEl.innerText = user.email;
+        // Initialize fetch for all collections
+        fetchCollection("notices", "table-notices", "count-notices", renderNoticeRow);
+        fetchCollection("forms", "table-forms", "count-forms", renderFormRow);
+        fetchCollection("drivers", "table-drivers", "count-drivers", renderDriverRow);
+        fetchCollection("blogs", "table-blogs", "count-blogs", renderBlogRow);
+        fetchCollection("ticker", "table-ticker", "count-ticker", renderTickerRow);
+        fetchCollection("members", "table-members", "count-members", renderMemberRow);
+      }
+    });
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = "admin-login.html";
+      });
+    }
+
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.s-menu li').forEach(li => li.classList.remove('active'));
+      document.querySelectorAll('.panel-section').forEach(sec => sec.classList.remove('active'));
+      
+      document.getElementById('tab-' + tabId).classList.add('active');
+      document.getElementById('panel-' + tabId).classList.add('active');
+    }
+
+    // Toggle District Input in Notices
+    function toggleDist() {
+      const lvl = document.getElementById('n_level').value;
+      const distInput = document.getElementById('n_dist');
+      if(lvl === 'district') {
+        distInput.disabled = false;
+        distInput.required = true;
+      } else {
+        distInput.disabled = true;
+        distInput.required = false;
+        distInput.value = "";
+      }
+    }
+
+    // Generic Add to Firestore functionality
+    async function submitToFirestore(collectionName, formId, btnId, dataObj, resetCallback) {
+      const btn = document.getElementById(btnId);
+      btn.innerText = "Publishing...";
+      btn.disabled = true;
+      try {
+        await db.collection(collectionName).add({
+             ...dataObj,
+             createdAt: firebase.firestore.FieldValue.serverTimestamp() // Auto timestamp
+        });
+        alert("Success! Automatically published to website.");
+        document.getElementById(formId).reset();
+        if(resetCallback) resetCallback();
+      } catch(error) {
+        alert("Error Publishing. Did you set Firestore Rules to Test Mode? Details: " + error.message);
+      }
+      btn.innerText = "Publish Entry";
+      btn.disabled = false;
+    }
+
+    // ================= ADD FORMS LISTENERS =================
+    
+    // Add Notice
+    document.getElementById('noticeForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitToFirestore('notices', 'noticeForm', 'btn-submit-notices', {
+        title: document.getElementById('n_title').value,
+        desc: document.getElementById('n_desc').value,
+        date: document.getElementById('n_date').value,
+        cat: document.getElementById('n_cat').value,
+        level: document.getElementById('n_level').value,
+        dist: document.getElementById('n_dist').value,
+        fileUrl: document.getElementById('n_file').value,
+        isNew: document.getElementById('n_new').checked
+      }, () => {
+        document.getElementById('n_date').value = `${String(d.getDate()).padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        toggleDist();
+      });
+    });
+
+    // Add Form
+    document.getElementById('formForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitToFirestore('forms', 'formForm', 'btn-submit-forms', {
+        titleHi: document.getElementById('f_title_hi').value,
+        titleEn: document.getElementById('f_title_en').value,
+        icon: document.getElementById('f_icon').value,
+        category: document.getElementById('f_cat').value,
+        url: document.getElementById('f_file').value
+      }, null);
+    });
+
+    // Add Driver
+    document.getElementById('driverForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitToFirestore('drivers', 'driverForm', 'btn-submit-drivers', {
+        name: document.getElementById('d_name').value,
+        iconUrl: document.getElementById('d_icon').value || "https://cdn-icons-png.flaticon.com/512/906/906343.png",
+        fileUrl: document.getElementById('d_file').value
+      }, null);
+    });
+
+    // Add Ticker
+    const tickerDateInput = document.getElementById('t_date');
+    tickerDateInput.value = `${String(d.getDate()).padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+    document.getElementById('tickerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit-ticker');
+      btn.innerText = "Publishing...";
+      btn.disabled = true;
+      db.collection('ticker').add({
+        text: document.getElementById('t_text').value.trim(),
+        url: document.getElementById('t_url').value.trim(),
+        date: document.getElementById('t_date').value.trim(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        alert("✅ Ticker message published! It will appear on the website immediately.");
+        document.getElementById('tickerForm').reset();
+        tickerDateInput.value = `${String(d.getDate()).padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+      }).catch(err => {
+        alert("Error: " + err.message);
+      }).finally(() => {
+        btn.innerText = "📢 Publish to Ticker";
+        btn.disabled = false;
+      });
+    });
+
+    // Add Blog
+    document.getElementById('blogForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitToFirestore('blogs', 'blogForm', 'btn-submit-blogs', {
+        title: document.getElementById('b_title').value,
+        desc: document.getElementById('b_desc').value,
+        category: document.getElementById('b_cat').value.trim(),
+        readTime: document.getElementById('b_time').value,
+        date: document.getElementById('b_date').value,
+        imgUrl: document.getElementById('b_img').value || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+        isPopular: document.getElementById('b_popular').checked,
+        content: quill.root.innerHTML
+      }, () => {
+        document.getElementById('b_date').value = `${String(d.getDate()).padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        quill.root.innerHTML = '';
+      });
+    });
+
+
+    // ================= DATA FETCHING LISENTERS =================
+
+    function fetchCollection(collectionName, tableId, countId, renderHtmlCallback) {
+      db.collection(collectionName).orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+        const tbody = document.getElementById(tableId);
+        tbody.innerHTML = "";
+        document.getElementById(countId).innerText = `Total: ${snapshot.docs.length}`;
+
+        if(snapshot.empty) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Database is empty. Add a new record above.</td></tr>`;
+          return;
+        }
+
+        snapshot.forEach((doc) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = renderHtmlCallback(doc.data(), doc.id, collectionName);
+          tbody.appendChild(tr);
+        });
+      }, (err) => {
+         console.error(err);
+         document.getElementById(tableId).innerHTML = `<tr><td colspan="6" style="text-align:center; color:red;"><b>Error loading data:</b> Check Firebase Firestore Rules. Error: ${err.message}</td></tr>`;
+      });
+    }
+
+    async function deleteRecord(collectionName, docId) {
+      if(confirm(`Are you sure you want to PERMANENTLY delete this record? It will vanish from the website immediately.`)) {
+        await db.collection(collectionName).doc(docId).delete();
+      }
+    }
+
+    // Render Logic for specific tables
+    function renderNoticeRow(data, id, col) {
+      let levelStr = data.level === 'state' ? '<span class="badge bg-blue">STATE</span>' : `<span class="badge bg-green">DIST: ${data.dist}</span>`;
+      return `
+        <td>${data.date}</td>
+        <td style="font-weight:600;">${data.title} ${data.isNew ? '<span class="badge bg-red">NEW</span>' : ''}</td>
+        <td>${data.cat.toUpperCase()}</td>
+        <td>${levelStr}</td>
+        <td><button class="btn-del" onclick="deleteRecord('${col}', '${id}')">Delete</button></td>
+      `;
+    }
+
+    function renderFormRow(data, id, col) {
+      return `
+        <td style="font-size:24px;">${data.icon}</td>
+        <td style="font-weight:600;">${data.title_hi}</td>
+        <td style="color:#64748b;">${data.title_en}</td>
+        <td><button class="btn-del" onclick="deleteRecord('${col}', '${id}')">Delete</button></td>
+      `;
+    }
+
+    function renderDriverRow(data, id, col) {
+       return `
+        <td style="font-weight:600;"><img src="${data.iconUrl}" height="20" style="vertical-align:middle; margin-right:8px;"> ${data.name}</td>
+        <td><button class="btn-del" onclick="deleteRecord('${col}', '${id}')">Delete</button></td>
+      `;
+    }
+
+    function renderTickerRow(data, id, col) {
+      const linkCell = data.url ? `<a href="${data.url}" target="_blank" style="color:#2563eb; font-size:12px;">Link ↗</a>` : `<span style="color:#94a3b8; font-size:12px;">No Link</span>`;
+      return `
+        <td style="font-size:12px; font-weight:600; color:#64748b; white-space:nowrap;">${data.date || '-'}</td>
+        <td style="font-weight:600; font-size:13px;">${data.text}</td>
+        <td>${linkCell}</td>
+        <td><button class="btn-del" onclick="deleteRecord('${col}', '${id}')">Delete</button></td>
+      `;
+    }
+
+    function renderBlogRow(data, id, col) {
+       const link = data.content ? `blog-post.html?id=${id}` : (data.pageUrl || `blog-post.html?id=${id}`);
+       return `
+        <td style="font-size:12px; font-weight:600; color:#64748b;">${data.date}</td>
+        <td style="font-weight:700;"><a href="${link}" target="_blank" style="color:#1e40af; text-decoration:none;">${data.title}</a><br><span style="font-size:11px; color:#475569; font-weight:500;">${data.desc}</span></td>
+        <td><span class="badge bg-blue">${data.category}</span></td>
+        <td><button class="btn-del" onclick="deleteRecord('${col}', '${id}')">Delete</button></td>
+      `;
+    }
+
+    function renderMemberRow(data, id, col) {
+      let statusBadge = '';
+      if(data.status === 'Approved') statusBadge = '<span class="badge bg-green">Approved</span>';
+      else if(data.status === 'Rejected') statusBadge = '<span class="badge bg-red">Rejected</span>';
+      else statusBadge = '<span class="badge bg-gray">Pending</span>';
+
+      let actionHtml = '';
+      if(data.status === 'Pending') {
+        actionHtml = `<button class="btn-submit" style="padding:4px 8px; font-size:12px; margin-top:0;" onclick="approveMember('${id}', '${data.name}', '${data.regId}')">Approve</button>
+                      <button class="btn-del" style="margin-left:5px;" onclick="rejectMember('${id}')">Reject</button>`;
+      } else if (data.status === 'Approved') {
+         actionHtml = `<button class="btn-submit" style="padding:4px 8px; font-size:12px; background:#16a34a; margin-top:0;" onclick="generateCertificate('${data.name}', '${data.regId}')">📄 Certificate</button>`;
+      }
+
+      return `
+        <td><img src="${data.photoUrl}" style="width:40px; height:50px; object-fit:cover; border-radius:4px;"></td>
+        <td><strong>${data.name}</strong><br><span style="font-size:11px; color:#64748b;">ID: ${data.regId}</span></td>
+        <td>${data.location}<br><span style="font-size:11px; color:#64748b;">Mob: ${data.mobile}</span></td>
+        <td>${statusBadge}</td>
+        <td>${actionHtml}</td>
+      `;
+    }
+
+    async function approveMember(docId, name, regId) {
+       if(confirm('Approve this member?')) {
+          await db.collection('members').doc(docId).update({ status: 'Approved' });
+          alert('Approved Successfully!');
+          generateCertificate(name, regId);
+       }
+    }
+
+    async function rejectMember(docId) {
+       if(confirm('Reject this member?')) {
+          await db.collection('members').doc(docId).update({ status: 'Rejected' });
+       }
+    }
+
+    function generateCertificate(name, regId) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('landscape');
+        
+        doc.rect(10, 10, 277, 190);
+        doc.rect(12, 12, 273, 186);
+
+        doc.setFontSize(30);
+        doc.setTextColor(0, 51, 102);
+        doc.text("Panchayat Sahayak Union", 148, 40, null, null, "center");
+        
+        doc.setFontSize(20);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Membership Certificate", 148, 60, null, null, "center");
+        
+        doc.setFontSize(16);
+        doc.text("This is to certify that", 148, 90, null, null, "center");
+        
+        doc.setFontSize(24);
+        doc.setTextColor(204, 0, 0);
+        doc.text(name, 148, 110, null, null, "center");
+        
+        doc.setFontSize(16);
+        doc.setTextColor(0, 0, 0);
+        doc.text("is a registered member of the Union with Registration ID: " + regId, 148, 130, null, null, "center");
+        
+        const d = new Date();
+        const dateStr = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear();
+        doc.text("Date of Issue: " + dateStr, 50, 170);
+        doc.text("Authorized Signatory", 220, 170);
+        
+        doc.save("Certificate_" + regId + ".pdf");
+    }
+
+    // Initialize Quill Editor
+    var quill = new Quill('#editor-container', {
+      theme: 'snow',
+      placeholder: 'Write your blog post here...',
+      modules: {
+        toolbar: [
+          [{ 'header': [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link', 'image', 'video'],
+          [{ 'color': [] }, { 'background': [] }],
+          ['clean']
+        ]
+      }
+    });
+
+  </script>
+</body>
+</html>

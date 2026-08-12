@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Login | Panchayat Sahayak</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background: #f8fafc;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .login-wrap {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+    }
+    .login-container {
+      background: #ffffff;
+      padding: 44px 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .logo {
+      font-size: 52px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    h2 {
+      margin: 0 0 6px 0;
+      color: #0f172a;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    p {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .input-group {
+      position: relative;
+    }
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #94a3b8;
+    }
+    input {
+      width: 100%;
+      padding: 13px 14px 13px 42px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition: 0.2s;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    input:focus {
+      border-color: #3b82f6;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+    }
+    .btn-login {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      letter-spacing: 0.3px;
+      margin-top: 4px;
+    }
+    .btn-login:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(37,99,235,0.35); }
+    .btn-login:disabled { background: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    #error-msg {
+      color: #ef4444;
+      font-size: 12.5px;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #fee2e2;
+      border-radius: 8px;
+      display: none;
+      text-align: left;
+    }
+    .back-link {
+      display: block;
+      margin-top: 22px;
+      color: #94a3b8;
+      font-size: 13px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .back-link:hover { color: #60a5fa; }
+    .security-note {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 11.5px;
+      color: #94a3b8;
+    }
+  </style>
+
+  <!-- Firebase v8 SDK Setup -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+
+  <div class="login-wrap">
+    <div class="login-container">
+      <span class="logo">👋</span>
+      <h2>Portal Login</h2>
+      <p>Sign in to access your portal account</p>
+      
+      <form id="loginForm">
+        <div class="input-group">
+          <span class="input-icon">📧</span>
+          <input type="email" id="email" placeholder="Email Address" required autocomplete="username">
+        </div>
+        <div class="input-group">
+          <span class="input-icon">🔑</span>
+          <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+      </form>
+      
+      <div id="error-msg"></div>
+
+      <a href="index.html" class="back-link">← वापस मुख्य वेबसाइट पर जाएं</a>
+
+      <div class="security-note">
+        Protected & Secured Portal.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyACe8pL0vqD_2NqzhTNOi0VoTyJaYVTkbA",
+      authDomain: "panchayat-sahahayk-portal-up.firebaseapp.com",
+      projectId: "panchayat-sahahayk-portal-up",
+      storageBucket: "panchayat-sahahayk-portal-up.firebasestorage.app",
+      messagingSenderId: "709368114724",
+      appId: "1:709368114724:web:208c828040f499060e72b1",
+      measurementId: "G-5K1E4LZV20"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const auth = firebase.auth();
+
+    // Check if already logged in → auto redirect to dashboard
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        window.location.href = "admin-dashboard.html";
+      }
+    });
+
+    const emailInput = document.getElementById('email');
+    const passInput = document.getElementById('password');
+    const loginBtn = document.getElementById('loginBtn');
+    const err = document.getElementById('error-msg');
+
+    // LOGIN ONLY — Registration removed for security
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = emailInput.value;
+      const pass = passInput.value;
+      
+      loginBtn.innerText = "⏳ Verifying...";
+      loginBtn.disabled = true;
+      err.style.display = "none";
+
+      auth.signInWithEmailAndPassword(email, pass)
+        .then(() => {
+          loginBtn.innerText = "✅ Access Granted!";
+          window.location.href = "admin-dashboard.html";
+        })
+        .catch((error) => {
+          let msg = "❌ गलत Email या Password है।";
+          if (error.code === 'auth/user-not-found') msg = "❌ यह Email registered नहीं है।";
+          if (error.code === 'auth/wrong-password') msg = "❌ Password गलत है। दोबारा try करें।";
+          if (error.code === 'auth/too-many-requests') msg = "⚠️ बहुत ज़्यादा attempts! थोड़ी देर बाद try करें।";
+          err.innerText = msg;
+          err.style.display = "block";
+          loginBtn.innerText = "Sign In";
+          loginBtn.disabled = false;
+        });
+    });
+  </script>
+</body>
+</html>

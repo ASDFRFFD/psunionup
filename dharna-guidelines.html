@@ -32,9 +32,9 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css?v=cjp_theme_7">
-    <link rel="stylesheet" href="dharna-guidelines.css?v=notice_mod_9">
-    <link rel="stylesheet" href="dharna-premium.css?v=notice_mod_9">
-    <link rel="stylesheet" href="dharna-mobile.css?v=notice_mod_9">
+    <link rel="stylesheet" href="dharna-guidelines.css?v=video_v12">
+    <link rel="stylesheet" href="dharna-premium.css?v=video_v12">
+    <link rel="stylesheet" href="dharna-mobile.css?v=video_v12">
     
     <!-- Lottie Player for Animated Flag Background -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
@@ -210,12 +210,46 @@
                 </div>
             </div>
 
-            <!-- Countdown Timer & Poster Representation -->
-            <div style="display: flex; flex-direction: column; justify-content: center; width: 100%; gap: 1.5rem;">
+            <!-- Countdown Timer & YouTube Video Player Column -->
+            <div style="display: flex; flex-direction: column; justify-content: center; width: 100%; gap: 1rem;">
                 
-                <!-- Waving Tricolor Flag Animation -->
-                <div class="hero-flag-container">
-                    <lottie-player src="flag.json" background="transparent" speed="1" loop autoplay></lottie-player>
+                <!-- YouTube Video / Anthem Player (Right above countdown) -->
+                <div class="hero-video-box" style="width: 100%; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 4px 4px 0 var(--ink); overflow: hidden; background: #000; position: relative;">
+                    <!-- 16:9 Video Screen Wrapper -->
+                    <div class="video-screen-wrapper" id="mainVideoPlayerWrapper" style="aspect-ratio: 16 / 9; position: relative; width: 100%; background: #000; overflow: hidden; min-height: 180px;">
+                        <!-- Facade Thumbnail -->
+                        <div class="video-thumbnail-facade" id="videoThumbnailFacade" onclick="event.stopPropagation(); playCurrentYouTubeVideo()" style="position: absolute; inset: 0; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; padding: 10px; z-index: 2;">
+                            <img src="https://img.youtube.com/vi/tOvzynIHrlU/hqdefault.jpg" alt="YouTube Video Thumbnail" id="videoFacadeThumb" class="facade-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+                            
+                            <!-- Overlay gradient -->
+                            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.85) 100%);"></div>
+
+                            <!-- Top Badge -->
+                            <div style="position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center;">
+                                <span class="badge" style="background-color: var(--blood); color: #fff; font-size: 0.72rem; padding: 2px 8px; margin: 0; text-transform: uppercase;">🎬 आंदोलन क्रांति वीडियो / गीत</span>
+                                <span style="background: rgba(0,0,0,0.75); color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-family: monospace;">HD</span>
+                            </div>
+
+                            <!-- Center Play Button with subtle pulse -->
+                            <div style="position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; margin: auto 0;">
+                                <div class="facade-play-btn" style="width: 54px; height: 54px; background: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #FFFFFF; box-shadow: 0 0 20px rgba(220, 38, 38, 0.9), 0 4px 10px rgba(0,0,0,0.5); cursor: pointer; transition: transform 0.2s ease;">
+                                    <svg viewBox="0 0 24 24" width="28" height="28" fill="white" style="margin-left: 3px;">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </div>
+                                <span style="color: #ffffff; font-size: 0.76rem; font-weight: 800; font-family: var(--sans); background: rgba(0,0,0,0.75); padding: 2px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.25);">▶️ प्ले करने के लिए टच करें</span>
+                            </div>
+
+                            <!-- Bottom Title Bar in Facade -->
+                            <div style="position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; color: #f8fafc; font-size: 0.76rem; font-weight: 700; font-family: var(--sans);">
+                                <span id="videoFacadeTitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80%;">✊ 7 सितंबर चलो लखनऊ महाधरना</span>
+                                <span style="color: #fca5a5;">▶ YouTube</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Embedded Iframe Slot (Absolute filled) -->
+                        <div class="video-iframe-slot" id="videoIframeSlot" style="position: absolute; inset: 0; width: 100%; height: 100%; display: none; z-index: 5;"></div>
+                    </div>
                 </div>
 
                 <div class="countdown-box" style="margin-bottom: 0;">
@@ -245,9 +279,6 @@
         </section>
 
 
-
-
-        <!-- LIVE GROUND COMMAND CENTER (मैं पहुँच गया, Live Stage, Announcements) -->
 
 
         <!-- 6. GOOGLE MAP SECTION -->
@@ -826,7 +857,6 @@
                     </a>
                 </div>
 
-
             </div>
         </section>
 
@@ -1240,7 +1270,7 @@
     </div>
 
     <!-- Script Loads -->
-    <script src="dharna-guidelines.js"></script>
+    <script src="dharna-guidelines.js?v=yt_audio_mute_17"></script>
 
     <!-- Firebase SDK (Realtime Database) -->
     <script type="module">

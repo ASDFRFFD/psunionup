@@ -348,6 +348,79 @@ section, .card, .why-protest-card, .timeline-content,
         border-width: 1.5px !important;
         box-shadow: 2px 2px 0 #1a1108 !important;
     }
+
+    /* ─── Video Showcase Section on Mobile ─── */
+    .video-thumbnail-facade {
+        padding: 0.85rem !important;
+    }
+    .facade-header-info h4 {
+        font-size: 0.95rem !important;
+        line-height: 1.25 !important;
+    }
+    .video-live-pill {
+        font-size: 0.68rem !important;
+        padding: 2px 7px !important;
+    }
+    .facade-play-btn {
+        width: 54px !important;
+        height: 54px !important;
+        border-width: 2.5px !important;
+    }
+    .facade-play-btn svg {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .play-btn-caption {
+        font-size: 0.76rem !important;
+        padding: 3px 10px !important;
+    }
+    .video-quality-tag,
+    .video-duration-chip {
+        font-size: 0.72rem !important;
+    }
+    .video-details-strip {
+        padding: 0.85rem 0.9rem !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+    }
+    .now-playing-title {
+        font-size: 0.95rem !important;
+    }
+    .now-playing-sub {
+        font-size: 0.78rem !important;
+    }
+    .video-action-buttons {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+    .video-btn-action {
+        font-size: 0.78rem !important;
+        padding: 7px 8px !important;
+        justify-content: center !important;
+    }
+    .video-playlist-wrapper {
+        padding: 0.9rem !important;
+    }
+    .video-playlist-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    .playlist-card {
+        padding: 6px 8px !important;
+    }
+    .thumb-box {
+        width: 65px !important;
+        height: 40px !important;
+    }
+    .playlist-info h5 {
+        font-size: 0.82rem !important;
+    }
+    .playlist-info p {
+        font-size: 0.72rem !important;
+    }
 }
 
 /* Small phones ─── max-width: 400px */
@@ -358,4 +431,5 @@ section, .card, .why-protest-card, .timeline-content,
     .map-action-grid { grid-template-columns: 1fr !important; }
     .notice-btn-grid { grid-template-columns: 1fr !important; }
     .notice-main-title { font-size: 0.98rem !important; }
+    .video-action-buttons { grid-template-columns: 1fr !important; }
 }

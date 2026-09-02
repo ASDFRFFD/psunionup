@@ -1909,8 +1909,13 @@ function initBackgroundMusic() {
 
     // Direct playback handler on interaction
     const playMusic = () => {
-        if (isPlaying) return;
+        if (isPlaying || window.isVideoPlaying) return;
         audio.play().then(() => {
+            if (window.isVideoPlaying) {
+                audio.pause();
+                audio.muted = true;
+                return;
+            }
             isPlaying = true;
             toggleBtn.textContent = "🔊";
             toggleBtn.style.background = "rgba(16, 185, 129, 0.25)"; // Glow green when active
@@ -1924,6 +1929,7 @@ function initBackgroundMusic() {
     const togglePlay = (e) => {
         e.stopPropagation();
         if (audio.paused) {
+            audio.muted = false;
             audio.play().then(() => {
                 isPlaying = true;
                 toggleBtn.textContent = "🔊";
@@ -1931,6 +1937,7 @@ function initBackgroundMusic() {
             });
         } else {
             audio.pause();
+            audio.muted = true;
             toggleBtn.textContent = "🔇";
             toggleBtn.style.background = "rgba(239, 68, 68, 0.25)"; // Glow red when muted
         }
@@ -1946,3 +1953,131 @@ function initBackgroundMusic() {
 
     events.forEach(evt => document.addEventListener(evt, playMusic, { passive: true }));
 }
+
+/* ==========================================================================
+   🎬 YOUTUBE VIDEO SHOWCASE PLAYER (धरना वीडियो व गीत प्लेयर)
+   ========================================================================== */
+window.activeYouTubeVideoId = 'tOvzynIHrlU';
+window.isVideoPlaying = false;
+
+window.playCurrentYouTubeVideo = function() {
+    window.isVideoPlaying = true;
+
+    // 1. Immediately Pause & Mute website background music
+    const bgAudio = document.getElementById('bg-audio');
+    if (bgAudio) {
+        bgAudio.pause();
+        bgAudio.muted = true;
+    }
+    const toggleBtn = document.getElementById('audioToggleBtn');
+    if (toggleBtn) {
+        toggleBtn.textContent = '🔇';
+        toggleBtn.style.background = 'rgba(239, 68, 68, 0.25)';
+    }
+
+    // 2. Mute and stop all other audio elements on the page
+    document.querySelectorAll('audio').forEach(a => {
+        try {
+            a.pause();
+            a.muted = true;
+        } catch(e) {}
+    });
+
+    const facade = document.getElementById('videoThumbnailFacade');
+    const slot = document.getElementById('videoIframeSlot');
+    if (!slot) return;
+
+    if (facade) facade.style.display = 'none';
+    slot.style.display = 'block';
+
+    // Standard high-compatibility YouTube embed with playsinline=1 & autoplay=1
+    slot.innerHTML = `
+        <iframe 
+            src="https://www.youtube.com/embed/${window.activeYouTubeVideoId}?autoplay=1&playsinline=1&rel=0&enablejsapi=1" 
+            title="YouTube Video Player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;">
+        </iframe>
+    `;
+};
+
+// Function to allow user to set any custom YouTube URL / Video ID dynamically
+window.setCustomYouTubeVideo = function(urlOrId, title) {
+    if (!urlOrId) return;
+    let videoId = urlOrId.trim();
+    
+    // Extract ID from standard YouTube links (youtu.be/xxx or watch?v=xxx or embed/xxx or shorts/xxx)
+    const match = videoId.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+    if (match && match[1]) {
+        videoId = match[1];
+    }
+    
+    window.activeYouTubeVideoId = videoId;
+    
+    const facadeThumb = document.getElementById('videoFacadeThumb');
+    const facadeTitle = document.getElementById('videoFacadeTitle');
+    
+    if (facadeThumb) {
+        facadeThumb.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    }
+    if (facadeTitle && title) {
+        facadeTitle.textContent = title;
+    }
+    
+    if (window.isVideoPlaying) {
+        window.playCurrentYouTubeVideo();
+    }
+};
+
+window.switchDharnaVideo = function(videoId, title, subtitle, cardElem) {
+    window.activeYouTubeVideoId = videoId;
+    
+    // Update active playlist card styling
+    const cards = document.querySelectorAll('.playlist-card');
+    cards.forEach(c => c.classList.remove('active'));
+    if (cardElem) cardElem.classList.add('active');
+
+    // Update metadata
+    const facadeTitle = document.getElementById('videoFacadeTitle');
+    const facadeThumb = document.getElementById('videoFacadeThumb');
+    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+    const nowPlayingSub = document.getElementById('nowPlayingSub');
+    const ytExtLink = document.getElementById('openYoutubeExternalLink');
+
+    if (facadeTitle) facadeTitle.textContent = title;
+    if (nowPlayingTitle) nowPlayingTitle.textContent = title;
+    if (nowPlayingSub) nowPlayingSub.textContent = subtitle;
+    if (ytExtLink) ytExtLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+    
+    if (facadeThumb) {
+        facadeThumb.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        facadeThumb.onerror = () => {
+            facadeThumb.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        };
+    }
+
+    // If already playing, immediately play the new video
+    if (window.isVideoPlaying) {
+        window.playCurrentYouTubeVideo();
+    }
+};
+
+window.shareCurrentVideo = function() {
+    const videoUrl = `https://www.youtube.com/watch?v=${window.activeYouTubeVideoId}`;
+    const shareText = `🚩 7 सितंबर 2026 लखनऊ महाधरना | पंचायत सहायक क्रांति वीडियो व आंदोलन संदेश अवश्य देखें:\n${videoUrl}`;
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'पंचायत सहायक महाधरना वीडियो',
+            text: shareText,
+            url: videoUrl
+        }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(videoUrl).then(() => {
+            alert('✅ वीडियो लिंक कॉपी हो गया है! अब आप इसे WhatsApp या सोशल मीडिया पर साझा कर सकते हैं।');
+        });
+    }
+};
+

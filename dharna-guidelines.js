@@ -45,8 +45,8 @@ window.toggleHighContrast = function() {
    2. COUNTDOWN TIMER
    ========================================== */
 function initCountdown() {
-    // Target date: July 20, 2026 at 10:00:00 AM (Monday)
-    const targetDate = new Date("July 20, 2026 10:00:00").getTime();
+    // Target date: September 7, 2026 at 10:00:00 AM (Monday)
+    const targetDate = new Date("September 7, 2026 10:00:00").getTime();
 
     const daysEl = document.getElementById("cd-days");
     const hoursEl = document.getElementById("cd-hours");
@@ -173,8 +173,24 @@ function initSlider() {
 }
 
 /* ==========================================
-   4. MODALS (Registration and Emergency Trigger)
+   4. MODALS (Registration, Emergency, and 7 Sept Notice Trigger)
    ========================================== */
+window.openNoticeModal = function() {
+    const modal = document.getElementById("dharnaNoticeModal");
+    if (modal) {
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+};
+
+window.closeNoticeModal = function() {
+    const modal = document.getElementById("dharnaNoticeModal");
+    if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+    }
+};
+
 function initModals() {
     const regTriggers = document.querySelectorAll(".trigger-reg-modal");
     const regModal = document.getElementById("registrationModal");
@@ -182,9 +198,17 @@ function initModals() {
 
     const emerTrigger = document.getElementById("trigger-emer-btn");
     const emerModal = document.getElementById("emergencyModal");
+    const noticeModal = document.getElementById("dharnaNoticeModal");
 
     const closeBtns = document.querySelectorAll(".modal-close-trigger");
     const overlays = document.querySelectorAll(".brutalist-modal-overlay");
+
+    // Auto-show 7 September Notice Modal on page load
+    setTimeout(() => {
+        if (noticeModal) {
+            window.openNoticeModal();
+        }
+    }, 600);
 
     // Open Registration Modal
     regTriggers.forEach(btn => {
@@ -224,6 +248,7 @@ function initModals() {
     function closeAllModals() {
         if (regModal) regModal.style.display = "none";
         if (emerModal) emerModal.style.display = "none";
+        if (noticeModal) noticeModal.style.display = "none";
         const receiptModal = document.getElementById("receiptModal");
         if (receiptModal) receiptModal.style.display = "none";
         document.body.style.overflow = "";
@@ -539,32 +564,32 @@ function initTravelRouter() {
    8. BLOCK-WISE COORDINATION SEARCH
    ========================================== */
 const coordinatorData = [
-    { district: "Lucknow (लखनऊ)", block: "Chinhat (चिनहट)", name: "सर्वेश यादव", phone: "9876543210", meetingPoint: "चिनहट चौराहा, लखनऊ", departureTime: "27 जुलाई, सुबह 08:00 बजे", seats: "12" },
-    { district: "Lucknow (लखनऊ)", block: "Malihabad (मलिहाबाद)", name: "राजेश कुमार", phone: "9988776655", meetingPoint: "मलिहाबाद ब्लॉक मुख्यालय", departureTime: "27 जुलाई, सुबह 07:30 बजे", seats: "8" },
-    { district: "Lucknow (लखनऊ)", block: "Kakori (काकोरी)", name: "अनिल सिंह", phone: "9122334455", meetingPoint: "काकोरी शहीद स्मारक", departureTime: "27 जुलाई, सुबह 08:15 बजे", seats: "15" },
+    { district: "Lucknow (लखनऊ)", block: "Chinhat (चिनहट)", name: "सर्वेश यादव", phone: "9876543210", meetingPoint: "चिनहट चौराहा, लखनऊ", departureTime: "7 सितंबर, सुबह 08:00 बजे", seats: "12" },
+    { district: "Lucknow (लखनऊ)", block: "Malihabad (मलिहाबाद)", name: "राजेश कुमार", phone: "9988776655", meetingPoint: "मलिहाबाद ब्लॉक मुख्यालय", departureTime: "7 सितंबर, सुबह 07:30 बजे", seats: "8" },
+    { district: "Lucknow (लखनऊ)", block: "Kakori (काकोरी)", name: "अनिल सिंह", phone: "9122334455", meetingPoint: "काकोरी शहीद स्मारक", departureTime: "7 सितंबर, सुबह 08:15 बजे", seats: "15" },
     
-    { district: "Varanasi (वाराणसी)", block: "Pindra (पिंडरा)", name: "अमित कुमार सिंह", phone: "9450123456", meetingPoint: "पिंडरा तहसील गेट", departureTime: "26 जुलाई, रात 10:00 बजे", seats: "22" },
-    { district: "Varanasi (वाराणसी)", block: "Kashi Vidyapeeth (काशी विद्यापीठ)", name: "विनय तिवारी", phone: "8090123456", meetingPoint: "काशी विद्यापीठ ब्लॉक परिसर", departureTime: "26 जुलाई, रात 11:30 बजे", seats: "18" },
-    { district: "Varanasi (वाराणसी)", block: "Cholapur (चोलापुर)", name: "धीरज मौर्य", phone: "7080901234", meetingPoint: "चोलापुर ब्लॉक मुख्यालय चौराहा", departureTime: "26 जुलाई, रात 09:30 बजे", seats: "10" },
+    { district: "Varanasi (वाराणसी)", block: "Pindra (पिंडरा)", name: "अमित कुमार सिंह", phone: "9450123456", meetingPoint: "पिंडरा तहसील गेट", departureTime: "6 सितंबर, रात 10:00 बजे", seats: "22" },
+    { district: "Varanasi (वाराणसी)", block: "Kashi Vidyapeeth (काशी विद्यापीठ)", name: "विनय तिवारी", phone: "8090123456", meetingPoint: "काशी विद्यापीठ ब्लॉक परिसर", departureTime: "6 सितंबर, रात 11:30 बजे", seats: "18" },
+    { district: "Varanasi (वाराणसी)", block: "Cholapur (चोलापुर)", name: "धीरज मौर्य", phone: "7080901234", meetingPoint: "चोलापुर ब्लॉक मुख्यालय चौराहा", departureTime: "6 सितंबर, रात 09:30 बजे", seats: "10" },
 
-    { district: "Gorakhpur (गोरखपुर)", block: "Campierganj (कैम्पियरगंज)", name: "हरेंद्र निषाद", phone: "9612345678", meetingPoint: "कैम्पियरगंज रेलवे स्टेशन", departureTime: "26 जुलाई, शाम 07:00 बजे", seats: "25" },
-    { district: "Gorakhpur (गोरखपुर)", block: "Sardarnagar (सरदारनगर)", name: "अभिषेक पासवान", phone: "8822334455", meetingPoint: "सरदारनगर ब्लॉक मुख्यालय", departureTime: "26 जुलाई, शाम 08:30 बजे", seats: "14" },
-    { district: "Gorakhpur (गोरखपुर)", block: "Bansgaon (बांसगांव)", name: "दिलीप त्रिपाठी", phone: "9566778899", meetingPoint: "बांसगांव बस स्टैंड", departureTime: "26 जुलाई, शाम 08:00 बजे", seats: "20" },
+    { district: "Gorakhpur (गोरखपुर)", block: "Campierganj (कैम्पियरगंज)", name: "हरेंद्र निषाद", phone: "9612345678", meetingPoint: "कैम्पियरगंज रेलवे स्टेशन", departureTime: "6 सितंबर, शाम 07:00 बजे", seats: "25" },
+    { district: "Gorakhpur (गोरखपुर)", block: "Sardarnagar (सरदारनगर)", name: "अभिषेक पासवान", phone: "8822334455", meetingPoint: "सरदारनगर ब्लॉक मुख्यालय", departureTime: "6 सितंबर, शाम 08:30 बजे", seats: "14" },
+    { district: "Gorakhpur (गोरखपुर)", block: "Bansgaon (बांसगांव)", name: "दिलीप त्रिपाठी", phone: "9566778899", meetingPoint: "बांसगांव बस स्टैंड", departureTime: "6 सितंबर, शाम 08:00 बजे", seats: "20" },
 
-    { district: "Agra (आगरा)", block: "Bichpuri (बिचपुरी)", name: "मनोज शर्मा", phone: "9837123456", meetingPoint: "बिचपुरी चौराहा, आगरा", departureTime: "27 जुलाई, सुबह 04:00 बजे", seats: "11" },
-    { district: "Agra (आगरा)", block: "Fatehabad (फतेहाबाद)", name: "जितेन्द्र बघेल", phone: "8057123456", meetingPoint: "फतेहाबाद ब्लॉक बस स्टैंड", departureTime: "27 जुलाई, सुबह 03:30 बजे", seats: "9" },
+    { district: "Agra (आगरा)", block: "Bichpuri (बिचपुरी)", name: "मनोज शर्मा", phone: "9837123456", meetingPoint: "बिचपुरी चौराहा, आगरा", departureTime: "7 सितंबर, सुबह 04:00 बजे", seats: "11" },
+    { district: "Agra (आगरा)", block: "Fatehabad (फतेहाबाद)", name: "जितेन्द्र बघेल", phone: "8057123456", meetingPoint: "फतेहाबाद ब्लॉक बस स्टैंड", departureTime: "7 सितंबर, सुबह 03:30 बजे", seats: "9" },
 
-    { district: "Prayagraj (प्रयागराज)", block: "Phulpur (फूलपुर)", name: "विजय केसरवानी", phone: "7905123456", meetingPoint: "फूलपुर बस डिपो", departureTime: "26 जुलाई, रात 11:00 बजे", seats: "16" },
-    { district: "Prayagraj (प्रयागराज)", block: "Soraon (सोरांव)", name: "राकेश सरोज", phone: "9451123456", meetingPoint: "सोरांव तहसील गेट", departureTime: "26 जुलाई, रात 11:45 बजे", seats: "20" },
+    { district: "Prayagraj (प्रयागराज)", block: "Phulpur (फूलपुर)", name: "विजय केसरवानी", phone: "7905123456", meetingPoint: "फूलपुर बस डिपो", departureTime: "6 सितंबर, रात 11:00 बजे", seats: "16" },
+    { district: "Prayagraj (प्रयागराज)", block: "Soraon (सोरांव)", name: "राकेश सरोज", phone: "9451123456", meetingPoint: "सोरांव तहसील गेट", departureTime: "6 सितंबर, रात 11:45 बजे", seats: "20" },
     
-    { district: "Bareilly (बरेली)", block: "Bhadpura (भदपुरा)", name: "संजय गंगवार", phone: "9917123456", meetingPoint: "भदपुरा ब्लॉक तिराहा", departureTime: "26 जुलाई, रात 09:00 बजे", seats: "15" },
-    { district: "Bareilly (बरेली)", block: "Faridpur (फरीदपुर)", name: "सत्यपाल सिंह", phone: "8126123456", meetingPoint: "फरीदपुर बस स्टैंड", departureTime: "26 जुलाई, रात 10:15 बजे", seats: "18" },
+    { district: "Bareilly (बरेली)", block: "Bhadpura (भदपुरा)", name: "संजय गंगवार", phone: "9917123456", meetingPoint: "भदपुरा ब्लॉक तिराहा", departureTime: "6 सितंबर, रात 09:00 बजे", seats: "15" },
+    { district: "Bareilly (बरेली)", block: "Faridpur (फरीदपुर)", name: "सत्यपाल सिंह", phone: "8126123456", meetingPoint: "फरीदपुर बस स्टैंड", departureTime: "6 सितंबर, रात 10:15 बजे", seats: "18" },
 
-    { district: "Basti (बस्ती)", block: "Harraiya (हरैया)", name: "संदीप ओझा", phone: "9598123456", meetingPoint: "हरैया बस स्टॉप (NH-28)", departureTime: "26 जुलाई, रात 11:00 बजे", seats: "24" },
-    { district: "Basti (बस्ती)", block: "Bhadar (भादर)", name: "रवि शंकर चौधरी", phone: "8400123456", meetingPoint: "बस्ती सदर ब्लॉक गेट", departureTime: "26 जुलाई, रात 11:30 बजे", seats: "12" },
+    { district: "Basti (बस्ती)", block: "Harraiya (हरैया)", name: "संदीप ओझा", phone: "9598123456", meetingPoint: "हरैया बस स्टॉप (NH-28)", departureTime: "6 सितंबर, रात 11:00 बजे", seats: "24" },
+    { district: "Basti (बस्ती)", block: "Bhadar (भादर)", name: "रवि शंकर चौधरी", phone: "8400123456", meetingPoint: "बस्ती सदर ब्लॉक गेट", departureTime: "6 सितंबर, रात 11:30 बजे", seats: "12" },
 
-    { district: "Ayodhya (अयोध्या)", block: "Milkipur (मिल्कीपुर)", name: "अखिलेश पांडे", phone: "9695123456", meetingPoint: "मिल्कीपुर चौराहा, अयोध्या", departureTime: "27 जुलाई, सुबह 05:00 बजे", seats: "14" },
-    { district: "Ayodhya (अयोध्या)", block: "Sohawal (सोहावल)", name: "विकास वर्मा", phone: "7376123456", meetingPoint: "सोहावल ब्लॉक तिराहा", departureTime: "27 जुलाई, सुबह 05:30 बजे", seats: "10" }
+    { district: "Ayodhya (अयोध्या)", block: "Milkipur (मिल्कीपुर)", name: "अखिलेश पांडे", phone: "9695123456", meetingPoint: "मिल्कीपुर चौराहा, अयोध्या", departureTime: "7 सितंबर, सुबह 05:00 बजे", seats: "14" },
+    { district: "Ayodhya (अयोध्या)", block: "Sohawal (सोहावल)", name: "विकास वर्मा", phone: "7376123456", meetingPoint: "सोहावल ब्लॉक तिराहा", departureTime: "7 सितंबर, सुबह 05:30 बजे", seats: "10" }
 ];
 
 function initCoordinatorSearch() {

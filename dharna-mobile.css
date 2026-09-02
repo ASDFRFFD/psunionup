@@ -273,6 +273,81 @@ section, .card, .why-protest-card, .timeline-content,
     main, .page-container {
         padding-bottom: 60px !important;
     }
+
+    /* ─── 7 September Notice Modal on Mobile ─── */
+    .notice-modal-overlay {
+        padding: 0.5rem !important;
+        align-items: center !important;
+    }
+    .notice-modal-card {
+        border-width: 2.5px !important;
+        border-radius: 12px !important;
+        box-shadow: 4px 4px 0 #1a1108, 0 10px 30px rgba(0,0,0,0.4) !important;
+        max-height: 88vh !important;
+        width: 100% !important;
+    }
+    .notice-modal-top-bar {
+        padding: 0.8rem 0.9rem !important;
+        border-bottom-width: 2px !important;
+    }
+    .notice-tag-badge {
+        font-size: 0.7rem !important;
+        padding: 1px 6px !important;
+    }
+    .notice-top-heading {
+        font-size: 1.15rem !important;
+    }
+    .notice-close-circle-btn {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.95rem !important;
+    }
+    .notice-modal-body {
+        padding: 0.85rem 0.75rem !important;
+    }
+    .notice-callout-box {
+        padding: 0.75rem 0.5rem !important;
+        border-width: 2px !important;
+        margin-bottom: 0.75rem !important;
+    }
+    .notice-callout-sub {
+        font-size: 0.72rem !important;
+        margin-bottom: 4px !important;
+    }
+    .notice-main-title {
+        font-size: 1.05rem !important;
+        margin-bottom: 8px !important;
+    }
+    .notice-time-chip {
+        font-size: 0.82rem !important;
+        padding: 4px 10px !important;
+    }
+    .notice-points-box {
+        padding: 0.75rem 0.65rem !important;
+        gap: 8px !important;
+        margin-bottom: 1rem !important;
+        border-width: 1.5px !important;
+    }
+    .point-icon {
+        font-size: 1.05rem !important;
+    }
+    .point-content {
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+    }
+    .notice-btn-primary {
+        font-size: 0.95rem !important;
+        padding: 11px 8px !important;
+        border-width: 2px !important;
+        box-shadow: 3px 3px 0 #1a1108 !important;
+    }
+    .notice-btn-map,
+    .notice-btn-close {
+        font-size: 0.88rem !important;
+        padding: 10px 6px !important;
+        border-width: 1.5px !important;
+        box-shadow: 2px 2px 0 #1a1108 !important;
+    }
 }
 
 /* Small phones ─── max-width: 400px */
@@ -281,4 +356,6 @@ section, .card, .why-protest-card, .timeline-content,
     .media-kit-grid { grid-template-columns: 1fr !important; }
     .dharna-meta-grid { grid-template-columns: 1fr !important; }
     .map-action-grid { grid-template-columns: 1fr !important; }
+    .notice-btn-grid { grid-template-columns: 1fr !important; }
+    .notice-main-title { font-size: 0.98rem !important; }
 }

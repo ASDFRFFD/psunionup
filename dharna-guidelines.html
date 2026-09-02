@@ -32,9 +32,9 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css?v=cjp_theme_7">
-    <link rel="stylesheet" href="dharna-guidelines.css">
-    <link rel="stylesheet" href="dharna-premium.css">
-    <link rel="stylesheet" href="dharna-mobile.css">
+    <link rel="stylesheet" href="dharna-guidelines.css?v=notice_mod_9">
+    <link rel="stylesheet" href="dharna-premium.css?v=notice_mod_9">
+    <link rel="stylesheet" href="dharna-mobile.css?v=notice_mod_9">
     
     <!-- Lottie Player for Animated Flag Background -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
@@ -116,6 +116,10 @@
                 </div>
             </div>
             <div class="nav-actions-wrap" style="display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <!-- 7 September Notice Modal Toggle -->
+                <button onclick="openNoticeModal()" class="nav-btn-outline" style="background: var(--blood); color: #ffffff; border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--ink); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; animation: dharnaPulseNew 2s infinite;" title="7 सितंबर महाधरना सूचना">
+                    📢 <span class="btn-text">7 सितंबर सूचना</span>
+                </button>
                 <!-- 27. HIGH CONTRAST MODE TOGGLE -->
                 <button onclick="toggleHighContrast()" class="nav-btn-outline" style="background: var(--ink); color: var(--paper); border-color: var(--ink); margin: 0; padding: 0.5rem 0.9rem; font-size: 0.9rem; box-shadow: 3px 3px 0 var(--saffron); display: inline-flex; align-items: center; gap: 6px; cursor: pointer;" title="उच्च कंट्रास्ट मोड">
                     ◑ <span class="btn-text">कंट्रास्ट</span>
@@ -164,7 +168,7 @@
                 <div class="dharna-meta-grid">
                     <div class="dharna-meta-item">
                         <span class="meta-label">📅 दिनांक (Date)</span>
-                        <span class="meta-value">20 जुलाई 2026, सोमवार</span>
+                        <span class="meta-value">7 सितंबर 2026, सोमवार</span>
                     </div>
                     <div class="dharna-meta-item">
                         <span class="meta-label">🕙 समय (Time)</span>
@@ -455,8 +459,8 @@
                 <div class="why-protest-card">
                     <div class="why-protest-icon">💰</div>
                     <div class="why-protest-text">
-                        <h3>सम्मानजनक वेतनमान</h3>
-                        <p>वेतनमान ₹18,000–₹25,000 प्रतिमाह कर राज्य कोषागार से भुगतान सुनिश्चित हो।</p>
+                        <h3>सम्मानजनक मानदेय</h3>
+                        <p>सम्मानजनक मानदेय निर्धारित कर राज्य कोषागार से सीधा भुगतान सुनिश्चित हो।</p>
                     </div>
                 </div>
 
@@ -495,7 +499,7 @@
         <section class="animate-fade-up" id="timeline-section">
             <div class="section-info">
                 <h3>धरना कार्यक्रम रूपरेखा</h3>
-                <p>20 जुलाई 2026 (सोमवार) को आयोजित होने वाले धरने की विस्तृत समय सारणी।</p>
+                <p>7 सितंबर 2026 (सोमवार) को आयोजित होने वाले धरने की विस्तृत समय सारणी।</p>
             </div>
 
             <div class="timeline-section">
@@ -611,7 +615,7 @@
                     <h3>भारतीय रेल</h3>
                     <ul class="travel-notes-list">
                         <li><p><strong>सलाह:</strong> चारबाग (LKO) रेलवे स्टेशन सबसे उपयुक्त है, जो इको गार्डन से मात्र 2.5 किमी दूर है।</p></li>
-                        <li><p><strong>समय:</strong> रात की ट्रेन टिकट बुक करें ताकि 20 जुलाई (सोमवार) सुबह लखनऊ पहुंच सकें।</p></li>
+                        <li><p><strong>समय:</strong> रात की ट्रेन टिकट बुक करें ताकि 7 सितंबर (सोमवार) सुबह लखनऊ पहुंच सकें।</p></li>
                         <li><p><strong>अगला कदम:</strong> चारबाग स्टेशन से इको गार्डन, आलमबाग हेतु सीधा ऑटो/ई-रिक्शा मिल जाता है।</p></li>
                     </ul>
                 </div>
@@ -869,7 +873,7 @@
                         <span class="faq-icon-indicator">+</span>
                     </button>
                     <div class="faq-answer-panel">
-                        <p>अवकाश प्रार्थना पत्र अपने सचिव (VDO/VPO) तथा प्रधान को 18 जुलाई 2026 तक आवश्यक रूप से सौंपकर उसकी एक रिसीविंग कॉपी (हस्ताक्षरित प्रति) अपने पास रख लें।</p>
+                        <p>अवकाश प्रार्थना पत्र अपने सचिव (VDO/VPO) तथा प्रधान को 5 सितंबर 2026 तक आवश्यक रूप से सौंपकर उसकी एक रिसीविंग कॉपी (हस्ताक्षरित प्रति) अपने पास रख लें।</p>
                     </div>
                 </div>
 
@@ -1012,9 +1016,78 @@
     <!-- Floating Back To Top Button -->
     <div class="floating-back-top-btn" id="backToTopBtn" title="Back To Top">▲</div>
 
+    <!-- Floating 7 September Notice Toggle Badge -->
+    <div class="floating-notice-toggle-btn" id="trigger-notice-btn" onclick="openNoticeModal()" title="📢 7 सितंबर महाधरना सूचना">
+        📢 7 सितंबर
+    </div>
+
     <!-- Floating Audio Mute Toggle Button -->
     <div class="floating-audio-btn" id="audioToggleBtn" title="Mute/Unmute Music">🔊</div>
     <audio id="bg-audio" loop src="song.mp3"></audio>
+
+    <!-- 7 SEPTEMBER NOTICE POPUP MODAL (सूचना पॉपअप - 100% Solid Opaque & Mobile Optimized) -->
+    <div class="brutalist-modal-overlay notice-modal-overlay" id="dharnaNoticeModal" style="display: none; z-index: 10008; background: rgba(10, 8, 6, 0.88); backdrop-filter: blur(8px);">
+        <div class="notice-modal-card animate-fade-up">
+            <!-- Modal Header with Close Button -->
+            <div class="notice-modal-top-bar">
+                <div class="notice-badge-group">
+                    <span class="notice-tag-badge">📢 अति महत्वपूर्ण सूचना</span>
+                    <h3 class="notice-top-heading">लखनऊ महाधरना प्रदर्शन</h3>
+                </div>
+                <button class="notice-close-circle-btn" onclick="closeNoticeModal()" aria-label="Close Notice Modal">✕</button>
+            </div>
+
+            <div class="notice-modal-body">
+                <!-- Main Highlight Callout Box (Solid Opaque) -->
+                <div class="notice-callout-box">
+                    <div class="notice-callout-sub">✊ समस्त पंचायत सहायकों से क्रांतिकारी अपील ✊</div>
+                    <h2 class="notice-main-title">
+                        7 सितंबर 2026 (सोमवार) के धरना प्रदर्शन में <span class="notice-highlight-text">अधिक से अधिक संख्या में पहुंचें!</span>
+                    </h2>
+                    <div class="notice-time-chip">
+                        📅 7 सितंबर 2026 &nbsp;•&nbsp; 🕙 सुबह 10:00 बजे से
+                    </div>
+                </div>
+
+                <!-- Info Key Points (Solid High-Contrast Box) -->
+                <div class="notice-points-box">
+                    <div class="notice-point-row">
+                        <span class="point-icon">📍</span>
+                        <div class="point-content">
+                            <strong>धरना स्थल:</strong> इको गार्डन, वीआईपी रोड, आलमबाग, लखनऊ
+                        </div>
+                    </div>
+                    <div class="notice-point-row">
+                        <span class="point-icon">🎯</span>
+                        <div class="point-content">
+                            <strong>प्रमुख मांगें:</strong> सम्मानजनक मानदेय, नियमितीकरण नियमावली, स्थानांतरण व समस्त पंचायत सहायकों के अधिकार सुरक्षा।
+                        </div>
+                    </div>
+                    <div class="notice-point-row">
+                        <span class="point-icon">👥</span>
+                        <div class="point-content">
+                            <strong>एकजुटता आह्वान:</strong> अपने ब्लॉक व जनपद के समस्त साथियों के साथ शांतिपूर्ण व अनुशासित रूप से भारी संख्या में अपनी उपस्थिति दर्ज कराएं।
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="notice-actions-wrap">
+                    <button onclick="handleOneClickJoin('hero'); closeNoticeModal();" class="notice-btn-primary">
+                        🚩 मैं भी शामिल हो रहा हूँ (भागीदारी दर्ज करें)
+                    </button>
+                    <div class="notice-btn-grid">
+                        <a href="#maps-section" onclick="closeNoticeModal();" class="notice-btn-map">
+                            📍 मार्ग निर्देश (Map)
+                        </a>
+                        <button onclick="closeNoticeModal()" class="notice-btn-close">
+                            ✓ समझ गया (Close)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- 5. REGISTRATION POPUP MODAL -->
     <div class="brutalist-modal-overlay" id="registrationModal">

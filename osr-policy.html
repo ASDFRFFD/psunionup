@@ -1639,9 +1639,69 @@
 <body>
 
     <!-- ==========================================================================
+       🔒 LOCKED OSR POLICY PAGE - OFFICIAL ACCESS RESTRICTED MODAL
+       ========================================================================== -->
+    <div id="osrLockModal" style="position: fixed; inset: 0; z-index: 999999; background: #0B0F19; display: flex; align-items: center; justify-content: center; padding: 1.2rem; overflow-y: auto;">
+        <!-- Blueprint Grid Pattern in Dark Background -->
+        <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+
+        <div style="background: #FFFFFF !important; border: 3.5px solid #1a1108; border-radius: 16px; max-width: 520px; width: 100%; box-shadow: 8px 8px 0 #1a1108, 0 30px 60px rgba(0,0,0,0.7); position: relative; z-index: 10; overflow: hidden; animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+            
+            <!-- Top Security Header Bar -->
+            <div style="background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); padding: 1.2rem; border-bottom: 3px solid #1a1108; text-align: center; color: #FFFFFF;">
+                <div style="display: inline-flex; align-items: center; gap: 6px; background: #EF4444; color: #FFFFFF; font-size: 0.75rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">
+                    🔒 गोपनीय • RESTRICTED ACCESS
+                </div>
+                <h2 style="font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif; font-size: 1.35rem; font-weight: 800; margin: 0; line-height: 1.2; color: #F8FAFC;">
+                    शासकीय नीति सुधार दस्तावेज
+                </h2>
+                <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 4px; font-family: monospace;">
+                    REF: PRD-OSR/2026/GOV-REVIEW
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div style="padding: 1.4rem; background: #FFFFFF !important; text-align: center;">
+                <!-- Glowing Lock Icon -->
+                <div style="width: 72px; height: 72px; background: #FEF2F2; border: 2.5px solid #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.1rem; box-shadow: 0 0 20px rgba(220, 38, 38, 0.15);">
+                    <span style="font-size: 2rem;">🔒</span>
+                </div>
+
+                <h3 style="font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 1.25rem; font-weight: 900; color: #111827; margin: 0 0 0.6rem; line-height: 1.35;">
+                    यह पृष्ठ वर्तमान में लॉक है
+                </h3>
+                
+                <p style="font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 0.92rem; color: #4B5563; line-height: 1.55; margin: 0 0 1.2rem;">
+                    <strong>ग्राम पंचायत OSR एवं निश्चित मानदेय नीति प्रस्ताव (Policy Reform Proposal)</strong> वर्तमान में शासन स्तर पर नीति-निर्माताओं के समक्ष समीक्षाधीन है। अग्रिम शासकीय निर्णय के बाद ही यह पृष्ठ सार्वजनिक रूप से उपलब्ध कराया जाएगा।
+                </p>
+
+                <!-- Protest Callout Box -->
+                <div style="background: #FFF7ED; border: 2px dashed #EA580C; border-radius: 8px; padding: 10px 12px; margin-bottom: 1.4rem; text-align: left;">
+                    <div style="font-size: 0.82rem; font-weight: 800; color: #C2410C; text-transform: uppercase; margin-bottom: 3px; font-family: 'Inter', sans-serif;">
+                        ✊ लखनऊ आंदोलन सूचना:
+                    </div>
+                    <div style="font-size: 0.88rem; color: #1F2937; font-weight: 600; line-height: 1.4; font-family: 'Inter', sans-serif;">
+                        मानदेय व अधिकार सुरक्षा हेतु <strong>7 सितंबर 2026</strong> को लखनऊ इको गार्डन महाधरना में अधिक से अधिक संख्या में शामिल हों!
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="dharna-guidelines.html" style="background: #DC2626; color: #FFFFFF; font-weight: 800; font-size: 1rem; padding: 12px; border-radius: 8px; border: 2px solid #1a1108; box-shadow: 3px 3px 0 #1a1108; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Inter', sans-serif;">
+                        🚩 7 सितंबर धरना प्रदर्शन देखें ➔
+                    </a>
+                    <a href="index.html" style="background: #F1F5F9; color: #1E293B; font-weight: 700; font-size: 0.95rem; padding: 11px; border-radius: 8px; border: 2px solid #1a1108; box-shadow: 2px 2px 0 #1a1108; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Inter', sans-serif;">
+                        🏠 मुख्य पृष्ठ पर वापस जाएं
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
        AUTHENTIC GOVERNMENT POLICY WHITE PAPER COVER PAGE (NO AI / NO EMOJI)
        ========================================================================== -->
-    <div id="policy-splash-overlay" class="splash-overlay">
+    <div id="policy-splash-overlay" class="splash-overlay" style="display: none !important;">
         <!-- Subtle Blueprint Grid -->
         <div class="splash-blueprint-bg"></div>
 

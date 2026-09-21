@@ -1,0 +1,848 @@
+/* future.css — Premium Brutalist styling for the Future Vision page */
+
+/* Custom Variables and Theme Overrides */
+.future-theme {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    overflow-x: hidden;
+}
+
+/* Background Texture Pattern */
+.future-theme::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08, 0 0 0 0 0.06, 0 0 0 0 0.04, 0 0 0 0 0.35 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.future-hero {
+    position: relative;
+    background: radial-gradient(circle at center, #FFF9EB 0%, var(--paper) 70%, var(--paper-2) 100%);
+    border-bottom: 3px solid var(--ink);
+    overflow: hidden;
+}
+
+.hero-noise-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(224, 101, 30, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.future-main-title {
+    font-family: var(--display);
+    font-size: 3.5rem;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+.future-main-title span {
+    color: var(--saffron);
+    text-shadow: 3px 3px 0 var(--ink);
+}
+
+.future-hero-desc {
+    font-size: 1.25rem;
+    color: var(--ink-2);
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.hero-scroll-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    letter-spacing: 0.1em;
+}
+
+.pulse-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    background: var(--paper-2);
+    animation: bounceIndicator 2s infinite;
+}
+
+@keyframes bounceIndicator {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* ==========================================================================
+   BRUTALIST COMMON UI
+   ========================================================================== */
+.brutalist-title-h2 {
+    font-family: var(--display);
+    font-size: 2.6rem;
+    color: var(--ink);
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.brutalist-card {
+    background: #FFFFFF;
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.brutalist-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 11px 11px 0 var(--ink);
+}
+
+/* ==========================================================================
+   SIMULATOR LAYOUT
+   ========================================================================== */
+.simulator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.simulator-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.panel-header h3 {
+    font-family: var(--condensed);
+    font-size: 1.4rem;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* LED light indicator */
+.led-indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #ef4444; /* red default */
+    border: 2px solid var(--ink);
+    box-shadow: 0 0 6px #ef4444;
+    transition: all 0.3s ease;
+}
+
+.led-indicator.active {
+    background-color: #22c55e; /* green */
+    box-shadow: 0 0 8px #22c55e;
+}
+
+/* Village Status Label */
+.panel-status-tag {
+    background: var(--blood);
+    color: #FFF;
+    border: 2px solid var(--ink);
+    padding: 4px 12px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: all 0.3s ease;
+}
+
+.panel-status-tag.stage-2 {
+    background: #eab308; /* Yellow */
+    color: var(--ink);
+}
+
+.panel-status-tag.stage-3 {
+    background: var(--green); /* Green */
+    color: #FFF;
+}
+
+/* Control Checklist toggles */
+.control-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.brutalist-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--paper);
+    border: 2.5px solid var(--ink);
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    user-select: none;
+}
+
+.brutalist-toggle:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0 var(--ink);
+    background: #FFFFFF;
+}
+
+.sim-toggle-checkbox {
+    display: none;
+}
+
+.toggle-box {
+    width: 24px;
+    height: 24px;
+    border: 2.5px solid var(--ink);
+    background: #FFFFFF;
+    flex-shrink: 0;
+    position: relative;
+    margin-top: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.sim-toggle-checkbox:checked + .toggle-box {
+    background: var(--saffron);
+}
+
+.sim-toggle-checkbox:checked + .toggle-box::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #FFFFFF;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.toggle-label strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    font-family: var(--sans);
+    font-weight: 700;
+}
+
+.toggle-desc {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    line-height: 1.4;
+}
+
+/* Metrics Displays */
+.metrics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.metric-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metric-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.metric-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink-2);
+}
+
+.metric-value {
+    font-family: var(--mono);
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1.5px solid var(--ink);
+    padding: 2px 8px;
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+.progress-bar-wrap {
+    height: 20px;
+    background: var(--paper);
+    border: 2.5px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: var(--saffron);
+    transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s ease;
+}
+
+/* Green fill logic for high scores */
+.progress-fill.high-efficiency {
+    background-color: var(--green);
+}
+
+/* Reverse bar (red when full/slow, shrinks/turns green when efficient) */
+.progress-bar-wrap.warning-mode .progress-fill {
+    background-color: var(--blood);
+}
+.progress-bar-wrap.warning-mode .progress-fill.high-efficiency {
+    background-color: var(--green);
+}
+
+/* ==========================================================================
+   6 REVOLUTIONS CARDS
+   ========================================================================== */
+.revolutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.revolution-card {
+    background: var(--ink);
+    color: var(--paper);
+    border: 3px solid var(--paper-2);
+    box-shadow: 6px 6px 0 var(--saffron);
+    padding: 2.2rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.revolution-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--saffron);
+    border-color: #FFFFFF;
+}
+
+.rev-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.revolution-card h3 {
+    font-family: var(--condensed);
+    font-size: 1.45rem;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+.revolution-card p {
+    font-size: 0.95rem;
+    color: var(--paper-2);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   BEFORE VS AFTER COMPARISON
+   ========================================================================== */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.comparison-col {
+    padding: 2.5rem;
+}
+
+.col-indicator {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 2.5px solid var(--ink);
+    margin-bottom: 2rem;
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.warning-indicator {
+    background-color: var(--blood);
+    color: #FFFFFF;
+}
+
+.success-indicator {
+    background-color: var(--green);
+    color: #FFFFFF;
+}
+
+.col-today {
+    border: 3px solid var(--blood) !important;
+    box-shadow: 8px 8px 0 var(--ink);
+    background: #FFFBFB;
+}
+
+.col-future {
+    border: 3px solid var(--green) !important;
+    box-shadow: 8px 8px 0 var(--ink);
+    background: #FAFFFB;
+}
+
+.comp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.comp-list li h4 {
+    font-family: var(--sans);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+}
+
+.comp-list li p {
+    font-size: 0.98rem;
+    color: var(--ink-2);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   BLUEPRINT ROADMAP (TIMELINE)
+   ========================================================================== */
+.blueprint-timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+}
+
+/* Vertical line behind timeline */
+.blueprint-timeline::before {
+    content: '';
+    position: absolute;
+    left: 45px;
+    top: 20px;
+    bottom: 20px;
+    width: 4px;
+    background: var(--ink);
+    opacity: 0.15;
+}
+
+.blueprint-step {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    position: relative;
+}
+
+.step-num {
+    width: 90px;
+    height: 90px;
+    background: var(--ink);
+    color: var(--paper);
+    border: 3px solid var(--ink);
+    font-family: var(--display);
+    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 4px 4px 0 var(--saffron);
+    position: relative;
+    z-index: 2;
+}
+
+.blueprint-step:nth-child(even) .step-num {
+    box-shadow: 4px 4px 0 var(--green);
+}
+
+.step-content {
+    flex-grow: 1;
+    background: #FFFFFF;
+}
+
+.step-content h3 {
+    font-family: var(--sans);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    border-bottom: 2px dashed rgba(26,17,8,0.1);
+    padding-bottom: 0.5rem;
+}
+
+.step-content p {
+    font-size: 0.98rem;
+    color: var(--ink-2);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   CTA BUTTON MODIFIERS
+   ========================================================================== */
+.brutalist-btn-yellow {
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.brutalist-btn-yellow:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--ink) !important;
+    background-color: #FFFFFF !important;
+    color: var(--ink) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN OVERRIDES
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .simulator-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .revolutions-grid {
+        grid-template-columns: 1.5fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .future-main-title {
+        font-size: 2.4rem;
+    }
+    .brutalist-title-h2 {
+        font-size: 2rem;
+    }
+    .revolutions-grid {
+        grid-template-columns: 1fr;
+    }
+    .blueprint-step {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .blueprint-timeline::before {
+        display: none;
+    }
+    .step-num {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    .nav-links-wrap {
+        display: none !important; /* Hide secondary desktop buttons on mobile */
+    }
+}
+
+/* ==========================================================================
+   FUTURE REVEAL GATEWAY STYLES (Holographic Cyber Portal)
+   ========================================================================== */
+.cyber-portal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #060913;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: all;
+    /* Grid background in high-tech cyber blue */
+    background-image: 
+        radial-gradient(circle at center, rgba(0, 210, 255, 0.08) 0%, transparent 75%),
+        linear-gradient(rgba(0, 210, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 210, 255, 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    background-position: center center;
+}
+
+.cyber-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Glowing scanning laser line in neon cyan/blue */
+.cyber-scanner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -10px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 210, 255, 0.3) 15%, 
+        #00D2FF 50%, 
+        rgba(0, 210, 255, 0.3) 85%, 
+        transparent 100%
+    );
+    box-shadow: 
+        0 0 10px rgba(0, 210, 255, 0.8),
+        0 0 20px #00D2FF,
+        0 0 30px rgba(0, 210, 255, 0.4);
+    z-index: 25;
+    pointer-events: none;
+}
+
+.portal-interface {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    width: 100%;
+    max-width: 460px;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Target Reticle */
+.cyber-target-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.target-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px dashed #00D2FF;
+    pointer-events: none;
+}
+
+.target-ring-1 {
+    width: 120px;
+    height: 120px;
+    animation: spinClockwise 12s linear infinite;
+    opacity: 0.6;
+}
+
+.target-ring-2 {
+    width: 100px;
+    height: 100px;
+    border-style: dotted;
+    border-color: #0066FF;
+    animation: spinCounterClockwise 8s linear infinite;
+    opacity: 0.4;
+}
+
+.target-crosshair {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.target-crosshair::before,
+.target-crosshair::after {
+    content: '';
+    position: absolute;
+    background: #00D2FF;
+}
+
+/* Crosshair lines */
+.target-crosshair::before {
+    left: 50%; top: 0; bottom: 0; width: 1px;
+}
+.target-crosshair::after {
+    top: 50%; left: 0; right: 0; height: 1px;
+}
+
+.cyber-logo {
+    position: relative;
+    z-index: 5;
+    width: 76px;
+    height: auto;
+    filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.5));
+    animation: logoGlowPulse 2s ease-in-out infinite;
+}
+
+@keyframes spinClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes spinCounterClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes logoGlowPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.4)); }
+    50% { transform: scale(1.04); filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.8)); }
+}
+
+/* Retro Cyber Terminal Panel in blue */
+.terminal-panel {
+    width: 100%;
+    background: rgba(8, 12, 26, 0.95);
+    border: 2px solid #0066FF;
+    box-shadow: 
+        inset 0 0 15px rgba(0, 102, 255, 0.2),
+        4px 4px 0 var(--ink);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: #0066FF;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.term-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    opacity: 0.6;
+}
+
+.term-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-left: 6px;
+    letter-spacing: 0.05em;
+}
+
+.terminal-body {
+    padding: 14px;
+    min-height: 90px;
+    box-sizing: border-box;
+}
+
+.term-line {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: #00D2FF;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    text-shadow: 0 0 4px rgba(0, 210, 255, 0.35);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Cyber Loading Progress Bar */
+.cyber-progress-wrap {
+    width: 100%;
+    height: 24px;
+    border: 2px solid #0066FF;
+    background: rgba(8, 12, 26, 0.6);
+    position: relative;
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+.cyber-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #0066FF, #00D2FF);
+    transition: width 0.1s linear;
+}
+
+.cyber-progress-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 2px var(--ink);
+    z-index: 5;
+}
+
+/* White cyber flash overlay */
+.cyber-flash {
+    position: absolute;
+    inset: 0;
+    background: #FFFFFF;
+    opacity: 0;
+    z-index: 99;
+    pointer-events: none;
+}
+
+/* ===== BODY LOCK ===== */
+body.gateway-active {
+    overflow: hidden !important;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+}
+
+.future-page {
+    transition: opacity 0.6s ease;
+}
+
+@media (max-width: 768px) {
+    .portal-interface {
+        max-width: 320px;
+        gap: 1.2rem;
+    }
+    .cyber-target-wrap {
+        width: 100px;
+        height: 100px;
+    }
+    .target-ring-1 { width: 90px; height: 90px; }
+    .target-ring-2 { width: 75px; height: 75px; }
+    .target-crosshair { width: 100px; height: 100px; }
+    .cyber-logo { width: 56px; }
+    .terminal-body { min-height: 80px; padding: 10px; }
+    .term-line { font-size: 0.72rem; }
+}
+
+
+

@@ -923,56 +923,65 @@
         </div>
     </div>
 
-    <!-- Premium Dharna Prompt Modal (7 September 2026 - Solid Opaque) -->
-    <div id="dharnaPromptModal" class="premium-modal" style="display: none; z-index: 10009; background: rgba(10, 8, 6, 0.85); backdrop-filter: blur(6px);">
-        <div class="modal-overlay" onclick="closeDharnaPromptModal()"></div>
-        <div class="modal-card animate-fade-up" style="border: 3.5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink), 0 25px 50px rgba(0,0,0,0.5); background: #FFFFFF !important; border-radius: 14px; max-width: 500px; padding: 1.8rem 1.4rem;">
-            <button onclick="closeDharnaPromptModal()" class="modal-close-btn"
-                style="position:absolute; top:12px; right:12px; background: #1a1108; border:2px solid #ffffff; font-size:1.1rem; cursor:pointer; color:#ffffff; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; line-height:1; font-weight:800;" title="बंद करें">✕</button>
+    <!-- 𝕏 Twitter Campaign Prompt Modal (PSX100) -->
+    <div id="psxTwitterModal" class="premium-modal" style="display: none; z-index: 10009; background: rgba(10, 8, 6, 0.88); backdrop-filter: blur(8px);">
+        <div class="modal-overlay" onclick="closeTwitterModal()"></div>
+        <div class="modal-card animate-fade-up" style="border: 3px solid #000000; box-shadow: 8px 8px 0 #000000, 0 25px 50px rgba(0,0,0,0.6); background: #ffffff !important; border-radius: 16px; max-width: 500px; padding: 1.8rem 1.4rem; position: relative;">
+            <button onclick="closeTwitterModal()" class="modal-close-btn"
+                style="position:absolute; top:12px; right:12px; background: #000000; border:2px solid #ffffff; font-size:1.1rem; cursor:pointer; color:#ffffff; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; line-height:1; font-weight:800;" title="बंद करें">✕</button>
             
-            <div class="success-icon-wrapper" style="background-color: var(--blood); margin: 0 auto 1rem; border-color: var(--ink); width: 64px; height: 64px; box-shadow: 3px 3px 0 var(--ink);">
-                <!-- Protest/Rally Flag Icon -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; color: #FFFFFF;">
-                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
-                    <line x1="4" y1="22" x2="4" y2="15"></line>
+            <div class="success-icon-wrapper" style="background-color: #000000; margin: 0 auto 1rem; border-color: #000000; width: 68px; height: 68px; border-radius: 18px; box-shadow: 3px 3px 0 rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+                <!-- Official X Corporation Vector Logo -->
+                <svg viewBox="0 0 24 24" style="width: 36px; height: 36px; fill: #ffffff;">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
             </div>
             
-            <div style="display: inline-block; background: #FEF2F2; color: var(--blood); border: 1.5px solid var(--blood); padding: 2px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">
-                📢 लखनऊ महाधरना प्रदर्शन
+            <div style="text-align: center; margin-bottom: 6px;">
+                <span style="display: inline-block; background: #E0F2FE; color: #0284C7; border: 1.5px solid #0284C7; padding: 3px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">
+                    🚀 लाइव डिजिटल सोशल मीडिया विंग
+                </span>
             </div>
 
-            <h2 class="modal-title" style="color: var(--blood); font-size: 1.55rem; font-weight: 900; margin-bottom: 0.8rem; line-height: 1.25;">
-                ✊ 7 सितंबर 2026: चलो लखनऊ!
+            <h2 class="modal-title" style="color: #000000; font-size: 1.55rem; font-weight: 900; margin-bottom: 0.8rem; line-height: 1.25; text-align: center; font-family: var(--sans);">
+                𝕏 (Twitter) अभियान पोर्टल — PSX100
             </h2>
             
-            <!-- Date & Venue Solid Card -->
-            <div style="background: #FFF7ED; border: 2.5px solid #EA580C; padding: 12px 14px; margin-bottom: 1.2rem; text-align: center; border-radius: 10px; box-shadow: 2px 2px 0 var(--ink);">
-                <div style="font-size: 1.15rem; font-weight: 900; color: #1a1108; margin-bottom: 4px; line-height: 1.3;">
-                    📅 <span style="color: var(--blood);">7 सितंबर 2026 (सोमवार)</span>
+            <!-- Trending Info Card -->
+            <div style="background: #F8FAFC; border: 2px solid #0F172A; padding: 14px; margin-bottom: 1.2rem; text-align: left; border-radius: 12px; box-shadow: 2px 2px 0 rgba(0,0,0,0.15);">
+                <div style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #1D9BF0; display: inline-block;"></span>
+                    <span>ऑफिशियल ट्रेंडिंग हैशटैग:</span>
                 </div>
-                <div style="font-size: 0.95rem; font-weight: 800; color: #C2410C; margin-bottom: 4px;">
-                    🕙 सुबह 10:00 बजे से
+                <div style="font-family: var(--mono, monospace); font-weight: 900; color: #1D9BF0; font-size: 1.15rem; background: #ffffff; padding: 6px 10px; border-radius: 6px; border: 1px dashed #93C5FD; margin-bottom: 8px;">
+                    #PanchayatSahayakUP
                 </div>
-                <div style="font-size: 0.92rem; font-weight: 700; color: #374151;">
-                    📍 इको गार्डन, आलमबाग, लखनऊ
-                </div>
+                <p style="font-size: 0.82rem; color: #64748B; margin: 0; line-height: 1.4;">
+                    उत्तर प्रदेश के 57,000+ पंचायत सहायकों के लिए तैयार ट्वीट बैंक, 1-क्लिक ट्वीट और लाइव रैंकिंग ट्रैकिंग।
+                </p>
             </div>
 
-            <p class="modal-message" style="font-size: 0.98rem; line-height: 1.55; margin-bottom: 1.3rem; text-align: center; color: #1F2937;">
-                <strong>सम्मानजनक मानदेय व अधिकार सुरक्षा की निर्णायक लड़ाई!</strong><br>
-                समस्त पंचायत सहायक साथी 7 सितंबर को अधिक से अधिक संख्या में पहुंचकर अपनी आवाज बुलंद करें।
-            </p>
-            
             <div class="modal-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                <a href="dharna-guidelines.html" class="modal-btn-primary blink-highlight" style="background-color: var(--blood); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; font-weight:800; text-decoration: none; color: #FFFFFF; font-size: 1.1rem; width: 100%; border: 2.5px solid var(--ink); border-radius: 8px;">
-                    🚩 7 सितंबर महाधरना निर्देश देखें ➔
+                <a href="psx100/" class="modal-btn-primary" style="background-color: #000000; border-color: #000000; box-shadow: 4px 4px 0 rgba(0,0,0,0.3); text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; font-weight: 800; text-decoration: none; color: #ffffff; font-size: 1.05rem; width: 100%; border: 2.5px solid #000000; border-radius: 50px;">
+                    <span>𝕏 ट्विटर अभियान पोर्टल खोलें</span>
+                    <span>→</span>
                 </a>
-                <button onclick="closeDharnaPromptModal()" class="modal-btn-secondary" style="width: 100%; padding: 10px; font-weight: 700; border-radius: 8px; border: 2px solid var(--ink); background: #F3F4F6; color: #1F2937;">
-                    ✍️ अभी समर्थन हस्ताक्षर दर्ज करें
+                <a href="psx100/tweet-bank/" class="modal-btn-secondary" style="width: 100%; padding: 10px; font-weight: 800; border-radius: 50px; border: 2px solid #000000; background: #F8FAFC; color: #000000; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span>📝 रेडीमेड ट्वीट बैंक देखें</span>
+                </a>
+                <button onclick="closeTwitterModal()" style="background: none; border: none; font-size: 0.85rem; color: #64748B; font-weight: 700; cursor: pointer; padding-top: 4px; text-decoration: underline;">
+                    मुख्य वेबसाइट पर जारी रखें
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- Floating Toggle Button for 𝕏 Twitter Campaign -->
+    <div id="floatingTwitterToggle" onclick="openTwitterModal()" style="position: fixed; bottom: 24px; right: 24px; z-index: 9998; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #000000; color: #ffffff; padding: 10px 18px; border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.35); border: 2px solid #ffffff; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05) translateY(-2px)'" onmouseout="this.style.transform='scale(1)'" title="𝕏 Twitter Campaign Portal">
+        <svg style="width: 18px; height: 18px; fill: #ffffff;" viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span style="font-size: 0.88rem; font-weight: 800; font-family: var(--sans);">𝕏 अभियान (PSX100)</span>
     </div>
 
     <!-- Premium Success Modal -->

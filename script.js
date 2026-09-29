@@ -746,25 +746,33 @@ window.generateFreeReceipt = async function() {
     }
 };
 
-// Dharna Prompt Modal logic
-window.closeDharnaPromptModal = function() {
-    const modal = document.getElementById('dharnaPromptModal');
+// 𝕏 Twitter Campaign (PSX100) Modal logic
+window.openTwitterModal = function() {
+    const modal = document.getElementById('psxTwitterModal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+};
+
+window.closeTwitterModal = function() {
+    const modal = document.getElementById('psxTwitterModal');
     if (modal) {
         modal.style.display = 'none';
     }
 };
 
-// Check if prompt should be shown on page load (safe trigger)
+// Check if Twitter prompt should be shown on page load
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDharnaPrompt);
+    document.addEventListener('DOMContentLoaded', initTwitterPrompt);
 } else {
-    initDharnaPrompt();
+    initTwitterPrompt();
 }
 
-function initDharnaPrompt() {
-    const promptModal = document.getElementById('dharnaPromptModal');
+function initTwitterPrompt() {
+    const promptModal = document.getElementById('psxTwitterModal');
     if (promptModal) {
         promptModal.style.display = 'flex';
     }
 }
+
 

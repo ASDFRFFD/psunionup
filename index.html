@@ -938,37 +938,63 @@
             </div>
             
             <div style="text-align: center; margin-bottom: 6px;">
-                <span style="display: inline-block; background: #E0F2FE; color: #0284C7; border: 1.5px solid #0284C7; padding: 3px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">
-                    🚀 लाइव डिजिटल सोशल मीडिया विंग
+                <span id="psxCampaignBadge" style="display: inline-flex; align-items: center; gap: 6px; background: #E0F2FE; color: #0284C7; border: 1.5px solid #0284C7; padding: 3px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <span style="width: 7px; height: 7px; border-radius: 50%; background: #0284C7; display: inline-block;"></span>
+                    <span id="psxCampaignBadgeText">🚀 लाइव डिजिटल सोशल मीडिया विंग</span>
                 </span>
             </div>
 
-            <h2 class="modal-title" style="color: #000000; font-size: 1.55rem; font-weight: 900; margin-bottom: 0.8rem; line-height: 1.25; text-align: center; font-family: var(--sans);">
+            <h2 id="psxCampaignTitle" class="modal-title" style="color: #000000; font-size: 1.45rem; font-weight: 900; margin-bottom: 0.6rem; line-height: 1.25; text-align: center; font-family: var(--sans);">
                 𝕏 (Twitter) अभियान पोर्टल — PSX100
             </h2>
             
-            <!-- Trending Info Card -->
+            <!-- Trending Info Card with Auto-Fetched Decided Hashtag -->
             <div style="background: #F8FAFC; border: 2px solid #0F172A; padding: 14px; margin-bottom: 1.2rem; text-align: left; border-radius: 12px; box-shadow: 2px 2px 0 rgba(0,0,0,0.15);">
-                <div style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #1D9BF0; display: inline-block;"></span>
-                    <span>ऑफिशियल ट्रेंडिंग हैशटैग:</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #1D9BF0; display: inline-block;"></span>
+                        <span>सक्रिय ट्रेंडिंग हैशटैग:</span>
+                    </div>
+                    <span id="psxSyncStatus" style="font-size: 0.72rem; color: #059669; font-weight: 700; background: #D1FAE5; padding: 2px 8px; border-radius: 10px; display: inline-flex; align-items: center; gap: 4px;">
+                        <span style="width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span> ऑटो-सिंक
+                    </span>
                 </div>
-                <div style="font-family: var(--mono, monospace); font-weight: 900; color: #1D9BF0; font-size: 1.15rem; background: #ffffff; padding: 6px 10px; border-radius: 6px; border: 1px dashed #93C5FD; margin-bottom: 8px;">
-                    #PanchayatSahayakUP
+
+                <!-- Dynamic Hashtag and Copy Button -->
+                <div style="display: flex; align-items: center; gap: 8px; background: #ffffff; padding: 6px 10px; border-radius: 8px; border: 1.5px dashed #1D9BF0; margin-bottom: 8px;">
+                    <div id="psxModalHashtag" style="font-family: var(--mono, monospace); font-weight: 900; color: #1D9BF0; font-size: 1.25rem; flex: 1; word-break: break-all;">
+                        #PanchayatSahayakUP
+                    </div>
+                    <button type="button" id="psxCopyHashtagBtn" onclick="copyPsxHashtag()" style="background: #0F172A; color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 800; cursor: pointer; white-space: nowrap; transition: all 0.2s;" title="हैशटैग कॉपी करें">
+                        कॉपी करें
+                    </button>
                 </div>
-                <p style="font-size: 0.82rem; color: #64748B; margin: 0; line-height: 1.4;">
-                    उत्तर प्रदेश के 57,000+ पंचायत सहायकों के लिए तैयार ट्वीट बैंक, 1-क्लिक ट्वीट और लाइव रैंकिंग ट्रैकिंग।
+
+                <p id="psxCampaignDesc" style="font-size: 0.82rem; color: #64748B; margin: 0; line-height: 1.4;">
+                    उत्तर प्रदेश के समस्त 57,000+ पंचायत सहायकों के अधिकार और सम्मान हेतु डिजिटल महा-अभियान।
                 </p>
             </div>
 
             <div class="modal-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                <a href="psx100/" class="modal-btn-primary" style="background-color: #000000; border-color: #000000; box-shadow: 4px 4px 0 rgba(0,0,0,0.3); text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; font-weight: 800; text-decoration: none; color: #ffffff; font-size: 1.05rem; width: 100%; border: 2.5px solid #000000; border-radius: 50px;">
-                    <span>𝕏 ट्विटर अभियान पोर्टल खोलें</span>
+                <!-- Direct 1-Click Tweet Intent with dynamically auto-fetched hashtag -->
+                <a id="psxTweetIntentBtn" href="https://twitter.com/intent/tweet?text=%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%95%E0%A5%87%2057000%2B%20%E0%A4%AA%E0%A4%82%E0%A4%9a%E0%A4%BE%E0%A4%AF%E0%A4%A4%20%E0%A4%B8%E0%A4%B9%E0%A4%BE%E0%A4%AF%E0%A4%95%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%9C%E0%A4%A8%E0%A4%95%20%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%A6%E0%A5%87%E0%A4%AF%20%E0%A4%B5%20%E0%A4%B8%E0%A5%87%E0%A4%B5%E0%A4%BE%20%E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%87%E0%A4%BE%20%E0%A4%B9%E0%A5%87%E0%A4%A4%E0%A5%81!%0A%0A%23PanchayatSahayakUP%20%23PSX100%0Ahttps%3A%2F%2Fpsunionup.site%2Fpsx100%2F" target="_blank" rel="noopener noreferrer" style="background-color: #1D9BF0; border: 2.5px solid #000000; box-shadow: 4px 4px 0 #000000; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; font-weight: 800; text-decoration: none; color: #ffffff; font-size: 1.05rem; width: 100%; border-radius: 50px; transition: transform 0.15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: #ffffff; flex-shrink: 0;">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>𝕏 पर तुरंत 1-क्लिक ट्वीट करें</span>
+                </a>
+
+                <!-- Tweet Bank Link -->
+                <a href="psx100/tweet-bank/" class="modal-btn-secondary" style="width: 100%; padding: 11px; font-weight: 800; border-radius: 50px; border: 2px solid #000000; background: #000000; color: #ffffff; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 3px 3px 0 rgba(0,0,0,0.2);">
+                    <span>📝 रेडीमेड ट्वीट बैंक देखें (50+ ट्वीट्स)</span>
                     <span>→</span>
                 </a>
-                <a href="psx100/tweet-bank/" class="modal-btn-secondary" style="width: 100%; padding: 10px; font-weight: 800; border-radius: 50px; border: 2px solid #000000; background: #F8FAFC; color: #000000; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <span>📝 रेडीमेड ट्वीट बैंक देखें</span>
+
+                <!-- Full PSX100 Portal Link -->
+                <a href="psx100/" style="width: 100%; padding: 9px; font-weight: 800; border-radius: 50px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.9rem;">
+                    <span>🌐 𝕏 ट्विटर अभियान पोर्टल खोलें</span>
                 </a>
+
                 <button onclick="closeTwitterModal()" style="background: none; border: none; font-size: 0.85rem; color: #64748B; font-weight: 700; cursor: pointer; padding-top: 4px; text-decoration: underline;">
                     मुख्य वेबसाइट पर जारी रखें
                 </button>
@@ -976,12 +1002,13 @@
         </div>
     </div>
 
-    <!-- Floating Toggle Button for 𝕏 Twitter Campaign -->
-    <div id="floatingTwitterToggle" onclick="openTwitterModal()" style="position: fixed; bottom: 24px; right: 24px; z-index: 9998; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #000000; color: #ffffff; padding: 10px 18px; border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.35); border: 2px solid #ffffff; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05) translateY(-2px)'" onmouseout="this.style.transform='scale(1)'" title="𝕏 Twitter Campaign Portal">
-        <svg style="width: 18px; height: 18px; fill: #ffffff;" viewBox="0 0 24 24">
+    <!-- Floating Toggle Button for 𝕏 Twitter Campaign (Auto-fetched Hashtag) -->
+    <div id="floatingTwitterToggle" onclick="openTwitterModal()" style="position: fixed; bottom: 24px; right: 24px; z-index: 9998; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #000000; color: #ffffff; padding: 10px 18px; border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.35); border: 2px solid #ffffff; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05) translateY(-2px)'" onmouseout="this.style.transform='scale(1)'" title="𝕏 Twitter Campaign">
+        <svg style="width: 18px; height: 18px; fill: #ffffff; flex-shrink: 0;" viewBox="0 0 24 24">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
-        <span style="font-size: 0.88rem; font-weight: 800; font-family: var(--sans);">𝕏 अभियान (PSX100)</span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #1D9BF0; display: inline-block; flex-shrink: 0;"></span>
+        <span id="psxFloatingHashtagText" style="font-size: 0.88rem; font-weight: 800; font-family: var(--sans); white-space: nowrap;">#PanchayatSahayakUP</span>
     </div>
 
     <!-- Premium Success Modal -->

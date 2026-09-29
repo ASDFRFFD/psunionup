@@ -746,12 +746,16 @@ window.generateFreeReceipt = async function() {
     }
 };
 
-// 𝕏 Twitter Campaign (PSX100) Modal logic
+// 𝕏 Twitter Campaign (PSX100) Modal & Auto-Fetch Logic
+let _activePsxHashtag = "#PanchayatSahayakUP";
+
 window.openTwitterModal = function() {
     const modal = document.getElementById('psxTwitterModal');
     if (modal) {
         modal.style.display = 'flex';
     }
+    // Re-check for any newly decided hashtag whenever modal opens
+    syncDecidedCampaignHashtag();
 };
 
 window.closeTwitterModal = function() {
@@ -761,18 +765,137 @@ window.closeTwitterModal = function() {
     }
 };
 
-// Check if Twitter prompt should be shown on page load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTwitterPrompt);
-} else {
-    initTwitterPrompt();
+window.copyPsxHashtag = function() {
+    const tag = _activePsxHashtag || document.getElementById('psxModalHashtag')?.textContent?.trim() || '#PanchayatSahayakUP';
+    navigator.clipboard.writeText(tag).then(() => {
+        const btn = document.getElementById('psxCopyHashtagBtn');
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ कॉपी हुआ!';
+            btn.style.background = '#059669';
+            btn.style.color = '#ffffff';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '#0F172A';
+                btn.style.color = '#ffffff';
+            }, 2000);
+        }
+    }).catch(err => {
+        console.warn("Clipboard copy failed, using fallback:", err);
+    });
+};
+
+// Auto-fetch the hashtag decided by admin from Firebase Firestore (project: txteam)
+async function syncDecidedCampaignHashtag() {
+    try {
+        const endpoint = "https://firestore.googleapis.com/v1/projects/txteam/databases/(default)/documents/campaigns";
+        const response = await fetch(endpoint, { cache: "no-store" });
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (!data || !data.documents || data.documents.length === 0) return;
+
+        // 1. Search for campaign with status === "ACTIVE"
+        let activeDoc = data.documents.find(doc => {
+            const status = doc.fields?.status?.stringValue;
+            return status === "ACTIVE";
+        });
+
+        // 2. If no ACTIVE campaign, search for "SCHEDULED" or take the latest
+        if (!activeDoc) {
+            activeDoc = data.documents.find(doc => {
+                const status = doc.fields?.status?.stringValue;
+                return status === "SCHEDULED";
+            }) || data.documents[0];
+        }
+
+        if (!activeDoc || !activeDoc.fields) return;
+
+        const fields = activeDoc.fields;
+        let fetchedTag = fields.hashtag?.stringValue || "";
+        const fetchedTitle = fields.title?.stringValue || "";
+        const fetchedDesc = fields.description?.stringValue || "";
+        const fetchedStatus = fields.status?.stringValue || "";
+
+        if (fetchedTag) {
+            fetchedTag = fetchedTag.trim();
+            if (!fetchedTag.startsWith("#")) fetchedTag = "#" + fetchedTag;
+            _activePsxHashtag = fetchedTag;
+
+            // Update Modal Hashtag Box
+            const modalHashtagEl = document.getElementById('psxModalHashtag');
+            if (modalHashtagEl) {
+                modalHashtagEl.textContent = fetchedTag;
+            }
+
+            // Update Floating Toggle Button text
+            const floatHashtagEl = document.getElementById('psxFloatingHashtagText');
+            if (floatHashtagEl) {
+                floatHashtagEl.textContent = fetchedTag;
+            }
+
+            // Update 1-Click Tweet Intent URL
+            const tweetIntentBtn = document.getElementById('psxTweetIntentBtn');
+            if (tweetIntentBtn) {
+                const tweetMsg = `उत्तर प्रदेश के समस्त 57,000+ ग्राम पंचायतों में कार्यरत पंचायत सहायकों के सम्मानजनक मानदेय व अधिकारों के समर्थन में!\n\n${fetchedTag} #PSX100\n\nअभियान से जुड़ें: https://psunionup.site/psx100/`;
+                tweetIntentBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetMsg)}`;
+            }
+        }
+
+        // Update Campaign Title if available
+        if (fetchedTitle) {
+            const titleEl = document.getElementById('psxCampaignTitle');
+            if (titleEl) titleEl.textContent = fetchedTitle;
+        }
+
+        // Update Campaign Description if available
+        if (fetchedDesc) {
+            const descEl = document.getElementById('psxCampaignDesc');
+            if (descEl) descEl.textContent = fetchedDesc;
+        }
+
+        // Update Live Status Badge
+        const badgeEl = document.getElementById('psxCampaignBadge');
+        const badgeTextEl = document.getElementById('psxCampaignBadgeText');
+        if (badgeEl && badgeTextEl) {
+            if (fetchedStatus === "ACTIVE") {
+                badgeEl.style.background = "#FEF2F2";
+                badgeEl.style.color = "#DC2626";
+                badgeEl.style.borderColor = "#DC2626";
+                badgeTextEl.textContent = "🔴 लाइव महा-अभियान सक्रिय";
+            } else if (fetchedStatus === "SCHEDULED") {
+                badgeEl.style.background = "#FEF3C7";
+                badgeEl.style.color = "#D97706";
+                badgeEl.style.borderColor = "#D97706";
+                badgeTextEl.textContent = "⏰ आगामी डिजिटल अभियान";
+            } else {
+                badgeEl.style.background = "#E0F2FE";
+                badgeEl.style.color = "#0284C7";
+                badgeEl.style.borderColor = "#0284C7";
+                badgeTextEl.textContent = "🚀 लाइव डिजिटल सोशल मीडिया विंग";
+            }
+        }
+
+    } catch (err) {
+        console.warn("Auto-sync decided campaign hashtag error (fallback in place):", err);
+    }
 }
 
+// Initial sync and launch on load
 function initTwitterPrompt() {
+    syncDecidedCampaignHashtag();
     const promptModal = document.getElementById('psxTwitterModal');
     if (promptModal) {
         promptModal.style.display = 'flex';
     }
+    // Periodically re-sync every 30 seconds to catch real-time admin changes
+    setInterval(syncDecidedCampaignHashtag, 30000);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTwitterPrompt);
+} else {
+    initTwitterPrompt();
 }
 
 

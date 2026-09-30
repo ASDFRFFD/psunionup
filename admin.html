@@ -485,12 +485,21 @@
     <!-- Login Screen -->
     <div class="login-container" id="loginContainer">
         <div class="login-box">
-            <h2>Admin Login</h2>
-            <p style="color: var(--ink-2); margin-bottom: 2rem; font-family: var(--mono); font-weight: 600;">ENTER CREDENTIALS</p>
-            <input type="email" id="adminEmail" class="login-input" placeholder="Admin Email" required>
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏛️</div>
+            <h2>Union Webpage Admin</h2>
+            <p style="color: var(--saffron-deep); font-weight: 700; margin-bottom: 0.25rem;">पंचायत सहायक यूनियन (मुख्य पोर्टल)</p>
+            <p style="color: var(--ink-2); margin-bottom: 1.5rem; font-family: var(--mono); font-size: 0.85rem; font-weight: 600;">हस्ताक्षर अभियान व आदेश संकलन प्रबंधन</p>
+            <input type="email" id="adminEmail" class="login-input" placeholder="Union Admin Email" required>
             <input type="password" id="adminPassword" class="login-input" placeholder="Password" required>
             <button class="login-btn" id="loginBtn" onclick="checkLogin()">Login</button>
             <div id="loginError" style="color: var(--blood); font-weight: 700; margin-top: 1.5rem; display: none; font-family: var(--sans);">INCORRECT PASSWORD!</div>
+            
+            <div style="margin-top: 1.8rem; padding-top: 1.2rem; border-top: 2px dashed var(--ink); text-align: center;">
+                <p style="font-size: 0.82rem; color: var(--ink-2); margin-bottom: 8px; font-weight: 600;">क्या आप ट्विटर अभियान (PSX100) एडमिन लॉगिन ढूंढ रहे हैं?</p>
+                <a href="/psx100/admin/login/" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #000000; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.88rem; box-shadow: 2px 2px 0 var(--ink);">
+                    <span>𝕏 PSX100 Twitter Admin Login ↗</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -509,7 +518,7 @@
     <div style="display: flex; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 4px solid var(--ink); padding-bottom: 1.5rem; flex-wrap: wrap;">
         <button id="viewCampaignBtn" class="tab-btn active" onclick="switchDashboardView('campaign')" style="margin: 0;">✍️ हस्ताक्षर अभियान (Signature Campaign)</button>
         <button id="viewOrdersBtn" class="tab-btn" onclick="switchDashboardView('orders')" style="margin: 0;">📁 शासकीय आदेश संकलन (Government Orders)</button>
-        <a href="psx100/admin/" target="_blank" class="tab-btn" style="background: #000000; color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin: 0; box-shadow: 3px 3px 0 var(--ink);">𝕏 Campaign Admin ↗</a>
+        <a href="/psx100/admin/" target="_blank" class="tab-btn" style="background: #000000; color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin: 0; box-shadow: 3px 3px 0 var(--ink);">𝕏 Campaign Admin ↗</a>
     </div>
 
     <!-- 1. Signature Campaign Dashboard Section -->

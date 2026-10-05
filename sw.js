@@ -1,4 +1,4 @@
-const CACHE_NAME = 'union-protest-portal-v52';
+const CACHE_NAME = 'union-protest-portal-v53';
 const ASSETS_TO_CACHE = [
   './dharna-guidelines.html',
   './dharna-guidelines.css',

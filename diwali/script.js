@@ -689,7 +689,7 @@
     },
 
     bindSharingActions() {
-      const currentShareUrl = window.location.href.split('?')[0];
+      const currentShareUrl = 'https://psunionup.site/diwali/';
 
       const btnWa = document.getElementById('btnMasterWhatsApp');
       if (btnWa) {
@@ -833,7 +833,7 @@
       // 3. Copy Text & Website Link
       if (btnCopy) {
         btnCopy.addEventListener('click', () => {
-          const currentShareUrl = window.location.href.split('?')[0];
+          const currentShareUrl = 'https://psunionup.site/diwali/';
           const shareText = `🪔 *शुभ दीपावली – पंचायत सहायक यूनियन ज़िन्दाबाद!* ✨\n\n` +
             `समस्त पंचायत सहायक साथियों को दीपोत्सव की हार्दिक शुभकामनाएं!\n\n` +
             `गाँव के अंतिम व्यक्ति तक जनसेवा, ईमानदारी और विकास की पावन ज्योति प्रज्वलित करने वाले समस्त कर्मयोगी पंचायत सहायकों को कोटि-कोटि नमन।\n\n` +
@@ -1292,7 +1292,7 @@
 
   async function sharePoster(posterDataUrl, name) {
     const cleanName = (name || '').trim() || 'पंचायत सहायक';
-    const currentShareUrl = window.location.href.split('?')[0];
+    const currentShareUrl = 'https://psunionup.site/diwali/';
     const shareText = `🪔 *शुभ दीपावली – पंचायत सहायक यूनियन ज़िन्दाबाद!* ✨\n\n` +
       `समस्त पंचायत सहायक साथियों को दीपोत्सव की हार्दिक शुभकामनाएं!\n\n` +
       `गाँव के अंतिम व्यक्ति तक विकास व जनसेवा की लौ जलाने वाले समस्त कर्मयोगी पंचायत सहायकों को नमन।\n\n` +

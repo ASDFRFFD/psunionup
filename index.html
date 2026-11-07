@@ -59,6 +59,9 @@
                 <a href="impact.html" class="nav-pill nav-pill--dark">
                     पहुँच व प्रभाव
                 </a>
+                <a href="diwali/" class="nav-pill" style="background: linear-gradient(135deg, #b45309, #d97706); color: #fff; border-color: #f59e0b; font-weight: 800; box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);" title="शुभ दीपावली दीपोत्सव विशेष">
+                    🪔 शुभ दीपावली
+                </a>
                 <a href="psx100/" class="nav-pill nav-pill--x" title="𝕏 ट्विटर अभियान (PSX100)">
                     <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     <span>𝕏 PSX100</span>
@@ -87,6 +90,9 @@
             </a>
             <a href="impact.html" class="mobile-nav-item" onclick="toggleMobileMenu()">
                 पहुँच और प्रभाव
+            </a>
+            <a href="diwali/" class="mobile-nav-item" style="color: #d97706 !important; font-weight: 800;" onclick="toggleMobileMenu()">
+                🪔 शुभ दीपावली (दीपोत्सव विशेष)
             </a>
             <a href="psx100/" class="mobile-nav-item mobile-nav-item--x" onclick="toggleMobileMenu()">
                 𝕏 ट्विटर अभियान (PSX100)
@@ -923,92 +929,77 @@
         </div>
     </div>
 
-    <!-- 𝕏 Twitter Campaign Prompt Modal (PSX100) -->
-    <div id="psxTwitterModal" class="premium-modal" style="display: none; z-index: 10009; background: rgba(10, 8, 6, 0.88); backdrop-filter: blur(8px);">
-        <div class="modal-overlay" onclick="closeTwitterModal()"></div>
-        <div class="modal-card animate-fade-up" style="border: 3px solid #000000; box-shadow: 8px 8px 0 #000000, 0 25px 50px rgba(0,0,0,0.6); background: #ffffff !important; border-radius: 16px; max-width: 500px; padding: 1.8rem 1.4rem; position: relative;">
-            <button onclick="closeTwitterModal()" class="modal-close-btn"
-                style="position:absolute; top:12px; right:12px; background: #000000; border:2px solid #ffffff; font-size:1.1rem; cursor:pointer; color:#ffffff; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; line-height:1; font-weight:800;" title="बंद करें">✕</button>
+    <!-- 🪔 Shubh Diwali Festive Celebration Modal (Panchayat Sahayak Union) -->
+    <div id="diwaliWishModal" class="premium-modal" style="display: none; z-index: 10009; background: rgba(10, 6, 2, 0.88); backdrop-filter: blur(10px);">
+        <div class="modal-overlay" onclick="closeDiwaliModal()"></div>
+        <div class="modal-card animate-fade-up" style="border: 2.5px solid #F59E0B; box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(245,158,11,0.35); background: linear-gradient(160deg, #180D04 0%, #291406 45%, #0F0904 100%) !important; border-radius: 20px; max-width: 520px; padding: 2rem 1.6rem; position: relative; color: #FFFFFF; text-align: center;">
+            <button onclick="closeDiwaliModal()" class="modal-close-btn"
+                style="position:absolute; top:12px; right:12px; background: rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.3); font-size:1.1rem; cursor:pointer; color:#FFFFFF; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; line-height:1; font-weight:800; transition: all 0.2s;" title="बंद करें">✕</button>
             
-            <div class="success-icon-wrapper" style="background-color: #000000; margin: 0 auto 1rem; border-color: #000000; width: 68px; height: 68px; border-radius: 18px; box-shadow: 3px 3px 0 rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
-                <!-- Official X Corporation Vector Logo -->
-                <svg viewBox="0 0 24 24" style="width: 36px; height: 36px; fill: #ffffff;">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
+            <!-- Glowing Diya Sacred Icon -->
+            <div style="position: relative; width: 76px; height: 76px; margin: 0 auto 1.2rem;">
+                <div style="position: absolute; inset: -10px; background: radial-gradient(circle, rgba(245,158,11,0.5) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s infinite ease-in-out;"></div>
+                <div style="width: 76px; height: 76px; border-radius: 22px; background: linear-gradient(135deg, #F59E0B, #D97706); display: flex; align-items: center; justify-content: center; font-size: 2.3rem; box-shadow: 0 10px 25px rgba(217,119,6,0.5); border: 2px solid #FDE68A;">
+                    🪔
+                </div>
             </div>
             
-            <div style="text-align: center; margin-bottom: 6px;">
-                <span id="psxCampaignBadge" style="display: inline-flex; align-items: center; gap: 6px; background: #E0F2FE; color: #0284C7; border: 1.5px solid #0284C7; padding: 3px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">
-                    <span style="width: 7px; height: 7px; border-radius: 50%; background: #0284C7; display: inline-block;"></span>
-                    <span id="psxCampaignBadgeText">🚀 लाइव डिजिटल सोशल मीडिया विंग</span>
+            <div style="margin-bottom: 8px;">
+                <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(245,158,11,0.18); color: #FCD34D; border: 1.5px solid rgba(245,158,11,0.4); padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <span>✦</span>
+                    <span>पंचायत सहायक यूनियन उ.प्र.</span>
+                    <span>✦</span>
                 </span>
             </div>
 
-            <h2 id="psxCampaignTitle" class="modal-title" style="color: #000000; font-size: 1.45rem; font-weight: 900; margin-bottom: 0.6rem; line-height: 1.25; text-align: center; font-family: var(--sans);">
-                𝕏 (Twitter) अभियान पोर्टल — PSX100
+            <h2 class="modal-title" style="color: #FDE68A; font-size: 1.65rem; font-weight: 900; margin-bottom: 0.5rem; line-height: 1.25; font-family: var(--sans); text-shadow: 0 2px 10px rgba(245,158,11,0.4);">
+                शुभ दीपावली – दीपोत्सव महापर्व
             </h2>
             
-            <!-- Trending Info Card with Auto-Fetched Decided Hashtag -->
-            <div style="background: #F8FAFC; border: 2px solid #0F172A; padding: 14px; margin-bottom: 1.2rem; text-align: left; border-radius: 12px; box-shadow: 2px 2px 0 rgba(0,0,0,0.15);">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <div style="font-size: 0.88rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 6px;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #1D9BF0; display: inline-block;"></span>
-                        <span>सक्रिय ट्रेंडिंग हैशटैग:</span>
-                    </div>
-                    <span id="psxSyncStatus" style="font-size: 0.72rem; color: #059669; font-weight: 700; background: #D1FAE5; padding: 2px 8px; border-radius: 10px; display: inline-flex; align-items: center; gap: 4px;">
-                        <span style="width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span> ऑटो-सिंक
-                    </span>
-                </div>
+            <p style="font-size: 0.95rem; font-weight: 700; color: #FED7AA; margin-bottom: 1.1rem; line-height: 1.4;">
+                समस्त 57,000+ पंचायत सहायक साथियों को यूनियन की तरफ से पावन दीपोत्सव की हार्दिक शुभकामनाएं!
+            </p>
 
-                <!-- Dynamic Hashtag and Copy Button -->
-                <div style="display: flex; align-items: center; gap: 8px; background: #ffffff; padding: 6px 10px; border-radius: 8px; border: 1.5px dashed #1D9BF0; margin-bottom: 8px;">
-                    <div id="psxModalHashtag" style="font-family: var(--mono, monospace); font-weight: 900; color: #1D9BF0; font-size: 1.25rem; flex: 1; word-break: break-all;">
-                        #PanchayatSahayakUP
-                    </div>
-                    <button type="button" id="psxCopyHashtagBtn" onclick="copyPsxHashtag()" style="background: #0F172A; color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 800; cursor: pointer; white-space: nowrap; transition: all 0.2s;" title="हैशटैग कॉपी करें">
-                        कॉपी करें
-                    </button>
-                </div>
-
-                <p id="psxCampaignDesc" style="font-size: 0.82rem; color: #64748B; margin: 0; line-height: 1.4;">
-                    उत्तर प्रदेश के समस्त 57,000+ पंचायत सहायकों के अधिकार और सम्मान हेतु डिजिटल महा-अभियान।
+            <!-- Festive Message Box -->
+            <div style="background: rgba(255,255,255,0.06); border: 1.5px solid rgba(245,158,11,0.3); padding: 14px; margin-bottom: 1.4rem; text-align: left; border-radius: 14px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);">
+                <p style="font-size: 0.86rem; color: #F3F4F6; margin: 0; line-height: 1.6; font-family: var(--sans);">
+                    गाँव के अंतिम व्यक्ति तक विकास व जनसेवा की लौ जलाने वाले समस्त कर्मयोगी पंचायत सहायकों को नमन! 
+                    यह महापर्व आपके जीवन में <strong>उत्तम स्वास्थ्य, सम्मान, समृद्धि, सुरक्षा और नियमितीकरण के लक्ष्य की विजय</strong> लेकर आए। हमारा संगठन, हमारा संघर्ष और हमारी अटूट एकता ही हमारी सबसे बड़ी शक्ति है। 🪔✨
                 </p>
             </div>
 
+            <!-- Modal Action Buttons -->
             <div class="modal-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                <!-- Direct 1-Click Tweet Intent with dynamically auto-fetched hashtag -->
-                <a id="psxTweetIntentBtn" href="https://twitter.com/intent/tweet?text=%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%95%E0%A5%87%2057000%2B%20%E0%A4%AA%E0%A4%82%E0%A4%9a%E0%A4%BE%E0%A4%AF%E0%A4%A4%20%E0%A4%B8%E0%A4%B9%E0%A4%BE%E0%A4%AF%E0%A4%95%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%9C%E0%A4%A8%E0%A4%95%20%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%A6%E0%A5%87%E0%A4%AF%20%E0%A4%B5%20%E0%A4%B8%E0%A5%87%E0%A4%B5%E0%A4%BE%20%E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%87%E0%A4%BE%20%E0%A4%B9%E0%A5%87%E0%A4%A4%E0%A5%81!%0A%0A%23PanchayatSahayakUP%20%23PSX100%0Ahttps%3A%2F%2Fpsunionup.site%2Fpsx100%2F" target="_blank" rel="noopener noreferrer" style="background-color: #1D9BF0; border: 2.5px solid #000000; box-shadow: 4px 4px 0 #000000; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; font-weight: 800; text-decoration: none; color: #ffffff; font-size: 1.05rem; width: 100%; border-radius: 50px; transition: transform 0.15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
-                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: #ffffff; flex-shrink: 0;">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                    <span>𝕏 पर तुरंत 1-क्लिक ट्वीट करें</span>
+                <!-- 1. Open Interactive Fireworks / Celebration -->
+                <a href="diwali/" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border: 2px solid #FDE68A; box-shadow: 0 6px 20px rgba(217,119,6,0.4); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px; font-weight: 800; text-decoration: none; color: #0F0904; font-size: 1.05rem; width: 100%; border-radius: 50px; transition: transform 0.15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                    <span style="font-size: 1.25rem;">🎆</span>
+                    <span>भव्य सजीव आतिशबाजी व दीप उत्सव खोलें</span>
                 </a>
 
-                <!-- Tweet Bank Link -->
-                <a href="psx100/tweet-bank/" class="modal-btn-secondary" style="width: 100%; padding: 11px; font-weight: 800; border-radius: 50px; border: 2px solid #000000; background: #000000; color: #ffffff; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 3px 3px 0 rgba(0,0,0,0.2);">
-                    <span>📝 रेडीमेड ट्वीट बैंक देखें (50+ ट्वीट्स)</span>
-                    <span>→</span>
+                <!-- 2. TV Screen Mode for Panchayat Bhawan -->
+                <a href="diwali/tv.html" target="_blank" style="width: 100%; padding: 11px; font-weight: 800; border-radius: 50px; border: 1.5px solid rgba(245,158,11,0.4); background: rgba(245,158,11,0.12); color: #FCD34D; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.92rem; transition: background 0.2s;">
+                    <span>📺</span>
+                    <span>पंचायत भवन TV स्क्रीन मोड (फुलस्क्रीन)</span>
+                    <span>✦</span>
                 </a>
 
-                <!-- Full PSX100 Portal Link -->
-                <a href="psx100/" style="width: 100%; padding: 9px; font-weight: 800; border-radius: 50px; border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #0F172A; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.9rem;">
-                    <span>🌐 𝕏 ट्विटर अभियान पोर्टल खोलें</span>
+                <!-- 3. Share Diwali Greetings on WhatsApp -->
+                <a href="https://api.whatsapp.com/send?text=%F0%9F%AA%94%E2%9C%A8%20*%E0%A4%B6%E0%A5%81%E0%A4%AD%20%E0%A4%A6%E0%A5%80%E0%A4%AA%E0%A4%BE%E0%A4%B5%E0%A4%B2%E0%A5%80%20%E2%80%93%20%E0%A4%AA%E0%A4%82%E0%A4%9a%E0%A4%BE%E0%A4%AF%E0%A4%A4%20%E0%A4%B8%E0%A4%B9%E0%A4%BE%E0%A4%AF%E0%A4%95%20%E0%A4%AF%E0%A5%82%E0%A4%A8%E0%A4%BF%E0%A4%AF%E0%A4%A8%20%E0%A4%89.%E0%A4%AA%E0%A5%8D%E0%A4%B0.*%0A%0A%E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%2057%2C000%2B%20%E0%A4%AA%E0%A4%82%E0%A4%9a%E0%A4%BE%E0%A4%AF%E0%A4%A4%20%E0%A4%B8%E0%A4%B9%E0%A4%BE%E0%A4%AF%E0%A4%95%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A4%BF%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%8B%20%E0%A4%A6%E0%A5%80%E0%A4%AA%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B5%20%E0%A4%95%E0%A5%80%20%E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A6%E0%A4%BF%E0%A4%95%20%E0%A4%B6%E0%A5%81%E0%A4%AD%E0%A4%95%E0%A4%BE%E0%A4%AE%E0%A4%A8%E0%A4%BE%E0%A4%8F%E0%A4%82!%0A%0A%F0%9F%8E%86%20%E0%A4%B8%E0%A4%9C%E0%A5%80%E0%A4%B5%20%E0%A4%86%E0%A4%A4%E0%A4%BF%E0%A4%B6%E0%A4%AC%E0%A4%BE%E0%A4%9C%E0%A5%80%20%E0%A4%B5%20%E0%A4%A6%E0%A5%80%E0%A4%AA%20%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B5%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82%3A%0Ahttps%3A%2F%2Fgpsahayak.in%2Fdiwali%2F" target="_blank" rel="noopener noreferrer" style="width: 100%; padding: 10px; font-weight: 800; border-radius: 50px; border: 1.5px solid #22C55E; background: rgba(34,197,94,0.15); color: #86EFAC; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem;">
+                    <span>📲 व्हाट्सएप पर बधाई भेजें</span>
                 </a>
 
-                <button onclick="closeTwitterModal()" style="background: none; border: none; font-size: 0.85rem; color: #64748B; font-weight: 700; cursor: pointer; padding-top: 4px; text-decoration: underline;">
-                    मुख्य वेबसाइट पर जारी रखें
+                <button onclick="closeDiwaliModal()" style="background: none; border: none; font-size: 0.85rem; color: #9CA3AF; font-weight: 700; cursor: pointer; padding-top: 6px; text-decoration: underline;">
+                    मुख्य वेबसाइट पर जारी रखें (Close)
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Floating Toggle Button for 𝕏 Twitter Campaign (Auto-fetched Hashtag) -->
-    <div id="floatingTwitterToggle" onclick="openTwitterModal()" style="position: fixed; bottom: 24px; right: 24px; z-index: 9998; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #000000; color: #ffffff; padding: 10px 18px; border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.35); border: 2px solid #ffffff; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05) translateY(-2px)'" onmouseout="this.style.transform='scale(1)'" title="𝕏 Twitter Campaign">
-        <svg style="width: 18px; height: 18px; fill: #ffffff; flex-shrink: 0;" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-        <span style="width: 8px; height: 8px; border-radius: 50%; background: #1D9BF0; display: inline-block; flex-shrink: 0;"></span>
-        <span id="psxFloatingHashtagText" style="font-size: 0.88rem; font-weight: 800; font-family: var(--sans); white-space: nowrap;">#PanchayatSahayakUP</span>
+    <!-- Floating Toggle Button for 𝪔 Diwali Wish Celebration -->
+    <div id="floatingDiwaliToggle" onclick="openDiwaliModal()" style="position: fixed; bottom: 24px; right: 24px; z-index: 9998; cursor: pointer; display: flex; align-items: center; gap: 9px; background: linear-gradient(135deg, #180D04 0%, #351705 50%, #78350F 100%); color: #FDE68A; padding: 11px 20px; border-radius: 50px; box-shadow: 0 8px 28px rgba(0,0,0,0.5), 0 0 20px rgba(245,158,11,0.4); border: 2px solid #F59E0B; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.06) translateY(-2px)'; this.style.boxShadow='0 12px 32px rgba(0,0,0,0.6), 0 0 28px rgba(245,158,11,0.6)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.5), 0 0 20px rgba(245,158,11,0.4)';" title="शुभ दीपावली दीपोत्सव विशेष">
+        <span style="font-size: 1.25rem; line-height: 1; filter: drop-shadow(0 0 6px #F59E0B);">🪔</span>
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #F59E0B; display: inline-block; box-shadow: 0 0 8px #F59E0B;"></span>
+        <span style="font-size: 0.92rem; font-weight: 800; font-family: var(--sans); white-space: nowrap; color: #FDE68A; letter-spacing: 0.02em;">🪔 शुभ दीपावली ✦ विशेष</span>
     </div>
 
     <!-- Premium Success Modal -->

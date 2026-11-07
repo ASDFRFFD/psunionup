@@ -881,21 +881,45 @@ async function syncDecidedCampaignHashtag() {
     }
 }
 
-// Initial sync and launch on load
-function initTwitterPrompt() {
-    syncDecidedCampaignHashtag();
-    const promptModal = document.getElementById('psxTwitterModal');
-    if (promptModal) {
-        promptModal.style.display = 'flex';
+// ==========================================
+// 🪔 SHUBH DIWALI CELEBRATION MODAL HANDLERS
+// ==========================================
+window.openDiwaliModal = function() {
+    const modal = document.getElementById('diwaliWishModal');
+    if (modal) {
+        modal.style.display = 'flex';
     }
-    // Periodically re-sync every 30 seconds to catch real-time admin changes
-    setInterval(syncDecidedCampaignHashtag, 30000);
+};
+
+window.closeDiwaliModal = function() {
+    const modal = document.getElementById('diwaliWishModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    try {
+        sessionStorage.setItem('psx_diwali_seen', '1');
+    } catch (_) {}
+};
+
+function initDiwaliPrompt() {
+    const modal = document.getElementById('diwaliWishModal');
+    if (modal) {
+        try {
+            if (!sessionStorage.getItem('psx_diwali_seen')) {
+                setTimeout(() => {
+                    modal.style.display = 'flex';
+                }, 600);
+            }
+        } catch (_) {
+            modal.style.display = 'flex';
+        }
+    }
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTwitterPrompt);
+    document.addEventListener('DOMContentLoaded', initDiwaliPrompt);
 } else {
-    initTwitterPrompt();
+    initDiwaliPrompt();
 }
 
 

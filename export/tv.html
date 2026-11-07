@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>दीपावली महापर्व – ग्राम पंचायत सचिवालय • पंचायत भवन | पंचायत सहायक यूनियन</title>
+  
+  <meta name="description" content="ग्राम पंचायत सचिवालय • पंचायत भवन टीवी स्क्रीन डिजिटल दीपोत्सव वॉलपेपर। समस्त ग्रामवासियों व पंचायत सहायक साथियों को दीपावली की हार्दिक शुभकामनाएं।">
+  <meta name="theme-color" content="#03050d">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+
+  <!-- Royal Festive Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@500;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       PANCHAYAT BHAWAN TV SCREEN WALLPAPER STYLES (Ultra High-Contrast White)
+       ========================================================================== */
+    :root {
+      --bg-dark: #03050d;
+      --gold-primary: #ffd166;
+      --gold-accent: #ffb703;
+      --pure-white: #ffffff;
+      --font-devanagari: 'Rozha One', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      color: var(--pure-white);
+      font-family: var(--font-sans);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-image: 
+        radial-gradient(circle at 50% 25%, rgba(245, 176, 65, 0.16) 0%, transparent 60%),
+        radial-gradient(circle at 15% 75%, rgba(225, 29, 72, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(37, 211, 102, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(216, 67, 21, 0.15) 0%, transparent 70%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Ambient Dynamic Flash */
+    .tv-light-flash {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      background: radial-gradient(circle at 50% 35%, rgba(255, 235, 160, 0.4) 0%, rgba(255, 120, 20, 0.16) 45%, transparent 75%);
+      transition: opacity 0.14s ease-out;
+    }
+
+    /* Fullscreen Fireworks Canvas */
+    .tv-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Top Festive Garland Toran */
+    .tv-toran {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 24px;
+      z-index: 40;
+      display: flex;
+      justify-content: space-around;
+      pointer-events: none;
+      border-bottom: 2px solid rgba(255, 209, 102, 0.4);
+    }
+    .tv-toran-flower {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff176 10%, #ff9800 65%, #d84315 100%);
+      box-shadow: 0 0 10px #ff9800;
+    }
+
+    /* Floating TV Kiosk Controls (Top Right) */
+    .tv-kiosk-controls {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      z-index: 100;
+    }
+    .tv-ctrl-btn {
+      background: rgba(14, 20, 42, 0.85);
+      border: 1.5px solid rgba(255, 209, 102, 0.5);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    }
+    .tv-ctrl-btn:hover {
+      background: rgba(245, 176, 65, 0.25);
+      border-color: #ffd166;
+      transform: scale(1.05);
+      color: #ffd166;
+    }
+
+    /* Main TV Layout Stage */
+    .tv-wallpaper-stage {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      padding: 3rem 2rem 1.5rem;
+    }
+
+    /* Panchayat Secretariat Header Badge */
+    .tv-panchayat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      padding: 0.5rem 2rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+    .tv-panchayat-text {
+      color: var(--pure-white);
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+    .tv-zindabad-pill {
+      background: linear-gradient(135deg, #e11d48, #9f1239);
+      color: #fff;
+      font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+      font-weight: 800;
+      padding: 0.2rem 0.8rem;
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(225, 29, 72, 0.7);
+    }
+
+    /* GIANT DIWALI HEADING (Huge Size) */
+    .tv-diwali-title {
+      font-family: var(--font-devanagari);
+      font-size: clamp(5.5rem, 13vw, 11rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.8rem;
+      color: var(--pure-white);
+      text-shadow: 
+        0 0 40px rgba(255, 255, 255, 0.8),
+        0 0 80px rgba(255, 209, 102, 0.6),
+        0 4px 25px rgba(0, 0, 0, 0.95);
+      letter-spacing: 2px;
+      animation: tvTitleGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes tvTitleGlow {
+      0% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 209, 102, 0.4), 0 4px 20px #000; }
+      100% { text-shadow: 0 0 50px rgba(255, 255, 255, 0.95), 0 0 100px rgba(255, 209, 102, 0.8), 0 4px 30px #000; }
+    }
+
+    /* HIGH-CONTRAST PURE WHITE HEADLINE */
+    .tv-white-headline {
+      font-family: var(--font-devanagari);
+      font-size: clamp(1.8rem, 3.8vw, 3.4rem);
+      color: var(--pure-white);
+      font-weight: 700;
+      line-height: 1.3;
+      max-width: 1400px;
+      margin-bottom: 1.1rem;
+      text-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.7),
+        0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    /* PURE WHITE SLOGAN LINE */
+    .tv-white-slogan {
+      font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+      color: var(--pure-white);
+      font-weight: 700;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+    }
+    .tv-gold-highlight {
+      color: var(--gold-primary);
+      text-shadow: 0 0 15px rgba(255, 209, 102, 0.7);
+    }
+
+    /* CENTRAL REALISTIC DIYA STAGE */
+    .tv-diya-stage {
+      position: relative;
+      width: 260px;
+      height: 140px;
+      margin-bottom: 1.2rem;
+    }
+    .tv-diya-aura {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255, 183, 3, 0.35) 0%, rgba(230, 81, 0, 0.12) 45%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: tvAuraPulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes tvAuraPulse {
+      0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+    }
+
+    /* Flickering Flame */
+    .tv-flame {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 60px;
+      background: linear-gradient(180deg, #ffffff 0%, #ffeb3b 25%, #ff9800 65%, #d84315 100%);
+      border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+      box-shadow: 0 0 25px #ff9800, 0 0 50px #ff5722;
+      animation: tvFlameFlicker 1.4s ease-in-out infinite alternate;
+    }
+    @keyframes tvFlameFlicker {
+      0% { transform: translateX(-50%) rotate(-1deg) scaleY(0.96); }
+      50% { transform: translateX(-50%) rotate(1.5deg) scaleY(1.05); }
+      100% { transform: translateX(-50%) rotate(-0.5deg) scaleY(0.98); }
+    }
+
+    .tv-diya-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.8));
+    }
+
+    /* Sanskrit Shloka Ribbon */
+    .tv-shlok-text {
+      font-family: var(--font-devanagari);
+      font-size: clamp(0.95rem, 1.8vw, 1.45rem);
+      color: rgba(255, 255, 255, 0.95);
+      font-style: italic;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    /* PRO TV WALLPAPER FOOTER */
+    .tv-footer {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      background: rgba(2, 4, 10, 0.9);
+      border-top: 1.5px solid rgba(255, 209, 102, 0.4);
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--pure-white);
+      font-size: clamp(0.82rem, 1.4vw, 1.1rem);
+    }
+    .tv-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+    }
+    .tv-footer-credit {
+      color: var(--pure-white);
+      font-weight: 600;
+    }
+    .tv-credit-highlight {
+      color: #ffd166;
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    }
+
+    /* Floating Sky Lanterns */
+    .tv-lantern {
+      position: fixed;
+      bottom: -90px;
+      width: 52px;
+      height: 72px;
+      pointer-events: none;
+      z-index: 12;
+      animation: tvLanternRise 19s linear forwards, tvLanternSway 3.2s ease-in-out infinite alternate;
+    }
+    .tv-lantern-body {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 70%, #ffffff 0%, #ffca28 35%, #ff5722 75%, #bf360c 100%);
+      border-radius: 12px 12px 20px 20px;
+      box-shadow: 0 0 30px rgba(255, 152, 0, 0.9);
+    }
+    .tv-lantern-ribbon {
+      position: absolute;
+      top: 102%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(225, 29, 72, 0.95);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      border: 1px solid #ffd166;
+    }
+    @keyframes tvLanternRise {
+      0% { transform: translateY(0) scale(0.9); opacity: 0; }
+      5% { opacity: 1; }
+      85% { opacity: 0.95; }
+      100% { transform: translateY(-135vh) scale(0.45); opacity: 0; }
+    }
+    @keyframes tvLanternSway {
+      0% { margin-left: -18px; }
+      100% { margin-left: 18px; }
+    }
+  </style>
+</head>
+<body id="tvBody">
+
+  <!-- Dynamic Screen Flash Overlay -->
+  <div class="tv-light-flash" id="tvLightFlash" aria-hidden="true"></div>
+
+  <!-- Fullscreen Fireworks Canvas -->
+  <canvas class="tv-canvas" id="tvCanvas" aria-hidden="true"></canvas>
+
+  <!-- Top Toran Garland -->
+  <div class="tv-toran" id="tvToranRow" aria-hidden="true"></div>
+
+  <!-- Kiosk Controls -->
+  <div class="tv-kiosk-controls">
+    <button id="btnTvFullscreen" class="tv-ctrl-btn" title="फुलस्क्रीन चालू / बंद करें">
+      <span>⛶</span>
+      <span>फुलस्क्रीन</span>
+    </button>
+    <button id="btnTvSound" class="tv-ctrl-btn" title="उत्सव ध्वनि म्यूट / अनम्यूट">
+      <span id="tvSoundIcon">🔔</span>
+      <span>ध्वनि</span>
+    </button>
+    <a href="index.html" class="tv-ctrl-btn" title="मुख्य पेज पर जाएं">
+      <span>←</span>
+      <span>मुख्य वेबसाइट</span>
+    </a>
+  </div>
+
+  <!-- MAIN STAGE -->
+  <main class="tv-wallpaper-stage">
+    
+    <!-- Panchayat Secretariat Header Badge -->
+    <div class="tv-panchayat-badge">
+      <span style="font-size: 1.4rem;">🏛️</span>
+      <span class="tv-panchayat-text">ग्राम पंचायत सचिवालय • पंचायत भवन</span>
+      <span class="tv-zindabad-pill">यूनियन ज़िन्दाबाद!</span>
+    </div>
+
+    <!-- Giant Diwali Heading -->
+    <h1 class="tv-diwali-title">शुभ दीपावली</h1>
+
+    <!-- Pure White Headline -->
+    <h2 class="tv-white-headline">
+      समस्त ग्रामवासियों एवं कर्मठ पंचायत सहायक साथियों को दीपोत्सव की हार्दिक शुभकामनाएं
+    </h2>
+
+    <!-- Pure White Slogan Line -->
+    <p class="tv-white-slogan">
+      ॥ गाँव के सजग प्रहरी • <span class="tv-gold-highlight">पंचायत सहायक यूनियन ज़िन्दाबाद</span> • हक और सम्मान की विजय हो ॥
+    </p>
+
+    <!-- Central Realistic Diya Stage -->
+    <div class="tv-diya-stage">
+      <div class="tv-diya-aura"></div>
+      <div class="tv-flame"></div>
+      <svg class="tv-diya-svg" viewBox="0 0 260 130">
+        <defs>
+          <radialGradient id="tvBrassShine" cx="50%" cy="25%" r="75%">
+            <stop offset="0%" stop-color="#fff4b8"/>
+            <stop offset="30%" stop-color="#e5a93c"/>
+            <stop offset="70%" stop-color="#996515"/>
+            <stop offset="100%" stop-color="#4a2800"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="130" cy="116" rx="95" ry="14" fill="#000" opacity="0.65"/>
+        <path d="M25,55 C30,105 95,120 130,120 C165,120 230,105 235,55 C235,55 195,68 130,68 C65,68 25,55 25,55 Z" fill="url(#tvBrassShine)"/>
+        <ellipse cx="130" cy="55" rx="110" ry="22" fill="#ea580c" stroke="#ffd54f" stroke-width="1.8"/>
+        <ellipse cx="130" cy="57" rx="96" ry="15" fill="#d97706"/>
+        <path d="M130,58 Q131,40 129,26" fill="none" stroke="#1f130b" stroke-width="5" stroke-linecap="round"/>
+        <path d="M129,28 L130,25" stroke="#f97316" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Sacred Sanskrit Shloka -->
+    <div class="tv-shlok-text">
+      "ॐ असतो मा सद्गमय । तमसो मा ज्योतिर्गमय । मृत्योर्मा अमृतं गमय ॥"
+    </div>
+
+  </main>
+
+  <!-- TV FOOTER -->
+  <footer class="tv-footer">
+    <div class="tv-footer-left">
+      <span>🌾</span>
+      <span>ग्राम पंचायत सचिवालय • पंचायत भवन डिजिटल दीपोत्सव स्क्रीन</span>
+    </div>
+    <div class="tv-footer-credit">
+      Made with ❤️ by <span class="tv-credit-highlight">Vaibhav Yadav</span> • पंचायत सहायक यूनियन ज़िन्दाबाद
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Audio Engine with Sliced GFHGHF.mp3
+      const AudioEngine = {
+        ctx: null,
+        buffer: null,
+        loaded: false,
+        enabled: true,
+        ambientTimer: null,
+
+        init() {
+          if (!this.ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx) {
+              this.ctx = new AudioCtx();
+              fetch('GFHGHF.mp3')
+                .then(r => r.ok ? r.arrayBuffer() : Promise.reject())
+                .then(buf => this.ctx.decodeAudioData(buf))
+                .then(decoded => { this.buffer = decoded; this.loaded = true; })
+                .catch(() => {});
+            }
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume();
+          }
+        },
+
+        playSlice(dur = 1.0, gainVal = 0.5) {
+          if (!this.enabled || !this.ctx || !this.buffer) return;
+          try {
+            const src = this.ctx.createBufferSource();
+            src.buffer = this.buffer;
+            const start = Math.random() * Math.max(0, this.buffer.duration - dur);
+            const g = this.ctx.createGain();
+            g.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + dur);
+            src.connect(g);
+            g.connect(this.ctx.destination);
+            src.start(this.ctx.currentTime, start, dur);
+          } catch(e) {}
+        },
+
+        playBoom() {
+          if (!this.enabled) return;
+          this.init();
+          this.playSlice(0.8, 0.6);
+          if (this.ctx) {
+            const osc = this.ctx.createOscillator();
+            const g = this.ctx.createGain();
+            osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(35, this.ctx.currentTime + 0.35);
+            g.gain.setValueAtTime(0.25, this.ctx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.38);
+            osc.connect(g);
+            g.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.4);
+          }
+        },
+
+        startAmbience() {
+          if (this.ambientTimer) return;
+          const pop = () => {
+            if (!this.enabled) return;
+            this.playBoom();
+            this.ambientTimer = setTimeout(pop, Math.random() * 2600 + 2200);
+          };
+          pop();
+        },
+
+        stopAmbience() {
+          if (this.ambientTimer) {
+            clearTimeout(this.ambientTimer);
+            this.ambientTimer = null;
+          }
+        }
+      };
+
+      // 2. Light Flash (Zero-Reflow Static Opacity Flash)
+      const LightFlash = {
+        el: null,
+        timer: null,
+        init() { this.el = document.getElementById('tvLightFlash'); },
+        flash() {
+          if (!this.el) return;
+          this.el.style.opacity = '1';
+          clearTimeout(this.timer);
+          this.timer = setTimeout(() => { if (this.el) this.el.style.opacity = '0'; }, 130);
+        }
+      };
+
+      // 3. High-Performance, TV-Optimized Fireworks Canvas (Solid 60 FPS)
+      const TVFireworks = {
+        canvas: null,
+        ctx: null,
+        particles: [],
+        rockets: [],
+        embers: [],
+        width: 0,
+        height: 0,
+        lastRocket: 0,
+        rocketInterval: 3800,
+        lastLantern: 0,
+        lanternInterval: 22000,
+
+        colors: [
+          ['#ffffff', '#ffd166', '#ffb703', '#ffe57f'], // Diamond Gold
+          ['#ff1744', '#ff5252', '#ffd166', '#ffffff'], // Ruby
+          ['#00e676', '#69f0ae', '#ffd166', '#ffffff'], // Emerald
+          ['#00e5ff', '#18ffff', '#ffd166', '#ffffff'], // Cyan
+          ['#e040fb', '#ea80fc', '#ffd166', '#ffffff']  // Purple
+        ],
+
+        init() {
+          this.canvas = document.getElementById('tvCanvas');
+          if (!this.canvas) return;
+          this.ctx = this.canvas.getContext('2d');
+          this.resize();
+          window.addEventListener('resize', () => this.resize());
+
+          for (let i = 0; i < 15; i++) {
+            this.embers.push(this.createEmber(true));
+          }
+
+          // Launch rocket on click
+          window.addEventListener('pointerdown', (e) => {
+            if (e.target.closest('button') || e.target.closest('a')) return;
+            AudioEngine.init();
+            if (AudioEngine.enabled) AudioEngine.startAmbience();
+            this.launchRocket(e.clientX, e.clientY);
+          });
+
+          this.loop();
+        },
+
+        resize() {
+          this.width = window.innerWidth;
+          this.height = window.innerHeight;
+          this.canvas.width = this.width;
+          this.canvas.height = this.height;
+        },
+
+        createEmber(initial = false) {
+          return {
+            x: Math.random() * this.width,
+            y: initial ? Math.random() * this.height : this.height + 10,
+            size: Math.random() * 2 + 1.2,
+            color: Math.random() > 0.4 ? '#ffd166' : '#ffffff',
+            alpha: Math.random() * 0.6 + 0.3,
+            speedY: -(Math.random() * 0.4 + 0.2),
+            speedX: (Math.random() - 0.5) * 0.25
+          };
+        },
+
+        launchRocket(tx, ty) {
+          const sx = tx + (Math.random() - 0.5) * 60;
+          const sy = this.height;
+          const angle = Math.atan2(ty - sy, tx - sx);
+          const dist = Math.hypot(tx - sx, ty - sy);
+          const speed = dist / 22;
+
+          this.rockets.push({
+            x: sx,
+            y: sy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            targetX: tx,
+            targetY: ty,
+            color: '#ffd166'
+          });
+        },
+
+        explode(x, y) {
+          const pal = this.colors[Math.floor(Math.random() * this.colors.length)];
+          LightFlash.flash();
+          AudioEngine.playBoom();
+
+          // Layer 1: Radiant Shell (18 particles)
+          for (let i = 0; i < 18; i++) {
+            const ang = Math.random() * Math.PI * 2;
+            const spd = Math.random() * 5.0 + 3.0;
+            this.particles.push({
+              x, y,
+              vx: Math.cos(ang) * spd,
+              vy: Math.sin(ang) * spd,
+              drag: 0.965,
+              alpha: 1.0,
+              decay: Math.random() * 0.012 + 0.009,
+              size: Math.random() * 2.6 + 1.6,
+              gravity: 0.048,
+              color: pal[Math.floor(Math.random() * pal.length)]
+            });
+          }
+
+          // Layer 2: Core Diamond Sparkle (10 particles)
+          for (let i = 0; i < 10; i++) {
+            const ang = Math.random() * Math.PI * 2;
+            const spd = Math.random() * 2.5 + 1.0;
+            this.particles.push({
+              x, y,
+              vx: Math.cos(ang) * spd,
+              vy: Math.sin(ang) * spd,
+              drag: 0.955,
+              alpha: 1.0,
+              decay: Math.random() * 0.018 + 0.012,
+              size: Math.random() * 2.0 + 1.2,
+              gravity: 0.04,
+              color: '#ffffff'
+            });
+          }
+
+          // Strict cap at 42 particles max on TV
+          if (this.particles.length > 42) {
+            this.particles.splice(0, this.particles.length - 42);
+          }
+        },
+
+        loop(time = 0) {
+          requestAnimationFrame((t) => this.loop(t));
+
+          this.ctx.globalCompositeOperation = 'destination-out';
+          this.ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';
+          this.ctx.fillRect(0, 0, this.width, this.height);
+          this.ctx.globalCompositeOperation = 'lighter';
+
+          // Auto-Launch Rockets
+          if (time - this.lastRocket > this.rocketInterval) {
+            const tx = Math.random() * (this.width * 0.8) + this.width * 0.1;
+            const ty = Math.random() * (this.height * 0.35) + 60;
+            this.launchRocket(tx, ty);
+            this.lastRocket = time;
+            this.rocketInterval = Math.random() * 1400 + 3600;
+          }
+
+          // Auto-Release Sky Lantern
+          if (time - this.lastLantern > this.lanternInterval) {
+            this.releaseLantern();
+            this.lastLantern = time;
+            this.lanternInterval = Math.random() * 6000 + 20000;
+          }
+
+          // 1. Rockets
+          for (let i = this.rockets.length - 1; i >= 0; i--) {
+            const r = this.rockets[i];
+            r.x += r.vx;
+            r.y += r.vy;
+
+            this.ctx.fillStyle = r.color;
+            this.ctx.fillRect(r.x - 1.5, r.y - 1.5, 3, 3);
+
+            if (r.y <= r.targetY || Math.hypot(r.x - r.targetX, r.y - r.targetY) < 18) {
+              this.explode(r.targetX, r.targetY);
+              this.rockets.splice(i, 1);
+            }
+          }
+
+          // 2. High-Speed Batch Rendered Particles
+          for (let i = this.particles.length - 1; i >= 0; i--) {
+            const p = this.particles[i];
+            const drag = p.drag || 0.96;
+            p.vx *= drag;
+            p.vy = p.vy * drag + p.gravity;
+
+            p.x += p.vx;
+            p.y += p.vy;
+            p.alpha -= p.decay;
+
+            if (p.alpha <= 0) {
+              this.particles.splice(i, 1);
+              continue;
+            }
+
+            this.ctx.globalAlpha = p.alpha;
+            this.ctx.fillStyle = p.color;
+            this.ctx.fillRect(p.x, p.y, p.size, p.size);
+          }
+
+          // 3. Celestial Embers
+          for (let i = 0; i < this.embers.length; i++) {
+            const emb = this.embers[i];
+            emb.x += emb.speedX;
+            emb.y += emb.speedY;
+
+            if (emb.y < -10 || emb.x < -10 || emb.x > this.width + 10) {
+              this.embers[i] = this.createEmber(false);
+              continue;
+            }
+
+            this.ctx.globalAlpha = emb.alpha;
+            this.ctx.fillStyle = emb.color;
+            this.ctx.fillRect(emb.x, emb.y, emb.size, emb.size);
+          }
+
+          this.ctx.globalAlpha = 1.0;
+        },
+
+        releaseLantern() {
+          const l = document.createElement('div');
+          l.className = 'tv-lantern';
+          l.style.left = `${Math.random() * 65 + 15}%`;
+          l.innerHTML = `
+            <div class="tv-lantern-body"></div>
+            <div class="tv-lantern-ribbon">✦ पंचायत सहायक यूनियन ज़िन्दाबाद ✦</div>
+          `;
+          document.body.appendChild(l);
+          setTimeout(() => l.remove(), 19500);
+        }
+      };
+
+      // 4. Kiosk Controls & Autoplay Unlocking
+      function initControls() {
+        const btnFull = document.getElementById('btnTvFullscreen');
+        if (btnFull) {
+          btnFull.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+              document.exitFullscreen().catch(() => {});
+            }
+          });
+        }
+
+        const btnSound = document.getElementById('btnTvSound');
+        const soundIcon = document.getElementById('tvSoundIcon');
+        if (btnSound) {
+          btnSound.addEventListener('click', () => {
+            AudioEngine.init();
+            AudioEngine.enabled = !AudioEngine.enabled;
+            if (AudioEngine.enabled) {
+              AudioEngine.startAmbience();
+              if (soundIcon) soundIcon.textContent = '🔔';
+            } else {
+              AudioEngine.stopAmbience();
+              if (soundIcon) soundIcon.textContent = '🔇';
+            }
+          });
+        }
+
+        // Gesture unlock for audio
+        const unlock = () => {
+          AudioEngine.init();
+          if (AudioEngine.enabled) AudioEngine.startAmbience();
+          window.removeEventListener('pointerdown', unlock);
+          window.removeEventListener('keydown', unlock);
+        };
+        window.addEventListener('pointerdown', unlock, { passive: true });
+        window.addEventListener('keydown', unlock, { passive: true });
+
+        // Generate Toran row
+        const toranRow = document.getElementById('tvToranRow');
+        if (toranRow) {
+          let html = '';
+          for (let i = 0; i < 20; i++) {
+            html += '<div class="tv-toran-flower"></div>';
+          }
+          toranRow.innerHTML = html;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        LightFlash.init();
+        TVFireworks.init();
+        initControls();
+      });
+    })();
+  </script>
+</body>
+</html>

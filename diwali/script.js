@@ -34,7 +34,7 @@
 
   const CARD_MESSAGES = {
     1: `🌾 *कर्म एवं सेवा – पंचायत सहायक यूनियन ज़िन्दाबाद!*\n\nगाँव के हर जरूरतमंद तक सरकारी योजनाओं, राशन, पेंशन और डिजिटल सेवाओं को पहुँचाने वाले समस्त परिश्रमी पंचायत सहायक साथियों को नमन। आपका अथक श्रम ही ग्राम्य भारत की नींव है।\n\nशुभ दीपावली! 🪔`,
-    2: `👑 *सम्मान व अधिकार – पंचायत सहायक यूनियन ज़िन्दाबाद!*\n\nमाँ महालक्ष्मी से प्रार्थना है कि यह दीपोत्सव समस्त पंचायत साथियों के जीवन में सम्मानजनक मानदेय, नियमितीकरण का मार्ग और स्थाई सामाजिक सुरक्षा लेकर आए।\n\n॥ हक और सम्मान की विजय हो ॥\nशुभ दीपावली! 🪔`,
+    2: `👑 *सम्मान व अधिकार – पंचायत सहायक यूनियन ज़िन्दाबाद!*\n\nमाँ महालक्ष्मी से प्रार्थना है कि यह दीपोत्सव समस्त पंचायत सहायकों के जीवन में सम्मानजनक मानदेय, नियमितीकरण का मार्ग और स्थाई सामाजिक सुरक्षा लेकर आए।\n\n॥ हक और सम्मान की विजय हो ॥\nशुभ दीपावली! 🪔`,
     3: `🤝 *संगठन शक्ति – पंचायत सहायक यूनियन ज़िन्दाबाद!*\n\nएकता के सूत्र में बंधा पंचायत सहायक यूनियन का प्रत्येक साथी हमारा गर्व है। आइए इस दीपोत्सव पर परस्पर भ्रातृत्व, संगठन की मजबूती और सामूहिक प्रगति का पावन संकल्प लें।\n\n॥ हमारी एकता ही हमारी शक्ति है ॥\nशुभ दीपावली! 🪔`,
     4: `🪔 *आरोग्य व समृद्धि – पंचायत सहायक यूनियन ज़िन्दाबाद!*\n\nआपके और आपके समस्त परिवारजनों के उत्तम स्वास्थ्य, दीर्घायु और अपार खुशियों की मंगलकामना। दीपों का यह पर्व आपके आंगन को वैभव और आनंद के प्रकाश से भर दे।\n\nशुभ दीपावली! 🪔`
   };
@@ -689,10 +689,12 @@
     },
 
     bindSharingActions() {
+      const currentShareUrl = window.location.href.split('?')[0];
+
       const btnWa = document.getElementById('btnMasterWhatsApp');
       if (btnWa) {
         btnWa.addEventListener('click', () => {
-          const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(DEDICATION_WISH + '\n\n🌐 https://psuhappydiwali.netlify.app/')}`;
+          const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(DEDICATION_WISH + '\n\n🌐 ' + currentShareUrl)}`;
           window.open(url, '_blank');
         });
       }
@@ -700,7 +702,7 @@
       const btnCopy = document.getElementById('btnMasterCopy');
       if (btnCopy) {
         btnCopy.addEventListener('click', () => {
-          copyText(DEDICATION_WISH + '\n\n🌐 https://psuhappydiwali.netlify.app/', '✨ पंचायत सहायक यूनियन संदेश कॉपी हो गया!');
+          copyText(DEDICATION_WISH + '\n\n🌐 ' + currentShareUrl, '✨ पंचायत सहायक यूनियन संदेश कॉपी हो गया!');
           AudioEngine.playBell(659.25);
         });
       }
@@ -710,7 +712,7 @@
           e.stopPropagation();
           const id = btn.getAttribute('data-id');
           if (CARD_MESSAGES[id]) {
-            copyText(CARD_MESSAGES[id] + '\n\n🌐 https://psuhappydiwali.netlify.app/', '📋 कार्ड संदेश कॉपी हो गया!');
+            copyText(CARD_MESSAGES[id] + '\n\n🌐 ' + currentShareUrl, '📋 कार्ड संदेश कॉपी हो गया!');
             AudioEngine.playBell(587.33);
           }
         });
@@ -721,7 +723,7 @@
           e.stopPropagation();
           const id = btn.getAttribute('data-id');
           if (CARD_MESSAGES[id]) {
-            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(CARD_MESSAGES[id] + '\n\n🌐 https://psuhappydiwali.netlify.app/')}`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(CARD_MESSAGES[id] + '\n\n🌐 ' + currentShareUrl)}`;
             window.open(url, '_blank');
           }
         });
@@ -747,7 +749,7 @@
 
       const openModal = () => {
         const rawName = nameInput ? nameInput.value.trim() : '';
-        currentSenderName = rawName || 'समस्त पंचायत साथी';
+        currentSenderName = rawName || 'समस्त पंचायत सहायक';
 
         if (modal) {
           modal.classList.add('open');
@@ -831,16 +833,17 @@
       // 3. Copy Text & Website Link
       if (btnCopy) {
         btnCopy.addEventListener('click', () => {
+          const currentShareUrl = window.location.href.split('?')[0];
           const shareText = `🪔 *शुभ दीपावली – पंचायत सहायक यूनियन ज़िन्दाबाद!* ✨\n\n` +
             `समस्त पंचायत सहायक साथियों को दीपोत्सव की हार्दिक शुभकामनाएं!\n\n` +
             `गाँव के अंतिम व्यक्ति तक जनसेवा, ईमानदारी और विकास की पावन ज्योति प्रज्वलित करने वाले समस्त कर्मयोगी पंचायत सहायकों को कोटि-कोटि नमन।\n\n` +
             `✦ *हमारा संघर्ष • हमारी एकता • हमारा स्वाभिमान* ✦\n` +
             `॥ पंचायत सहायक यूनियन ज़िन्दाबाद ॥\n\n` +
             `सप्रेम शुभकामना प्रेषक:\n` +
-            `*✨ ${currentSenderName} (पंचायत साथी) ✨*\n\n` +
+            `*✨ ${currentSenderName} ✨*\n\n` +
             `🌐 व्यक्तिगत बधाई पोस्टर देखें व बनाएं:\n` +
-            `https://psuhappydiwali.netlify.app/\n\n` +
-            `— Made with ❤️ by Vaibhav Yadav`;
+            `${currentShareUrl}\n\n` +
+            `— पंचायत सहायक यूनियन`;
 
           copyText(shareText, '📋 पोस्टर शुभकामना संदेश व लिंक कॉपी हो गया!');
           AudioEngine.playBell(587.33);
@@ -925,7 +928,7 @@
   }
 
   function generateDiwaliPoster(rawName) {
-    const cleanName = (rawName || '').trim() || 'समस्त पंचायत साथी';
+    const cleanName = (rawName || '').trim() || 'समस्त पंचायत सहायक';
     const canvas = document.createElement('canvas');
     canvas.width = 1080;
     canvas.height = 1350;
@@ -1256,35 +1259,17 @@
     ctx.shadowBlur = 12;
     ctx.fillStyle = '#4ade80';
     ctx.font = 'bold 44px "Rozha One", serif';
-    ctx.fillText(`${cleanName} (पंचायत साथी)`, 540, plaqueY + 90);
+    ctx.fillText(cleanName, 540, plaqueY + 90);
     ctx.restore();
 
     ctx.fillStyle = '#cbd5e1';
     ctx.font = '500 19px "Plus Jakarta Sans", sans-serif';
     ctx.fillText('ग्राम पंचायत परिवार • पंचायत सहायक यूनियन', 540, plaqueY + 126);
 
-    // 12. Official Website Link Pill
-    const linkPillW = 680;
-    const linkPillH = 46;
-    const linkPillX = 540 - linkPillW / 2;
-    const linkPillY = 1146;
-
-    ctx.fillStyle = 'rgba(56, 189, 248, 0.12)';
-    drawRoundRect(ctx, linkPillX, linkPillY, linkPillW, linkPillH, 23);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
-    ctx.lineWidth = 1.4;
-    drawRoundRect(ctx, linkPillX, linkPillY, linkPillW, linkPillH, 23);
-    ctx.stroke();
-
-    ctx.fillStyle = '#38bdf8';
-    ctx.font = '700 21px "Plus Jakarta Sans", sans-serif';
-    ctx.fillText('🌐 शुभकामना वेबसाइट: https://psuhappydiwali.netlify.app/', 540, linkPillY + 30);
-
-    // 13. Footer Dedication & Vaibhav Yadav Credit
+    // 13. Footer Dedication & Vedic Shlok
     ctx.fillStyle = '#94a3b8';
     ctx.font = '500 19px "Plus Jakarta Sans", sans-serif';
-    ctx.fillText('सत्य, सेवा, समर्पण और एकता का पावन पर्व • Made with ❤️ by Vaibhav Yadav', 540, 1230);
+    ctx.fillText('सत्य, सेवा, समर्पण और एकता का पावन पर्व • पंचायत सहायक यूनियन ज़िन्दाबाद', 540, 1230);
 
     ctx.fillStyle = '#ffd166';
     ctx.font = 'italic 18px "Rozha One", serif';
@@ -1306,17 +1291,18 @@
   }
 
   async function sharePoster(posterDataUrl, name) {
-    const cleanName = (name || '').trim() || 'पंचायत साथी';
+    const cleanName = (name || '').trim() || 'पंचायत सहायक';
+    const currentShareUrl = window.location.href.split('?')[0];
     const shareText = `🪔 *शुभ दीपावली – पंचायत सहायक यूनियन ज़िन्दाबाद!* ✨\n\n` +
       `समस्त पंचायत सहायक साथियों को दीपोत्सव की हार्दिक शुभकामनाएं!\n\n` +
       `गाँव के अंतिम व्यक्ति तक विकास व जनसेवा की लौ जलाने वाले समस्त कर्मयोगी पंचायत सहायकों को नमन।\n\n` +
       `✦ *हमारा संघर्ष • हमारी एकता • हमारा स्वाभिमान* ✦\n` +
       `॥ पंचायत सहायक यूनियन ज़िन्दाबाद ॥\n\n` +
       `सप्रेम शुभकामना प्रेषक:\n` +
-      `*✨ ${cleanName} (पंचायत साथी) ✨*\n\n` +
+      `*✨ ${cleanName} ✨*\n\n` +
       `🌐 अपना व्यक्तिगत बधाई पोस्टर बनाएं व देखें:\n` +
-      `https://psuhappydiwali.netlify.app/\n\n` +
-      `— Made with ❤️ by Vaibhav Yadav`;
+      `${currentShareUrl}\n\n` +
+      `— पंचायत सहायक यूनियन`;
 
     try {
       if (navigator.share && window.isSecureContext) {
